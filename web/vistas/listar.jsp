@@ -8,16 +8,19 @@
     </head>
     <body>
         <div>
-            <h1> Personas</h1> 
+            <h1>Usuarios</h1> 
             
             <table border="1">
                 
                 <thead>
                     <tr>
-                        <th>ID</th>
-                        <th>DNI</th>
+                        <th>DNI</th> 
                         <th>NOMBRES</th>
-                        <th>ACCIONES</th>
+                        <th>APELLIDOS</th>
+                        <th>TELEFONO</th>
+                        <th>DIRECCION</th>
+                        <th>FECHA REGISTRO</th>
+                           
                         
                     </tr>
                 </thead>
