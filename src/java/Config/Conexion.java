@@ -7,20 +7,36 @@ package Config;
 
 import java.sql.*;
 
+
 public class Conexion {
-    Connection con;
-    public Conexion(){
+    
+    
+   
+    public static Connection conectar(){
+        
+        Connection con=null;
+        
+        String password=" ";
+        String usuario="root";
+        String url= "jdbc:mysql://localhost:3306/rental?user="+ usuario + "&password="+ password;
         try {
-            Class.forName("com.mysql.jdbc.Driver");
-            con=DriverManager.getConnection("jdbc:mysql://localhost:3306/rental","root"," ");            
-        } catch (Exception e) {
-            System.err.println("Error"+e);
+          con= DriverManager.getConnection(url);
+          if(con != null){
+              System.out.println("Conectado");
+          }
+            
+        } catch (SQLException e) {
+            System.out.println("No se pudo conectar a la base de datos");
+            e.printStackTrace();            
+            
         }
-    }
-    public Connection getConnection(){
         return con;
     }
-}
+    public Connection getConnection(){
+        Connection con = null;
+        return con;
+    }
+    }
 
     
     

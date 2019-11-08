@@ -12,6 +12,9 @@ CREATE TABLE `usuarios` (
 ) ENGINE=INNODB DEFAULT CHARSET=latin1
 
 
+
+
+
 CREATE TABLE usuarios(
 id          int(255) auto_increment not null,
 nombre      varchar(100) not null,
@@ -23,6 +26,11 @@ CONSTRAINT pk_usuarios PRIMARY KEY(id),
 CONSTRAINT uq_email UNIQUE(email)
 
 )ENGINE=InnoDb;
+
+
+
+
+
 
 CREATE TABLE categorias(
 
@@ -75,6 +83,11 @@ CONSTRAINT uq_email UNIQUE(email)
 )ENGINE=InnoDb;
 
 /*Usuarios creada sin problemas*/
+
+#datos a Insertar#
+INSERT INTO usuarios VALUES(null,"34860730",1,"Alejandro","Molina","+542944335790","ale@ale.com","1234","2019-11-07");
+
+
 
 
 #Categoria#

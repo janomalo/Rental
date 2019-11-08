@@ -1,4 +1,9 @@
 
+<%@page import="java.util.Iterator"%>
+<%@page import="Modelo.Usuario"%>
+<%@page import="Interfaces.IUsuarioDao"%>
+<%@page import="ModeloDaoImpl.UsuarioDaoImpl" %>
+<%@page import="java.util.List"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -24,18 +29,36 @@
                         
                     </tr>
                 </thead>
+                
+                <%
+                   UsuarioDaoImpl dao= new UsuarioDaoImpl();
+                    List<Usuario> list=dao.listar();
+                    Iterator<Usuario> iter=list.iterator();
+                   Usuario usu= new Usuario();
+                    while(iter.hasNext()){
+                        usu=iter.next();
+                    
+                                    
+                %>
                 <tbody>
                     
                     <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
+                        <td> <%= usu.getId() %></td>
+                      <td> <%= usu.getDni() %></td>
+                       <td> <%= usu.getNombres()%></td>
+                       <td> <%= usu.getApellidos()%></td>
+                       <td>  <%= usu.getTelefono()%></td>
+                       <td> <%= usu.getDireccion()%></td>
+                       <td> <%= usu.getFecha_registro()%> </td>
+                       <td>
+                           <a>Editar</a>
+                           <a>Remove</a>
+                       </td>
                         
                         
                         
                     </tr>
-                    
+                    <%}%>
                 </tbody>
                 
                                

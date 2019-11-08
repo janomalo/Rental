@@ -9,7 +9,7 @@ public class Usuario {
     String dni;
     String nombres;
     String apellidos;
-    int telefono;
+    String telefono;
     String direccion;
     Date  fecha_registro;
     String password;
@@ -17,7 +17,7 @@ public class Usuario {
     public Usuario() {
     }
 
-    public Usuario(int id, String dni, String nombres, String apellidos, int telefono, String direccion, Date fecha_registro, String password) {
+    public Usuario(int id, String dni, String nombres, String apellidos, String telefono, String direccion, Date fecha_registro, String password) {
         this.id = id;
         this.dni = dni;
         this.nombres = nombres;
@@ -53,7 +53,7 @@ public class Usuario {
         return apellidos;
     }
 
-    public int getTelefono() {
+    public String getTelefono() {
         return telefono;
     }
 
@@ -78,7 +78,7 @@ public class Usuario {
         this.apellidos = apellidos;
     }
 
-    public void setTelefono(int telefono) {
+    public void setTelefono(String telefono) {
         this.telefono = telefono;
     }
 
