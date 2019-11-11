@@ -31,10 +31,11 @@
                 </thead>
                 
                 <%
-                   UsuarioDaoImpl dao= new UsuarioDaoImpl();
+                    
+                    UsuarioDaoImpl dao= new UsuarioDaoImpl();
                     List<Usuario> list=dao.listar();
                     Iterator<Usuario> iter=list.iterator();
-                   Usuario usu= new Usuario();
+                   Usuario usu= null;
                     while(iter.hasNext()){
                         usu=iter.next();
                     
@@ -58,12 +59,17 @@
                         
                         
                     </tr>
-                    <%}%>
+                    <%
+                    }
+                    
+                    %>
                 </tbody>
                 
                                
                 
-            </table>
+            </table> 
+                
+                <h1> FIN LSITAR</h1>
         </div>
     </body>
 </html>

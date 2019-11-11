@@ -6,37 +6,43 @@
 package Config;
 
 import java.sql.*;
-
+import java.sql.DriverManager;
+import java.sql.SQLException;
 
 public class Conexion {
-    
-    
-   
-    public static Connection conectar(){
-        
-        Connection con=null;
-        
-        String password=" ";
-        String usuario="root";
-        String url= "jdbc:mysql://localhost:3306/rental?user="+ usuario + "&password="+ password;
+
+    // Librería de MySQL
+    public String driver = "com.mysql.jdbc.Driver";
+
+    // Nombre de la base de datos
+    public String database = "rental";
+
+    // Host
+    public String hostname = "localhost";
+
+    // Puerto
+    public String port = "3306";
+
+    // Ruta de nuestra base de datos (desactivamos el uso de SSL con "?useSSL=false")
+    public String url = "jdbc:mysql://" + hostname + ":" + port + "/" + database + "?useSSL=false";
+
+    // Nombre de usuario
+    public String username = "root";
+
+    // Clave de usuario
+    public String password = "";
+
+    public Connection conectar() {
+        Connection conn = null;
+
         try {
-          con= DriverManager.getConnection(url);
-          if(con != null){
-              System.out.println("Conectado");
-          }
-            
-        } catch (SQLException e) {
-            System.out.println("No se pudo conectar a la base de datos");
-            e.printStackTrace();            
-            
+            Class.forName(driver);
+            conn = DriverManager.getConnection(url, username, password);
+        } catch (ClassNotFoundException | SQLException e) {
+            e.printStackTrace();
         }
-        return con;
-    }
-    public Connection getConnection(){
-        Connection con = null;
-        return con;
-    }
+
+        return conn;
     }
 
-    
-    
+}

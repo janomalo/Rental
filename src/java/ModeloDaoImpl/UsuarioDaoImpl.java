@@ -1,6 +1,7 @@
 
 package ModeloDaoImpl;
 
+
 import Config.Conexion;
 import Interfaces.IUsuarioDao;
 import Modelo.Usuario;
@@ -21,18 +22,18 @@ public class UsuarioDaoImpl implements IUsuarioDao{
 
     @Override
     public List<Usuario> listar() {
-        Connection con=null;
-        Statement stm=null;
-        ResultSet rs=null;
+       // Instancias la clase que hemos creado anteriormente
+       Conexion SQL = new Conexion();
+// Llamas al método que tiene la clase y te devuelve una conexión
+ Connection conn = SQL.conectar();
+// Query que usarás para hacer lo que necesites
+         String sSQL ="SELECT * FROM usuarios";
         
-        String sql ="SELECT * FROM usuarios ORDER BY id";
-        
-        List<Usuario> listaUsuarios= new ArrayList<Usuario>();
+        List<Usuario> listaUsuarios= new ArrayList<>();
         
         try {
-            con= Conexion.conectar();
-            stm=con.createStatement();
-            rs=stm.executeQuery(sql);
+             Statement stm=conn.createStatement();
+            ResultSet rs=stm.executeQuery(sSQL);
             while(rs.next()){
                 Usuario u= new Usuario();
                 u.setId(rs.getInt("id"));
@@ -46,14 +47,15 @@ public class UsuarioDaoImpl implements IUsuarioDao{
             }
             stm.close();
             rs.close();
-            con.close();
+            conn.close();
             
         } catch (SQLException e) {
             System.out.println("Error:Clase UsuarioDaoImpl,metodo obtener");
             e.printStackTrace();
         }
-    return listaUsuarios;
-    
+   
+                return listaUsuarios;
+   
     
     }
 
