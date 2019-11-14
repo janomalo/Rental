@@ -23,7 +23,7 @@ public class UsuarioDaoImpl implements IUsuarioDao{
     @Override
     public List<Usuario> listar() {
        // Instancias la clase que hemos creado anteriormente
-       Conexion SQL = new Conexion();
+     Conexion SQL = new Conexion();
 // Llamas al método que tiene la clase y te devuelve una conexión
  Connection conn = SQL.conectar();
 // Query que usarás para hacer lo que necesites

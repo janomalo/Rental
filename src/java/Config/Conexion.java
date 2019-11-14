@@ -5,7 +5,7 @@
  */
 package Config;
 
-import java.sql.*;
+import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
@@ -39,6 +39,7 @@ public class Conexion {
             Class.forName(driver);
             conn = DriverManager.getConnection(url, username, password);
         } catch (ClassNotFoundException | SQLException e) {
+            System.out.println("no se pudo conectar a la base datos");
             e.printStackTrace();
         }
 

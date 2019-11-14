@@ -19,6 +19,7 @@
                 
                 <thead>
                     <tr>
+                        <th>ID</th>
                         <th>DNI</th> 
                         <th>NOMBRES</th>
                         <th>APELLIDOS</th>
