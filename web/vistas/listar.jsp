@@ -26,6 +26,7 @@
                         <th>TELEFONO</th>
                         <th>DIRECCION</th>
                         <th>FECHA REGISTRO</th>
+                        <th>ACCIONES</th>
                            
                         
                     </tr>
@@ -70,7 +71,7 @@
                 
             </table> 
                 
-                <h1> FIN LSITAR</h1>
+                <h1> FIN LISTAR</h1>
         </div>
     </body>
 </html>
