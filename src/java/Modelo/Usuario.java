@@ -10,21 +10,22 @@ public class Usuario {
     String nombres;
     String apellidos;
     String telefono;
+    int rol;
     String direccion;
-    Date  fecha_registro;
+    String email;
     String password;
 
     public Usuario() {
     }
 
-    public Usuario(int id, String dni, String nombres, String apellidos, String telefono, String direccion, Date fecha_registro, String password) {
+    public Usuario(int id, String dni, String nombres, String apellidos, String telefono, String direccion, String password) {
         this.id = id;
         this.dni = dni;
         this.nombres = nombres;
         this.apellidos = apellidos;
         this.telefono = telefono;
         this.direccion = direccion;
-        this.fecha_registro = fecha_registro;
+       
         this.password = password;
     }
 
@@ -61,11 +62,7 @@ public class Usuario {
         return direccion;
     }
 
-    public Date getFecha_registro() {
-        return fecha_registro;
-    }
-
-   
+      
     public void setDni(String dni) {
         this.dni = dni;
     }
@@ -85,16 +82,26 @@ public class Usuario {
     public void setDireccion(String direccion) {
         this.direccion = direccion;
     }
-
-    public void setFecha_registro(Date fecha_registro) {
-        this.fecha_registro = fecha_registro;
-    }
-
-    
-
     public void setId(int id) {
         this.id = id;
     }
+
+    public int getRol() {
+        return rol;
+    }
+
+    public void setRol(int rol) {
+        this.rol = rol;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
     
 
     

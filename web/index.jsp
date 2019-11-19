@@ -14,7 +14,9 @@
         
         <div>
             
-            <a href="Controlador?accion=listar"> Listar Persona</a>
+            <a href="Controlador?accion=listar"> Listar Usuario</a> <br>
+            <a href="Controlador?accion=add">Agregar Usuario</a> <br>
+            <a>Editar Usuario</a><br>
             
             
        </div>

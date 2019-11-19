@@ -5,8 +5,13 @@
  */
 package Controlador;
 
+import Modelo.Usuario;
+import ModeloDaoImpl.UsuarioDaoImpl;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import javax.servlet.RequestDispatcher;
 
 import javax.servlet.ServletException;
@@ -23,7 +28,8 @@ public class Controlador extends HttpServlet {
     String listar="/vistas/listar.jsp";
     String add="/vistas/add.jsp";
     String edit="/vistas/edit.jsp";
-    
+    Usuario usu=new Usuario();
+    UsuarioDaoImpl dao=new UsuarioDaoImpl();
     
     
     
@@ -69,7 +75,30 @@ public class Controlador extends HttpServlet {
         String acceso="";
         String action= request.getParameter("accion");
         if(action.equalsIgnoreCase("listar")){
+            acceso=listar;
+        } else if (action.equalsIgnoreCase("add")) {
+            acceso=add;
             
+        } else if (action.equalsIgnoreCase("Agregar")) {
+            System.out.println("pasa por aca");
+            String dni=request.getParameter("dni");
+            String nombres=request.getParameter("nombres");
+            String apellidos=request.getParameter("apellidos");
+            String telefono=request.getParameter("telefono");
+            String email=request.getParameter("email");
+            String password=request.getParameter("password");
+            String direccion=request.getParameter("direccion");
+            
+            usu.setRol(2);
+            usu.setDni(dni);
+            usu.setNombres(nombres);
+            usu.setApellidos(apellidos);
+            usu.setTelefono(telefono);
+            usu.setEmail(email);
+            usu.setPassword(password);
+            usu.setDireccion(direccion);
+            
+            dao.save(usu);            
             acceso=listar;
         }
         

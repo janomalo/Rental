@@ -14,6 +14,7 @@
     <body>
         <div>
             <h1>Usuarios</h1> 
+             <a href="Controlador?accion=add">Agregar Nuevo</a> 
             
             <table border="1">
                 
@@ -25,7 +26,7 @@
                         <th>APELLIDOS</th>
                         <th>TELEFONO</th>
                         <th>DIRECCION</th>
-                        <th>FECHA REGISTRO</th>
+                        <%--<th>FECHA REGISTRO</th> --%>
                         <th>ACCIONES</th>
                            
                         
@@ -52,7 +53,7 @@
                        <td> <%= usu.getApellidos()%></td>
                        <td>  <%= usu.getTelefono()%></td>
                        <td> <%= usu.getDireccion()%></td>
-                       <td> <%= usu.getFecha_registro()%> </td>
+                       <%-- <td> <%= usu.getFecha_registro()%> </td> --%>
                        <td>
                            <a>Editar</a>
                            <a>Remove</a>

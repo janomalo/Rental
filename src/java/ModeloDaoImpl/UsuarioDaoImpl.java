@@ -7,6 +7,7 @@ import Interfaces.IUsuarioDao;
 import Modelo.Usuario;
 import  java.sql.ResultSet;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
@@ -16,8 +17,29 @@ import java.util.List;
 public class UsuarioDaoImpl implements IUsuarioDao{
 
     @Override
-    public boolean save(Usuario usuario) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public boolean save(Usuario usu) {
+        boolean save=false;
+        Conexion SQL=new Conexion();
+        Connection conn= SQL.conectar();
+        
+        String sSQL="INSERT INTO usuarios(id,dni,rol_id,nombres,apellidos,telefono,email,password,fecha_registro,direccion) VALUES(NULL,'"+usu.getDni()+"','"+usu.getRol()+"','"+usu.getNombres()+"','"+usu.getApellidos()+"','"+usu.getTelefono()+"','"+usu.getEmail()+"','"+usu.getPassword()+"',NULL,'"+usu.getDireccion()+"')";
+        
+               
+        try {
+            PreparedStatement ps=conn.prepareStatement(sSQL);
+            ps.executeUpdate();
+            save=true;
+            conn.close();
+            
+            
+        } catch (Exception e) {
+            System.out.println("Error al agregar un usuario");
+            e.printStackTrace();
+        
+        }
+               
+              
+        return save;
     }
 
     @Override
@@ -42,7 +64,7 @@ public class UsuarioDaoImpl implements IUsuarioDao{
                 u.setApellidos(rs.getString("apellidos"));
                 u.setTelefono(rs.getString("telefono"));
                 u.setDireccion(rs.getString("direccion"));
-                u.setFecha_registro(rs.getDate("fecha_registro"));
+                //u.setFecha_registro(rs.getDate("fecha_registro"));
                 listaUsuarios.add(u);
             }
             stm.close();
