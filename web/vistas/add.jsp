@@ -17,7 +17,7 @@
                 Email <input type="text" name="email"><br>
                 Direccion <input type="text" name="direccion"> <br>
                 Contraseña <input type="password" name="password"><br>
-                Fecha <input type="date" name="fecha">
+                <%-- Fecha <input type="date" name="fecha"> --%>
                 <input type="submit" value="Agregar" name="accion">
             </form>
             

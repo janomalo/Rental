@@ -14,20 +14,32 @@ public class Usuario {
     String direccion;
     String email;
     String password;
+    String fecha_registro;
 
     public Usuario() {
     }
 
-    public Usuario(int id, String dni, String nombres, String apellidos, String telefono, String direccion, String password) {
+    public Usuario(int id, String dni, String nombres, String apellidos, String telefono, int rol, String direccion, String email, String password, String fecha_registro) {
         this.id = id;
         this.dni = dni;
         this.nombres = nombres;
         this.apellidos = apellidos;
         this.telefono = telefono;
+        this.rol = rol;
         this.direccion = direccion;
-       
+        this.email = email;
         this.password = password;
+        this.fecha_registro = fecha_registro;
     }
+
+    public String getFecha_registro() {
+        return fecha_registro;
+    }
+
+    public void setFecha_registro(String fecha_registro) {
+        this.fecha_registro = fecha_registro;
+    }
+
 
     public String getPassword() {
         return password;
