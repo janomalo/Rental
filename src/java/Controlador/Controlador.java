@@ -9,9 +9,11 @@ import Modelo.Usuario;
 import ModeloDaoImpl.UsuarioDaoImpl;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
 
 import javax.servlet.ServletException;
@@ -80,28 +82,35 @@ public class Controlador extends HttpServlet {
             acceso=add;
             
         } else if (action.equalsIgnoreCase("Agregar")) {
-            System.out.println("pasa por aca");
-            String dni=request.getParameter("dni");
-            String nombres=request.getParameter("nombres");
-            String apellidos=request.getParameter("apellidos");
-            String telefono=request.getParameter("telefono");
-            String email=request.getParameter("email");
-            String password=request.getParameter("password");
-            String direccion=request.getParameter("direccion");
             
-            usu.setRol(2);
-            usu.setDni(dni);
-            usu.setNombres(nombres);
-            usu.setApellidos(apellidos);
-            usu.setTelefono(telefono);
-            usu.setEmail(email);
-            usu.setPassword(password);
-            usu.setDireccion(direccion);
-            
-            dao.save(usu);            
-            acceso=listar;
+                System.out.println("pasa por aca");
+                String dni=request.getParameter("dni");
+                String nombres=request.getParameter("nombres");
+                String apellidos=request.getParameter("apellidos");
+                String telefono=request.getParameter("telefono");
+                String email=request.getParameter("email");
+                String password=request.getParameter("password");
+                String direccion=request.getParameter("direccion");
+                String fecha=request.getParameter("fecha");
+                
+               // SimpleDateFormat formato= new SimpleDateFormat("yyyy-MM-dd");
+                // Date fecha1=formato.parse(fecha);
+                
+                
+                
+                usu.setRol(2);
+                usu.setDni(dni);
+                usu.setNombres(nombres);
+                usu.setApellidos(apellidos);
+                usu.setTelefono(telefono);
+                usu.setEmail(email);
+                usu.setPassword(password);
+                usu.setDireccion(direccion);
+                usu.setFecha_registro(fecha);
+                
+                dao.save(usu);
+                acceso=listar;
         }
-        
         RequestDispatcher vista=request.getRequestDispatcher(acceso);
         vista.forward(request, response);
         
