@@ -12,31 +12,34 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
  
 public class UsuarioDaoImpl implements IUsuarioDao{
+    
+     // Instancias la clase que hemos creado anteriormente
+     Conexion SQL = new Conexion();
+// Llamas al método que tiene la clase y te devuelve una conexión
+ Connection conn = SQL.conectar();
+ Usuario u=new Usuario();
 
     @Override
     public boolean save(Usuario usu) {
         boolean save=false;
-        Conexion SQL=new Conexion();
-        Connection conn= SQL.conectar();
-        
+              
         String sSQL="INSERT INTO usuarios(id,dni,rol_id,nombres,apellidos,telefono,email,password,fecha_registro,direccion) VALUES(NULL,'"+usu.getDni()+"','"+usu.getRol()+"','"+usu.getNombres()+"','"+usu.getApellidos()+"','"+usu.getTelefono()+"','"+usu.getEmail()+"',SHA1('"+usu.getPassword()+"'),CURDATE(),'"+usu.getDireccion()+"')";
-        
-               
+                      
         try {
             PreparedStatement ps=conn.prepareStatement(sSQL);
             ps.executeUpdate();
             save=true;
             conn.close();
-            
-            
+                       
         } catch (Exception e) {
             System.out.println("Error al agregar un usuario");
             e.printStackTrace();
-        
-        }
+            }
                
               
         return save;
@@ -44,28 +47,24 @@ public class UsuarioDaoImpl implements IUsuarioDao{
 
     @Override
     public List<Usuario> listar() {
-       // Instancias la clase que hemos creado anteriormente
-     Conexion SQL = new Conexion();
-// Llamas al método que tiene la clase y te devuelve una conexión
- Connection conn = SQL.conectar();
+     
 // Query que usarás para hacer lo que necesites
          String sSQL ="SELECT * FROM usuarios";
-        
         List<Usuario> listaUsuarios= new ArrayList<>();
         
         try {
              Statement stm=conn.createStatement();
             ResultSet rs=stm.executeQuery(sSQL);
             while(rs.next()){
-                Usuario u= new Usuario();
-                u.setId(rs.getInt("id"));
-                u.setDni(rs.getString("dni"));
-                u.setNombres(rs.getString("dni"));
-                u.setApellidos(rs.getString("apellidos"));
-                u.setTelefono(rs.getString("telefono"));
-                u.setDireccion(rs.getString("direccion"));
+                Usuario usu= new Usuario();
+                usu.setId(rs.getInt("id"));
+                usu.setDni(rs.getString("dni"));
+                usu.setNombres(rs.getString("dni"));
+                usu.setApellidos(rs.getString("apellidos"));
+                usu.setTelefono(rs.getString("telefono"));
+                usu.setDireccion(rs.getString("direccion"));
                 //u.setFecha_registro(rs.getDate("fecha_registro"));
-                listaUsuarios.add(u);
+                listaUsuarios.add(usu);
             }
             stm.close();
             rs.close();
@@ -83,12 +82,58 @@ public class UsuarioDaoImpl implements IUsuarioDao{
 
     @Override
     public boolean edit(Usuario usuario) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+
+        String sSQL="UPDATE usuarios SET   dni='"+u.getDni()+"',nombres='"+u.getNombres()+"',apellidos='"+u.getApellidos()+"',telefono='"+u.getTelefono()+"',email='"+u.getEmail()+"',password=SHA1('"+u.getPassword()+"'),direccion='"+u.getDireccion()+"' WHERE id="+u.getId();
+            try {
+            PreparedStatement ps= conn.prepareStatement(sSQL);
+            ps.executeUpdate();
+        } catch (Exception e) {
+        }
+    
+    
+    
+    return false;
     }
 
     @Override
     public boolean delete(Usuario usuario) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public Usuario list(int id) {
+      String sSQL ="SELECT * FROM usuarios WHERE id="+id;
+        
+        try {
+             Statement stm=conn.createStatement();
+            ResultSet rs=stm.executeQuery(sSQL);
+            while(rs.next()){
+                u.setId(rs.getInt("id"));
+                u.setDni(rs.getString("dni"));
+                u.setNombres(rs.getString("dni"));
+                u.setApellidos(rs.getString("apellidos"));
+                u.setTelefono(rs.getString("telefono"));
+                u.setDireccion(rs.getString("direccion"));
+                //u.setFecha_registro(rs.getDate("fecha_registro"));
+              }
+          stm.close();
+            rs.close();
+            
+        } catch (SQLException e) {
+            System.out.println("Error:Clase UsuarioDaoImpl,metodo obtener");
+            e.printStackTrace();
+        } finally{
+          
+          try {
+              conn.close();
+          } catch (SQLException ex) {
+              Logger.getLogger(UsuarioDaoImpl.class.getName()).log(Level.SEVERE, null, ex);
+          }
+        }
+   
+                return u;
+   
+    
     }
 
 

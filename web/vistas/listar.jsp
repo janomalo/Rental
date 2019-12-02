@@ -55,7 +55,7 @@
                        <td> <%= usu.getDireccion()%></td>
                        <%-- <td> <%= usu.getFecha_registro()%> </td> --%>
                        <td>
-                           <a>Editar</a>
+                           <a href="Controlador?action=editar&id=<%= usu.getId()%>">Editar</a>
                            <a>Remove</a>
                        </td>
                         

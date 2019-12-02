@@ -101,7 +101,35 @@ public class Controlador extends HttpServlet {
             dao.save(usu);            
             acceso=listar;
         }
-        
+        else if (action.equalsIgnoreCase("editar")) {
+            request.setAttribute("idusu",request.getParameter("id")); // captura id de fila seleccionada cuando se hace click en editar.
+            acceso=edit;
+        }
+        else if (action.equalsIgnoreCase("Actualizar")) {
+             System.out.println("pasa por aca");
+            
+            Integer id=Integer.parseInt(request.getParameter("txtid"));
+            String dni=request.getParameter("txtdni");
+            String nombres=request.getParameter("txtnombres");
+            String apellidos=request.getParameter("txtapellidos");
+            String telefono=request.getParameter("txttelefono");
+            String email=request.getParameter("txtemail");
+            String password=request.getParameter("txtpassword");
+            String direccion=request.getParameter("txtdireccion");
+            
+            usu.setId(id);
+            usu.setDni(dni);
+            usu.setNombres(nombres);
+            usu.setApellidos(apellidos);
+            usu.setTelefono(telefono);
+            usu.setEmail(email);
+            usu.setPassword(password);
+            usu.setDireccion(direccion);
+            dao.edit(usu);
+            acceso="listar";
+            
+            
+        }
         RequestDispatcher vista=request.getRequestDispatcher(acceso);
         vista.forward(request, response);
         
