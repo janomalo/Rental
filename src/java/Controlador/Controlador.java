@@ -102,7 +102,9 @@ public class Controlador extends HttpServlet {
             acceso=listar;
         }
         else if (action.equalsIgnoreCase("editar")) {
-            request.setAttribute("idusu",request.getParameter("id")); // captura id de fila seleccionada cuando se hace click en editar.
+            // int idusu=Integer.parseInt(request.getParameter("id"));
+          request.setAttribute("idusu",request.getParameter("id"));          
+// captura id de fila seleccionada cuando se hace click en editar.
             acceso=edit;
         }
         else if (action.equalsIgnoreCase("Actualizar")) {
@@ -125,8 +127,9 @@ public class Controlador extends HttpServlet {
             usu.setEmail(email);
             usu.setPassword(password);
             usu.setDireccion(direccion);
+            
             dao.edit(usu);
-            acceso="listar";
+            acceso=listar;
             
             
         }

@@ -63,6 +63,7 @@ public class UsuarioDaoImpl implements IUsuarioDao{
                 usu.setApellidos(rs.getString("apellidos"));
                 usu.setTelefono(rs.getString("telefono"));
                 usu.setDireccion(rs.getString("direccion"));
+                usu.setEmail(rs.getString("email"));
                 //u.setFecha_registro(rs.getDate("fecha_registro"));
                 listaUsuarios.add(usu);
             }
@@ -81,15 +82,15 @@ public class UsuarioDaoImpl implements IUsuarioDao{
     }
 
     @Override
-    public boolean edit(Usuario usuario) {
+    public boolean edit(Usuario u) {
 
-        String sSQL="UPDATE usuarios SET   dni='"+u.getDni()+"',nombres='"+u.getNombres()+"',apellidos='"+u.getApellidos()+"',telefono='"+u.getTelefono()+"',email='"+u.getEmail()+"',password=SHA1('"+u.getPassword()+"'),direccion='"+u.getDireccion()+"' WHERE id="+u.getId();
+        String sSQL="UPDATE usuarios SET dni='"+u.getDni()+"',nombres='"+u.getNombres()+"',apellidos='"+u.getApellidos()+"',telefono='"+u.getTelefono()+"',email='"+u.getEmail()+"',password=SHA1('"+u.getPassword()+"'),direccion='"+u.getDireccion()+"' WHERE id="+u.getId();
             try {
             PreparedStatement ps= conn.prepareStatement(sSQL);
             ps.executeUpdate();
-        } catch (Exception e) {
+        } catch (SQLException e) {
+           e.printStackTrace();
         }
-    
     
     
     return false;
@@ -114,6 +115,7 @@ public class UsuarioDaoImpl implements IUsuarioDao{
                 u.setApellidos(rs.getString("apellidos"));
                 u.setTelefono(rs.getString("telefono"));
                 u.setDireccion(rs.getString("direccion"));
+                u.setEmail(rs.getString("email"));
                 //u.setFecha_registro(rs.getDate("fecha_registro"));
               }
           stm.close();
