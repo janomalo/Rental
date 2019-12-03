@@ -55,17 +55,17 @@ CREATE TABLE `usuarios` (
   `telefono` varchar(50) NOT NULL,
   `email` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL,
-  `fecha_registro` datetime DEFAULT NULL,
+  `fecha_registro` datetime NOT NULL,
   `direccion` varchar(255) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `uq_email` (`email`),
   KEY `fk_usuarios_rol` (`rol_id`),
   CONSTRAINT `fk_usuarios_rol` FOREIGN KEY (`rol_id`) REFERENCES `roles` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=latin1;
 
 /*Data for the table `usuarios` */
 
-insert  into `usuarios`(`id`,`dni`,`rol_id`,`nombres`,`apellidos`,`telefono`,`email`,`password`,`fecha_registro`,`direccion`) values (2,'34860730',1,'Alejandro','Molina','+542944335790','ale@ale.com','1234','2019-11-07 00:00:00','casa'),(3,'34555222',2,'Ale1','Molina1','55555','ale@gmail.com','12345',NULL,'primero de mayo'),(6,'31555000',2,'Jorge','ref','154131351','jorge@gmail.com','45645646',NULL,'su casa'),(7,'34555222',2,'Ale11','lala','111111','janomalo_moli@hotmail.com','123456789','2019-11-26 00:00:00','lalalala'),(16,'111222333',2,'prueba','prueba','111111','prueba@prueba','880c32165546680789340bcfdfbc921b91cd379a','2019-11-25 00:00:00','prueba 1234');
+insert  into `usuarios`(`id`,`dni`,`rol_id`,`nombres`,`apellidos`,`telefono`,`email`,`password`,`fecha_registro`,`direccion`) values (2,'34860733',1,'34860730','Molina','+542944335790','ale@ale.com','2be88ca4242c76e8253ac62474851065032d6833','2019-11-07 00:00:00','casa'),(3,'34555222',2,'34555222','Molina1','55555','newemail@gmail.com','2be88ca4242c76e8253ac62474851065032d6833','0000-00-00 00:00:00','primero de mayo'),(6,'31555000',2,'Jorge','ref','154131351','jorge@gmail.com','45645646','0000-00-00 00:00:00','su casa'),(7,'34555222',2,'Ale11','lala','111111','janomalo_moli@hotmail.com','123456789','2019-11-26 00:00:00','lalalala'),(16,'111222333',2,'prueba','prueba','111111','prueba@prueba','880c32165546680789340bcfdfbc921b91cd379a','2019-11-25 00:00:00','prueba 1234'),(17,'123123123',2,'Prueba2','Molina','0192384847575','lala@lalala.com','24c1f4b4103e7017eccfe8baf33202f27fa4c197','2019-11-27 00:00:00','jojojo 1234');
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
