@@ -130,7 +130,15 @@ public class Controlador extends HttpServlet {
             
             dao.edit(usu);
             acceso=listar;
-            
+                       
+        }
+        else if(action.equalsIgnoreCase("delete")){
+            String id= request.getParameter("id");
+             int id1= Integer.parseInt(id);
+             usu.setId(id1);
+             dao.delete(usu);
+             acceso=listar;
+           
             
         }
         RequestDispatcher vista=request.getRequestDispatcher(acceso);

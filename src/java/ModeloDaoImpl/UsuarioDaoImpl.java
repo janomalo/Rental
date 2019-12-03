@@ -97,8 +97,17 @@ public class UsuarioDaoImpl implements IUsuarioDao{
     }
 
     @Override
-    public boolean delete(Usuario usuario) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public boolean delete(Usuario u) {
+        String sSQL="DELETE FROM usuarios WHERE id="+u.getId();
+        
+         try {
+             PreparedStatement ps=conn.prepareStatement(sSQL);
+             ps.executeUpdate();
+         } catch (SQLException ex) {
+             Logger.getLogger(UsuarioDaoImpl.class.getName()).log(Level.SEVERE, null, ex);
+         }
+    
+    return false;
     }
 
     @Override

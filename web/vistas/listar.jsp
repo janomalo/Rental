@@ -58,7 +58,7 @@
                        <%-- <td> <%= usu.getFecha_registro()%> </td> --%>
                        <td>
                            <a href="Controlador?accion=editar&id=<%= usu.getId()%>">Editar</a>
-                           <a>Remove</a>
+                           <a href="Controlador?accion=delete&id=<%= usu.getId()%>">Remove</a>
                        </td>
                         
                         
@@ -75,6 +75,7 @@
             </table> 
                 
                 <h1> FIN LISTAR</h1>
+                <a href="index.jsp"> Volver</a>
         </div>
     </body>
 </html>
