@@ -27,7 +27,7 @@
         %>
          <h1>Modificar Usuario</h1>
          <div class="container">
-             <form action="Controlador"  class="form-check-input">
+             <form action="Controlador"  class="form-text">
                 <input  type="hidden"  name="txtid"  value="<%=u.getId() %>">
                 Dni <input type="text" name="txtdni" value="<%=u.getDni() %>"><br>
                 Nombres <input type="text" name="txtnombres" value="<%=u.getNombres() %>"><br>
@@ -45,6 +45,6 @@
             
             
         </div>
-        
+        <a class="btn btn-success" href="index.jsp"> Volver</a>
     </body>
 </html>
