@@ -16,7 +16,7 @@
         <div  class="container">
             <h1>Usuarios</h1> 
              <a href="Controlador?accion=add">Agregar Nuevo</a> 
-            
+             <a > Buscar</a>
             <table class="table">
                 
                 <thead>
