@@ -59,7 +59,7 @@ public class UsuarioDaoImpl implements IUsuarioDao{
                 Usuario usu= new Usuario();
                 usu.setId(rs.getInt("id"));
                 usu.setDni(rs.getString("dni"));
-                usu.setNombres(rs.getString("dni"));
+                usu.setNombres(rs.getString("nombres"));
                 usu.setApellidos(rs.getString("apellidos"));
                 usu.setTelefono(rs.getString("telefono"));
                 usu.setDireccion(rs.getString("direccion"));
