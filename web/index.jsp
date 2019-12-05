@@ -1,4 +1,5 @@
 <%@page import="java.util.Iterator"%>
+<link href="css/bootstrap.css" rel="stylesheet" type="text/css"/>
 <%@page import="Modelo.Usuario"%>
 <%@page import="Interfaces.IUsuarioDao"%>
 <%@page import="ModeloDaoImpl.UsuarioDaoImpl" %>
@@ -14,7 +15,7 @@
         
         <div>
             
-            <a href="Controlador?accion=listar"> Listar Usuario</a> <br>
+            <a class="btn btn-danger" href="Controlador?accion=listar"> Listar Usuario</a> <br>
           
           
             

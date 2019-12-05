@@ -3,7 +3,7 @@
     Created on : 23-oct-2019, 21:29:29
     Author     : Alejandro
 --%>
-
+<link href="css/bootstrap.css" rel="stylesheet" type="text/css"/>
 <%@page import="Modelo.Usuario"%>
 <%@page import="ModeloDaoImpl.UsuarioDaoImpl"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -26,8 +26,8 @@
         
         %>
          <h1>Modificar Usuario</h1>
-        <div>
-            <form action="Controlador" >
+         <div class="container">
+             <form action="Controlador"  class="form-check-input">
                 <input  type="hidden"  name="txtid"  value="<%=u.getId() %>">
                 Dni <input type="text" name="txtdni" value="<%=u.getDni() %>"><br>
                 Nombres <input type="text" name="txtnombres" value="<%=u.getNombres() %>"><br>

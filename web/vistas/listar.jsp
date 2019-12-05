@@ -1,4 +1,5 @@
-
+<link href="css/bootstrap.css" rel="stylesheet" type="text/css"/>
+<link href="css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
 <%@page import="java.util.Iterator"%>
 <%@page import="Modelo.Usuario"%>
 <%@page import="Interfaces.IUsuarioDao"%>
@@ -12,11 +13,11 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <div>
+        <div  class="container">
             <h1>Usuarios</h1> 
              <a href="Controlador?accion=add">Agregar Nuevo</a> 
             
-            <table border="1">
+            <table class="table">
                 
                 <thead>
                     <tr>
@@ -57,8 +58,8 @@
                        <td> <%= usu.getEmail() %> </td>
                        <%-- <td> <%= usu.getFecha_registro()%> </td> --%>
                        <td>
-                           <a href="Controlador?accion=editar&id=<%= usu.getId()%>">Editar</a>
-                           <a href="Controlador?accion=delete&id=<%= usu.getId()%>">Remove</a>
+                           <a class="btn btn-dark"  href="Controlador?accion=editar&id=<%= usu.getId()%>">Editar</a>
+                           <a class="btn btn-danger" href="Controlador?accion=delete&id=<%= usu.getId()%>">Remove</a>
                        </td>
                         
                         
@@ -75,7 +76,7 @@
             </table> 
                 
                 <h1> FIN LISTAR</h1>
-                <a href="index.jsp"> Volver</a>
+                <a class="btn btn-link" href="index.jsp"> Volver</a>
         </div>
     </body>
 </html>
