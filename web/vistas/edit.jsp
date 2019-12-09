@@ -37,9 +37,10 @@
                 Direccion <input type="text" name="txtdireccion"  value="<%=u.getDireccion() %>"> <br>
                 Usuario  <input type="text" name="txtusuario"  value="<%=u.getUsuario()%>"> <br>
                 Contraseña <input type="password" name="txtpassword" value="<%=u.getPassword() %>"><br>
-                Habilitado <input type="text" name="txthabilitado" value="<%=u.getHabilitado() %>"> 
-                <input type="radio" name="txthabilitado" value="1">SI
-                <input type="radio" name="txthabilitado" value="0">NO<br>
+                 <input type="radio" name="txthabilitado" value="1">Habilitar(1)
+                <input type="radio" name="txthabilitado" value="0">Deshabiltiar(0)<br>
+               
+               
                 <%-- Fecha <input type="date" name="fecha"> --%>
                 <input type="submit" value="Actualizar" name="accion">
             </form>

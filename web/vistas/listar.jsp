@@ -29,7 +29,7 @@
                         <th>DIRECCION</th>
                         <th>EMAIL</th>
                         <th>USER</th>
-                        <th>HABILITADO</th>
+                        <th>HABILITADO(S=1/N=0)</th>
                         <%--<th>FECHA REGISTRO</th> --%>
                         <th>ACCIONES</th>
                            
@@ -82,7 +82,7 @@
             </table> 
                 
                 <h1> FIN LISTAR</h1>
-                <a class="btn btn-link" href="index.jsp"> Volver</a>
+                <a class="btn btn-success" href="index.jsp"> Volver</a>
         </div>
     </body>
 </html>
