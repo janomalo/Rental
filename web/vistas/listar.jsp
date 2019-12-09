@@ -28,6 +28,8 @@
                         <th>TELEFONO</th>
                         <th>DIRECCION</th>
                         <th>EMAIL</th>
+                        <th>USER</th>
+                        <th>HABILITADO</th>
                         <%--<th>FECHA REGISTRO</th> --%>
                         <th>ACCIONES</th>
                            
@@ -56,6 +58,10 @@
                        <td>  <%= usu.getTelefono()%></td>
                        <td> <%= usu.getDireccion()%></td>
                        <td> <%= usu.getEmail() %> </td>
+                       <td> <%= usu.getUsuario()%> </td>
+                       <td> <%= usu.getHabilitado() %> </td>
+                       
+                       
                        <%-- <td> <%= usu.getFecha_registro()%> </td> --%>
                        <td>
                            <a class="btn btn-dark"  href="Controlador?accion=editar&id=<%= usu.getId()%>">Editar</a>

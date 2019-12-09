@@ -88,6 +88,14 @@ public class Controlador extends HttpServlet {
             String email=request.getParameter("email");
             String password=request.getParameter("password");
             String direccion=request.getParameter("direccion");
+            String usuario= request.getParameter("usuario");
+            String h= request.getParameter("habilitado");
+		if(h.equalsIgnoreCase("SI")){
+			usu.setHabilitado(1);
+		}else if (h.equalsIgnoreCase("NO")) {
+			usu.setHabilitado(0);
+		}
+            
             
             usu.setRol(2);
             usu.setDni(dni);
@@ -97,6 +105,8 @@ public class Controlador extends HttpServlet {
             usu.setEmail(email);
             usu.setPassword(password);
             usu.setDireccion(direccion);
+            usu.setUsuario(usuario);
+            System.out.println(usu);
             
             dao.save(usu);            
             acceso=listar;
@@ -118,6 +128,14 @@ public class Controlador extends HttpServlet {
             String email=request.getParameter("txtemail");
             String password=request.getParameter("txtpassword");
             String direccion=request.getParameter("txtdireccion");
+            String usuario=request.getParameter("txtusuario");
+                     
+            String h= request.getParameter("txthabilitado");
+		if(h.equalsIgnoreCase("SI")){
+			usu.setHabilitado(1);
+		}else if (h.equalsIgnoreCase("NO")) {
+			usu.setHabilitado(0);
+		}
             
             usu.setId(id);
             usu.setDni(dni);
@@ -127,6 +145,8 @@ public class Controlador extends HttpServlet {
             usu.setEmail(email);
             usu.setPassword(password);
             usu.setDireccion(direccion);
+            usu.setUsuario(usuario);
+          
             
             dao.edit(usu);
             acceso=listar;

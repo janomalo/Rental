@@ -28,7 +28,7 @@ public class UsuarioDaoImpl implements IUsuarioDao{
     public boolean save(Usuario usu) {
         boolean save=false;
               
-        String sSQL="INSERT INTO usuarios(id,dni,rol_id,nombres,apellidos,telefono,email,password,fecha_registro,direccion) VALUES(NULL,'"+usu.getDni()+"','"+usu.getRol()+"','"+usu.getNombres()+"','"+usu.getApellidos()+"','"+usu.getTelefono()+"','"+usu.getEmail()+"',SHA1('"+usu.getPassword()+"'),CURDATE(),'"+usu.getDireccion()+"')";
+        String sSQL="INSERT INTO usuarios(id,dni,rol_id,nombres,apellidos,telefono,email,password,fecha_registro,direccion,usuario,habilitado) VALUES(NULL,'"+usu.getDni()+"','"+usu.getRol()+"','"+usu.getNombres()+"','"+usu.getApellidos()+"','"+usu.getTelefono()+"','"+usu.getEmail()+"',SHA1('"+usu.getPassword()+"'),CURDATE(),'"+usu.getDireccion()+"','"+usu.getUsuario()+"','"+usu.getHabilitado()+"')";
                       
         try {
             PreparedStatement ps=conn.prepareStatement(sSQL);
@@ -64,6 +64,8 @@ public class UsuarioDaoImpl implements IUsuarioDao{
                 usu.setTelefono(rs.getString("telefono"));
                 usu.setDireccion(rs.getString("direccion"));
                 usu.setEmail(rs.getString("email"));
+                usu.setUsuario(rs.getString("usuario"));
+                usu.setHabilitado(rs.getInt("habilitado"));
                 //u.setFecha_registro(rs.getDate("fecha_registro"));
                 listaUsuarios.add(usu);
             }
@@ -84,7 +86,8 @@ public class UsuarioDaoImpl implements IUsuarioDao{
     @Override
     public boolean edit(Usuario u) {
 
-        String sSQL="UPDATE usuarios SET dni='"+u.getDni()+"',nombres='"+u.getNombres()+"',apellidos='"+u.getApellidos()+"',telefono='"+u.getTelefono()+"',email='"+u.getEmail()+"',password=SHA1('"+u.getPassword()+"'),direccion='"+u.getDireccion()+"' WHERE id="+u.getId();
+        String sSQL=String.format("UPDATE usuarios SET dni='"+u.getDni()+"',nombres='"+u.getNombres()+"',apellidos='"+u.getApellidos()+"',telefono='"+u.getTelefono()+"',email='"+u.getEmail()+"',password=SHA1('"+u.getPassword()+"'),direccion='"+u.getDireccion()+"',usuario='"+u.getUsuario()+"',habilitado='"+u.getHabilitado()+"' WHERE id="+u.getId());
+        
             try {
             PreparedStatement ps= conn.prepareStatement(sSQL);
             ps.executeUpdate();
@@ -120,11 +123,13 @@ public class UsuarioDaoImpl implements IUsuarioDao{
             while(rs.next()){
                 u.setId(rs.getInt("id"));
                 u.setDni(rs.getString("dni"));
-                u.setNombres(rs.getString("dni"));
+                u.setNombres(rs.getString("nombres"));
                 u.setApellidos(rs.getString("apellidos"));
                 u.setTelefono(rs.getString("telefono"));
                 u.setDireccion(rs.getString("direccion"));
                 u.setEmail(rs.getString("email"));
+                u.setUsuario(rs.getString("usuario"));
+                u.setHabilitado(rs.getInt("habilitado"));
                 //u.setFecha_registro(rs.getDate("fecha_registro"));
               }
           stm.close();

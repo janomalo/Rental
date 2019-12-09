@@ -35,7 +35,11 @@
                 Teléfono <input type="text" name="txttelefono" value="<%=u.getTelefono() %>"><br>
                 Email <input type="text" name="txtemail" value="<%=u.getEmail()%>"><br>
                 Direccion <input type="text" name="txtdireccion"  value="<%=u.getDireccion() %>"> <br>
+                Usuario  <input type="text" name="txtusuario"  value="<%=u.getUsuario()%>"> <br>
                 Contraseña <input type="password" name="txtpassword" value="<%=u.getPassword() %>"><br>
+                Habilitado <input type="text" name="txthabilitado" value="<%=u.getHabilitado() %>"> 
+                <input type="radio" name="txthabilitado" value="1">SI
+                <input type="radio" name="txthabilitado" value="0">NO<br>
                 <%-- Fecha <input type="date" name="fecha"> --%>
                 <input type="submit" value="Actualizar" name="accion">
             </form>

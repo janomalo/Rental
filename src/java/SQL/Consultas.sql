@@ -86,6 +86,8 @@ CONSTRAINT uq_email UNIQUE(email)
 
 #datos a Insertar#
 INSERT INTO usuarios VALUES(null,"34860730",1,"Alejandro","Molina","+542944335790","ale@ale.com","1234","2019-11-07");
+INSERT INTO usuarios(id,dni,rol_id,nombres,apellidos,telefono,email,password,fecha_registro,direccion,user,habilitado) VALUES(NULL,'"+usu.getDni()+"','"+usu.getRol()+"','"+usu.getNombres()+"','"+usu.getApellidos()+"','"+usu.getTelefono()+"','"+usu.getEmail()+"',SHA1('"+usu.getPassword()+"'),CURDATE(),'"+usu.getDireccion()+"','"+usu.getUser()+"','"+usu.getHabilitado()+"');
+
 
 
 

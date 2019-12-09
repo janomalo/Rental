@@ -16,7 +16,9 @@
                 Teléfono <input type="text" name="telefono"><br>
                 Email <input type="text" name="email"><br>
                 Direccion <input type="text" name="direccion"> <br>
+                Usuario <input type="text" name="usuario"> <br>
                 Contraseña <input type="password" name="password"><br>
+                Habilitado <input type="text" name="habilitado"> <br>
                 <%-- Fecha <input type="date" name="fecha"> --%>
                 <input type="submit" value="Agregar" name="accion">
             </form>
