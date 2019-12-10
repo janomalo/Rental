@@ -14,7 +14,7 @@
     </head>
     <body>
         <div  class="container">
-            <h1>Usuarios</h1> 
+            <h1>GESTION DE USUARIOS PARA ADMIN</h1> 
              <a href="Controlador?accion=add">Agregar Nuevo</a> 
              <a > Buscar</a>
             <table class="table">
@@ -81,7 +81,7 @@
                 
             </table> 
                 
-                <h1> FIN LISTAR</h1>
+              
                 <a class="btn btn-success" href="index.jsp"> Volver</a>
         </div>
     </body>
