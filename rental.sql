@@ -1,8 +1,8 @@
 /*
-SQLyog Community v8.71 
+SQLyog Community v13.1.5  (64 bit)
 MySQL - 5.7.26 : Database - rental
 *********************************************************************
-*/
+*/
 
 /*!40101 SET NAMES utf8 */;
 
@@ -23,6 +23,7 @@ DROP TABLE IF EXISTS `categorias`;
 CREATE TABLE `categorias` (
   `id` int(255) NOT NULL AUTO_INCREMENT,
   `nombre` varchar(100) NOT NULL,
+  `estado` tinyint(1) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -40,7 +41,9 @@ CREATE TABLE `roles` (
 
 /*Data for the table `roles` */
 
-insert  into `roles`(`id`,`nombre`) values (1,'Administrador'),(2,'Usuario');
+insert  into `roles`(`id`,`nombre`) values 
+(1,'Administrador'),
+(2,'Usuario');
 
 /*Table structure for table `usuarios` */
 
@@ -67,7 +70,13 @@ CREATE TABLE `usuarios` (
 
 /*Data for the table `usuarios` */
 
-insert  into `usuarios`(`id`,`dni`,`rol_id`,`nombres`,`apellidos`,`telefono`,`email`,`password`,`fecha_registro`,`direccion`,`usuario`,`habilitado`) values (2,'34860732',1,'Ale','Molina','+542944335790','ale@ale.com','2be88ca4242c76e8253ac62474851065032d6833','2019-11-07 00:00:00','casa','alelala',1),(3,'34555222',2,'nonono','Molina1','55555','newemail@gmail.com','2be88ca4242c76e8253ac62474851065032d6833','0000-00-00 00:00:00','primero de mayo','aaaa',0),(6,'31555000',2,'Jorge','ref','154131351','jorge@gmail.com','45645646','0000-00-00 00:00:00','su casa','',0),(17,'124124124',2,'Alejandro','Molina','0192384847575','lala@lalala.com','2be88ca4242c76e8253ac62474851065032d6833','2019-11-27 00:00:00','jojojo 1234','',0),(18,'0192388485',2,'Ale1','bobo','02020202','bobo@gmail.com','c129b324aee662b04eccf68babba85851346dff9','2019-12-07 00:00:00','bobo 1234','bobo_baba',0),(20,'0192388485',2,'Ale1','bobo','02020202','bobo1@gmail.com','c129b324aee662b04eccf68babba85851346dff9','2019-12-07 00:00:00','bobo 1234','bobo_baba',0);
+insert  into `usuarios`(`id`,`dni`,`rol_id`,`nombres`,`apellidos`,`telefono`,`email`,`password`,`fecha_registro`,`direccion`,`usuario`,`habilitado`) values 
+(2,'34860732',1,'Ale','Molina','+542944335790','ale@ale.com','2be88ca4242c76e8253ac62474851065032d6833','2019-11-07 00:00:00','casa','alelala',1),
+(3,'34555222',2,'nonono','Molina1','55555','newemail@gmail.com','2be88ca4242c76e8253ac62474851065032d6833','0000-00-00 00:00:00','primero de mayo','aaaa',0),
+(6,'31555000',2,'Jorge','ref','154131351','jorge@gmail.com','45645646','0000-00-00 00:00:00','su casa','',0),
+(17,'124124124',2,'Alejandro','Molina','0192384847575','lala@lalala.com','2be88ca4242c76e8253ac62474851065032d6833','2019-11-27 00:00:00','jojojo 1234','',0),
+(18,'0192388485',2,'Ale1','bobo','02020202','bobo@gmail.com','c129b324aee662b04eccf68babba85851346dff9','2019-12-07 00:00:00','bobo 1234','bobo_baba',0),
+(20,'0192388485',2,'Ale1','bobo','02020202','bobo1@gmail.com','c129b324aee662b04eccf68babba85851346dff9','2019-12-07 00:00:00','bobo 1234','bobo_baba',0);
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
