@@ -13,7 +13,7 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <div  class="container">
+        <div  class="container-xl">
             <h1>GESTION DE USUARIOS PARA ADMIN</h1> 
              <a href="Controlador?accion=add">Agregar Nuevo</a> 
              <a > Buscar</a>

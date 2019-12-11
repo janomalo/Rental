@@ -97,7 +97,12 @@ INSERT INTO usuarios(id,dni,rol_id,nombres,apellidos,telefono,email,password,fec
 CREATE TABLE categorias(
 id               int(255) auto_increment not null,
 nombre     varchar(100) not null,
+estado     boolean not null,
 CONSTRAINT pk_categorias PRIMARY KEY(id)
 )ENGINE=InnoDb;
 
+#datos#
 
+INSERT INTO categorias VALUES(NULL,"Ski");
+INSERT INTO categorias VALUES(NULL,"Snowboard");
+INSERT INTO categorias VALUES(NULL,"General");
