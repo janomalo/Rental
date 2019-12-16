@@ -76,6 +76,12 @@ public class UsuarioDaoImpl implements IUsuarioDao{
         } catch (SQLException e) {
             System.out.println("Error:Clase UsuarioDaoImpl,metodo obtener");
             e.printStackTrace();
+        } finally{
+             try {
+                 conn.close();
+             } catch (SQLException ex) {
+                 Logger.getLogger(UsuarioDaoImpl.class.getName()).log(Level.SEVERE, null, ex);
+             }
         }
    
                 return listaUsuarios;

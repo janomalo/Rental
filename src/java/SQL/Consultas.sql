@@ -103,6 +103,31 @@ CONSTRAINT pk_categorias PRIMARY KEY(id)
 
 #datos#
 
-INSERT INTO categorias VALUES(NULL,"Ski");
-INSERT INTO categorias VALUES(NULL,"Snowboard");
-INSERT INTO categorias VALUES(NULL,"General");
+INSERT INTO categorias VALUES(NULL,"Ski","1");
+INSERT INTO categorias VALUES(NULL,"Snowboard","1");
+INSERT INTO categorias VALUES(NULL,"General","1");
+
+
+#Producto#
+
+CREATE TABLE productos(
+id              int(255) auto_increment not null,
+categoria_id    int(255) not null,
+nombre          varchar(100) not null,
+descripcion     varchar(300) ,
+stock           int(100) not null,
+precio          float(4,2) not null,
+estado          boolean not null,
+
+CONSTRAINT pk_productos PRIMARY KEY(id),
+CONSTRAINT fk_categoria_id FOREIGN KEY (categoria_id) REFERENCES categorias(id)
+)ENGINE=InnoDb;
+
+
+    private int id;
+    private int categoria_id;
+    private String nombre;
+    private String descripcion;
+    private int stock;
+    private float precio;
+    private int estado;
