@@ -116,18 +116,12 @@ categoria_id    int(255) not null,
 nombre          varchar(100) not null,
 descripcion     varchar(300) ,
 stock           int(100) not null,
-precio          float(4,2) not null,
+precio          float not null,
 estado          boolean not null,
-
 CONSTRAINT pk_productos PRIMARY KEY(id),
 CONSTRAINT fk_categoria_id FOREIGN KEY (categoria_id) REFERENCES categorias(id)
 )ENGINE=InnoDb;
 
-
-    private int id;
-    private int categoria_id;
-    private String nombre;
-    private String descripcion;
-    private int stock;
-    private float precio;
-    private int estado;
+#DATOS PRODUCTOS#
+INSERT INTO productos VALUES(null,3,"Antiparras","Antiparras adulto",1,50.00,1);
+INSERT INTO productos VALUES(null,1,"Completo Deportivo Adulto","Equipo completo deportivo para persona adulta",1,700,1);
