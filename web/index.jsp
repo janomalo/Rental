@@ -16,7 +16,7 @@
         <div>
             
             <a class="btn btn-danger" href="Controlador?accion=listar"> Listar Usuarios</a> <br>
-            <a class="btn btn-danger" href="Controlador?accion=listar"> Listar Productos</a> <br>
+            <a class="btn btn-danger" href="ControladorProducto?accion=listar"> Listar Productos</a> <br>
           
           
             

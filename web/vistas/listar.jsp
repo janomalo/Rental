@@ -32,13 +32,11 @@
                         <th>HABILITADO(S=1/N=0)</th>
                         <%--<th>FECHA REGISTRO</th> --%>
                         <th>ACCIONES</th>
-                           
-                        
+                                                  
                     </tr>
                 </thead>
-                
                 <%
-                    
+                   
                     UsuarioDaoImpl dao= new UsuarioDaoImpl();
                     List<Usuario> list=dao.listar();
                     Iterator<Usuario> iter=list.iterator();

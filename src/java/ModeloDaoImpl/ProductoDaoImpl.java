@@ -50,6 +50,13 @@ public class ProductoDaoImpl implements IProductoDao {
             while(rs.next()){
                 Producto pro= new Producto();
                 //setear datos productos a objeto pro y agregara lista
+                pro.setId(rs.getInt("id"));
+                pro.setCategoria_id(rs.getInt("categoria_id"));
+                pro.setNombre(rs.getString("nombre"));
+                pro.setDescripcion(rs.getString("descripcion"));
+                pro.setStock(rs.getInt("stock"));
+                pro.setPrecio(rs.getFloat("precio"));
+                pro.setEstado(rs.getInt("estado"));
                 
                 //u.setFecha_registro(rs.getDate("fecha_registro"));
                 listaProductos.add(pro);

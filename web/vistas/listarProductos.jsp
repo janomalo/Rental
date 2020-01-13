@@ -3,7 +3,13 @@
     Created on : 12-dic-2019, 20:27:18
     Author     : Alejandro
 --%>
+<link href="css/bootstrap.css" rel="stylesheet" type="text/css"/>
+<link href="css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
 
+<%@page import="java.util.Iterator"%>
+<%@page import="java.util.List"%>
+<%@page import="Modelo.Producto"%>
+<%@page import="ModeloDaoImpl.ProductoDaoImpl"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -14,65 +20,59 @@
     <body>
         <h1>Productos</h1>
         
-        <div>
-             <a href="Controlador?accion=add">Agregar Nuevo</a> 
+        <div class="container">
+            
              <a > Buscar</a>
+              <a href="ControladorProducto?accion=add">Agregar Nuevo</a> 
             <table class="table">
                 
                 <thead>
                     <tr>
                         <th>ID</th>
-                        <th>DNI</th> 
+                        <th>CATEGORIA</th> 
                         <th>NOMBRES</th>
-                        <th>APELLIDOS</th>
-                        <th>TELEFONO</th>
-                        <th>DIRECCION</th>
-                        <th>EMAIL</th>
-                        <th>USER</th>
-                        <th>HABILITADO(S=1/N=0)</th>
-                        <%--<th>FECHA REGISTRO</th> --%>
+                        <th>DESCRIPCION</th>
+                        <th>STOCK</th>
+                        <th>PRECIO</th>
+                        <th>ESTADO</th>
                         <th>ACCIONES</th>
                            
-                        
                     </tr>
                 </thead>
-                
                 <%
-                    
-                    UsuarioDaoImpl dao= new UsuarioDaoImpl();
-                    List<Usuario> list=dao.listar();
-                    Iterator<Usuario> iter=list.iterator();
-                   Usuario usu= null;
+                   
+                    ProductoDaoImpl dao= new ProductoDaoImpl();
+                    List<Producto> list= dao.listar();
+                    Iterator<Producto> iter=list.iterator();
+                    Producto pro=null;
                     while(iter.hasNext()){
-                        usu=iter.next();
-                    
-                                    
+                        pro=iter.next();
+                   
                 %>
                 <tbody>
                     
                     <tr>
-                        <td> <%= usu.getId() %></td>
-                      <td> <%= usu.getDni() %></td>
-                       <td> <%= usu.getNombres()%></td>
-                       <td> <%= usu.getApellidos()%></td>
-                       <td>  <%= usu.getTelefono()%></td>
-                       <td> <%= usu.getDireccion()%></td>
-                       <td> <%= usu.getEmail() %> </td>
-                       <td> <%= usu.getUsuario()%> </td>
-                       <td> <%= usu.getHabilitado() %> </td>
-                       
+                        
+                        <%--<td> <%= usu.getId() %></td> --%>
+                        <td><%= pro.getId() %> </td>
+                        <td><%= pro.getCategoria_id() %> </td>
+                        <td> <%= pro.getNombre() %> </td>
+                        <td> <%= pro.getDescripcion() %> </td>
+                        <td> <%= pro.getStock() %> </td>
+                        <td> <%= pro.getPrecio() %> </td>
+                        <td> <%= pro.getEstado() %> </td>
                        
                        <%-- <td> <%= usu.getFecha_registro()%> </td> --%>
                        <td>
-                           <a class="btn btn-dark"  href="Controlador?accion=editar&id=<%= usu.getId()%>">Editar</a>
-                           <a class="btn btn-danger" href="Controlador?accion=delete&id=<%= usu.getId()%>">Remove</a>
+                           <a class="btn btn-dark"  href="ControladorProducto?accion=editar&id=<%= pro.getId()%>">Editar</a>
+                           <a class="btn btn-danger" href="ControladorProducto?accion=delete&id=<%= pro.getId()%>">Remove</a>
                        </td>
                         
-                        
+                       
                         
                     </tr>
                     <%
-                    }
+                   }
                     
                     %>
                 </tbody>

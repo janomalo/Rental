@@ -32,8 +32,8 @@ public class ControladorProducto extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
       String listar="/vistas/listarProductos.jsp";
-    //String add="/vistas/add.jsp";
-    //String edit="/vistas/edit.jsp";
+      String add="/vistas/addProducto.jsp";
+        String edit="/vistas/editProducto.jsp";
     //Usuario usu=new Usuario();
       Producto pro= new Producto();
     //UsuarioDaoImpl dao=new UsuarioDaoImpl();
@@ -79,13 +79,16 @@ public class ControladorProducto extends HttpServlet {
          if(action.equalsIgnoreCase("listar")){
             acceso=listar;
         } else if (action.equalsIgnoreCase("add")) {
-          
+          acceso=add;
             
         } else if (action.equalsIgnoreCase("Agregar")) {
            
         }
         else if (action.equalsIgnoreCase("editar")) {
-         
+          // int idusu=Integer.parseInt(request.getParameter("id"));
+          request.setAttribute("idpro",request.getParameter("id"));          
+// captura id de fila seleccionada cuando se hace click en editar.
+            acceso=edit;
         }
         else if (action.equalsIgnoreCase("Actualizar")) {
           
@@ -95,6 +98,7 @@ public class ControladorProducto extends HttpServlet {
             
             
         }
+         
         RequestDispatcher vista=request.getRequestDispatcher(acceso);
         vista.forward(request, response);
         
