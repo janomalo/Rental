@@ -6,6 +6,7 @@
 package Controlador;
 
 import Modelo.Producto;
+import ModeloDaoImpl.ProductoDaoImpl;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.RequestDispatcher;
@@ -34,10 +35,9 @@ public class ControladorProducto extends HttpServlet {
       String listar="/vistas/listarProductos.jsp";
       String add="/vistas/addProducto.jsp";
         String edit="/vistas/editProducto.jsp";
-    //Usuario usu=new Usuario();
-      Producto pro= new Producto();
+          Producto pro= new Producto();
     //UsuarioDaoImpl dao=new UsuarioDaoImpl();
-    
+     ProductoDaoImpl dao=new ProductoDaoImpl();
     
     
     
