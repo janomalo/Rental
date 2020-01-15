@@ -15,24 +15,37 @@
             <form action="Controlador" class="form-horizontal" >
          
                 <div class="form-group">
-                    <label class="col-lg-8 control-label">Dni</label>
+                    <label class="col-lg-8 control-label">Categoria</label>
                      <div class="col-lg-4">
-                         <input type="text" class="form-control" name="dni"  required=""/>
+                         <input type="text" class="form-control" name="categoria"  required=""/>
                     </div>
                 </div>
                  <div class="form-group">
-                     <label class="col-lg-8 control-label">Nombres</label>
+                     <label class="col-lg-8 control-label">Nombre</label>
                       <div class="col-lg-4">
-                     <input type="text" class="form-control" name="nombres" />
+                     <input type="text" class="form-control" name="nombre" />
+                      </div>
+                </div>
+                 <div class="form-group">
+                     <label class="col-lg-8 control-label">Descripción</label>
+                      <div class="col-lg-4">
+                     <input type="text" class="form-control" name="descripcion" />
+                      </div>
+                </div>
+                 <div class="form-group">
+                     <label class="col-lg-8 control-label">Stock</label>
+                      <div class="col-lg-4">
+                     <input type="text" class="form-control" name="stock" />
+                      </div>
+                </div>
+                 <div class="form-group">
+                     <label class="col-lg-8 control-label">Precio</label>
+                      <div class="col-lg-4">
+                     <input type="text" class="form-control" name="precio" />
                       </div>
                 </div>
              
-                Apellidos <input type="text" name="apellidos"><br>
-                Teléfono <input type="text" name="telefono"><br>
-                Email <input type="text" name="email"><br>
-                Direccion <input type="text" name="direccion"> <br>
-                Usuario <input type="text" name="usuario"> <br>
-                Contraseña <input type="password" name="password"><br>
+              
                 <input type="radio" name="habilitado" value="1">Habilitar(1)
                 <input type="radio" name="habilitado" value="0">Deshabiltiar(0)<br>
                 <%-- Fecha <input type="date" name="fecha"> --%>
