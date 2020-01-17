@@ -82,7 +82,22 @@ public class ControladorProducto extends HttpServlet {
           acceso=add;
             
         } else if (action.equalsIgnoreCase("Agregar")) {
+           Integer categoria= Integer.parseInt(request.getParameter("categoria"));
+           String nombre=request.getParameter("nombre");
+           String descripcion= request.getParameter("descripcion");
+           Integer stock=Integer.parseInt(request.getParameter("stock"));
+           Float precio=Float.parseFloat(request.getParameter("precio"));
+           Integer estado=Integer.parseInt(request.getParameter("precio"));
            
+           pro.setCategoria_id(categoria);
+           pro.setNombre(nombre);
+           pro.setDescripcion(descripcion);
+           pro.setStock(stock);
+           pro.setPrecio(precio);
+           pro.setEstado(estado);
+           
+           dao.save(pro);
+           acceso=listar;
         }
         else if (action.equalsIgnoreCase("editar")) {
           // int idusu=Integer.parseInt(request.getParameter("id"));

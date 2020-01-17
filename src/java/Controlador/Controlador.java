@@ -80,7 +80,6 @@ public class Controlador extends HttpServlet {
             acceso=add;
             
         } else if (action.equalsIgnoreCase("Agregar")) {
-            System.out.println("pasa por aca");
             String dni=request.getParameter("dni");
             String nombres=request.getParameter("nombres");
             String apellidos=request.getParameter("apellidos");

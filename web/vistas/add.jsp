@@ -26,7 +26,45 @@
                <a class="btn btn-success" href="index.jsp"> Volver</a>
             </form>
             
+            <%--  
+                       <form class="form-horizontal" style="margin:0 auto">
+  <div class="form-group">
+    <label class="col-lg-8 control-label">Nombres</label>
+    <div class="col-lg-4">
+      <input type="text" class="form-control" name="nombre" />
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label class="col-lg-8 control-label">Apellidos</label>
+    <div class="col-lg-4">
+      <input type="text" class="form-control" name="apellido" />
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label class="col-lg-8 control-label">Correo Electrónico</label>
+    <div class="col-lg-4">
+      <input type="text" class="form-control" name="email" />
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label class="col-lg-8 control-label">Teléfono Celular</label>
+    <div class="col-lg-4">
+      <input type="text" class="form-control" name="telefono_cel" />
+    </div>
+  </div>
+
+  <div class="form-group">
+    <div class="">
+      <button type="submit" class="btn btn-success left">Registrarse</button>
+    </div>
+  </div>
+
+</form>
             
+            --%>
             
             
             

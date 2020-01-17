@@ -18,19 +18,21 @@
         <title>Lista Productos</title>
     </head>
     <body>
-        <h1>Productos</h1>
+        
         
         <div class="container">
-            
-             <a > Buscar</a>
+            <h1>Productos</h1>
+             
               <a href="ControladorProducto?accion=add">Agregar Nuevo</a> 
+              <input type="text" value="Buscar"/>
+              <a > Buscar</a>
             <table class="table">
                 
                 <thead>
                     <tr>
                         <th>ID</th>
                         <th>CATEGORIA</th> 
-                        <th>NOMBRES</th>
+                        <th>NOMBRE</th>
                         <th>DESCRIPCION</th>
                         <th>STOCK</th>
                         <th>PRECIO</th>

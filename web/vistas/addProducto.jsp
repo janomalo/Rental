@@ -7,19 +7,27 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Agregar Producto</title>
     </head>
     <body>
-        <h1>Ingrese los del datos nuevo producto</h1>
+        
         <div class="container">
-            <form action="Controlador" class="form-horizontal" >
+                <h1>Ingrese los datos</h1>
+                <form action="ControladorProducto" class="form-horizontal" style="margin:0 auto">
          
                 <div class="form-group">
                     <label class="col-lg-8 control-label">Categoria</label>
                      <div class="col-lg-4">
-                         <input type="text" class="form-control" name="categoria"  required=""/>
+                        <select  class="form-control" name="categoria">
+                             <option  value="1">Ski</option>
+                    
+                             <option  value="2">Snowboard</option>
+                             <option  value="2">General</option>
+                                                         
+                         </select>
                     </div>
                 </div>
+                    
                  <div class="form-group">
                      <label class="col-lg-8 control-label">Nombre</label>
                       <div class="col-lg-4">
@@ -44,51 +52,29 @@
                      <input type="text" class="form-control" name="precio" />
                       </div>
                 </div>
-             
-              
-                <input type="radio" name="habilitado" value="1">Habilitar(1)
-                <input type="radio" name="habilitado" value="0">Deshabiltiar(0)<br>
+                
+                <div class="form-group">
+                     <label class="col-lg-8 control-label">Habilitar</label>
+                      <div class="col-lg-4">
+                      <select  class="form-control" name="habilitado">
+                             <option  value="1">Habilitar</option>
+                             <option  value="0">Deshabilitar</option>
+                       </select>
+                      </div>
+                </div>
+                              
                 <%-- Fecha <input type="date" name="fecha"> --%>
-                <input class=" btn btn-success" type="submit" value="Agregar" name="accion">
-               <a class="btn btn-success" href="index.jsp"> Volver</a>
+                              
+                <div class="form-group">
+                <div class="col-lg-4">
+                    <button type="submit" class="btn btn-success left" name="accion" >Agregar</button>
+                    <a class="btn btn-success" href="index.jsp"> Volver</a>
+                     </div>
+                </div>
+               
             </form>
             
-            <form class="form-horizontal" style="margin:0 auto">
-  <div class="form-group">
-    <label class="col-lg-8 control-label">Nombres</label>
-    <div class="col-lg-4">
-      <input type="text" class="form-control" name="nombre" />
-    </div>
-  </div>
-
-  <div class="form-group">
-    <label class="col-lg-8 control-label">Apellidos</label>
-    <div class="col-lg-4">
-      <input type="text" class="form-control" name="apellido" />
-    </div>
-  </div>
-
-  <div class="form-group">
-    <label class="col-lg-8 control-label">Correo Electrónico</label>
-    <div class="col-lg-4">
-      <input type="text" class="form-control" name="email" />
-    </div>
-  </div>
-
-  <div class="form-group">
-    <label class="col-lg-8 control-label">Teléfono Celular</label>
-    <div class="col-lg-4">
-      <input type="text" class="form-control" name="telefono_cel" />
-    </div>
-  </div>
-
-  <div class="form-group">
-    <div class="">
-      <button type="submit" class="btn btn-success left">Registrarse</button>
-    </div>
-  </div>
-
-</form>
+ 
             
             
             

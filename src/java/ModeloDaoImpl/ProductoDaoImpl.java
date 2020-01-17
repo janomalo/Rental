@@ -9,6 +9,7 @@ import Config.Conexion;
 import Interfaces.IProductoDao;
 import Modelo.Producto;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -32,8 +33,27 @@ public class ProductoDaoImpl implements IProductoDao {
     
     
     @Override
-    public boolean save(Producto producto) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public boolean save(Producto p) {
+        boolean save=false;
+              
+        String sSQL="INSERT INTO productos(id,categoria_id,nombre,descripcion,stock,precio,estado) VALUES(NULL,'"+p.getCategoria_id()+"','"+p.getNombre()+"','"+p.getDescripcion()+"','"+p.getStock()+"','"+p.getPrecio()+"','"+p.getEstado()+"')";
+                      
+        try {
+            PreparedStatement ps=conn.prepareStatement(sSQL);
+            ps.executeUpdate();
+            save=true;
+            conn.close();
+                       
+        } catch (Exception e) {
+            System.out.println("Error al agregar un usuario");
+            e.printStackTrace();
+            }
+               
+              
+        return save;
+
+
+
     }
 
     @Override
