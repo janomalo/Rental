@@ -54,9 +54,9 @@
                 </div>
                 
                 <div class="form-group">
-                     <label class="col-lg-8 control-label">Habilitar</label>
+                     <label class="col-lg-8 control-label">Estado</label>
                       <div class="col-lg-4">
-                      <select  class="form-control" name="habilitado">
+                      <select  class="form-control" name="estado">
                              <option  value="1">Habilitar</option>
                              <option  value="0">Deshabilitar</option>
                        </select>
@@ -67,7 +67,7 @@
                               
                 <div class="form-group">
                 <div class="col-lg-4">
-                    <button type="submit" class="btn btn-success left" name="accion" >Agregar</button>
+                    <button type="submit" class="btn btn-success left" name="accion" value="Agregar" >Agregar</button>
                     <a class="btn btn-success" href="index.jsp"> Volver</a>
                      </div>
                 </div>

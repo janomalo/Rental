@@ -15,8 +15,6 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -25,15 +23,17 @@ import java.util.logging.Logger;
 public class ProductoDaoImpl implements IProductoDao {
 
     // Instancias la clase que hemos creado anteriormente
-      Conexion SQL = new Conexion();
+     
 // Llamas al método que tiene la clase y te devuelve una conexión
-   Connection conn = SQL.conectar();
-    Producto p=new Producto();
+     
+    private Producto p=new Producto();
     
     
     
     @Override
     public boolean save(Producto p) {
+        Conexion SQL = new Conexion();
+       Connection conn = SQL.conectar();
         boolean save=false;
               
         String sSQL="INSERT INTO productos(id,categoria_id,nombre,descripcion,stock,precio,estado) VALUES(NULL,'"+p.getCategoria_id()+"','"+p.getNombre()+"','"+p.getDescripcion()+"','"+p.getStock()+"','"+p.getPrecio()+"','"+p.getEstado()+"')";
@@ -43,22 +43,21 @@ public class ProductoDaoImpl implements IProductoDao {
             ps.executeUpdate();
             save=true;
             conn.close();
+            ps.close();
                        
         } catch (Exception e) {
-            System.out.println("Error al agregar un usuario");
+            System.out.println("Error al agregar un producto");
             e.printStackTrace();
-            }
-               
+            } 
               
         return save;
-
-
 
     }
 
     @Override
     public List<Producto> listar() {
-
+Conexion SQL = new Conexion();
+       Connection conn = SQL.conectar();
          
 // Query que usarás para hacer lo que necesites
          String sSQL ="SELECT * FROM productos";
@@ -88,12 +87,6 @@ public class ProductoDaoImpl implements IProductoDao {
         } catch (SQLException e) {
             System.out.println("Error:Clase UsuarioDaoImpl,metodo obtener");
             e.printStackTrace();
-        } finally{
-             try {
-                 conn.close();
-             } catch (SQLException ex) {
-                 Logger.getLogger(UsuarioDaoImpl.class.getName()).log(Level.SEVERE, null, ex);
-             }
         }
    
                 return listaProductos;

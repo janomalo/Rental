@@ -87,7 +87,7 @@ public class ControladorProducto extends HttpServlet {
            String descripcion= request.getParameter("descripcion");
            Integer stock=Integer.parseInt(request.getParameter("stock"));
            Float precio=Float.parseFloat(request.getParameter("precio"));
-           Integer estado=Integer.parseInt(request.getParameter("precio"));
+           Integer estado=Integer.parseInt(request.getParameter("estado"));
            
            pro.setCategoria_id(categoria);
            pro.setNombre(nombre);

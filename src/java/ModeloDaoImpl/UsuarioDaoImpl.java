@@ -39,7 +39,13 @@ public class UsuarioDaoImpl implements IUsuarioDao{
         } catch (Exception e) {
             System.out.println("Error al agregar un usuario");
             e.printStackTrace();
+            } finally {
+            try {
+                conn.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(UsuarioDaoImpl.class.getName()).log(Level.SEVERE, null, ex);
             }
+    }
                
               
         return save;
