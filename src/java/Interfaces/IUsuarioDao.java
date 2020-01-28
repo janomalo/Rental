@@ -14,7 +14,11 @@ import java.util.List;
  */
 public interface IUsuarioDao {
     
-    public boolean save(Usuario usuario);
+    /**
+     *
+     * @param usuario
+     */
+    public void save(Usuario usuario);
     public List<Usuario> listar();
     public Usuario list(int id);
     public boolean edit(Usuario usuario);

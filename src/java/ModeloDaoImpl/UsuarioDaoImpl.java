@@ -2,7 +2,9 @@
 package ModeloDaoImpl;
 
 
-import Config.Conexion;
+//import Config.Conexion;
+import Config.FactoryConexion;
+
 import Interfaces.IUsuarioDao;
 import Modelo.Usuario;
 import  java.sql.ResultSet;
@@ -19,48 +21,76 @@ import java.util.logging.Logger;
 public class UsuarioDaoImpl implements IUsuarioDao{
     
      // Instancias la clase que hemos creado anteriormente
-     Conexion SQL = new Conexion();
+   //  Conexion SQL = new Conexion();
 // Llamas al método que tiene la clase y te devuelve una conexión
- Connection conn = SQL.conectar();
- Usuario u=new Usuario();
+ //Connection conn = SQL.conectar();
+// Usuario u=new Usuario();
 
     @Override
-    public boolean save(Usuario usu) {
-        boolean save=false;
-              
-        String sSQL="INSERT INTO usuarios(id,dni,rol_id,nombres,apellidos,telefono,email,password,fecha_registro,direccion,usuario,habilitado) VALUES(NULL,'"+usu.getDni()+"','"+usu.getRol()+"','"+usu.getNombres()+"','"+usu.getApellidos()+"','"+usu.getTelefono()+"','"+usu.getEmail()+"',SHA1('"+usu.getPassword()+"'),CURDATE(),'"+usu.getDireccion()+"','"+usu.getUsuario()+"','"+usu.getHabilitado()+"')";
+    public void save(Usuario usu){
+        //boolean save=false;
+        PreparedStatement stmt=null;
+        ResultSet keyResultSet=null;
+        
+        //String sSQL="INSERT INTO usuarios(id,dni,rol_id,nombres,apellidos,telefono,email,password,fecha_registro,direccion,usuario,habilitado) VALUES(NULL,'"+usu.getDni()+"','"+usu.getRol()+"','"+usu.getNombres()+"','"+usu.getApellidos()+"','"+usu.getTelefono()+"','"+usu.getEmail()+"',SHA1('"+usu.getPassword()+"'),CURDATE(),'"+usu.getDireccion()+"','"+usu.getUsuario()+"','"+usu.getHabilitado()+"')";
                       
         try {
-            PreparedStatement ps=conn.prepareStatement(sSQL);
-            ps.executeUpdate();
-            save=true;
-            conn.close();
+            stmt=FactoryConexion.getInstancia().getConn().prepareStatement("INSERT INTO usuarios(id,dni,rol_id,nombres,apellidos,telefono,email,password,fecha_registro,direccion,usuario,habilitado) VALUES(NULL,?,?,?,?,?,?,?,?,?,?,?)",
+                    PreparedStatement.RETURN_GENERATED_KEYS);
+            
+            stmt.setString(1,usu.getDni());
+            stmt.setInt(2, usu.getRol());
+            stmt.setString(3, usu.getNombres());
+            stmt.setString(4, usu.getApellidos());
+            stmt.setString(5, usu.getTelefono());
+            stmt.setString(6, usu.getEmail());
+            stmt.setString(7, usu.getPassword());
+            stmt.setString(8, usu.getFecha_registro());
+            stmt.setString(9, usu.getDireccion());
+            stmt.setString(10, usu.getUsuario());
+            stmt.setInt(11, usu.getHabilitado());
+            stmt.executeUpdate();
+            keyResultSet=stmt.getGeneratedKeys();
+			if(keyResultSet!=null && keyResultSet.next()){
+				usu.setId(keyResultSet.getInt(1));
+			}
+
+
+            //ps.executeUpdate();
+            //save=true;
+            //conn.close();
                        
-        } catch (Exception e) {
-            System.out.println("Error al agregar un usuario");
-            e.printStackTrace();
+        } catch (SQLException  e) {
+			e.printStackTrace();
             } finally {
             try {
-                conn.close();
-            } catch (SQLException ex) {
-                Logger.getLogger(UsuarioDaoImpl.class.getName()).log(Level.SEVERE, null, ex);
-            }
+			if(keyResultSet!=null)keyResultSet.close();
+			if(stmt!=null)stmt.close();
+			FactoryConexion.getInstancia().releaseConn();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
     }
                
               
-        return save;
+        
     }
 
     @Override
     public List<Usuario> listar() {
      
+        Statement stmt=null;
+	ResultSet rs=null;
 // Query que usarás para hacer lo que necesites
          String sSQL ="SELECT * FROM usuarios";
         List<Usuario> listaUsuarios= new ArrayList<>();
         
         try {
-             Statement stm=conn.createStatement();
-            ResultSet rs=stm.executeQuery(sSQL);
+            stmt=FactoryConexion.getInstancia().getConn().createStatement();
+            rs= stmt.executeQuery(sSQL);
+            
+            if(rs!=null){
+            
             while(rs.next()){
                 Usuario usu= new Usuario();
                 usu.setId(rs.getInt("id"));
@@ -74,24 +104,25 @@ public class UsuarioDaoImpl implements IUsuarioDao{
                 usu.setHabilitado(rs.getInt("habilitado"));
                 //u.setFecha_registro(rs.getDate("fecha_registro"));
                 listaUsuarios.add(usu);
-            }
-            stm.close();
-            rs.close();
-            conn.close();
+                             }
+                       }
+           
             
-        } catch (SQLException e) {
-            System.out.println("Error:Clase UsuarioDaoImpl,metodo obtener");
-            e.printStackTrace();
-        } finally{
-             try {
-                 conn.close();
-             } catch (SQLException ex) {
-                 Logger.getLogger(UsuarioDaoImpl.class.getName()).log(Level.SEVERE, null, ex);
-             }
-        }
-   
-                return listaUsuarios;
-   
+        }  catch (SQLException e) {
+			
+                    e.printStackTrace();
+		}
+
+		try {
+			if(rs!=null) rs.close();
+			if(stmt!=null) stmt.close();
+			FactoryConexion.getInstancia().releaseConn();
+		} catch (SQLException e) {
+			
+			e.printStackTrace();
+		}
+		
+		return listaUsuarios;
     
     }
 
