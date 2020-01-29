@@ -148,7 +148,9 @@ public class UsuarioDaoImpl implements IUsuarioDao{
            e.printStackTrace();
         }
             try{
-                if(stmt!=null)stmt.close();
+                if(stmt!=null) {
+                    stmt.close();
+                }
                 FactoryConexion.getInstancia().releaseConn();
             
             } catch(SQLException e){
@@ -165,6 +167,7 @@ public class UsuarioDaoImpl implements IUsuarioDao{
 
     @Override
     public boolean delete(Usuario u) {
+        
         String sSQL="DELETE FROM usuarios WHERE id="+u.getId();
         
          try {
@@ -179,11 +182,14 @@ public class UsuarioDaoImpl implements IUsuarioDao{
 
     @Override
     public Usuario list(int id) {
+           Statement stmt=null;
+	ResultSet rs=null;
       String sSQL ="SELECT * FROM usuarios WHERE id="+id;
+      Usuario u=new Usuario();
         
         try {
-             Statement stm=conn.createStatement();
-            ResultSet rs=stm.executeQuery(sSQL);
+             stmt=FactoryConexion.getInstancia().getConn().createStatement();
+            rs=stmt.executeQuery(sSQL);
             while(rs.next()){
                 u.setId(rs.getInt("id"));
                 u.setDni(rs.getString("dni"));
@@ -196,21 +202,18 @@ public class UsuarioDaoImpl implements IUsuarioDao{
                 u.setHabilitado(rs.getInt("habilitado"));
                 //u.setFecha_registro(rs.getDate("fecha_registro"));
               }
-          stm.close();
-            rs.close();
-            
-        } catch (SQLException e) {
-            System.out.println("Error:Clase UsuarioDaoImpl,metodo obtener");
-            e.printStackTrace();
-        } finally{
-          
-          try {
-              conn.close();
-          } catch (SQLException ex) {
-              Logger.getLogger(UsuarioDaoImpl.class.getName()).log(Level.SEVERE, null, ex);
-          }
-        }
-   
+                     
+        }   catch (SQLException e) {		
+                    e.printStackTrace();
+		}
+		try {
+                    if(rs!=null) rs.close();
+                    if(stmt!=null) stmt.close();
+                    FactoryConexion.getInstancia().releaseConn();
+		} catch (SQLException e) {
+			
+			e.printStackTrace();
+		}
                 return u;
    
     
