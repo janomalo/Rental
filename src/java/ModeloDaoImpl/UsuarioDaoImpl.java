@@ -8,7 +8,6 @@ import Config.FactoryConexion;
 import Interfaces.IUsuarioDao;
 import Modelo.Usuario;
 import  java.sql.ResultSet;
-import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -128,15 +127,37 @@ public class UsuarioDaoImpl implements IUsuarioDao{
 
     @Override
     public boolean edit(Usuario u) {
-
-        String sSQL=String.format("UPDATE usuarios SET dni='"+u.getDni()+"',nombres='"+u.getNombres()+"',apellidos='"+u.getApellidos()+"',telefono='"+u.getTelefono()+"',email='"+u.getEmail()+"',password=SHA1('"+u.getPassword()+"'),direccion='"+u.getDireccion()+"',usuario='"+u.getUsuario()+"',habilitado='"+u.getHabilitado()+"' WHERE id="+u.getId());
+          PreparedStatement stmt=null;
+        //String sSQL=String.format("UPDATE usuarios SET dni='"+u.getDni()+"',nombres='"+u.getNombres()+"',apellidos='"+u.getApellidos()+"',telefono='"+u.getTelefono()+"',email='"+u.getEmail()+"',password=SHA1('"+u.getPassword()+"'),direccion='"+u.getDireccion()+"',usuario='"+u.getUsuario()+"',habilitado='"+u.getHabilitado()+"' WHERE id="+u.getId());
         
             try {
-            PreparedStatement ps= conn.prepareStatement(sSQL);
-            ps.executeUpdate();
+                stmt=FactoryConexion.getInstancia().getConn().prepareStatement("UPDATE usuarios SET dni=?,nombres=?,apellidos=?,telefono=?,email=?,password=SHA1('"+u.getPassword()+"'),direccion=?,usuario=?,habilitado=? WHERE id=?");
+                stmt.setString(1,u.getDni());
+                stmt.setString(2, u.getNombres());
+                stmt.setString(3, u.getApellidos());
+                stmt.setString(4,u.getTelefono());
+                stmt.setString(5,u.getEmail());
+                stmt.setString(6,u.getPassword());
+                stmt.setString(7,u.getDireccion());
+                stmt.setString(8,u.getUsuario());
+                stmt.setInt(9,u.getHabilitado());
+                stmt.executeUpdate();
+             //PreparedStatement ps= conn.prepareStatement(sSQL);
+            //ps.executeUpdate();
         } catch (SQLException e) {
            e.printStackTrace();
         }
+            try{
+                if(stmt!=null)stmt.close();
+                FactoryConexion.getInstancia().releaseConn();
+            
+            } catch(SQLException e){
+                e.printStackTrace();
+            }
+            
+
+            
+            
     
     
     return false;
