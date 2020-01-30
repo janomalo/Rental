@@ -63,8 +63,12 @@ public class UsuarioDaoImpl implements IUsuarioDao{
 			e.printStackTrace();
             } finally {
             try {
-			if(keyResultSet!=null)keyResultSet.close();
-			if(stmt!=null)stmt.close();
+			if(keyResultSet!=null) {
+                            keyResultSet.close();
+                        }
+			if(stmt!=null) {
+                            stmt.close();
+                        }
 			FactoryConexion.getInstancia().releaseConn();
 		} catch (SQLException e) {
 			e.printStackTrace();
