@@ -22,6 +22,6 @@ public interface IUsuarioDao {
     public List<Usuario> listar();
     public Usuario list(int id);
     public boolean edit(Usuario usuario);
-    public boolean delete(Usuario usuario);
+    public void delete(Usuario usuario);
     
 }

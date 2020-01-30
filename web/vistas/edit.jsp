@@ -21,7 +21,7 @@
             UsuarioDaoImpl dao= new UsuarioDaoImpl();
             int id=Integer.parseInt((String)request.getAttribute("idusu"));
             Usuario u= new Usuario();
-            u=(Usuario)dao.list(id);
+            u=dao.list(id);
                          
         
         %>
@@ -37,8 +37,8 @@
                 Direccion <input type="text" name="txtdireccion"  value="<%=u.getDireccion() %>"> <br>
                 Usuario  <input type="text" name="txtusuario"  value="<%=u.getUsuario()%>"> <br>
                 Contraseña <input type="password" name="txtpassword" value="<%=u.getPassword() %>"><br>
-                 <input type="radio" name="txthabilitado" value="1">Habilitar(1)
-                <input type="radio" name="txthabilitado" value="0">Deshabiltiar(0)<br>
+                <input type="radio" name="txthabilitado" value="1" required="">Habilitar
+                <input type="radio" name="txthabilitado" value="0" required="">Deshabiltiar<br>
                
                
                 <%-- Fecha <input type="date" name="fecha"> --%>

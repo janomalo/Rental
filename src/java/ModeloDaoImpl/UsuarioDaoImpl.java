@@ -34,7 +34,7 @@ public class UsuarioDaoImpl implements IUsuarioDao{
         //String sSQL="INSERT INTO usuarios(id,dni,rol_id,nombres,apellidos,telefono,email,password,fecha_registro,direccion,usuario,habilitado) VALUES(NULL,'"+usu.getDni()+"','"+usu.getRol()+"','"+usu.getNombres()+"','"+usu.getApellidos()+"','"+usu.getTelefono()+"','"+usu.getEmail()+"',SHA1('"+usu.getPassword()+"'),CURDATE(),'"+usu.getDireccion()+"','"+usu.getUsuario()+"','"+usu.getHabilitado()+"')";
                       
         try {
-            stmt=FactoryConexion.getInstancia().getConn().prepareStatement("INSERT INTO usuarios(id,dni,rol_id,nombres,apellidos,telefono,email,password,fecha_registro,direccion,usuario,habilitado) VALUES(NULL,?,?,?,?,?,?,?,?,?,?,?)",
+            stmt=FactoryConexion.getInstancia().getConn().prepareStatement("INSERT INTO usuarios(id,dni,rol_id,nombres,apellidos,telefono,email,password,direccion,usuario,habilitado) VALUES(NULL,?,?,?,?,?,?,?,?,?,?)",
                     PreparedStatement.RETURN_GENERATED_KEYS);
             
             stmt.setString(1,usu.getDni());
@@ -44,10 +44,10 @@ public class UsuarioDaoImpl implements IUsuarioDao{
             stmt.setString(5, usu.getTelefono());
             stmt.setString(6, usu.getEmail());
             stmt.setString(7, usu.getPassword());
-            stmt.setString(8, usu.getFecha_registro());
-            stmt.setString(9, usu.getDireccion());
-            stmt.setString(10, usu.getUsuario());
-            stmt.setInt(11, usu.getHabilitado());
+            //stmt.setString(8, usu.getFecha_registro());
+            stmt.setString(8, usu.getDireccion());
+            stmt.setString(9, usu.getUsuario());
+            stmt.setInt(10, usu.getHabilitado());
             stmt.executeUpdate();
             keyResultSet=stmt.getGeneratedKeys();
 			if(keyResultSet!=null && keyResultSet.next()){
@@ -113,8 +113,12 @@ public class UsuarioDaoImpl implements IUsuarioDao{
 		}
 
 		try {
-			if(rs!=null) rs.close();
-			if(stmt!=null) stmt.close();
+			if(rs!=null) {
+                            rs.close();
+                        }
+			if(stmt!=null) {
+                            stmt.close();
+                        }
 			FactoryConexion.getInstancia().releaseConn();
 		} catch (SQLException e) {
 			
@@ -127,11 +131,12 @@ public class UsuarioDaoImpl implements IUsuarioDao{
 
     @Override
     public boolean edit(Usuario u) {
+        //Al listar pass y volver a guardarla 
           PreparedStatement stmt=null;
         //String sSQL=String.format("UPDATE usuarios SET dni='"+u.getDni()+"',nombres='"+u.getNombres()+"',apellidos='"+u.getApellidos()+"',telefono='"+u.getTelefono()+"',email='"+u.getEmail()+"',password=SHA1('"+u.getPassword()+"'),direccion='"+u.getDireccion()+"',usuario='"+u.getUsuario()+"',habilitado='"+u.getHabilitado()+"' WHERE id="+u.getId());
         
             try {
-                stmt=FactoryConexion.getInstancia().getConn().prepareStatement("UPDATE usuarios SET dni=?,nombres=?,apellidos=?,telefono=?,email=?,password=SHA1('"+u.getPassword()+"'),direccion=?,usuario=?,habilitado=? WHERE id=?");
+                stmt=FactoryConexion.getInstancia().getConn().prepareStatement("UPDATE usuarios SET dni=?,nombres=?,apellidos=?,telefono=?,email=?,password=?,direccion=?,usuario=?,habilitado=? WHERE id=?");
                 stmt.setString(1,u.getDni());
                 stmt.setString(2, u.getNombres());
                 stmt.setString(3, u.getApellidos());
@@ -141,6 +146,7 @@ public class UsuarioDaoImpl implements IUsuarioDao{
                 stmt.setString(7,u.getDireccion());
                 stmt.setString(8,u.getUsuario());
                 stmt.setInt(9,u.getHabilitado());
+                stmt.setInt(10, u.getId());
                 stmt.executeUpdate();
              //PreparedStatement ps= conn.prepareStatement(sSQL);
             //ps.executeUpdate();
@@ -166,18 +172,27 @@ public class UsuarioDaoImpl implements IUsuarioDao{
     }
 
     @Override
-    public boolean delete(Usuario u) {
-        
-        String sSQL="DELETE FROM usuarios WHERE id="+u.getId();
+    public void delete(Usuario u) {
+         PreparedStatement stmt=null;
+	       
+        //String sSQL="DELETE FROM usuarios WHERE id="+u.getId();
         
          try {
-             PreparedStatement ps=conn.prepareStatement(sSQL);
-             ps.executeUpdate();
-         } catch (SQLException ex) {
-             Logger.getLogger(UsuarioDaoImpl.class.getName()).log(Level.SEVERE, null, ex);
-         }
+             stmt=FactoryConexion.getInstancia().getConn().prepareStatement("DELETE FROM usuarios WHERE id=?");
+            stmt.setInt(1,u.getId());
+            stmt.executeUpdate();
+         } catch (SQLException e ) {
+		 e.printStackTrace();
+		}
+		try {
+			if(stmt!=null) {
+                            stmt.close();
+                        }
+			FactoryConexion.getInstancia().releaseConn();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
     
-    return false;
     }
 
     @Override
@@ -207,8 +222,12 @@ public class UsuarioDaoImpl implements IUsuarioDao{
                     e.printStackTrace();
 		}
 		try {
-                    if(rs!=null) rs.close();
-                    if(stmt!=null) stmt.close();
+                    if(rs!=null) {
+                        rs.close();
+                    }
+                    if(stmt!=null) {
+                        stmt.close();
+                    }
                     FactoryConexion.getInstancia().releaseConn();
 		} catch (SQLException e) {
 			

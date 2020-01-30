@@ -21,7 +21,7 @@
                 Contraseña <input type="password" name="password"><br>
                 <input type="radio" name="habilitado" value="1">Habilitar(1)
                 <input type="radio" name="habilitado" value="0">Deshabiltiar(0)<br>
-                <%-- Fecha <input type="date" name="fecha"> --%>
+                <%-- <input type="hidden" name="fecha" value="CURDATE"> --%>
                 <input class=" btn btn-success" type="submit" value="Agregar" name="accion">
                <a class="btn btn-success" href="index.jsp"> Volver</a>
             </form>
