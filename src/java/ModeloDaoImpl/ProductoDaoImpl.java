@@ -6,6 +6,7 @@
 package ModeloDaoImpl;
 
 import Config.Conexion;
+import Config.FactoryConexion;
 import Interfaces.IProductoDao;
 import Modelo.Producto;
 import java.sql.Connection;
@@ -31,41 +32,65 @@ public class ProductoDaoImpl implements IProductoDao {
     
     
     @Override
-    public boolean save(Producto p) {
-        Conexion SQL = new Conexion();
-       Connection conn = SQL.conectar();
-        boolean save=false;
+    public void save(Producto p) {
+       PreparedStatement stmt=null;
+        ResultSet keyResultSet=null;
               
-        String sSQL="INSERT INTO productos(id,categoria_id,nombre,descripcion,stock,precio,estado) VALUES(NULL,'"+p.getCategoria_id()+"','"+p.getNombre()+"','"+p.getDescripcion()+"','"+p.getStock()+"','"+p.getPrecio()+"','"+p.getEstado()+"')";
+        //String sSQL="INSERT INTO productos(id,categoria_id,nombre,descripcion,stock,precio,estado) VALUES(NULL,'"+p.getCategoria_id()+"','"+p.getNombre()+"','"+p.getDescripcion()+"','"+p.getStock()+"','"+p.getPrecio()+"','"+p.getEstado()+"')";
                       
         try {
-            PreparedStatement ps=conn.prepareStatement(sSQL);
-            ps.executeUpdate();
-            save=true;
-            conn.close();
-            ps.close();
+             stmt=FactoryConexion.getInstancia().getConn().prepareStatement("INSERT INTO productos(id,categoria_id,nombre,descripcion,stock,precio,estado) VALUES(NULL,?,?,?,?,?,?)",
+                    PreparedStatement.RETURN_GENERATED_KEYS);
+            
+            stmt.setInt(1,p.getCategoria_id());
+            stmt.setString(2, p.getNombre());
+            stmt.setString(3,p.getDescripcion());
+            stmt.setInt(4, p.getStock());
+            stmt.setFloat(5, p.getPrecio());
+            stmt.setInt(6, p.getEstado());
+            stmt.executeUpdate();
+            keyResultSet=stmt.getGeneratedKeys();
+			if(keyResultSet!=null && keyResultSet.next()){
+				p.setId(keyResultSet.getInt(1));
+			}
+
+
+            //ps.executeUpdate();
+            //save=true;
+            //conn.close();
                        
-        } catch (Exception e) {
-            System.out.println("Error al agregar un producto");
-            e.printStackTrace();
-            } 
-              
-        return save;
+        } catch (SQLException  e) {
+			e.printStackTrace();
+            } finally {
+            try {
+			if(keyResultSet!=null) {
+                            keyResultSet.close();
+                        }
+			if(stmt!=null) {
+                            stmt.close();
+                        }
+			FactoryConexion.getInstancia().releaseConn();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+    }
+               
+       
 
     }
 
     @Override
     public List<Producto> listar() {
-Conexion SQL = new Conexion();
-       Connection conn = SQL.conectar();
-         
+        Statement stmt=null;
+	ResultSet rs=null;
 // Query que usarás para hacer lo que necesites
          String sSQL ="SELECT * FROM productos";
         List<Producto> listaProductos= new ArrayList<>();
         
         try {
-             Statement stm=conn.createStatement();
-            ResultSet rs=stm.executeQuery(sSQL);
+             stmt=FactoryConexion.getInstancia().getConn().createStatement();
+            rs= stmt.executeQuery(sSQL);
+            if(rs!=null){
             while(rs.next()){
                 Producto pro= new Producto();
                 //setear datos productos a objeto pro y agregara lista
@@ -79,15 +104,23 @@ Conexion SQL = new Conexion();
                 
                 //u.setFecha_registro(rs.getDate("fecha_registro"));
                 listaProductos.add(pro);
-            }
-            stm.close();
-            rs.close();
-            conn.close();
-            
-        } catch (SQLException e) {
-            System.out.println("Error:Clase UsuarioDaoImpl,metodo obtener");
-            e.printStackTrace();
-        }
+            }}
+                       
+        }catch (SQLException e) {
+			         e.printStackTrace();
+                                }
+
+	try {
+            if(rs!=null) {
+                            rs.close();
+                         }
+            if(stmt!=null) {
+                            stmt.close();
+                            }
+            FactoryConexion.getInstancia().releaseConn();
+	} catch (SQLException e) {
+		e.printStackTrace();
+		}
    
                 return listaProductos;
    
@@ -99,12 +132,82 @@ Conexion SQL = new Conexion();
 
     @Override
     public Producto list(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+ Statement stmt=null;
+	ResultSet rs=null;
+      String sSQL ="SELECT * FROM productos WHERE id="+id;
+      Producto p=new Producto();
+        
+        try {
+             stmt=FactoryConexion.getInstancia().getConn().createStatement();
+            rs=stmt.executeQuery(sSQL);
+            while(rs.next()){
+                 p.setId(rs.getInt("id"));
+                p.setCategoria_id(rs.getInt("categoria_id"));
+                p.setNombre(rs.getString("nombre"));
+                p.setDescripcion(rs.getString("descripcion"));
+                p.setStock(rs.getInt("stock"));
+                p.setPrecio(rs.getFloat("precio"));
+                p.setEstado(rs.getInt("estado"));//u.setFecha_registro(rs.getDate("fecha_registro"));
+              }
+                     
+        }   catch (SQLException e) {		
+                    e.printStackTrace();
+		}
+		try {
+                    if(rs!=null) {
+                        rs.close();
+                    }
+                    if(stmt!=null) {
+                        stmt.close();
+                    }
+                    FactoryConexion.getInstancia().releaseConn();
+		} catch (SQLException e) {
+			
+			e.printStackTrace();
+		}
+                return p;
+   
+    
     }
 
     @Override
-    public boolean edit(Producto producto) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public boolean edit(Producto p) {
+        //Al listar pass y volver a guardarla 
+          PreparedStatement stmt=null;
+        //String sSQL=String.format("UPDATE usuarios SET dni='"+u.getDni()+"',nombres='"+u.getNombres()+"',apellidos='"+u.getApellidos()+"',telefono='"+u.getTelefono()+"',email='"+u.getEmail()+"',password=SHA1('"+u.getPassword()+"'),direccion='"+u.getDireccion()+"',usuario='"+u.getUsuario()+"',habilitado='"+u.getHabilitado()+"' WHERE id="+u.getId());
+        
+            try {
+                stmt=FactoryConexion.getInstancia().getConn().prepareStatement("UPDATE productos SET categoria_id=?,nombre=?,descripcion=?,stock=?,precio=?,estado=? WHERE id=?");
+                stmt.setInt(1,p.getCategoria_id());
+            stmt.setString(2, p.getNombre());
+            stmt.setString(3,p.getDescripcion());
+            stmt.setInt(4, p.getStock());
+            stmt.setFloat(5, p.getPrecio());
+            stmt.setInt(6, p.getEstado());
+            stmt.setInt(7, p.getId());
+            stmt.executeUpdate();
+             //PreparedStatement ps= conn.prepareStatement(sSQL);
+            //ps.executeUpdate();
+        } catch (SQLException e) {
+           e.printStackTrace();
+        }
+            try{
+                if(stmt!=null) {
+                    stmt.close();
+                }
+                FactoryConexion.getInstancia().releaseConn();
+            
+            } catch(SQLException e){
+                e.printStackTrace();
+            }
+            
+
+            
+            
+    
+    
+    return false;
+
     }
 
     @Override

@@ -25,7 +25,7 @@
                          
         
         %>
-         <h1>Modificar Usuario</h1>
+         <h1>Editar Usuario</h1>
          <div class="container">
              <form action="Controlador"  class="form-text">
                 <input  type="hidden"  name="txtid"  value="<%=u.getId() %>">

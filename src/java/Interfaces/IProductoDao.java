@@ -14,7 +14,7 @@ import java.util.List;
  */
 public interface IProductoDao {
     
-    public boolean save(Producto producto);
+    public void save(Producto producto);
     public List<Producto> listar();
     public Producto list(int id);
     public boolean edit(Producto producto);
