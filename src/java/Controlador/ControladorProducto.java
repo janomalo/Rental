@@ -106,7 +106,7 @@ public class ControladorProducto extends HttpServlet {
             acceso=edit;
         }
         else if (action.equalsIgnoreCase("Actualizar")) {
-            System.out.println("pasa por aca");
+            System.out.println("pasa por aca ACTUALIZAR");
             
             Integer id=Integer.parseInt(request.getParameter("txtid"));
             Integer categoria= Integer.parseInt(request.getParameter("txtcategoriaid"));

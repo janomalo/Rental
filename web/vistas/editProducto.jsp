@@ -27,7 +27,7 @@
         </div>
         <div class="container">
             
-            <form action="ControladorProducto" method="POST" class="form-horizontal" style="margin:0 auto" >
+            <form action="ControladorProducto" class="form-horizontal" style="margin:0 auto" >
                 <input  type="hidden"  name="txtid"  value="<%=p.getId() %>">
                 <div class="form-group">
                     <label class="col-lg-8 control-label">Categoria</label>
@@ -68,11 +68,12 @@
                 
                 <div class="form-group">
                 <div class="">
-                    <input type="submit" class="btn btn-success left" name="accion" value="Actualizar" >
+                    <%-- <input type="submit" class="btn btn-success left" name="accion" value="Actualizar" > --%>
+                        <input type="submit" value="Actualizar" name="accion" class="btn btn-success left">
                     <a class="btn btn-success" href="listarProductos.jsp"> Volver</a>
                      </div>
                 </div>
-               
+                       
             </form>
             
             
