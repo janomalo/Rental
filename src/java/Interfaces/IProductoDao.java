@@ -18,6 +18,6 @@ public interface IProductoDao {
     public List<Producto> listar();
     public Producto list(int id);
     public boolean edit(Producto producto);
-    public boolean delete(Producto producto);
+    public void delete(Producto producto);
     
 }

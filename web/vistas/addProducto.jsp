@@ -13,7 +13,7 @@
         
         <div class="container">
                 <h1>Ingrese los datos</h1>
-                <form action="ControladorProducto" class="form-horizontal" style="margin:0 auto">
+                <form action="ControladorProducto"  method="POST" class="form-horizontal" style="margin:0 auto">
          
                 <div class="form-group">
                     <label class="col-lg-8 control-label">Categoria</label>

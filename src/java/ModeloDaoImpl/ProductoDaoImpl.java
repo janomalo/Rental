@@ -177,8 +177,8 @@ public class ProductoDaoImpl implements IProductoDao {
         //String sSQL=String.format("UPDATE usuarios SET dni='"+u.getDni()+"',nombres='"+u.getNombres()+"',apellidos='"+u.getApellidos()+"',telefono='"+u.getTelefono()+"',email='"+u.getEmail()+"',password=SHA1('"+u.getPassword()+"'),direccion='"+u.getDireccion()+"',usuario='"+u.getUsuario()+"',habilitado='"+u.getHabilitado()+"' WHERE id="+u.getId());
         
             try {
-                stmt=FactoryConexion.getInstancia().getConn().prepareStatement("UPDATE productos SET categoria_id=?,nombre=?,descripcion=?,stock=?,precio=?,estado=? WHERE id=?");
-                stmt.setInt(1,p.getCategoria_id());
+            stmt=FactoryConexion.getInstancia().getConn().prepareStatement("UPDATE productos SET categoria_id=?,nombre=?,descripcion=?,stock=?,precio=?,estado=? WHERE id=?");
+            stmt.setInt(1,p.getCategoria_id());
             stmt.setString(2, p.getNombre());
             stmt.setString(3,p.getDescripcion());
             stmt.setInt(4, p.getStock());
@@ -200,19 +200,32 @@ public class ProductoDaoImpl implements IProductoDao {
             } catch(SQLException e){
                 e.printStackTrace();
             }
-            
-
-            
-            
-    
-    
+       
     return false;
 
     }
 
     @Override
-    public boolean delete(Producto producto) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void delete(Producto p) {
+         PreparedStatement stmt=null;
+	                    
+         try {
+             stmt=FactoryConexion.getInstancia().getConn().prepareStatement("DELETE FROM productos WHERE id=?");
+            stmt.setInt(1,p.getId());
+            stmt.executeUpdate();
+         } catch (SQLException e ) {
+		 e.printStackTrace();
+		}
+		try {
+			if(stmt!=null) {
+                            stmt.close();
+                        }
+			FactoryConexion.getInstancia().releaseConn();
+		} catch (SQLException e) {
+			e.printStackTrace();
+	
+
+
     }
     
-}
+}}

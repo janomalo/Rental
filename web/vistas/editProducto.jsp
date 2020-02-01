@@ -27,48 +27,48 @@
         </div>
         <div class="container">
             
-            <form action="ControladorProducto" class="form-horizontal" style="margin:0 auto">
-         
+            <form action="ControladorProducto" method="POST" class="form-horizontal" style="margin:0 auto" >
+                <input  type="hidden"  name="txtid"  value="<%=p.getId() %>">
                 <div class="form-group">
                     <label class="col-lg-8 control-label">Categoria</label>
                      <div class="col-lg-4">
-                         <input type="text" class="form-control" name="categoria" value="<%=p.getCategoria_id()%>" required=""/>
+                         <input type="text" class="form-control" name="txtcategoriaid" value="<%=p.getCategoria_id()%>" required=""/>
                     </div>
                 </div>
                  <div class="form-group">
                      <label class="col-lg-8 control-label">Nombre</label>
                       <div class="col-lg-4">
-                     <input type="text" class="form-control" name="nombre" value="<%=p.getNombre()%>" />
+                     <input type="text" class="form-control" name="txtnombre" value="<%=p.getNombre()%>" />
                       </div>
                 </div>
                  <div class="form-group">
                      <label class="col-lg-8 control-label">Descripción</label>
                       <div class="col-lg-4">
-                     <input type="text" class="form-control" name="descripcion" value="<%=p.getDescripcion()%>" />
+                     <input type="text" class="form-control" name="txtdescripcion" value="<%=p.getDescripcion()%>" />
                       </div>
                 </div>
                  <div class="form-group">
                      <label class="col-lg-8 control-label">Stock</label>
                       <div class="col-lg-4">
-                     <input type="text" class="form-control" name="stock" value="<%=p.getStock()%>" />
+                     <input type="text" class="form-control" name="txtstock" value="<%=p.getStock()%>" />
                       </div>
                 </div>
                  <div class="form-group">
                      <label class="col-lg-8 control-label">Precio</label>
                       <div class="col-lg-4">
-                     <input type="text" class="form-control" name="precio" value="<%=p.getPrecio()%>" />
+                     <input type="text" class="form-control" name="txtprecio" value="<%=p.getPrecio()%>" />
                       </div>
                 </div>
                                     
-                      <input type="radio" name="habilitado" value="1" readonly="">Habilitar(1)
-                      <input type="radio" name="habilitado" value="0"  required="">Deshabiltiar(0)<br>
+                      <input type="radio" name="txthabilitado" value="1" required="">Habilitar(1)
+                      <input type="radio" name="txthabilitado" value="0"  required="">Deshabiltiar(0)<br>
                 
                 <%-- Fecha <input type="date" name="fecha"> --%>
                 
                 
                 <div class="form-group">
                 <div class="">
-                    <button type="submit" class="btn btn-success left" name="accion" >Actualizar</button>
+                    <input type="submit" class="btn btn-success left" name="accion" value="Actualizar" >
                     <a class="btn btn-success" href="listarProductos.jsp"> Volver</a>
                      </div>
                 </div>
