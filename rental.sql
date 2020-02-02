@@ -1,8 +1,8 @@
 /*
-SQLyog Community v8.71 
-MySQL - 5.7.26 : Database - rental
+SQLyog Community v13.1.5  (64 bit)
+MySQL - 10.4.10-MariaDB : Database - rental
 *********************************************************************
-*/
+*/
 
 /*!40101 SET NAMES utf8 */;
 
@@ -29,7 +29,10 @@ CREATE TABLE `categorias` (
 
 /*Data for the table `categorias` */
 
-insert  into `categorias`(`id`,`nombre`,`estado`) values (1,'Ski',1),(2,'Snowboard',1),(3,'General',1);
+insert  into `categorias`(`id`,`nombre`,`estado`) values 
+(1,'Ski',1),
+(2,'Snowboard',1),
+(3,'General',1);
 
 /*Table structure for table `productos` */
 
@@ -50,7 +53,17 @@ CREATE TABLE `productos` (
 
 /*Data for the table `productos` */
 
-insert  into `productos`(`id`,`categoria_id`,`nombre`,`descripcion`,`stock`,`precio`,`estado`) values (1,3,'Antiparras','Antiparras adulto',1,50,1),(2,1,'Completo Deportivo Adulto','Equipo completo deportivo para persona adulta',1,700,1),(3,1,'campera','Talle XL',1,100,1),(4,2,'botas','stepone',1,100,1),(5,1,'antiparras','hombre',1,150,1),(6,1,'tabla sola','155 cm nieve onda',1,400,0),(7,1,'pantalon','negro',1,50,1),(8,2,'tabla+fijaciones','niÃ±o',1,600,1),(9,2,'campera-h-xl-salomon','Talle XL',1,250,1),(10,2,'campera-h-xl-salomon','Talle XL',1,250,1),(11,2,'campera-h-xl-salomon','Talle XL',1,250,1),(12,2,'campera-h-xl-salomon','Talle XL',1,250,1),(13,1,'bastones','mayor',1,50,1),(14,2,'casco','Talle XL',1,300,0);
+insert  into `productos`(`id`,`categoria_id`,`nombre`,`descripcion`,`stock`,`precio`,`estado`) values 
+(1,3,'Antiparras','Antiparras adulto',1,100,0),
+(2,1,'Completo Deportivo Adulto','Equipo completo deportivo para persona adulta',1,700,1),
+(3,1,'campera','Talle XL',1,100,1),
+(4,2,'botas','stepone',1,100,1),
+(5,1,'antiparras','hombre',1,150,1),
+(6,1,'tabla sola','155 cm nieve onda',1,400,0),
+(7,1,'pantalon','negro',1,50,1),
+(8,2,'tabla+fijaciones','niÃ±o',1,600,1),
+(9,2,'campera-h-xl-salomon','Talle XL',1,100,1),
+(10,2,'campera-h-xl-salomon','Talle XL',1,500,1);
 
 /*Table structure for table `roles` */
 
@@ -64,7 +77,9 @@ CREATE TABLE `roles` (
 
 /*Data for the table `roles` */
 
-insert  into `roles`(`id`,`nombre`) values (1,'Administrador'),(2,'Usuario');
+insert  into `roles`(`id`,`nombre`) values 
+(1,'Administrador'),
+(2,'Usuario');
 
 /*Table structure for table `usuarios` */
 
@@ -79,7 +94,7 @@ CREATE TABLE `usuarios` (
   `telefono` varchar(50) NOT NULL,
   `email` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL,
-  `fecha_registro` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `fecha_registro` datetime NOT NULL DEFAULT current_timestamp(),
   `direccion` varchar(255) NOT NULL,
   `usuario` varchar(50) NOT NULL,
   `habilitado` tinyint(1) NOT NULL,
@@ -91,7 +106,11 @@ CREATE TABLE `usuarios` (
 
 /*Data for the table `usuarios` */
 
-insert  into `usuarios`(`id`,`dni`,`rol_id`,`nombres`,`apellidos`,`telefono`,`email`,`password`,`fecha_registro`,`direccion`,`usuario`,`habilitado`) values (2,'34860732',1,'Ale234','Molina','+542944335790','ale@ale.com','aversiseguarda','2019-11-07 00:00:00','casa','alelala',1),(3,'34555222',2,'nonono','Molina1','55555','newemail@gmail.com','2be88ca4242c76e8253ac62474851065032d6833','0000-00-00 00:00:00','primero de mayo','aaaa',0),(6,'31555000',2,'Jorge','ref','154131351','jorge@gmail.com','45645646','0000-00-00 00:00:00','su casa','',0),(20,'0192834',2,'JorgeL','Reffi','1029384','jor@gmail.com','123456','2020-01-29 21:22:01','primerodemayo','jorgel',1);
+insert  into `usuarios`(`id`,`dni`,`rol_id`,`nombres`,`apellidos`,`telefono`,`email`,`password`,`fecha_registro`,`direccion`,`usuario`,`habilitado`) values 
+(2,'34860732',1,'Ale234','Molina','+542944335790','ale@ale.com','aversiseguarda','2019-11-07 00:00:00','casa','alelala',1),
+(3,'34555222',2,'nonono','Molina1','55555','newemail@gmail.com','2be88ca4242c76e8253ac62474851065032d6833','0000-00-00 00:00:00','primero de mayo','aaaa',0),
+(6,'31555000',2,'Jorge','ref','154131351','jorge@gmail.com','45645646','0000-00-00 00:00:00','su casa','',0),
+(20,'0192834',2,'JorgeL','Reffi','1029384','jor@gmail.com','null','2020-01-29 21:22:01','primerodemayo','jorgell',1);
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
