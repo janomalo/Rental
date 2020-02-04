@@ -34,6 +34,24 @@ insert  into `categorias`(`id`,`nombre`,`estado`) values
 (2,'Snowboard',1),
 (3,'General',1);
 
+/*Table structure for table `lista_productos` */
+
+DROP TABLE IF EXISTS `lista_productos`;
+
+CREATE TABLE `lista_productos` (
+  `id` int(255) NOT NULL AUTO_INCREMENT,
+  `reserva_id` int(255) NOT NULL,
+  `producto_id` int(255) NOT NULL,
+  `cantidad` int(100) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `fk_reserva_id` (`reserva_id`),
+  KEY `fk_producto_id` (`producto_id`),
+  CONSTRAINT `fk_producto_id` FOREIGN KEY (`producto_id`) REFERENCES `productos` (`id`),
+  CONSTRAINT `fk_reserva_id` FOREIGN KEY (`reserva_id`) REFERENCES `reservas` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+/*Data for the table `lista_productos` */
+
 /*Table structure for table `productos` */
 
 DROP TABLE IF EXISTS `productos`;
@@ -56,14 +74,33 @@ CREATE TABLE `productos` (
 insert  into `productos`(`id`,`categoria_id`,`nombre`,`descripcion`,`stock`,`precio`,`estado`) values 
 (1,3,'Antiparras','Antiparras adulto',1,100,0),
 (2,1,'Completo Deportivo Adulto','Equipo completo deportivo para persona adulta',1,700,1),
-(3,1,'campera','Talle XL',1,100,1),
+(3,1,'campera','Talle XL',1,50,1),
 (4,2,'botas','stepone',1,100,1),
 (5,1,'antiparras','hombre',1,150,1),
 (6,1,'tabla sola','155 cm nieve onda',1,400,0),
 (7,1,'pantalon','negro',1,50,1),
 (8,2,'tabla+fijaciones','niÃ±o',1,600,1),
-(9,2,'campera-h-xl-salomon','Talle XL',1,100,1),
-(10,2,'campera-h-xl-salomon','Talle XL',1,500,1);
+(9,2,'campera-h-xl-salomon','Talle XL',1,100,1);
+
+/*Table structure for table `reservas` */
+
+DROP TABLE IF EXISTS `reservas`;
+
+CREATE TABLE `reservas` (
+  `id` int(255) NOT NULL AUTO_INCREMENT,
+  `temporada_id` int(255) NOT NULL,
+  `usuario_id` int(255) NOT NULL,
+  `precio` float NOT NULL,
+  `fecha_reserva` date NOT NULL,
+  `cantidad_dias` int(100) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `fk_temporada_id` (`temporada_id`),
+  KEY `fk_usuario_id` (`usuario_id`),
+  CONSTRAINT `fk_temporada_id` FOREIGN KEY (`temporada_id`) REFERENCES `temporadas` (`id`),
+  CONSTRAINT `fk_usuario_id` FOREIGN KEY (`usuario_id`) REFERENCES `usuarios` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+/*Data for the table `reservas` */
 
 /*Table structure for table `roles` */
 
@@ -80,6 +117,21 @@ CREATE TABLE `roles` (
 insert  into `roles`(`id`,`nombre`) values 
 (1,'Administrador'),
 (2,'Usuario');
+
+/*Table structure for table `temporadas` */
+
+DROP TABLE IF EXISTS `temporadas`;
+
+CREATE TABLE `temporadas` (
+  `id` int(255) NOT NULL AUTO_INCREMENT,
+  `descripcion` varchar(300) NOT NULL,
+  `fecha_desde` date NOT NULL,
+  `fecha_hasta` date NOT NULL,
+  `precio` float NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+/*Data for the table `temporadas` */
 
 /*Table structure for table `usuarios` */
 
