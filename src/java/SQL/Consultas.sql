@@ -125,3 +125,46 @@ CONSTRAINT fk_categoria_id FOREIGN KEY (categoria_id) REFERENCES categorias(id)
 #DATOS PRODUCTOS#
 INSERT INTO productos VALUES(null,3,"Antiparras","Antiparras adulto",1,50.00,1);
 INSERT INTO productos VALUES(null,1,"Completo Deportivo Adulto","Equipo completo deportivo para persona adulta",1,700,1);
+
+
+
+#TEMPORADA#
+
+CREATE TABLE temporadas(
+id              int(255) auto_increment not null,
+descripcion     varchar(300) not null,
+fecha_desde     date not null,
+fecha_hasta     date not null,
+precio          float not null,
+CONSTRAINT pk_temporada PRIMARY KEY(id),
+)ENGINE=InnoDb;
+
+#RESERVA#
+
+CREATE TABLE reservas( 
+id              int(255) auto_increment not null,
+temporada_id    int(255) not null,
+usuario_id      int(255)not null,
+precio          float not null,
+fecha_reserva   date not null,
+cantidad_dias   int(100)
+CONSTRAINT pk_reservas PRIMARY KEY(id),
+CONSTRAINT fk_temporada_id FOREIGN KEY (temporada_id) REFERENCES temporadas(id),
+CONSTRAINT fk_usuario_id FOREIGN KEY (usuario_id) REFERENCES usuarios(id)
+)ENGINE=InnoDb;
+
+
+
+)ENGINE=InnoDb
+
+#Lista_Producto#
+
+CREATE TABLE lista_productos(
+id          int(255) auto_increment not null,
+reserva_id  int(255) not null,
+producto_id int(255) not null,
+cantidad    int(100) not null,
+CONSTRAINT pk_lista_productos PRIMARY KEY(id),
+CONSTRAINT fk_reserva_id FOREIGN KEY(reserva_id) REFERENCES reservas(id),
+CONSTRAINT fk_producto_id FOREIGN KEY(producto_id) REFERENCES productos(id)
+)ENGINE=InnoDb;
