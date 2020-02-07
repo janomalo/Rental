@@ -28,6 +28,7 @@ public class Controlador extends HttpServlet {
     String listar="/vistas/listar.jsp";
     String add="/vistas/add.jsp";
     String edit="/vistas/edit.jsp";
+    String signin="/vistas/Login.jsp";
     Usuario usu=new Usuario();
     UsuarioDaoImpl dao=new UsuarioDaoImpl();
     
@@ -153,6 +154,9 @@ public class Controlador extends HttpServlet {
              acceso=listar;
            
             
+        } else if(action.equalsIgnoreCase("signin")){
+        acceso=signin;
+        
         }
         RequestDispatcher vista=request.getRequestDispatcher(acceso);
         vista.forward(request, response);
