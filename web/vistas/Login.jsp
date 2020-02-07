@@ -19,10 +19,10 @@
   </head>
 
   <body class="text-center">
-    <form class="form-signin" action="signin" method="post">
+    <form class="form-signin" action="LoginServlet" method="post">
       <img class="mb-4" src="style/bootstrap-solid.html" alt="" width="72" height="72">
       <h1 class="h3 mb-3 font-weight-normal">Por favor Inicie sesión</h1>
-      <label for="inputUser" class="sr-only">User</label>
+      <label for="inputUser" class="sr-only">Usuario</label>
       <input id="inputUser" name="user" class="form-control" placeholder="User" required="" autofocus="" type="string">
       <label for="inputPassword" class="sr-only">Password</label>
       <input id="inputPassword" name="password" class="form-control" placeholder="Password" required="" type="password">

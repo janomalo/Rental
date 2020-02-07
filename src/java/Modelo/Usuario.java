@@ -132,6 +132,14 @@ public class Usuario {
         this.habilitado = habilitado;
     }
 
+    public void setUserName(String parameter) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public boolean isValid() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
  
 
     

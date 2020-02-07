@@ -18,6 +18,10 @@ import java.util.logging.Logger;
 
  
 public class UsuarioDaoImpl implements IUsuarioDao{
+
+    public static Usuario login(Usuario user) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
      // Instancias la clase que hemos creado anteriormente
    //  Conexion SQL = new Conexion();
