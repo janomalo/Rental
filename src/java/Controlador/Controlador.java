@@ -18,6 +18,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -31,6 +32,7 @@ public class Controlador extends HttpServlet {
     String signin="/vistas/Login.jsp";
     Usuario usu=new Usuario();
     UsuarioDaoImpl dao=new UsuarioDaoImpl();
+    int r;
     
     
     
@@ -46,17 +48,21 @@ public class Controlador extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet Controlador</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet Controlador at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
+        String accion=request.getParameter("accion");
+        if(accion.equals("Ingresar")){
+                String usuario=request.getParameter("user");
+                String pass=request.getParameter("password");
+                usu.setUsuario(usuario);
+                usu.setPassword(pass);
+                r=dao.validar(usu);
+                if(r==1){
+                    HttpSession session = request.getSession(true);	    
+                    session.setAttribute("user",usuario); 
+                       
+                    request.getRequestDispatcher("Principal.jsp").forward(request, response);
+                }else{
+                request.getRequestDispatcher("index.jsp").forward(request, response);
+                }
         }
     }
 

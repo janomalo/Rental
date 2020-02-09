@@ -23,5 +23,6 @@ public interface IUsuarioDao {
     public Usuario list(int id);
     public boolean edit(Usuario usuario);
     public void delete(Usuario usuario);
+    public int validar(Usuario usuario);
     
 }

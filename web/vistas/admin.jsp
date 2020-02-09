@@ -1,6 +1,5 @@
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.util.Iterator"%>
-<link href="css/bootstrap.css" rel="stylesheet" type="text/css"/>
 <%@page import="Modelo.Usuario"%>
 <%@page import="Interfaces.IUsuarioDao"%>
 <%@page import="ModeloDaoImpl.UsuarioDaoImpl" %>
@@ -9,6 +8,9 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <link href="../css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+        <link href="../css/bootstrap.css" rel="stylesheet" type="text/css"/>
+        <link href="css/bootstrap.css" rel="stylesheet" type="text/css"/>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
     </head>

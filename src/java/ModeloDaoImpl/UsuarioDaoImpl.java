@@ -246,6 +246,36 @@ public class UsuarioDaoImpl implements IUsuarioDao{
     
     }
 
+    @Override
+    public int validar(Usuario u) {
+        PreparedStatement stmt=null;
+	ResultSet rs=null;
+        int r=0;
+       String sSql="SELECT * FROM usuarios WHERE usuario=? and password=?";
+        try{
+                 
+                stmt=FactoryConexion.getInstancia().getConn().prepareStatement(sSql);
+               stmt.setString(1, u.getUsuario());
+                stmt.setString(2,u.getPassword());
+                rs=stmt.executeQuery();
+                while(rs.next()){
+                    r=r+1;
+                    u.setUsuario(rs.getString("usuario"));
+                    u.setPassword(rs.getString("password"));
+               
+                 }
+                if(r==1) {
+                          return 1;
+                 }
+                 else{
+                        return 0;
+                }
+        }catch(Exception e){
+                 return 0;
+        }
+        
+    }
+
 
 
 
