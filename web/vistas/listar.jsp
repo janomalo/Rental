@@ -9,13 +9,13 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>GESTIÓN DE USUARIOS</title>
             <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" data-integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
     </head>
     <body>
-        <div  class="container-xl">
-            <h1>GESTION DE USUARIOS PARA ADMIN</h1> 
+        <div  class="container-fluid">
+            <h1>GESTIÓN DE USUARIOS </h1> 
              <a href="Controlador?accion=add">Agregar Nuevo</a> 
              <a > Buscar</a>
             <table class="table">
@@ -81,7 +81,7 @@
             </table> 
                 
               
-                <a class="btn btn-success" href="index.jsp"> Volver</a>
+              <%-- <a class="btn btn-success" href="index.jsp"> Volver</a> --%>
         </div>
                 
                 

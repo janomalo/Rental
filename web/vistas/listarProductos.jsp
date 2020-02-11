@@ -15,13 +15,13 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Lista Productos</title>
+        <title>GESTIÓN DE PRODUCTOS </title>
     </head>
     <body>
         
         
-        <div class="container">
-            <h1>Productos</h1>
+        <div class="container-fluid">
+            <h1>GESTIÓN DE PRODUCTOS</h1>
              
               <a href="ControladorProducto?accion=add">Agregar Nuevo</a> 
               <input type="text" value="Buscar"/>
@@ -82,15 +82,9 @@
                                
                 
             </table> 
-                
-              
-                <a class="btn btn-success" href="index.jsp"> Volver</a>
-            
-            
-            
-            
-            
-            
+             
+                    <%-- <a class="btn btn-success" href="index.jsp"> Volver</a> --%>
+                       
         </div>
     </body>
 </html>

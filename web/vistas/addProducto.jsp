@@ -67,8 +67,8 @@
                               
                 <div class="form-group">
                 <div class="col-lg-4">
-                    <button type="submit" class="btn btn-success left" name="accion" value="Agregar" >Agregar</button>
-                    <a class="btn btn-success" href="index.jsp"> Volver</a>
+                    <input type="submit" class="btn btn-success left" name="accion" value="Agregar" >
+                <a class="btn btn-success" href="ControladorProducto?accion=listar"> Volver</a>
                      </div>
                 </div>
                

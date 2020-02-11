@@ -18,16 +18,16 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item active">
-                        <a style="margin-left: 10px;border: none" class="btn btn-outline-light" href="#">Home </a>
+                        <a style="margin-left: 10px;border: none" class="btn btn-outline-light" href="Principal.jsp">Home </a>
                     </li>
                     <li class="nav-item">
                         <a  style="margin-left: 10px;border: none" class="btn btn-outline-light" href="#">Reservas</a>
                     </li>
                     <li class="nav-item">
-                        <a style="margin-left: 10px;border: none" class="btn btn-outline-light" href="#">Productos</a>
+                        <a style="margin-left: 10px;border: none" class="btn btn-outline-light" href="ControladorProducto?accion=listar" target="myframe">Productos</a>
                     </li>
                     <li class="nav-item">
-                        <a style="margin-left: 10px;border: none" class="btn btn-outline-light" href="#">Clientes</a>
+                        <a style="margin-left: 10px;border: none" class="btn btn-outline-light" href="Controlador?accion=listar" target="myframe">Usuarios</a>
                     </li>
 
                     <%-- <li class="nav-item">
@@ -36,20 +36,23 @@
                 </ul>
 
             </div>
-
+                    
             <div class="dropdown">
                 <button style="border: none" class="btn btn-outline-light dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <%= session.getAttribute("user")%>
                 </button>
-                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                    <a class="dropdown-item" href="#">Usuario</a>
+                <div class="dropdown-menu " >
+                    <a class="dropdown-item" href="Controlador?accion=listar" target="myframe">Mi perfil</a>
+                    <form action="Controlador"  method="POST">
+                        <button name="accion" value="Salir" class="dropdown-item">Salir</button>
+                        
+                    </form>
                     
-                    <a class="dropdown-item" href="#">Salir</a>
                 </div>
             </div>
 
 
-            <
+            
             <%-- <form class="form-inline my-2 my-lg-0">
             <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
             <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
@@ -59,8 +62,8 @@
         
     </nav>
             
-            <div class="m-4"  style="height: 650px">
-                <iframe id="myframe"  style="height: 100%;width: 100%"> </iframe>
+            <div class="m-4"  style="height: 550px">
+                <iframe class="embed-responsive-item" name="myframe"  style="height: 100%;width: 100%"> </iframe>
                 
             </div>
 

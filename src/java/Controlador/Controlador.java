@@ -48,7 +48,7 @@ public class Controlador extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        String accion=request.getParameter("accion");
+        /*String accion=request.getParameter("accion");
         if(accion.equals("Ingresar")){
                 String usuario=request.getParameter("user");
                 String pass=request.getParameter("password");
@@ -63,7 +63,10 @@ public class Controlador extends HttpServlet {
                 }else{
                 request.getRequestDispatcher("index.jsp").forward(request, response);
                 }
-        }
+        } else{
+         
+                request.getRequestDispatcher("index.jsp").forward(request, response);
+        }*/
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -181,7 +184,30 @@ public class Controlador extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+         //response.setContentType("text/html;charset=UTF-8");
+           
+        String accion=request.getParameter("accion");
+        if(accion.equalsIgnoreCase("Ingresar")){
+                String usuario=request.getParameter("user");
+                String pass=request.getParameter("password");
+                usu.setUsuario(usuario);
+                usu.setPassword(pass);
+                r=dao.validar(usu);
+                if(r==1){
+                   HttpSession session = request.getSession(true);	  //crear sesion en otro lugar   
+         session.setAttribute("user",usuario);
+                       
+                    request.getRequestDispatcher("Principal.jsp").forward(request, response);
+                }else{
+                request.getRequestDispatcher("index.jsp").forward(request, response);
+                }
+        }else{
+           
+        request.getRequestDispatcher("index.jsp").forward(request, response);
+        }
+        
+        
+        
     }
 
     /**

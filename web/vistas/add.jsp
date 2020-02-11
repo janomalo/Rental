@@ -23,7 +23,7 @@
                 <input type="radio" name="habilitado" value="0">Deshabiltiar(0)<br>
                 <%-- <input type="hidden" name="fecha" value="CURDATE"> --%>
                 <input class=" btn btn-success" type="submit" value="Agregar" name="accion">
-               <a class="btn btn-success" href="index.jsp"> Volver</a>
+               <a class="btn btn-success" href="Controlador?accion=listar"> Volver</a>
             </form>
             
             <%--  
