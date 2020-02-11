@@ -76,7 +76,6 @@ insert  into `productos`(`id`,`categoria_id`,`nombre`,`descripcion`,`stock`,`pre
 (2,1,'Completo Deportivo Adulto','Equipo completo deportivo para persona adulta',1,700,1),
 (3,1,'campera','Talle XL',1,50,1),
 (4,2,'botas','stepone',1,100,1),
-(5,1,'antiparras','hombre',1,150,1),
 (6,1,'tabla sola','155 cm nieve onda',1,400,0),
 (7,1,'pantalon','negro',1,50,1),
 (8,2,'tabla+fijaciones','niÃ±o',1,600,1),
