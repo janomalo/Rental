@@ -161,7 +161,7 @@ CREATE TABLE `usuarios` (
 insert  into `usuarios`(`id`,`dni`,`rol_id`,`nombres`,`apellidos`,`telefono`,`email`,`password`,`fecha_registro`,`direccion`,`usuario`,`habilitado`) values 
 (2,'34860732',1,'Ale234','Molina','+542944335790','ale@ale.com','aversiseguarda','2019-11-07 00:00:00','casa','alelala',1),
 (3,'34555222',2,'nonono','Molina1','55555','newemail@gmail.com','2be88ca4242c76e8253ac62474851065032d6833','0000-00-00 00:00:00','primero de mayo','aaaa',0),
-(6,'31555000',2,'Jorge','ref','154131351','jorge@gmail.com','45645646','0000-00-00 00:00:00','su casa','',0),
+(6,'31555000',2,'Jorge','ref','154131351','jorge@gmail.com','1234','0000-00-00 00:00:00','su casa','Alejandro',0),
 (20,'0192834',2,'JorgeL','Reffi','1029384','jor@gmail.com','null','2020-01-29 21:22:01','primerodemayo','jorgell',1);
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
