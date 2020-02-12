@@ -3,10 +3,16 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Cajaingros/Documents/GitHub/Rental/web/Principal.jsp</file>
-            <file>file:/C:/Users/Cajaingros/Documents/GitHub/Rental/web/index.jsp</file>
-            <file>file:/C:/Users/Cajaingros/Documents/GitHub/Rental/src/java/Controlador/Controlador.java</file>
-            <file>file:/C:/Users/Cajaingros/Documents/GitHub/Rental/web/vistas/admin.jsp</file>
+            <file>file:/C:/Users/Alejandro/Documents/GitHub/Rental/web/vistas/add.jsp</file>
+            <file>file:/C:/Users/Alejandro/Documents/GitHub/Rental/web/vistas/listarProductos.jsp</file>
+            <file>file:/C:/Users/Alejandro/Documents/GitHub/Rental/web/vistas/addProducto.jsp</file>
+            <file>file:/C:/Users/Alejandro/Documents/GitHub/Rental/src/java/Controlador/Controlador.java</file>
+            <file>file:/C:/Users/Alejandro/Documents/GitHub/Rental/web/Principal.jsp</file>
+            <file>file:/C:/Users/Alejandro/Documents/GitHub/Rental/web/index.jsp</file>
+            <file>file:/C:/Users/Alejandro/Documents/GitHub/Rental/web/vistas/Login.jsp</file>
+            <file>file:/C:/Users/Alejandro/Documents/GitHub/Rental/src/java/ModeloDaoImpl/UsuarioDaoImpl.java</file>
+            <file>file:/C:/Users/Alejandro/Documents/GitHub/Rental/web/vistas/listar.jsp</file>
+            <file>file:/C:/Users/Alejandro/Documents/GitHub/Rental/web/vistas/Reserva.jsp</file>
         </group>
     </open-files>
 </project-private>
