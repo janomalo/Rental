@@ -10,6 +10,8 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>GESTIÓN DE USUARIOS</title>
+        <link href="../css/bootstrap.css" rel="stylesheet" type="text/css"/>
+        <link href="../css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
             <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" data-integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
     </head>
@@ -21,7 +23,7 @@
             <table class="table">
                 
                 <thead>
-                    <tr>
+                    <tr class="text-center">
                         <th>ID</th>
                         <th>DNI</th> 
                         <th>NOMBRES</th>
@@ -30,7 +32,7 @@
                         <th>DIRECCION</th>
                         <th>EMAIL</th>
                         <th>USER</th>
-                        <th>HABILITADO(S=1/N=0)</th>
+                        <th>HABILITADO</th>
                         <%--<th>FECHA REGISTRO</th> --%>
                         <th>ACCIONES</th>
                                                   
@@ -49,7 +51,7 @@
                 %>
                 <tbody>
                     
-                    <tr>
+                    <tr class="text-center">
                         <td> <%= usu.getId() %></td>
                       <td> <%= usu.getDni() %></td>
                        <td> <%= usu.getNombres()%></td>
@@ -63,8 +65,8 @@
                        
                        <%-- <td> <%= usu.getFecha_registro()%> </td> --%>
                        <td>
-                           <a class="btn btn-dark"  href="Controlador?accion=editar&id=<%= usu.getId()%>">Editar</a>
-                           <a class="btn btn-danger" href="Controlador?accion=delete&id=<%= usu.getId()%>">Remove</a>
+                           <a class="btn btn-dark"  href="Controlador?accion=editar&id=<%= usu.getId()%>" >Editar </a>
+                           <a  class="btn btn-danger" href="Controlador?accion=delete&id=<%= usu.getId()%>">Remove</a>
                        </td>
                         
                         

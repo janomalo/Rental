@@ -11,7 +11,7 @@
     </head>
     <body>
 
-        <nav class="navbar navbar-expand-lg navbar-light bg-info">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
             <a class="navbar-brand" >RENTAL</a> 
 
 
@@ -61,8 +61,10 @@
 
         
     </nav>
+            <%--class="m-4"  style="height: 550px
+            class="embed-responsive embed-responsive-16by9"--%>
             
-            <div class="m-4"  style="height: 550px">
+            <div class="embed-responsive embed-responsive-16by9"   >
                 <iframe class="embed-responsive-item" name="myframe"  style="height: 100%;width: 100%"> </iframe>
                 
             </div>
