@@ -26,16 +26,14 @@ import javax.servlet.http.HttpSession;
  */
 public class Controlador extends HttpServlet {
 
-    String listar="/vistas/listar.jsp";
-    String add="/vistas/add.jsp";
-    String edit="/vistas/edit.jsp";
-    String signin="/vistas/Login.jsp";
-    Usuario usu=new Usuario();
-    UsuarioDaoImpl dao=new UsuarioDaoImpl();
+    String listar = "/vistas/listar.jsp";
+    String add = "/vistas/add.jsp";
+    String edit = "/vistas/edit.jsp";
+    String signin = "/vistas/Login.jsp";
+    Usuario usu = new Usuario();
+    UsuarioDaoImpl dao = new UsuarioDaoImpl();
     int r;
-    
-    
-    
+
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -81,27 +79,26 @@ public class Controlador extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
-        String acceso="";
-        String action= request.getParameter("accion");
-        if(action.equalsIgnoreCase("listar")){
-            acceso=listar;
+
+        String acceso = "";
+        String action = request.getParameter("accion");
+        if (action.equalsIgnoreCase("listar")) {
+            acceso = listar;
         } else if (action.equalsIgnoreCase("add")) {
-            acceso=add;
-            
+            acceso = add;
+
         } else if (action.equalsIgnoreCase("Agregar")) {
-            String dni=request.getParameter("dni");
-            String nombres=request.getParameter("nombres");
-            String apellidos=request.getParameter("apellidos");
-            String telefono=request.getParameter("telefono");
-            String email=request.getParameter("email");
-            String password=request.getParameter("password");
-            String direccion=request.getParameter("direccion");
-            String usuario= request.getParameter("usuario");
-            String h= request.getParameter("habilitado");
-           int hab= Integer.parseInt(h) ;
-            
-            
+            String dni = request.getParameter("dni");
+            String nombres = request.getParameter("nombres");
+            String apellidos = request.getParameter("apellidos");
+            String telefono = request.getParameter("telefono");
+            String email = request.getParameter("email");
+            String password = request.getParameter("password");
+            String direccion = request.getParameter("direccion");
+            String usuario = request.getParameter("usuario");
+            String h = request.getParameter("habilitado");
+            int hab = Integer.parseInt(h);
+
             usu.setRol(2);
             usu.setDni(dni);
             usu.setNombres(nombres);
@@ -112,33 +109,30 @@ public class Controlador extends HttpServlet {
             usu.setDireccion(direccion);
             usu.setUsuario(usuario);
             usu.setHabilitado(hab);
-           
-            
-            dao.save(usu);            
-            acceso=listar;
-        }
-        else if (action.equalsIgnoreCase("editar")) {
+
+            dao.save(usu);
+            acceso = listar;
+        } else if (action.equalsIgnoreCase("editar")) {
             // int idusu=Integer.parseInt(request.getParameter("id"));
-          request.setAttribute("idusu",request.getParameter("id"));          
+            request.setAttribute("idusu", request.getParameter("id"));
 // captura id de fila seleccionada cuando se hace click en editar.
-            acceso=edit;
-        }
-        else if (action.equalsIgnoreCase("Actualizar")) {
-             System.out.println("pasa por aca");
-            
-            Integer id=Integer.parseInt(request.getParameter("txtid"));
-            String dni=request.getParameter("txtdni");
-            String nombres=request.getParameter("txtnombres");
-            String apellidos=request.getParameter("txtapellidos");
-            String telefono=request.getParameter("txttelefono");
-            String email=request.getParameter("txtemail");
-            String password=request.getParameter("txtpassword");
-            String direccion=request.getParameter("txtdireccion");
-            String usuario=request.getParameter("txtusuario");
-                     
-            String h= request.getParameter("txthabilitado");
-           int hab= Integer.parseInt(h) ;
-            
+            acceso = edit;
+        } else if (action.equalsIgnoreCase("Actualizar")) {
+            System.out.println("pasa por aca");
+
+            Integer id = Integer.parseInt(request.getParameter("txtid"));
+            String dni = request.getParameter("txtdni");
+            String nombres = request.getParameter("txtnombres");
+            String apellidos = request.getParameter("txtapellidos");
+            String telefono = request.getParameter("txttelefono");
+            String email = request.getParameter("txtemail");
+            String password = request.getParameter("txtpassword");
+            String direccion = request.getParameter("txtdireccion");
+            String usuario = request.getParameter("txtusuario");
+
+            String h = request.getParameter("txthabilitado");
+            int hab = Integer.parseInt(h);
+
             usu.setId(id);
             usu.setDni(dni);
             usu.setNombres(nombres);
@@ -149,28 +143,24 @@ public class Controlador extends HttpServlet {
             usu.setDireccion(direccion);
             usu.setUsuario(usuario);
             usu.setHabilitado(hab);
-          
-            
+
             dao.edit(usu);
-            acceso=listar;
-                       
+            acceso = listar;
+
+        } else if (action.equalsIgnoreCase("delete")) {
+            String id = request.getParameter("id");
+            int id1 = Integer.parseInt(id);
+            usu.setId(id1);
+            dao.delete(usu);
+            acceso = listar;
+
+        } else if (action.equalsIgnoreCase("signin")) {
+            acceso = signin;
+
         }
-        else if(action.equalsIgnoreCase("delete")){
-            String id= request.getParameter("id");
-             int id1= Integer.parseInt(id);
-             usu.setId(id1);
-             dao.delete(usu);
-             acceso=listar;
-           
-            
-        } else if(action.equalsIgnoreCase("signin")){
-        acceso=signin;
-        
-        }
-        RequestDispatcher vista=request.getRequestDispatcher(acceso);
+        RequestDispatcher vista = request.getRequestDispatcher(acceso);
         vista.forward(request, response);
-        
-        
+
     }
 
     /**
@@ -184,30 +174,28 @@ public class Controlador extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-         //response.setContentType("text/html;charset=UTF-8");
-           
-        String accion=request.getParameter("accion");
-        if(accion.equalsIgnoreCase("Ingresar")){
-                String usuario=request.getParameter("user");
-                String pass=request.getParameter("password");
-                usu.setUsuario(usuario);
-                usu.setPassword(pass);
-                r=dao.validar(usu);
-                if(r==1){
-                   HttpSession session = request.getSession(true);	  //crear sesion en otro lugar   
-         session.setAttribute("user",usuario);
-                       
-                    request.getRequestDispatcher("Principal.jsp").forward(request, response);
-                }else{
+        //response.setContentType("text/html;charset=UTF-8");
+
+        String accion = request.getParameter("accion");
+        if (accion.equalsIgnoreCase("Ingresar")) {
+            String usuario = request.getParameter("user");
+            String pass = request.getParameter("password");
+            usu.setUsuario(usuario);
+            usu.setPassword(pass);
+            r = dao.validar(usu); // programar con el objeto usuario para obtener datos 
+            if (r == 1) {
+                HttpSession session = request.getSession(true);	  //crear sesion en otro lugar,   
+                session.setAttribute("user", usuario);
+
+                request.getRequestDispatcher("Principal.jsp").forward(request, response);
+            } else {
                 request.getRequestDispatcher("index.jsp").forward(request, response);
-                }
-        }else{
-           
-        request.getRequestDispatcher("index.jsp").forward(request, response);
+            }
+        } else {
+
+            request.getRequestDispatcher("index.jsp").forward(request, response);
         }
-        
-        
-        
+
     }
 
     /**

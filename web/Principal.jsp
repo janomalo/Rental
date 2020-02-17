@@ -31,6 +31,7 @@
                             <div class="dropdown-menu " >
                                 <a class="dropdown-item" href="ControladorReserva?accion=add" target="myframe">Nueva Reserva</a>
                                 <a class="dropdown-item" href="ControladorReserva?accion=listar" target="myframe">Lista Reservas</a>
+                                <a class="dropdown-item" href="listarTemporadas.jsp" target="myframe">Temporadas</a>
                                
 
                             </div>

@@ -5,6 +5,8 @@
  */
 package Modelo;
 
+import java.io.InputStream;
+
 /**
  *
  * @author Alejandro
@@ -18,11 +20,12 @@ public class Producto {
     private int stock;
     private float precio;
     private int estado;
+    private InputStream foto;
 
     public Producto() {
     }
 
-    public Producto(int id, int categoria_id, String nombre, String descripcion, int stock, float precio, int estado) {
+    public Producto(int id, int categoria_id, String nombre, String descripcion, int stock, float precio, int estado, InputStream foto) {
         this.id = id;
         this.categoria_id = categoria_id;
         this.nombre = nombre;
@@ -30,7 +33,18 @@ public class Producto {
         this.stock = stock;
         this.precio = precio;
         this.estado = estado;
+        this.foto = foto;
     }
+
+    public InputStream getFoto() {
+        return foto;
+    }
+
+    public void setFoto(InputStream foto) {
+        this.foto = foto;
+    }
+
+    
 
     public int getId() {
         return id;
