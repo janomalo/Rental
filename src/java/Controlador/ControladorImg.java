@@ -5,15 +5,9 @@
  */
 package Controlador;
 
-import Modelo.Producto;
-import Modelo.Reserva;
 import ModeloDaoImpl.ProductoDaoImpl;
-import ModeloDaoImpl.ReservaDaoImpl;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
-import java.util.List;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -24,20 +18,10 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Alejandro
  */
-@WebServlet(name = "ControladorReserva", urlPatterns = {"/ControladorReserva"})
-public class ControladorReserva extends HttpServlet {
-    
-     String listar="/vistas/listarReservas.jsp";
-      String add="/vistas/addReserva.jsp";
-        String edit="/vistas/editReserva.jsp";
-        String reserva="/vistas/Reserva.jsp";
-          Reserva res= new Reserva();
-    //UsuarioDaoImpl dao=new UsuarioDaoImpl();
-     ReservaDaoImpl dao=new ReservaDaoImpl();
-     ProductoDaoImpl pdao=new ProductoDaoImpl();
-     List<Producto> productos= new ArrayList<>();
-    
+@WebServlet(name = "ControladorImg", urlPatterns = {"/ControladorImg"})
+public class ControladorImg extends HttpServlet {
 
+    ProductoDaoImpl pdao= new ProductoDaoImpl();
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -55,10 +39,10 @@ public class ControladorReserva extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet ControladorReserva</title>");            
+            out.println("<title>Servlet ControladorImg</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet ControladorReserva at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet ControladorImg at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -76,55 +60,10 @@ public class ControladorReserva extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-         String acceso="";
-        String action= request.getParameter("accion");
-        if(action.equalsIgnoreCase("listar")){
-            acceso=listar;
-        } else if (action.equalsIgnoreCase("add")) {
-            acceso=add;
-            
-        } else if (action.equalsIgnoreCase("Agregar")) {
-            //String dni=request.getParameter("dni");
-           
-            
-           // dao.save(usu);            
-            acceso=listar;
-        }
-        else if (action.equalsIgnoreCase("editar")) {
-            // int idusu=Integer.parseInt(request.getParameter("id"));
-          request.setAttribute("idres",request.getParameter("id"));          
-// captura id de fila seleccionada cuando se hace click en editar.
-            acceso=edit;
-        }
-        else if (action.equalsIgnoreCase("Actualizar")) {
-             System.out.println("pasa por aca");
-            
-          
-            
-            //dao.edit(usu);
-            //acceso=listar;
-                       
-        }
-        else if(action.equalsIgnoreCase("delete")){
-            /*String id= request.getParameter("id");
-             int id1= Integer.parseInt(id);
-             usu.setId(id1);
-             dao.delete(usu);*/
-             acceso=listar;
-           
-            
-        }
-        else if(action.equalsIgnoreCase("reserva")){
-            
-            
-        productos= pdao.listar();
-       request.setAttribute("productos",productos);
-       acceso=reserva;
-                
-        }
-        RequestDispatcher vista=request.getRequestDispatcher(acceso);
-        vista.forward(request, response);
-       
+     
+        int id=Integer.parseInt(request.getParameter("id"));
+        pdao.listarImg(id, response);
+        
         
     }
 

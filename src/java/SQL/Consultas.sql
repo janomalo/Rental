@@ -125,7 +125,7 @@ CONSTRAINT fk_categoria_id FOREIGN KEY (categoria_id) REFERENCES categorias(id)
 #DATOS PRODUCTOS#
 INSERT INTO productos VALUES(null,3,"Antiparras","Antiparras adulto",1,50.00,1);
 INSERT INTO productos VALUES(null,1,"Completo Deportivo Adulto","Equipo completo deportivo para persona adulta",1,700,1);
-
+INSERT INTO productos VALUES(NULL,3,"Ski deportivo","equipo completo",1,50.00,1,LOAD_FILE('C:/Users/Alejandro/Documents/GitHub/Rental/img/skidepo.jpg'))
 
 
 #TEMPORADA#

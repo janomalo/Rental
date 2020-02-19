@@ -21,7 +21,7 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item active">
-                        <a style="margin-left: 10px;border: none" class="btn btn-outline-light" href="Principal.jsp">Home </a>
+                        <a style="margin-left: 10px;border: none" class="btn btn-outline-light" href="#">Home </a>
                     </li>
                     <li class="nav-item  dropdown active">
                         <div class="dropdown">
@@ -29,7 +29,7 @@
                                 Reservas
                             </button>
                             <div class="dropdown-menu " >
-                                <a class="dropdown-item" href="ControladorReserva?accion=add" target="myframe">Nueva Reserva</a>
+                                <a class="dropdown-item" href="ControladorReserva?accion=reserva" target="myframe">Nueva Reserva</a>
                                 <a class="dropdown-item" href="ControladorReserva?accion=listar" target="myframe">Lista Reservas</a>
                                 <a class="dropdown-item" href="listarTemporadas.jsp" target="myframe">Temporadas</a>
                                
