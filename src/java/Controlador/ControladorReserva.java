@@ -5,6 +5,7 @@
  */
 package Controlador;
 
+import Modelo.ListaProducto;
 import Modelo.Producto;
 import Modelo.Reserva;
 import ModeloDaoImpl.ProductoDaoImpl;
@@ -36,6 +37,12 @@ public class ControladorReserva extends HttpServlet {
      ReservaDaoImpl dao=new ReservaDaoImpl();
      ProductoDaoImpl pdao=new ProductoDaoImpl();
      List<Producto> productos= new ArrayList<>();
+     Producto p=new Producto();
+     List<ListaProducto> listaproducto=new ArrayList<>();
+     
+    int item;
+    double totalPagar=0.0;
+    int cantidad=1;
     
 
     /**
@@ -83,12 +90,22 @@ public class ControladorReserva extends HttpServlet {
         } else if (action.equalsIgnoreCase("add")) {
             acceso=add;
             
-        } else if (action.equalsIgnoreCase("Agregar")) {
-            //String dni=request.getParameter("dni");
-           
+        } else if (action.equalsIgnoreCase("AgregarReserva")) {
             
-           // dao.save(usu);            
-            acceso=listar;
+            Integer idp=Integer.parseInt(request.getParameter("id"));
+            p=pdao.list(idp); 
+            ListaProducto listpro= new ListaProducto();
+            
+            listpro.setItem(item);
+            listpro.setProducto_id(p.getId());
+            listpro.setNombre(p.getNombre());
+            listpro.setDescripcion(p.getDescripcion());
+            listpro.setCantidad(cantidad);
+            listpro.setSubtotal(cantidad*p.getPrecio()); //subtotal double precio float cambiar.
+            
+            listaproducto.add(listpro);
+            request.setAttribute("contador",listaproducto.size());
+            acceso=reserva;
         }
         else if (action.equalsIgnoreCase("editar")) {
             // int idusu=Integer.parseInt(request.getParameter("id"));

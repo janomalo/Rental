@@ -10,29 +10,38 @@ package Modelo;
  * @author Alejandro
  */
 public class ListaProducto {
-    int id;
+    int item;
     int reserva_id;
     int producto_id;
     int cantidad;
-
+    double subtotal;
+    String nombre;
+    String descripcion;
+    
     public ListaProducto() {
     }
 
-    public ListaProducto(int id, int reserva_id, int producto_id, int cantidad) {
-        this.id = id;
+    public ListaProducto(int item, int reserva_id, int producto_id, int cantidad, double subtotal, String nombre, String descripcion) {
+        this.item = item;
         this.reserva_id = reserva_id;
         this.producto_id = producto_id;
         this.cantidad = cantidad;
+        this.subtotal = subtotal;
+        this.nombre = nombre;
+        this.descripcion = descripcion;
     }
 
-    public int getId() {
-        return id;
+    public int getItem() {
+        return item;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setItem(int item) {
+        this.item = item;
     }
 
+   
+
+    
     public int getReserva_id() {
         return reserva_id;
     }
@@ -56,6 +65,32 @@ public class ListaProducto {
     public void setCantidad(int cantidad) {
         this.cantidad = cantidad;
     }
+
+    public double getSubtotal() {
+        return subtotal;
+    }
+
+    public void setSubtotal(double subtotal) {
+        this.subtotal = subtotal;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
+
+    
     
     
     

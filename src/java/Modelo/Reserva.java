@@ -16,17 +16,19 @@ public class Reserva {
     float precio;
     String fecha_desde;
     int cantidad_dias;
+    String fecha_reserva;
 
     public Reserva() {
     }
 
-    public Reserva(int id, int temporada_id, int usuario_id, float precio, String fecha_desde, int cantidad_dias) {
+    public Reserva(int id, int temporada_id, int usuario_id, float precio, String fecha_desde, int cantidad_dias, String fecha_reserva) {
         this.id = id;
         this.temporada_id = temporada_id;
         this.usuario_id = usuario_id;
         this.precio = precio;
         this.fecha_desde = fecha_desde;
         this.cantidad_dias = cantidad_dias;
+        this.fecha_reserva = fecha_reserva;
     }
 
     public int getId() {
@@ -76,9 +78,14 @@ public class Reserva {
     public void setCantidad_dias(int cantidad_dias) {
         this.cantidad_dias = cantidad_dias;
     }
-    
-    
-    
-    
+
+    public String getFecha_reserva() {
+        return fecha_reserva;
+    }
+
+    public void setFecha_reserva(String fecha_reserva) {
+        this.fecha_reserva = fecha_reserva;
+    }
+
     
 }

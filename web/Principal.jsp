@@ -69,6 +69,9 @@
                             </div>
                         </div>
                     </li>
+                    <li class="nav-item">
+                        <a  class="nav-link" href="#"><i>(<label style="color: #bd2130">${contador}</label>)</i> Reserva</a>
+                    </li>
 
                     <%-- <li class="nav-item">
                         <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
@@ -105,7 +108,7 @@
         <%--class="m-4"  style="height: 550px
         class="embed-responsive embed-responsive-16by9"--%>
 
-        <div class="embed-responsive embed-responsive-16by9"   >
+        <div class="embed-responsive embed-responsive-16by9"  >
             <iframe class="embed-responsive-item" name="myframe"  style="height:100% ;width:100%"> </iframe>
 
         </div>
