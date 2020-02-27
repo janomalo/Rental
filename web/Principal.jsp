@@ -31,7 +31,7 @@
                             <div class="dropdown-menu " >
                                 <a class="dropdown-item" href="ControladorReserva?accion=reserva" target="myframe">Nueva Reserva</a>
                                 <a class="dropdown-item" href="ControladorReserva?accion=listar" target="myframe">Lista Reservas</a>
-                                <a class="dropdown-item" href="listarTemporadas.jsp" target="myframe">Temporadas</a>
+                                <a class="dropdown-item" href="vistas/listarTemporadas.jsp" target="myframe">Temporadas</a>
                                
 
                             </div>
@@ -49,7 +49,7 @@
                             <div class="dropdown-menu " >
                                 <a class="dropdown-item" href="ControladorProducto?accion=add" target="myframe">Nuevo Producto</a>
                                 <a class="dropdown-item" href="ControladorProducto?accion=listar" target="myframe">Lista Productos</a>
-                                <a class="dropdown-item" href="#" target="myframe">Categorias</a>
+                                <a class="dropdown-item" href="vistas/Categorias.jsp" target="myframe">Categorias</a>
                                
 
                             </div>
@@ -63,7 +63,7 @@
                             <div class="dropdown-menu " >
                                 <a class="dropdown-item" href="Controlador?accion=add" target="myframe">Nuevo Usuario</a>
                                 <a class="dropdown-item" href="Controlador?accion=listar" target="myframe">Lista Usuarios</a>
-                                <a class="dropdown-item" href="#" target="myframe">Roles</a>
+                                <a class="dropdown-item" href="vistas/Roles.jsp" target="myframe">Roles</a>
                                
 
                             </div>
@@ -106,7 +106,7 @@
         class="embed-responsive embed-responsive-16by9"--%>
 
         <div class="embed-responsive embed-responsive-16by9"   >
-            <iframe class="embed-responsive-item" name="myframe"  style="height: 100%;width: 100%"> </iframe>
+            <iframe class="embed-responsive-item" name="myframe"  style="height:100% ;width:100%"> </iframe>
 
         </div>
 

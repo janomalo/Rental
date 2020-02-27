@@ -66,7 +66,7 @@
                        <%-- <td> <%= usu.getFecha_registro()%> </td> --%>
                        <td>
                            <a class="btn btn-dark"  href="Controlador?accion=editar&id=<%= usu.getId()%>" >Editar </a>
-                           <a  class="btn btn-danger" href="Controlador?accion=delete&id=<%= usu.getId()%>">Remove</a>
+                           <a  class="btn btn-danger" href="Controlador?accion=delete&id=<%= usu.getId()%>">Eliminar</a>
                        </td>
                         
                         

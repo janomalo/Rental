@@ -70,7 +70,7 @@
                        <%-- <td> <%= usu.getFecha_registro()%> </td> --%>
                        <td>
                            <a class="btn btn-dark"  href="ControladorProducto?accion=editar&id=<%= pro.getId()%>">Editar</a>
-                           <a class="btn btn-danger" href="ControladorProducto?accion=delete&id=<%= pro.getId()%>">Remove</a>
+                           <a class="btn btn-danger" href="ControladorProducto?accion=delete&id=<%= pro.getId()%>">Eliminar</a>
                        </td>
                         
                        
