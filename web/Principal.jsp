@@ -32,7 +32,7 @@
                                 <a class="dropdown-item" href="ControladorReserva?accion=reserva" target="myframe">Nueva Reserva</a>
                                 <a class="dropdown-item" href="ControladorReserva?accion=listar" target="myframe">Lista Reservas</a>
                                 <a class="dropdown-item" href="vistas/listarTemporadas.jsp" target="myframe">Temporadas</a>
-                               
+
 
                             </div>
                         </div>
@@ -41,22 +41,22 @@
 
                     <li class="nav-item">
                         <%-- <a style="margin-left: 10px;border: none" class="btn btn-outline-light" href="ControladorProducto?accion=listar" target="myframe">Productos</a>--%>
-                        
+
                         <div class="dropdown">
                             <button style="border: none" class="btn btn-outline-light dropdown-toggle" type="button" id="dropdownMenuProductos" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Productos
+                                Productos 
                             </button>
                             <div class="dropdown-menu " >
                                 <a class="dropdown-item" href="ControladorProducto?accion=add" target="myframe">Nuevo Producto</a>
                                 <a class="dropdown-item" href="ControladorProducto?accion=listar" target="myframe">Lista Productos</a>
                                 <a class="dropdown-item" href="vistas/Categorias.jsp" target="myframe">Categorias</a>
-                               
+
 
                             </div>
                         </div>
                     </li>
                     <li class="nav-item">
-                    <div class="dropdown">
+                        <div class="dropdown">
                             <button style="margin-left: 10px;border: none" class="btn btn-outline-light dropdown-toggle" type="button" id="dropdownMenuProductos" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 Usuarios
                             </button>
@@ -64,13 +64,14 @@
                                 <a class="dropdown-item" href="Controlador?accion=add" target="myframe">Nuevo Usuario</a>
                                 <a class="dropdown-item" href="Controlador?accion=listar" target="myframe">Lista Usuarios</a>
                                 <a class="dropdown-item" href="vistas/Roles.jsp" target="myframe">Roles</a>
-                               
+
 
                             </div>
                         </div>
                     </li>
                     <li class="nav-item">
-                        <a  class="nav-link" href="#"><i>(<label style="color: #bd2130">${contador}</label>)</i> Reserva</a>
+                        <a  class="nav-link" href="#"> <%= session.getAttribute("contador")%></a>
+
                     </li>
 
                     <%-- <li class="nav-item">

@@ -28,7 +28,7 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(name = "ControladorReserva", urlPatterns = {"/ControladorReserva"})
 public class ControladorReserva extends HttpServlet {
     
-     String listar="/vistas/listarReservas.jsp";
+     String listar="/vistas/listar.jsp";
       String add="/vistas/addReserva.jsp";
         String edit="/vistas/editReserva.jsp";
         String reserva="/vistas/Reserva.jsp";
@@ -92,7 +92,8 @@ public class ControladorReserva extends HttpServlet {
             
         } else if (action.equalsIgnoreCase("AgregarReserva")) {
             
-            Integer idp=Integer.parseInt(request.getParameter("id"));
+           Integer idp=Integer.parseInt(request.getParameter("id"));
+            
             p=pdao.list(idp); 
             ListaProducto listpro= new ListaProducto();
             
@@ -105,7 +106,7 @@ public class ControladorReserva extends HttpServlet {
             
             listaproducto.add(listpro);
             request.setAttribute("contador",listaproducto.size());
-            acceso=reserva;
+            request.getRequestDispatcher("ControladorReserva?accion=reserva").forward(request, response);
         }
         else if (action.equalsIgnoreCase("editar")) {
             // int idusu=Integer.parseInt(request.getParameter("id"));
@@ -139,9 +140,12 @@ public class ControladorReserva extends HttpServlet {
        acceso=reserva;
                 
         }
-        RequestDispatcher vista=request.getRequestDispatcher(acceso);
+                       
+        
+       RequestDispatcher vista=request.getRequestDispatcher(acceso);
         vista.forward(request, response);
-       
+        
+        
         
     }
 

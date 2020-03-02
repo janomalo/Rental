@@ -21,8 +21,13 @@
 
     </head>
     <body>
-        
+         
+
         <div class="container mt-2">
+            <div>
+          
+            <button class="btn-danger">${contador} ELEMENTOS</button>
+        </div>
             <div class="row">
                 <c:forEach var="p" items="${productos}">
                     <div class="col-sm-4">
@@ -36,7 +41,7 @@
                         </div>
                         <div class="card-footer text-center">
                             <label>${p.getDescripcion()}</label><br>
-                            <a  href="ControladorReserva?accion=AgregarReserva&id=${p.getId()}}" class="btn btn-outline-info">Agregar a Reserva</a>
+                            <a  href="ControladorReserva?accion=AgregarReserva&id=${p.getId()}" class="btn btn-outline-info">Agregar a Reserva </a>
                             <a  href="#" class="btn btn-danger">Reservar</a>
                         </div>
                     </div>
@@ -48,8 +53,7 @@
 
         </div>
 
-
-
+       
 
 
 
