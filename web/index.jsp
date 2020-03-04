@@ -76,7 +76,7 @@
                 </div>
 
             </div>
-
+                
 
 
 
@@ -88,15 +88,28 @@
 
 
         </nav>
+            <%-- <%@include file="vistas/menu.jsp"  %>
+            <% switch(vista){
+            case login:
+                <%@include file="vistas/Login.jsp"  %>
+            break;
+            default:
+                <%@include file="vistas/home.jsp"  %>
+            break;
+            }
+            %>
+            <%@include file="vistas/pie.jsp"  %>
+            
         <%--class="m-4"  style="height: 550px
         class="embed-responsive embed-responsive-16by9"--%>
 
         <div class="embed-responsive embed-responsive-16by9"   >
-            <iframe class="embed-responsive-item" name="myframe"  style="height:100% ;width:100%">
+            
+            <!--iframe class="embed-responsive-item" name="myframe"  style="height:100% ;width:100%">
             
                  BIENVENIDOS            
             
-            </iframe>
+            </iframe-->
         </div>
       
         <%--<div  class="container">
