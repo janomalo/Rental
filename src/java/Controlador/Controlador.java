@@ -29,10 +29,11 @@ public class Controlador extends HttpServlet {
     String listar = "/vistas/listar.jsp";
     String add = "/vistas/add.jsp";
     String edit = "/vistas/edit.jsp";
-    String signin = "/vistas/Login.jsp";
+    String signin = "index.jsp";
     Usuario usu = new Usuario();
     UsuarioDaoImpl dao = new UsuarioDaoImpl();
     int r;
+    int view;
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -155,11 +156,15 @@ public class Controlador extends HttpServlet {
             acceso = listar;
 
         } else if (action.equalsIgnoreCase("signin")) {
+            view=0;
+            request.setAttribute("vista", view);
+            
+            
             acceso = signin;
 
         }
-        RequestDispatcher vista = request.getRequestDispatcher(acceso);
-        vista.forward(request, response);
+        request.getRequestDispatcher(acceso).forward(request, response);
+       // vista.forward(request, response);
 
     }
 
