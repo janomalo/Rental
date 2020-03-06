@@ -21,9 +21,11 @@
     </head> 
 
     <body class="text-center">
-
+        <div id="header">
         <%@include file="vistas/menu.jsp"%>
+        </div>
         
+        <div id="body">
         <% 
             //terminar de ver la redireccion
            View view=(View) request.getAttribute("view");
@@ -35,8 +37,10 @@
                 %><%@include file="vistas/home.jsp"%><%
              }
         %>
+        </div> 
+        <div id="footer">
         <%@include file="vistas/pie.jsp" %>
-  
+        </div>
 
 
         <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" data-integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
