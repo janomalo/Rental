@@ -1,5 +1,5 @@
 
-<%@page import="Modelo.View"%>
+
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 
@@ -22,24 +22,37 @@
 
     <body class="text-center">
         <div id="header">
-        <%@include file="vistas/menu.jsp"%>
+            <%@include file="vistas/menu.jsp"%>
         </div>
-        
+
         <div id="body">
-        <% 
-            //terminar de ver la redireccion
-           View view=(View) request.getAttribute("view");
-            switch(view.getView()){
-                case 0:
-                   %><%@include file="vistas/login.jsp"%><% 
-                       break;
-            default:
-                %><%@include file="vistas/home.jsp"%><%
-             }
-        %>
+
+            <%
+                //terminar de ver la redireccion
+                String vista = (String) request.getAttribute("vista");
+
+                if (vista == null) {
+            %><%@include file="vistas/home.jsp"%><%
+            } else {
+                switch (vista) {
+                                case "home":
+                                %><%@include file="vistas/admin.jsp"%><%
+                    break;
+                    case "login":
+                                 %><%@include file="vistas/login.jsp"%><% 
+                                 break;
+                    case "temporada":
+                                %><%@include file="vistas/listarTemporadas.jsp"%><%
+                    break;
+                    default:
+                                 %><%@include file="vistas/home.jsp"%><%
+                                break;
+                                }
+
+                }%>
         </div> 
         <div id="footer">
-        <%@include file="vistas/pie.jsp" %>
+            <%@include file="vistas/pie.jsp" %>
         </div>
 
 

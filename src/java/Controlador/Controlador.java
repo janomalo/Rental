@@ -155,15 +155,15 @@ public class Controlador extends HttpServlet {
             dao.delete(usu);
             acceso = listar;
 
-        } else if (action.equalsIgnoreCase("signin")) {
-            view=0;
-            request.setAttribute("vista", view);
+        } /*else if (action.equalsIgnoreCase("signin")) {
+            String vista="login";
+            request.setAttribute("vista", vista);
             
             
-            acceso = signin;
+            //acceso = signin;
 
-        }
-        request.getRequestDispatcher(acceso).forward(request, response);
+        }*/
+        request.getRequestDispatcher("index.jsp").forward(request, response);
        // vista.forward(request, response);
 
     }
@@ -183,16 +183,17 @@ public class Controlador extends HttpServlet {
 
         String accion = request.getParameter("accion");
         if (accion.equalsIgnoreCase("Ingresar")) {
-            String usuario = request.getParameter("user");
+            String u = request.getParameter("user");
             String pass = request.getParameter("password");
-            usu.setUsuario(usuario);
+            usu.setUsuario(u);
             usu.setPassword(pass);
-            r = dao.validar(usu); // programar con el objeto usuario para obtener datos 
-            if (r == 1) {
+            Usuario usuario = dao.validar(usu); // programar con el objeto usuario para obtener datos 
+            if (usuario !=null) {
                 HttpSession session = request.getSession(true);	  //crear sesion en otro lugar,   
-                session.setAttribute("user", usuario);
-
-                request.getRequestDispatcher("Principal.jsp").forward(request, response);
+                session.setAttribute("rol", usuario.getRol());
+                String vista="home";
+                request.setAttribute("vista", vista);
+                request.getRequestDispatcher("index.jsp").forward(request, response);
             } else {
                 request.getRequestDispatcher("index.jsp").forward(request, response);
             }
