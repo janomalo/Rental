@@ -191,16 +191,19 @@ public class Controlador extends HttpServlet {
             if (usuario !=null) {
                 HttpSession session = request.getSession(true);	  //crear sesion en otro lugar,   
                 session.setAttribute("rol", usuario.getRol());
+                session.setAttribute("usuario",usuario.getUsuario());
                 String vista="home";
                 request.setAttribute("vista", vista);
                 request.getRequestDispatcher("index.jsp").forward(request, response);
             } else {
                 request.getRequestDispatcher("index.jsp").forward(request, response);
             }
-        } else {
-
-            request.getRequestDispatcher("index.jsp").forward(request, response);
-        }
+        } else if(accion.equalsIgnoreCase("Salir")){
+              
+            
+                
+                
+                }
 
     }
 

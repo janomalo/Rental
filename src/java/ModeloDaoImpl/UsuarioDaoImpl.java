@@ -243,10 +243,10 @@ public class UsuarioDaoImpl implements IUsuarioDao {
             if (rs != null) {
                 while (rs.next()) {
                     u.setUsuario(rs.getString("usuario"));
-                    u.setNombres(rs.getNString("nombres"));
+                    u.setNombres(rs.getString("nombres"));
                     u.setRol(rs.getInt("rol_id"));
-                    u.setApellidos(rs.getNString("apellidos"));
-                    u.setEmail(rs.getNString("email"));
+                    u.setApellidos(rs.getString("apellidos"));
+                    u.setEmail(rs.getString("email"));
                     u.setHabilitado(rs.getInt("habilitado"));
                    
 

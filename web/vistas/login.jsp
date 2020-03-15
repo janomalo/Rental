@@ -20,6 +20,7 @@
   </head>
 
   <body class="text-center">
+      <% session.invalidate(); %>
       <div  class="container mb-4 col-4">
     <form class="form-signin" action="Controlador" method="post">
       <img class="mb-4" src="style/bootstrap-solid.html" alt="" width="72" height="72">

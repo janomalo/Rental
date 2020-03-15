@@ -21,6 +21,7 @@
     </head> 
 
     <body class="text-center">
+        
         <div id="header">
             <%@include file="vistas/menu.jsp"%>
         </div>

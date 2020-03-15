@@ -12,14 +12,13 @@
         <title>menu admin</title>
     </head>
     <body>
-
         <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-            <a class="navbar-brand" >RENTAL</a> 
+            <a class="navbar-brand" >RENTAL admin</a> 
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-           
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
+<%String usu = (String) session.getAttribute("usuario");%>
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item active">
                         <a style="margin-left: 10px;border: none" class="btn btn-outline-light" href="#">Home </a>
@@ -77,20 +76,17 @@
 
                 <div class="dropdown">
                     <button style="border: none" class="btn btn-outline-light dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <%= session.getAttribute("user")%>
+                        <%= usu%>
                     </button>
                     <div class="dropdown-menu " >
-                        <a class="dropdown-item" href="Controlador?accion=listar" target="myframe">Mi perfil</a>
-                        <form action="Controlador"  method="POST">
-                            <button name="accion" value="Salir" class="dropdown-item">Salir</button>
-
-                        </form>
-
+                        <a class="dropdown-item" href="Controlador?accion=listar" >Mi perfil</a>
+                         <a class="dropdown-item" href="ControladorVista?accion=signin" >Salir</a>
+                        
                     </div>
                 </div>
-            </div>
+                    </div>
         </nav>
-                    
+              
     </body>
 
      </html>

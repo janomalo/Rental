@@ -1,6 +1,6 @@
 <%-- 
-    Document   : menuuser
-    Created on : 08/03/2020, 22:03:40
+    Document   : menupublic
+    Created on : 14/03/2020, 19:17:06
     Author     : Alejandro
 --%>
 
@@ -9,21 +9,22 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title></title>
+        <title>JSP Page</title>
     </head>
     <body>
+        
         <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-            <a class="navbar-brand" >RENTAL usuario</a> 
+            <a class="navbar-brand" >RENTAL</a> 
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <%String usu2 = (String) session.getAttribute("usuario");%>
+         
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item active">
                         <a style="margin-left: 10px;border: none" class="btn btn-outline-light" href="index.jsp">Home </a>
                     </li>
-
+                   
                     <li class="nav-item  dropdown active">
                         <div class="dropdown">
                             <button style="border: none" class="btn btn-outline-light dropdown-toggle" type="button" id="dropdownMenuReservas" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -52,21 +53,11 @@
                     </li> --%>
                 </ul>
                 <div class="dropdown">
-
-                    <button style="border: none" class="btn btn-outline-light dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <%=usu2%>
-                    </button>
-                    <div class="dropdown-menu " >
-                        <a class="dropdown-item" href="Controlador?accion=listar" >Mi perfil</a>
-                        <a class="dropdown-item" href="ControladorVista?accion=signin" >Salir</a>
-                        <%-- <form action="ControladorVista"  method="POST">
-                            <button name="accion" value="signin" class="dropdown-item">Salir</button>
-
-                        </form>--%>
-
-                    </div>
-                </div>
-            </div>
-          </nav>
+                  <a class="dropdown" style="color: #ffffff" href="ControladorVista?accion=signin" >Iniciar Sesión</a>
+                 
+              </div>
+              </div>
+              
+               </nav>
     </body>
 </html>
