@@ -5,6 +5,7 @@
 --%>
 
 
+<%@page import="Controlador.ControladorProducto"%>
 <%@page import="java.util.Iterator"%>
 <%@page import="java.util.List"%>
 <%@page import="Modelo.Producto"%>
@@ -45,9 +46,10 @@
                     </tr>
                 </thead>
                 <%
+                   ControladorProducto contro= new ControladorProducto();
                    
-                    ProductoDaoImpl dao= new ProductoDaoImpl();
-                    List<Producto> list= dao.listar();
+                    
+                    List<Producto> list= contro.listar();
                     Iterator<Producto> iter=list.iterator();
                     Producto pro=null;
                     while(iter.hasNext()){

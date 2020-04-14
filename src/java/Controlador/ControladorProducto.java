@@ -162,5 +162,9 @@ public class ControladorProducto extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
+    
+    public List<Producto> getall(){
+        return dao.listar();
+    }
 
 }
