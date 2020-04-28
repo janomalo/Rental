@@ -36,8 +36,8 @@
             %><%@include file="vistas/home.jsp"%><%
             } else {
                 switch (vista) {
-                                case "home":
-                                %><%@include file="vistas/admin.jsp"%><%
+                  case "home":
+                  %><%@include file="vistas/admin.jsp"%><%
                     break;
                     case "login":
                                  %><%@include file="vistas/login.jsp"%><% 

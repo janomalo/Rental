@@ -188,7 +188,7 @@ public class UsuarioDaoImpl implements IUsuarioDao {
     }
 
     @Override
-    public Usuario list(int id) {
+    public Usuario list(int id) { //cambiar int por Usuario , adaptar metodo
         Statement stmt = null;
         ResultSet rs = null;
         String sSQL = "SELECT * FROM usuarios WHERE id=" + id;
