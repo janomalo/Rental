@@ -5,6 +5,7 @@
  */
 package Controlador;
 
+import Logic.Login;
 import Modelo.Usuario;
 import ModeloDaoImpl.UsuarioDaoImpl;
 import java.io.IOException;
@@ -182,23 +183,7 @@ public class Controlador extends HttpServlet {
         //response.setContentType("text/html;charset=UTF-8");
 
         String accion = request.getParameter("accion");
-        if (accion.equalsIgnoreCase("Ingresar")) {
-            String u = request.getParameter("user");
-            String pass = request.getParameter("password");
-            usu.setUsuario(u);
-            usu.setPassword(pass);
-            Usuario usuario = dao.validar(usu); // programar con el objeto usuario para obtener datos 
-            if (usuario !=null) {
-                HttpSession session = request.getSession(true);	  //crear sesion en otro lugar,   
-                session.setAttribute("rol", usuario.getRol());
-                session.setAttribute("usuario",usuario.getUsuario());
-                String vista="home";
-                request.setAttribute("vista", vista);
-                request.getRequestDispatcher("index.jsp").forward(request, response);
-            } else {
-                request.getRequestDispatcher("index.jsp").forward(request, response);
-            }
-        } else if(accion.equalsIgnoreCase("Salir")){
+        if (accion.equalsIgnoreCase("Salir")){
               
             
                 
