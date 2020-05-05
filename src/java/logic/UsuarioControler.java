@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package logic;
+package Logic;
 
 import Modelo.Usuario;
 import ModeloDaoImpl.UsuarioDaoImpl;
@@ -26,10 +26,6 @@ public class UsuarioControler {
         return (ArrayList<Usuario>) dao.listar();
         
     }
-    
-    
-    
-    
-    
-    
+
+
 }

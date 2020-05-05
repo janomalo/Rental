@@ -6,6 +6,7 @@
 package Controlador;
 
 import Logic.Login;
+import Logic.UsuarioControler;
 import Modelo.Usuario;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -15,13 +16,14 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import logic.UsuarioControler;
+
+
 
 /**
  *
  * @author Alejandro
  */
-@WebServlet(name = "Signin", urlPatterns = {"/Signin"})
+@WebServlet({ "/Signin", "/signin", "/signIn", "/SignIn", "/SIGNIN" })
 public class Signin extends HttpServlet {
 
     /**
@@ -76,11 +78,11 @@ public class Signin extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+   
         // String accion = request.getParameter("accion");
         //if (accion.equalsIgnoreCase("Ingresar")) {
-            Login ctrl= new Login(); // lo creo para ir a logic y despues  dao
-            UsuarioControler usuctrl = new UsuarioControler();// creo controlador de persona de LOGIC
+            Login ctrl = new Login(); // lo creo para ir a logic y despues  dao
+           UsuarioControler usuctrl = new UsuarioControler();// creo controlador de persona de LOGIC
             
             String u = request.getParameter("user");
             String pass = request.getParameter("password");

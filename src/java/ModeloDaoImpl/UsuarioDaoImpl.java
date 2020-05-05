@@ -225,7 +225,13 @@ public class UsuarioDaoImpl implements IUsuarioDao {
 
             e.printStackTrace();
         }
-        return u;
+        if(u!=null){
+            return u;
+        }else{
+            u=null;
+         return u;
+        }
+       
 
     }
 
