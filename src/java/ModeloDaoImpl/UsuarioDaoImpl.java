@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class UsuarioDaoImpl implements IUsuarioDao {
+public class UsuarioDaoImpl {
 
     public static Usuario login(Usuario user) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
@@ -25,7 +25,7 @@ public class UsuarioDaoImpl implements IUsuarioDao {
 // Llamas al método que tiene la clase y te devuelve una conexión
     //Connection conn = SQL.conectar();
 // Usuario u=new Usuario();
-    @Override
+   
     public void save(Usuario usu) {
         //boolean save=false;
         PreparedStatement stmt = null;
@@ -74,7 +74,7 @@ public class UsuarioDaoImpl implements IUsuarioDao {
 
     }
 
-    @Override
+   
     public List<Usuario> listar() {
 
         Statement stmt = null;
@@ -127,7 +127,7 @@ public class UsuarioDaoImpl implements IUsuarioDao {
 
     }
 
-    @Override
+ 
     public boolean edit(Usuario u) {
         //Al listar pass y volver a guardarla 
         PreparedStatement stmt = null;
@@ -164,7 +164,7 @@ public class UsuarioDaoImpl implements IUsuarioDao {
         return false;
     }
 
-    @Override
+
     public void delete(Usuario u) {
         PreparedStatement stmt = null;
 
@@ -187,8 +187,8 @@ public class UsuarioDaoImpl implements IUsuarioDao {
 
     }
 
-    @Override
-    public Usuario list(int id) { //cambiar int por Usuario , adaptar metodo
+   
+    public Usuario list(Usuario usu) { // seria como getbyusu
         Statement stmt = null;
         ResultSet rs = null;
         String sSQL = "SELECT * FROM usuarios WHERE id=" + id;
@@ -235,7 +235,6 @@ public class UsuarioDaoImpl implements IUsuarioDao {
 
     }
 
-    @Override
     public Usuario validar(Usuario u) {
         PreparedStatement stmt = null;
         ResultSet rs = null;

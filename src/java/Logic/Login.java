@@ -20,10 +20,13 @@ public class Login {
 	public Usuario validate(Usuario u) {
 		/* para hacer más seguro el manejo de passwords este sería un lugar 
 		 * adecuado para generar un hash de la password utilizando un cifrado
-		 * asimétrico como sha256 y utilizar el hash en lugar de la password en plano 
+		 * asimétrico como sha256 y utilizar el hash en lugar de la password en plano                       
+                SHA1(usu.getPassword())
 		 */
-		return dao.list(u.getId());
+                //SHA1;
+                
+		return dao.list(u);
 		//return null;
-	}
-    
-}
+        }}
+
+   
