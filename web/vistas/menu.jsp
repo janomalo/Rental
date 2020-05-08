@@ -18,11 +18,11 @@
                 switch (rol) {
                     case "1":
                         %><%@include file="/vistas/menuadmin.jsp"%><%
-                                        break;
-                                    case "2":
-                                        %><%@include file="/vistas/menuuser.jsp"%><%
-                                         break;
-                                     default:
+                       break;
+                    case "2":
+                    %><%@include file="/vistas/menuuser.jsp"%><%
+                        break;
+                       default:
                     %><%@include file="/vistas/menupublic.jsp"%>
         <%
                             break;

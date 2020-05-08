@@ -25,7 +25,7 @@ public class Login {
 		 */
                 //SHA1;
                 
-		return dao.list(u);
+		return dao.validar(u);
 		//return null;
         }}
 

@@ -8,18 +8,18 @@ public class Usuario {
     private String nombres;
    private String apellidos;
     private String telefono;
-    private Integer rol;
+    private int rol;
     private String direccion;
     private String email;
     private String password;
     private String fecha_registro;
     private String usuario;
-    private Integer habilitado;
+    private int habilitado;
 
     public Usuario() {
     }
 
-    public Usuario(int id, String dni, String nombres, String apellidos, String telefono, Integer rol, String direccion, String email, String password, String fecha_registro, String usuario, Integer habilitado) {
+    public Usuario(int id, String dni, String nombres, String apellidos, String telefono, int rol, String direccion, String email, String password, String fecha_registro, String usuario, int habilitado) {
         this.id = id;
         this.dni = dni;
         this.nombres = nombres;
@@ -74,11 +74,11 @@ public class Usuario {
         this.telefono = telefono;
     }
 
-    public Integer getRol() {
+    public int getRol() {
         return rol;
     }
 
-    public void setRol(Integer rol) {
+    public void setRol(int rol) {
         this.rol = rol;
     }
 

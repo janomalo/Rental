@@ -25,6 +25,47 @@ public class UsuarioDaoImpl {
 // Llamas al método que tiene la clase y te devuelve una conexión
     //Connection conn = SQL.conectar();
 // Usuario u=new Usuario();
+  /*  public Usuario getByCredentials(Usuario usu) {
+		//DataRol dr=new DataRol();
+		Usuario u=null;
+		PreparedStatement stmt=null;
+		ResultSet rs=null;
+		try {
+			stmt=FactoryConexion.getInstancia().getConn().prepareStatement(
+					"select id,nombre,apellido,tipo_doc,nro_doc,email,tel,habilitado from persona where email=? and password=?"
+					);
+			stmt.setString(1, usu.getUsuario());
+			stmt.setString(2, usu.getPassword());
+			rs=stmt.executeQuery();
+			if(rs!=null && rs.next()) {
+				u=new Usuario();
+				u.setDocumento(new Documento());
+				u.setId(rs.getInt("id"));
+				u.setNombre(rs.getString("nombre"));
+				u.setApellido(rs.getString("apellido"));
+				u.getDocumento().setTipo(rs.getString("tipo_doc"));
+				u.getDocumento().setNro(rs.getString("nro_doc"));
+				u.setEmail(rs.getString("email"));
+				u.setTel(rs.getString("tel"));
+				u.setHabilitado(rs.getBoolean("habilitado"));
+				//
+				dr.setRoles(p);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				if(rs!=null) {rs.close();}
+				if(stmt!=null) {stmt.close();}
+				FactoryConexion.getInstancia().releaseConn();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		return p;
+	}
+*/
    
     public void save(Usuario usu) {
         //boolean save=false;
@@ -188,7 +229,7 @@ public class UsuarioDaoImpl {
     }
 
    
-    public Usuario list(Usuario usu) { // seria como getbyusu
+    public Usuario list(int id) { // seria como getbyusu
         Statement stmt = null;
         ResultSet rs = null;
         String sSQL = "SELECT * FROM usuarios WHERE id=" + id;
@@ -238,21 +279,23 @@ public class UsuarioDaoImpl {
     public Usuario validar(Usuario u) {
         PreparedStatement stmt = null;
         ResultSet rs = null;
-        String sSql = "SELECT * FROM usuarios WHERE usuario=? and password=?";
+        Usuario usu= new Usuario();
+      
         try {
 
-            stmt = FactoryConexion.getInstancia().getConn().prepareStatement(sSql);
+            stmt = FactoryConexion.getInstancia().getConn().prepareStatement("SELECT * FROM usuarios WHERE usuario=? and password=?");
             stmt.setString(1, u.getUsuario());
             stmt.setString(2, u.getPassword());
             rs = stmt.executeQuery();
             if (rs != null) {
                 while (rs.next()) {
-                    u.setUsuario(rs.getString("usuario"));
-                    u.setNombres(rs.getString("nombres"));
-                    u.setRol(rs.getInt("rol_id"));
-                    u.setApellidos(rs.getString("apellidos"));
-                    u.setEmail(rs.getString("email"));
-                    u.setHabilitado(rs.getInt("habilitado"));
+                    usu.setId(rs.getInt("id"));
+                    usu.setUsuario(rs.getString("usuario"));
+                    usu.setNombres(rs.getString("nombres"));
+                    usu.setRol(rs.getInt("rol_id"));
+                    usu.setApellidos(rs.getString("apellidos"));
+                    usu.setEmail(rs.getString("email"));
+                    usu.setHabilitado(rs.getInt("habilitado"));
                    
 
                 }
@@ -261,19 +304,16 @@ public class UsuarioDaoImpl {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        try {
-            if (rs != null) {
-                rs.close();
-            }
-            if (stmt != null) {
-                stmt.close();
-            }
-            FactoryConexion.getInstancia().releaseConn();
-        } catch (SQLException e) {
-
-            e.printStackTrace();
-        }
-        return u;
+       finally {
+			try {
+				if(rs!=null) {rs.close();}
+				if(stmt!=null) {stmt.close();}
+				FactoryConexion.getInstancia().releaseConn();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		} 
+        return usu;
     }
 
 }

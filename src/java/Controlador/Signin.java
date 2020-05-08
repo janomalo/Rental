@@ -90,17 +90,17 @@ public class Signin extends HttpServlet {
             
             usu.setUsuario(u);
             usu.setPassword(pass);
-            usu=ctrl.validate(usu); // programar con el objeto usuario para obtener datos 
+            Usuario usu1=ctrl.validate(usu); // 
             
-            if(usu!=null){
-               request.getSession().setAttribute("usuario", usu);
+            if(usu1.getId()!=0){
+               request.getSession().setAttribute("usuario", usu1);
                request.setAttribute("listaUsuarios",usuctrl.getAll()); //obtengo todos los usuarios
                 String vista="home";
                 request.setAttribute("vista", vista);
                 request.getRequestDispatcher("index.jsp").forward(request, response);
             }else{
                 String vista="error";
-                     request.getRequestDispatcher("index.jsp").forward(request, response);
+                     request.getRequestDispatcher("vistas/errorlogin.jsp").forward(request, response);
             }
                 
         //} else if(accion.equalsIgnoreCase("Salir")){
