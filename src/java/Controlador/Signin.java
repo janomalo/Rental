@@ -94,6 +94,7 @@ public class Signin extends HttpServlet {
             
             if(usu1.getId()!=0){
                request.getSession().setAttribute("usuario", usu1);
+               
                request.setAttribute("listaUsuarios",usuctrl.getAll()); //obtengo todos los usuarios
                 String vista="home";
                 request.setAttribute("vista", vista);

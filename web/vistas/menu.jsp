@@ -1,3 +1,4 @@
+<%@page import="java.util.ArrayList"%>
 <%@page import="javax.websocket.Session"%>
 <%@page import="Modelo.Usuario"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -6,12 +7,18 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Menu</title>
+        
+          <% /*	Usuario usuario= (Usuario)session.getAttribute("usuario");
+    	ArrayList<Usuario> lp=(ArrayList<Usuario>)request.getAttribute("listaPersonas");
+         String rol = String.valueOf(usuario.getRol()); */
+    %>
     </head>
     <body>
         <%if (session.getAttribute("usuario") == null) {%>
         <%@include file="/vistas/menupublic.jsp"%>
         <%} else {
-            String rol = String.valueOf(session.getAttribute("rol"));
+Usuario usuario= (Usuario)session.getAttribute("usuario");
+            String rol = String.valueOf(usuario.getRol()); 
             if (rol == null) {
                  %><%@include file="/vistas/menupublic.jsp"%><%
             } else {
