@@ -18,15 +18,16 @@
         <%@include file="/vistas/menupublic.jsp"%>
         <%} else {
 Usuario usuario= (Usuario)session.getAttribute("usuario");
-            String rol = String.valueOf(usuario.getRol()); 
-            if (rol == null) {
+                    out.print(usuario);
+            int rol = usuario.getRol(); 
+            if (rol == 0) {
                  %><%@include file="/vistas/menupublic.jsp"%><%
             } else {
                 switch (rol) {
-                    case "1":
+                    case 1:
                         %><%@include file="/vistas/menuadmin.jsp"%><%
                        break;
-                    case "2":
+                    case 2 :
                     %><%@include file="/vistas/menuuser.jsp"%><%
                         break;
                        default:
