@@ -4,7 +4,6 @@
     Author     : Alejandro
 --%>
 
-<%@page import="Modelo.Usuario"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -19,10 +18,7 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <%if (session.getAttribute("usuario") == null) {
-                <%Usuario usuario= (Usuario)session.getAttribute("usuario");
-                    out.print(usuario);
-                String usu=usuario.getUsuario(); %>
+                <%String usu2 = (String) session.getAttribute("usuario");%>
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item active">
                         <a style="margin-left: 10px;border: none" class="btn btn-outline-light" href="index.jsp">Home </a>
@@ -58,7 +54,7 @@
                 <div class="dropdown">
 
                     <button style="border: none" class="btn btn-outline-light dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <%=usu%>
+                        <%=usu2%>
                     </button>
                     <div class="dropdown-menu " >
                         <a class="dropdown-item" href="Controlador?accion=listar" >Mi perfil</a>
