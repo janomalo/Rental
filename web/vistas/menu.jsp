@@ -31,8 +31,8 @@ Usuario usuario= (Usuario)session.getAttribute("usuario");
                     %><%@include file="/vistas/menuuser.jsp"%><%
                         break;
                        default:
-                          %><%@include file="/vistas/menupublic.jsp"%>
-                               <%
+                    %><%@include file="/vistas/menupublic.jsp"%>
+        <%
                             break;
                     }
 
