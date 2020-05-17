@@ -18,7 +18,7 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
-<%String usu = (String) session.getAttribute("usuario");%>
+
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item active">
                         <a style="margin-left: 10px;border: none" class="btn btn-outline-light" href="#">Home </a>
@@ -76,11 +76,11 @@
 
                 <div class="dropdown">
                     <button style="border: none" class="btn btn-outline-light dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <%= usu%>
+                        <%= session.getAttribute("nombreusuario")%>
                     </button>
                     <div class="dropdown-menu " >
                         <a class="dropdown-item" href="Controlador?accion=listar" >Mi perfil</a>
-                         <a class="dropdown-item" href="ControladorVista?accion=signin" >Salir</a>
+                         <a class="dropdown-item" href="Signin?accion=signout" >Salir</a>
                         
                     </div>
                 </div>

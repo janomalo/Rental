@@ -17,12 +17,12 @@
         <%if (session.getAttribute("usuario") == null) {%>
         <%@include file="/vistas/menupublic.jsp"%>
         <%} else {
-Usuario usuario= (Usuario)session.getAttribute("usuario");
-            String rol = String.valueOf(usuario.getRol()); 
-            if (rol == null) {
+            Usuario usuario= (Usuario)session.getAttribute("usuario");
+        
+            if (String.valueOf(usuario.getRol()) == null) {
                  %><%@include file="/vistas/menupublic.jsp"%><%
             } else {
-                switch (rol) {
+                switch (String.valueOf(usuario.getRol())) {
                     case "1":
                         %><%@include file="/vistas/menuadmin.jsp"%><%
                        break;

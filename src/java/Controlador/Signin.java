@@ -64,8 +64,27 @@ public class Signin extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        
+        String action = request.getParameter("accion");
+        if (action.equalsIgnoreCase("signout")) {
+            HttpSession session = request.getSession();
+        if(session.getAttribute("usuario") != null){
+            session.removeAttribute("nombreusuario"); 
+            session.removeAttribute("listaUsuarios"); 
+            request.removeAttribute("usuario");
+            //response.sendRedirect("index.jsp");
+            request.getRequestDispatcher("index.jsp").forward(request, response);
+        }
+        } /*else if(action.equalsIgnoreCase("temporada")){
+        String vista="temporada";
+            request.setAttribute("vista", vista);                       
+            
+        }*/
+        
+       // request.getRequestDispatcher("index.jsp").forward(request, response);
     }
+
+
 
     /**
      * Handles the HTTP <code>POST</code> method.
@@ -94,7 +113,8 @@ public class Signin extends HttpServlet {
             
             if(usu1.getId()!=0){
                request.getSession().setAttribute("usuario", usu1);
-               
+               HttpSession session=request.getSession();  
+               session.setAttribute("nombreusuario",usu1.getUsuario());  
                request.setAttribute("listaUsuarios",usuctrl.getAll()); //obtengo todos los usuarios
                 String vista="home";
                 request.setAttribute("vista", vista);
