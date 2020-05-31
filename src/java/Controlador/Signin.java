@@ -68,13 +68,14 @@ public class Signin extends HttpServlet {
         String action = request.getParameter("accion");
         if (action.equalsIgnoreCase("signout")) {
             HttpSession session = request.getSession();
-        if(session.getAttribute("usuario") != null){
+         
             session.removeAttribute("nombreusuario"); 
             session.removeAttribute("listaUsuarios"); 
             request.removeAttribute("usuario");
+            session.invalidate();
             //response.sendRedirect("index.jsp");
             request.getRequestDispatcher("index.jsp").forward(request, response);
-        }
+        
         } /*else if(action.equalsIgnoreCase("temporada")){
         String vista="temporada";
             request.setAttribute("vista", vista);                       
