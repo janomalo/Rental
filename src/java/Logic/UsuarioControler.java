@@ -25,4 +25,18 @@ public class UsuarioControler {
     public ArrayList<Usuario> getAll() {
         return (ArrayList<Usuario>) dao.listar();
         
-    }}
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+}

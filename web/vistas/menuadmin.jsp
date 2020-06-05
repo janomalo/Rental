@@ -29,9 +29,9 @@
                                 Reservas
                             </button>
                             <div class="dropdown-menu " >
-                                <a class="dropdown-item" href="ControladorReserva?accion=reserva" target="myframe">Nueva Reserva</a>
-                                <a class="dropdown-item" href="ControladorReserva?accion=listar" target="myframe">Lista Reservas</a>
-                                <a class="dropdown-item" href="vistas/listarTemporadas.jsp" target="myframe">Temporadas</a>
+                                <a class="dropdown-item" href="ControladorReserva?accion=reserva">Nueva Reserva</a>
+                                <a class="dropdown-item" href="ControladorReserva?accion=listar" >Lista Reservas</a>
+                                <a class="dropdown-item" href="vistas/listarTemporadas.jsp" >Temporadas</a>
                             </div>
                         </div>
 
@@ -44,9 +44,9 @@
                                 Productos 
                             </button>
                             <div class="dropdown-menu " >
-                                <a class="dropdown-item" href="ControladorProducto?accion=add" target="myframe">Nuevo Producto</a>
-                                <a class="dropdown-item" href="ControladorProducto?accion=listar" target="myframe">Lista Productos</a>
-                                <a class="dropdown-item" href="vistas/Categorias.jsp" target="myframe">Categorias</a>
+                                <a class="dropdown-item" href="ControladorProducto?accion=add" >Nuevo Producto</a>
+                                <a class="dropdown-item" href="ControladorProducto?accion=listar" >Lista Productos</a>
+                                <a class="dropdown-item" href="vistas/Categorias.jsp" >Categorias</a>
                             </div>
                         </div>
                     </li>
@@ -56,9 +56,9 @@
                                 Usuarios
                             </button>
                             <div class="dropdown-menu " >
-                                <a class="dropdown-item" href="Controlador?accion=add" target="myframe">Nuevo Usuario</a>
-                                <a class="dropdown-item" href="Controlador?accion=listar" target="myframe">Lista Usuarios</a>
-                                <a class="dropdown-item" href="vistas/Roles.jsp" target="myframe">Roles</a>
+                                <a class="dropdown-item" href="Controlador?accion=add" >Nuevo Usuario</a>
+                                <a class="dropdown-item" href="ControladorVista?accion=listarusuarios" >Lista Usuarios</a>
+                                <a class="dropdown-item" href="vistas/Roles.jsp" >Roles</a>
 
 
                             </div>

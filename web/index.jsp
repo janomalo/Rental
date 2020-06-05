@@ -48,6 +48,9 @@
                     case "error":
                                 %><%@include file="vistas/errorlogin.jsp"%><%
                     break;
+                    case "listarusuarios":
+                                %><%@include file="vistas/listar.jsp"%><%
+                    break;
                     
                     default:
                                  %><%@include file="vistas/home.jsp"%><%

@@ -68,6 +68,10 @@ public class ControladorVista extends HttpServlet {
         String vista="temporada";
             request.setAttribute("vista", vista);                       
             
+        } else if(action.equalsIgnoreCase("listarusuarios")){
+        String vista="listarusuarios";
+            request.setAttribute("vista", vista);                       
+            
         }
         
         request.getRequestDispatcher("index.jsp").forward(request, response);
