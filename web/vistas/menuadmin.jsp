@@ -21,7 +21,7 @@
 
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item active">
-                        <a style="margin-left: 10px;border: none" class="btn btn-outline-light" href="#">Home </a>
+                        <a style="margin-left: 10px;border: none" class="btn btn-outline-light" href="index.jsp">Home </a>
                     </li>
                     <li class="nav-item  dropdown active">
                         <div class="dropdown">

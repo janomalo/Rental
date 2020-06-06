@@ -1,4 +1,5 @@
 
+<%@page import="Logic.UsuarioControler"%>
 <%@page import="java.util.Iterator"%>
 <%@page import="Modelo.Usuario"%>
 <%@page import="Interfaces.IUsuarioDao"%>
@@ -18,8 +19,6 @@
     <body>
         <div  class="container-fluid">
             <h1>GESTIÓN DE USUARIOS </h1> 
-             <a href="Controlador?accion=add">Agregar Nuevo</a> 
-             <a > Buscar</a>
             <table class="table">
                 
                 <thead>
@@ -40,9 +39,10 @@
                 </thead>
                 <%
                    
-                    UsuarioDaoImpl dao= new UsuarioDaoImpl();
-                    List<Usuario> list=dao.listar();
-                    Iterator<Usuario> iter=list.iterator();
+                   UsuarioControler usucon= new UsuarioControler(); //llamar a la capa logica y que vaya pasando los datos
+                   List<Usuario> list=usucon.getAll(); //llama metodo getall y trae lisa de usuario
+                   Iterator<Usuario> iter=list.iterator();
+                    
                    Usuario usu= null;
                     while(iter.hasNext()){
                         usu=iter.next();

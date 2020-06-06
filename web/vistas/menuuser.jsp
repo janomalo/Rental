@@ -52,19 +52,13 @@
                     </li> --%>
                 </ul>
                 <div class="dropdown">
-
                     <button style="border: none" class="btn btn-outline-light dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <%= session.getAttribute("nombreusuario") %>
                     </button>
                     <div class="dropdown-menu " >
                         <a class="dropdown-item" href="Controlador?accion=listar" >Mi perfil</a>
                         <a class="dropdown-item" href="Signin?accion=signout" >Salir</a>
-                        <%-- <form action="ControladorVista"  method="POST">
-                            <button name="accion" value="signin" class="dropdown-item">Salir</button>
-
-                        </form>--%>
-
-                    </div>
+                     </div>
                 </div>
             </div>
           </nav>
