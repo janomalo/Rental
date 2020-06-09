@@ -9,7 +9,8 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>menu admin</title>
+        
+        <title>Menu Admin</title>
     </head>
     <body>
         <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
@@ -86,7 +87,8 @@
                 </div>
                     </div>
         </nav>
-              
+        
+    
     </body>
 
      </html>
