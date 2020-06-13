@@ -57,7 +57,7 @@
                                 Usuarios
                             </button>
                             <div class="dropdown-menu " >
-                                <a class="dropdown-item" href="Controlador?accion=add" >Nuevo Usuario</a>
+                                <a class="dropdown-item" href="ControladorVista?accion=addusuario" >Nuevo Usuario</a>
                                 <a class="dropdown-item" href="ControladorVista?accion=listarusuarios" >Lista Usuarios</a>
                                 <a class="dropdown-item" href="vistas/Roles.jsp" >Roles</a>
 

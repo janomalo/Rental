@@ -51,7 +51,9 @@
                     case "listarusuarios":
                                 %><%@include file="vistas/listar.jsp"%><%
                     break;
-                    
+                    case "addusuario":
+                                %><%@include file="vistas/addUsuario.jsp"%><%
+                    break;
                     default:
                                  %><%@include file="vistas/home.jsp"%><%
                                 break;

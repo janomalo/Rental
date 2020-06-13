@@ -86,10 +86,10 @@ public class Controlador extends HttpServlet {
         String action = request.getParameter("accion");
         if (action.equalsIgnoreCase("listar")) {
             acceso = listar;
-        } else if (action.equalsIgnoreCase("add")) {
+        }/* else if (action.equalsIgnoreCase("add")) {
             acceso = add;
 
-        } else if (action.equalsIgnoreCase("Agregar")) {
+        }*/ else if (action.equalsIgnoreCase("Agregar")) {
             String dni = request.getParameter("dni");
             String nombres = request.getParameter("nombres");
             String apellidos = request.getParameter("apellidos");
