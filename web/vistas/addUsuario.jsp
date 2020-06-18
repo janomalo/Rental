@@ -9,74 +9,68 @@
     </head>
     <body>
         <h1>Ingrese los datos!</h1>
-    
+        <div  class="container col-lg-6">
             <form action="Controlador"  method="POST" class="form-horizontal"    >
-<div class="form-group">
-    <label for="ejemplo_email_3" class="col-lg-2 control-label">Email</label>
-    <div class="col-lg-10">
-      <input type="email" class="form-control" id="ejemplo_email_3"
-             placeholder="Email">
-    </div>
-  </div>
-                <div class="form-group">
+            
+            <div class="form-group">
                     <label class="col-lg-8 control-label">Dni</label>
                     <div class="col-lg-auto">
                        
-                    <input type="text" class="form-control" name="dni" required=""/>
+                    <input type="text" class="form-control" name="dni" required="" placeholder="Dni"/>
                     </div>
-                </div>
+            </div>
 
-                <div class="form-group">
+            <div class="form-group">
                     <label class="col-lg-8 control-label">Nombres</label>
                     <div class="col-lg-auto">
-                        <input type="text" class="form-control" name="nombres" required=""/>
+                        <input type="text" class="form-control" name="nombres" required="" placeholder="Nombre"/>
                     </div>
                     
-                </div>
+            </div>
 
-                <div class="form-group">
+            <div class="form-group">
                     <label class="col-lg-8 control-label">Apellidos</label>
                     <div class="col-lg-auto">
-                        <input type="text" class="form-control" name="apellidos" required=""/>
+                        <input type="text" class="form-control" name="apellidos" required="" placeholder="Apellidos"/>
                     </div>
-                </div>
+            </div>
 
-                <div class="form-group">
+            <div class="form-group">
                     <label class="col-lg-8 control-label">Teléfono</label>
                     <div class="col-lg-auto">
-                        <input type="text" class="form-control" name="telefono" required=""/>
+                        <input type="text" class="form-control" name="telefono" required="" placeholder="Teléfono"/>
                     </div>
-                </div>
+            </div>
 
-                <div class="form-group">
+            <div class="form-group">
                     <label class="col-lg-8 control-label">Email</label>
                     <div class="col-lg-auto">
-                        <input type="text" class="form-control" name="email" required=""/>
+                        <input type="text" class="form-control" name="email" required="" placeholder="Email"/>
                     </div>
-                </div>
+            </div>
 
-                <div class="form-group">
-                    <label class="col-lg-8 control-label">Direccion</label>
+            <div class="form-group">
+                    <label class="col-lg-8 control-label">Dirección</label>
                     <div class="col-lg-auto">
-                        <input type="text" class="form-control" name="direccion" required=""/>
+                        <input type="text" class="form-control" name="direccion" required="" placeholder="Dirección"/>
                     </div>
-                </div>
+            </div>
 
-                <div class="form-group">
+            <div class="form-group">
                     <label class="col-lg-8 control-label">Usuario</label>
                     <div class="col-lg-auto">
-                        <input type="text" class="form-control" name="usuario" required=""/>
+                        <input type="text" class="form-control" name="usuario" required="" placeholder="Usuario"/>
                     </div>
-                </div>
+            </div>
 
-                <div class="form-group">
+            <div class="form-group">
                     <label class="col-lg-8 control-label">Contraseña</label>
                     <div class="col-lg-auto">
-                        <input type="password" class="form-control" name="password" required=""/>
+                        <input type="password" class="form-control" name="password" required="" placeholder="Contraseña"/>
                     </div>
-                </div>
+            </div>
 
-                <div class="form-group">
+            <div class="form-group">
                     <label class="col-lg-8 control-label">Estado</label>
                     <div class="col-lg-auto">
                         <select  class="form-control" name="habilitado">
@@ -84,18 +78,19 @@
                             <option  value="0">Deshabilitar</option>
                         </select>
                     </div>
-                </div>
+            </div>
                 <%-- <input type="hidden" name="fecha" value="CURDATE"> --%>
 
-                <div class="form-group">
+            <div class="form-group">
                     <div class="col-lg-auto">
                         <input class=" btn btn-success" type="submit" value="Agregar" name="accion">
                         <a class="btn btn-danger" href="Controlador?accion=listar"> Cancelar</a>
                     </div>
-                </div>
+            </div>
+           
             </form>
       
 
-        
+        </div>
     </body>
 </html>
