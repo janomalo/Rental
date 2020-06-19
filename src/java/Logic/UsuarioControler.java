@@ -26,7 +26,12 @@ public class UsuarioControler {
         return (ArrayList<Usuario>) dao.listar();
         
     }
-
+    
+    public void save(Usuario usu){
+    
+         dao.save(usu);
+    
+    }
 
 
 

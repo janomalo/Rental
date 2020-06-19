@@ -6,6 +6,7 @@
 package Controlador;
 
 import Logic.Login;
+import Logic.UsuarioControler;
 import Modelo.Usuario;
 import ModeloDaoImpl.UsuarioDaoImpl;
 import java.io.IOException;
@@ -30,7 +31,7 @@ public class Controlador extends HttpServlet {
     String listar = "/vistas/listar.jsp";
     String add = "/vistas/add.jsp";
     String edit = "/vistas/edit.jsp";
-    String signin = "index.jsp";
+    String index = "index.jsp";
     Usuario usu = new Usuario();
     UsuarioDaoImpl dao = new UsuarioDaoImpl();
     int r;
@@ -86,10 +87,8 @@ public class Controlador extends HttpServlet {
         String action = request.getParameter("accion");
         if (action.equalsIgnoreCase("listar")) {
             acceso = listar;
-        }/* else if (action.equalsIgnoreCase("add")) {
-            acceso = add;
-
-        }*/ else if (action.equalsIgnoreCase("Agregar")) {
+        } else if (action.equalsIgnoreCase("Agregar")) {
+            UsuarioControler usuctrl = new UsuarioControler();// creo controlador de persona de LOGIC
             String dni = request.getParameter("dni");
             String nombres = request.getParameter("nombres");
             String apellidos = request.getParameter("apellidos");
@@ -112,8 +111,11 @@ public class Controlador extends HttpServlet {
             usu.setUsuario(usuario);
             usu.setHabilitado(hab);
 
-            dao.save(usu);
+           
+            usuctrl.save(usu);// debe ir a logic y cruzar capas grabar usuario,
             acceso = listar;
+            String vista="listarusuarios";
+                request.setAttribute("vista", vista);
         } else if (action.equalsIgnoreCase("editar")) {
             // int idusu=Integer.parseInt(request.getParameter("id"));
             request.setAttribute("idusu", request.getParameter("id"));
@@ -148,6 +150,7 @@ public class Controlador extends HttpServlet {
 
             dao.edit(usu);
             acceso = listar;
+            
 
         } else if (action.equalsIgnoreCase("delete")) {
             String id = request.getParameter("id");
