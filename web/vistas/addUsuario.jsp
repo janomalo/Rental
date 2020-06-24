@@ -83,7 +83,7 @@
 
             <div class="form-group">
                     <div class="col-lg-auto">
-                        <input class=" btn btn-success" type="submit" value="Agregar" name="accion">
+                        <button class=" btn btn-success" type="submit" value="Agregar" name="accion">Agregar</button>
                         <a class="btn btn-danger" href="Controlador?accion=listar"> Cancelar</a>
                     </div>
             </div>
