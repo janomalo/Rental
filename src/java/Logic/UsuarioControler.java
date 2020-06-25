@@ -33,6 +33,10 @@ public class UsuarioControler {
     
     }
 
+    public void delete(Usuario usu) {
+       dao.delete(usu);
+    }
+
 
 
 

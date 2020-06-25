@@ -124,10 +124,13 @@ public class Controlador extends HttpServlet {
             
 
         } else if (action.equalsIgnoreCase("delete")) {
+            UsuarioControler usuctrl = new UsuarioControler();// creo controlador de persona de LOGIC
             String id = request.getParameter("id");
             int id1 = Integer.parseInt(id);
             usu.setId(id1);
-            dao.delete(usu);
+            usuctrl.delete(usu);
+            String vista="listarusuarios";
+                request.setAttribute("vista", vista);
            // acceso = listar;
 
         } /*else if (action.equalsIgnoreCase("signin")) {
