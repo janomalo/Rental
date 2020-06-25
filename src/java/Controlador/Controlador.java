@@ -83,44 +83,15 @@ public class Controlador extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        String acceso = "";
+        //String acceso = "";
         String action = request.getParameter("accion");
-        if (action.equalsIgnoreCase("listar")) {
-            acceso = listar;
-        } else if (action.equalsIgnoreCase("Agregar")) {
-            UsuarioControler usuctrl = new UsuarioControler();// creo controlador de persona de LOGIC
-            String dni = request.getParameter("dni");
-            String nombres = request.getParameter("nombres");
-            String apellidos = request.getParameter("apellidos");
-            String telefono = request.getParameter("telefono");
-            String email = request.getParameter("email");
-            String password = request.getParameter("password");
-            String direccion = request.getParameter("direccion");
-            String usuario = request.getParameter("usuario");
-            String h = request.getParameter("habilitado");
-            int hab = Integer.parseInt(h);
-
-            usu.setRol(2);
-            usu.setDni(dni);
-            usu.setNombres(nombres);
-            usu.setApellidos(apellidos);
-            usu.setTelefono(telefono);
-            usu.setEmail(email);
-            usu.setPassword(password);
-            usu.setDireccion(direccion);
-            usu.setUsuario(usuario);
-            usu.setHabilitado(hab);
-
-           
-            usuctrl.save(usu);// debe ir a logic y cruzar capas grabar usuario,
-            acceso = listar;
-            String vista="listarusuarios";
-                request.setAttribute("vista", vista);
+        if (action.equalsIgnoreCase("Agregar")) {
+            
         } else if (action.equalsIgnoreCase("editar")) {
             // int idusu=Integer.parseInt(request.getParameter("id"));
             request.setAttribute("idusu", request.getParameter("id"));
 // captura id de fila seleccionada cuando se hace click en editar.
-            acceso = edit;
+           // acceso = edit;
         } else if (action.equalsIgnoreCase("Actualizar")) {
             System.out.println("pasa por aca");
 
@@ -149,7 +120,7 @@ public class Controlador extends HttpServlet {
             usu.setHabilitado(hab);
 
             dao.edit(usu);
-            acceso = listar;
+            //acceso = listar;
             
 
         } else if (action.equalsIgnoreCase("delete")) {
@@ -157,7 +128,7 @@ public class Controlador extends HttpServlet {
             int id1 = Integer.parseInt(id);
             usu.setId(id1);
             dao.delete(usu);
-            acceso = listar;
+           // acceso = listar;
 
         } /*else if (action.equalsIgnoreCase("signin")) {
             String vista="login";
@@ -186,13 +157,40 @@ public class Controlador extends HttpServlet {
         //response.setContentType("text/html;charset=UTF-8");
 
         String accion = request.getParameter("accion");
-        if (accion.equalsIgnoreCase("Salir")){
-              
+        if (accion.equalsIgnoreCase("Agregar")){
+              UsuarioControler usuctrl = new UsuarioControler();// creo controlador de persona de LOGIC
+            String dni = request.getParameter("dni");
+            String nombres = request.getParameter("nombres");
+            String apellidos = request.getParameter("apellidos");
+            String telefono = request.getParameter("telefono");
+            String email = request.getParameter("email");
+            String password = request.getParameter("password");
+            String direccion = request.getParameter("direccion");
+            String usuario = request.getParameter("usuario");
+            String h = request.getParameter("habilitado");
+            int hab = Integer.parseInt(h);
+
+            usu.setRol(2);
+            usu.setDni(dni);
+            usu.setNombres(nombres);
+            usu.setApellidos(apellidos);
+            usu.setTelefono(telefono);
+            usu.setEmail(email);
+            usu.setPassword(password);
+            usu.setDireccion(direccion);
+            usu.setUsuario(usuario);
+            usu.setHabilitado(hab);
+
+           
+            usuctrl.save(usu);// debe ir a logic y cruzar capas grabar usuario,
+            //acceso = listar;
+            String vista="listarusuarios";
+                request.setAttribute("vista", vista);
             
                 
                 
                 }
-
+request.getRequestDispatcher("index.jsp").forward(request, response);
     }
 
     /**

@@ -10,7 +10,7 @@
     <body>
         <h1>Ingrese los datos!</h1>
         <div  class="container col-lg-6">
-            <form action="Controlador"  method="POST" class="form-horizontal"    >
+            <form action="Controlador"  method= "post" class="form-horizontal"    >
             
             <div class="form-group">
                     <label class="col-lg-8 control-label">Dni</label>
@@ -83,11 +83,11 @@
 
             <div class="form-group">
                     <div class="col-lg-auto">
-                        <button class=" btn btn-success" type="submit" value="Agregar" name="accion">Agregar</button>
+                        <input class=" btn btn-success" type="submit" value="Agregar" name="accion">
                         <a class="btn btn-danger" href="Controlador?accion=listar"> Cancelar</a>
                     </div>
             </div>
-           
+            
             </form>
       
 

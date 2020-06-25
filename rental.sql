@@ -161,15 +161,17 @@ CREATE TABLE `usuarios` (
   UNIQUE KEY `uq_email` (`email`),
   KEY `fk_usuarios_rol` (`rol_id`),
   CONSTRAINT `fk_usuarios_rol` FOREIGN KEY (`rol_id`) REFERENCES `roles` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=latin1;
 
 /*Data for the table `usuarios` */
 
 insert  into `usuarios`(`id`,`dni`,`rol_id`,`nombres`,`apellidos`,`telefono`,`email`,`password`,`fecha_registro`,`direccion`,`usuario`,`habilitado`) values 
-(2,'34860732',1,'Ale234','Molina','+542944335790','ale@ale.com','aversiseguarda','2019-11-07 00:00:00','casa','alelala',1),
+(2,'34860732',1,'Ale234','Molina','+542944335790','ale@ale.com','1234','2019-11-07 00:00:00','casa','alelala',1),
 (3,'34555222',2,'nonono','Molina1','55555','newemail@gmail.com','2be88ca4242c76e8253ac62474851065032d6833','0000-00-00 00:00:00','primero de mayo','aaaa',0),
 (6,'31555000',2,'Jorge','ref','154131351','jorge@gmail.com','1234','0000-00-00 00:00:00','su casa','Alejandro',0),
-(20,'0192834',2,'JorgeL','Reffi','1029384','jor@gmail.com','null','2020-01-29 21:22:01','primerodemayo','jorgell',1);
+(20,'0192834',2,'JorgeL','Reffi','1029384','jor@gmail.com','null','2020-01-29 21:22:01','primerodemayo','jorgell',1),
+(22,'27607461',2,'rube','mama','1591919','rubemama@gmail.com','123456','2020-06-24 22:17:29','rosario 1234','rube',1),
+(23,'987654321',2,'maria','ariam','1591919','mariam@gmail.com','12346','2020-06-24 23:38:18','rosario 1234','mariam',1);
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
