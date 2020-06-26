@@ -64,23 +64,8 @@
                        <td>
                            <a class="btn btn-dark "  href="Controlador?accion=editar&id=<%= usu.getId()%>" >Editar </a>
                            <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModalCenter">Eliminar  </button>
-                           <a  class="btn btn-danger" href="Controlador?accion=delete&id=<%= usu.getId()%>">Eliminar a borrar</a>
-                           
-                       </td>
-                        
-                        
-                        
-                    </tr>
-                    <%
-                    }
-                    
-                    %>
-                </tbody>
-                
-                               
-                
-            </table> 
-                <!-- Button trigger modal -->
+                           <a  class="btn btn-danger" href="Controlador?accion=delete&id=<%= usu.getId()%>">Er</a>
+                                 <!-- Button trigger modal -->
 
 
     <!-- Modal -->
@@ -98,11 +83,26 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-        <a type="button" class="btn btn-danger" href="Controlador?accion=delete&id=<%= usu.getId()%>">Eliminar</a>
+        <a class="btn btn-danger" href="Controlador?accion=delete&id=<%= usu.getId()%>">Eliminar</a>
       </div>
     </div>
   </div>
 </div>
+                       </td>
+                        
+                        
+                        
+                    </tr>
+                    <%
+                    }
+                    
+                    %>
+                </tbody>
+                
+                               
+                
+            </table> 
+          
               
               <%-- <a class="btn btn-success" href="index.jsp"> Volver</a> --%>
         </div>
