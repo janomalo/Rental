@@ -88,12 +88,15 @@ public class Controlador extends HttpServlet {
         if (action.equalsIgnoreCase("Agregar")) {
             
         } else if (action.equalsIgnoreCase("editar")) {
-            // int idusu=Integer.parseInt(request.getParameter("id"));
-            request.setAttribute("idusu", request.getParameter("id"));
+           request.setAttribute("idusu", request.getParameter("id"));
+            String vista="editarusuario";
+            request.setAttribute("vista", vista);
 // captura id de fila seleccionada cuando se hace click en editar.
            // acceso = edit;
         } else if (action.equalsIgnoreCase("Actualizar")) {
             System.out.println("pasa por aca");
+            
+            UsuarioControler usrctrl = new UsuarioControler();
 
             Integer id = Integer.parseInt(request.getParameter("txtid"));
             String dni = request.getParameter("txtdni");
@@ -119,7 +122,7 @@ public class Controlador extends HttpServlet {
             usu.setUsuario(usuario);
             usu.setHabilitado(hab);
 
-            dao.edit(usu);
+            usrctrl.edit(usu);
             //acceso = listar;
             
 
@@ -130,7 +133,7 @@ public class Controlador extends HttpServlet {
             usu.setId(id1);
             usuctrl.delete(usu);
             String vista="listarusuarios";
-                request.setAttribute("vista", vista);
+            request.setAttribute("vista", vista);
            // acceso = listar;
 
         } /*else if (action.equalsIgnoreCase("signin")) {

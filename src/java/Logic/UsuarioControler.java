@@ -37,6 +37,11 @@ public class UsuarioControler {
        dao.delete(usu);
     }
 
+    public void edit(Usuario usu) {
+       dao.edit(usu);
+       
+    }
+
 
 
 

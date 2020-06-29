@@ -64,7 +64,7 @@
                        <td>
                            <a class="btn btn-dark "  href="Controlador?accion=editar&id=<%= usu.getId()%>" >Editar </a>
                            <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModalCenter">Eliminar  </button>
-                           <a  class="btn btn-danger" href="Controlador?accion=delete&id=<%= usu.getId()%>">Er</a>
+                           <%-- <a  class="btn btn-danger" href="Controlador?accion=delete&id=<%= usu.getId()%>">Er</a> --%>
                                  <!-- Button trigger modal -->
 
 

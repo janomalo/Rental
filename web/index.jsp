@@ -53,6 +53,11 @@
                     break;
                     case "addusuario":
                                 %><%@include file="vistas/addUsuario.jsp"%><%
+                                    
+                    break;
+                    case "editarusuario":
+                                %><%@include file="vistas/edit.jsp"%><%
+                                    
                     break;
                     default:
                                  %><%@include file="vistas/home.jsp"%><%
