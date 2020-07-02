@@ -37,10 +37,15 @@ public class UsuarioControler {
        dao.delete(usu);
     }
 
-    public void edit(Usuario usu) {
-       dao.edit(usu);
+    public Boolean edit(Usuario usu) {
+      return dao.edit(usu);
        
     }
+    public Usuario list(int id){
+    return dao.list(id);
+    
+    }
+            
 
 
 

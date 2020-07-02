@@ -3,7 +3,8 @@
     Created on : 23-oct-2019, 21:29:29
     Author     : Alejandro
 --%>
-<link href="css/bootstrap.css" rel="stylesheet" type="text/css"/>
+
+<%@page import="Logic.UsuarioControler"%>
 <%@page import="Modelo.Usuario"%>
 <%@page import="ModeloDaoImpl.UsuarioDaoImpl"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -18,39 +19,34 @@
         
         
         <%
-            
-            UsuarioDaoImpl dao= new UsuarioDaoImpl();
+            UsuarioControler usrctrl= new UsuarioControler();
             int id=Integer.parseInt((String)request.getAttribute("idusu"));
             Usuario u= new Usuario();
-            u=dao.list(id);
+            u= usrctrl.list(id);
                          
         
         %>
          <h1>Editar Usuario</h1>
-         <div class="container">
+         <div class="container col-8">
              <form action="Controlador"  class="form-text">
                 <input  type="hidden"  name="txtid"  value="<%=u.getId() %>">
-                Dni <input type="text" name="txtdni" value="<%=u.getDni() %>"><br>
-                Nombres <input type="text" name="txtnombres" value="<%=u.getNombres() %>"><br>
-                Apellidos <input type="text" name="txtapellidos" value="<%=u.getApellidos() %>"><br>
-                Teléfono <input type="text" name="txttelefono" value="<%=u.getTelefono() %>"><br>
-                Email <input type="text" name="txtemail" value="<%=u.getEmail()%>"><br>
-                Direccion <input type="text" name="txtdireccion"  value="<%=u.getDireccion() %>"> <br>
-                Usuario  <input type="text" name="txtusuario"  value="<%=u.getUsuario()%>"> <br>
-                Contraseña <input type="password" name="txtpassword" value="<%=u.getPassword() %>"><br>
-                <input type="radio" name="txthabilitado" value="1" required="">Habilitar
+                DNI <input type="text"   class="form-control" name="txtdni" value="<%=u.getDni() %>"><br>
+                NOMBRES <input type="text" class="form-control" name="txtnombres" value="<%=u.getNombres() %>"><br>
+                APELLIDOS <input type="text" class="form-control" name="txtapellidos" value="<%=u.getApellidos() %>"><br>
+                TELÉFONO <input type="text" class="form-control" name="txttelefono" value="<%=u.getTelefono() %>"><br>
+                EMAIL <input type="text" class="form-control" name="txtemail" value="<%=u.getEmail()%>"><br>
+                DIRECCIÓN <input type="text" class="form-control" name="txtdireccion"  value="<%=u.getDireccion() %>"> <br>
+                USUARIO <input type="text" class="form-control" name="txtusuario"  value="<%=u.getUsuario()%>"> <br>
+                CONTRASEÑA <input type="password" class="form-control" name="txtpassword" value="<%=u.getPassword() %>"><br>
+                <input type="radio"  name="txthabilitado" value="1" required="">Habilitar
                 <input type="radio" name="txthabilitado" value="0" required="">Deshabiltiar<br>
                
                
                 <%-- Fecha <input type="date" name="fecha"> --%>
-                <input type="submit" value="Actualizar" name="accion">
+                <input  class="btn btn-success" type="submit" value="Actualizar" name="accion">
+                <a class="btn btn-info" href="index.jsp"> Volver</a>
             </form>
-            
-            
-            
-            
-            
-        </div>
-        <a class="btn btn-success" href="index.jsp"> Volver</a>
+          </div>
+        
     </body>
 </html>

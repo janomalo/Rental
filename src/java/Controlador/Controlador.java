@@ -122,9 +122,15 @@ public class Controlador extends HttpServlet {
             usu.setUsuario(usuario);
             usu.setHabilitado(hab);
 
-            usrctrl.edit(usu);
-            //acceso = listar;
             
+            if(usrctrl.edit(usu)== true){
+            String vista="listarusuarios";
+            request.setAttribute("vista", vista);
+            }else{
+            String vista="erroredit";
+            request.setAttribute("vista", vista);
+            
+            }
 
         } else if (action.equalsIgnoreCase("delete")) {
             UsuarioControler usuctrl = new UsuarioControler();// creo controlador de persona de LOGIC
