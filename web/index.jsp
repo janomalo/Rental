@@ -59,6 +59,10 @@
                                 %><%@include file="vistas/edit.jsp"%><%
                                     
                     break;
+                    case "roles":
+                                %><%@include file="vistas/roles.jsp"%><%
+                                    
+                    break;
                     default:
                                  %><%@include file="vistas/home.jsp"%><%
                                 break;
