@@ -15,14 +15,14 @@
         <title>JSP Page</title>
     </head>
     <body>
-        
+        <h1>BIENVENIDO USUARIO ADMIN !!</h1>
         <div>
             
-            <a class="btn btn-danger" href="Controlador?accion=listar"> Listar Usuarios</a> <br>
+            <%--<a class="btn btn-danger" href="Controlador?accion=listar"> Listar Usuarios</a> <br>
             <a class="btn btn-danger" href="ControladorProducto?accion=listar"> Listar Productos</a> <br>
             <a href="welcome.jps"> WELCOME</a>
             
-            
+            --%>
        </div>
         
                    </body>
