@@ -12,18 +12,16 @@
     </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Alejandro/Documents/GitHub/Rental/web/vistas/roles.jsp</file>
-            <file>file:/C:/Users/Alejandro/Documents/GitHub/Rental/web/vistas/login.jsp</file>
-            <file>file:/C:/Users/Alejandro/Documents/GitHub/Rental/web/vistas/addUsuario.jsp</file>
-            <file>file:/C:/Users/Alejandro/Documents/GitHub/Rental/src/java/Controlador/ControladorVista.java</file>
-            <file>file:/C:/Users/Alejandro/Documents/GitHub/Rental/src/java/Controlador/Controlador.java</file>
-            <file>file:/C:/Users/Alejandro/Documents/GitHub/Rental/web/index.jsp</file>
-            <file>file:/C:/Users/Alejandro/Documents/GitHub/Rental/src/java/ModeloDaoImpl/UsuarioDaoImpl.java</file>
-            <file>file:/C:/Users/Alejandro/Documents/GitHub/Rental/web/vistas/listar.jsp</file>
-            <file>file:/C:/Users/Alejandro/Documents/GitHub/Rental/web/vistas/erroredit.jsp</file>
-            <file>file:/C:/Users/Alejandro/Documents/GitHub/Rental/web/vistas/menuadmin.jsp</file>
-            <file>file:/C:/Users/Alejandro/Documents/GitHub/Rental/src/java/Logic/UsuarioControler.java</file>
-            <file>file:/C:/Users/Alejandro/Documents/GitHub/Rental/web/vistas/edit.jsp</file>
+            <file>file:/C:/Users/Cajaingros/Documents/GitHub/Rental/web/vistas/listar.jsp</file>
+            <file>file:/C:/Users/Cajaingros/Documents/GitHub/Rental/src/java/Logic/RoleControler.java</file>
+            <file>file:/C:/Users/Cajaingros/Documents/GitHub/Rental/web/index.jsp</file>
+            <file>file:/C:/Users/Cajaingros/Documents/GitHub/Rental/src/java/Controlador/ControladorVista.java</file>
+            <file>file:/C:/Users/Cajaingros/Documents/GitHub/Rental/src/java/Logic/UsuarioControler.java</file>
+            <file>file:/C:/Users/Cajaingros/Documents/GitHub/Rental/src/java/Modelo/Usuario.java</file>
+            <file>file:/C:/Users/Cajaingros/Documents/GitHub/Rental/src/java/Controlador/Controlador.java</file>
+            <file>file:/C:/Users/Cajaingros/Documents/GitHub/Rental/src/java/ModeloDaoImpl/UsuarioDaoImpl.java</file>
+            <file>file:/C:/Users/Cajaingros/Documents/GitHub/Rental/web/vistas/roles.jsp</file>
+            <file>file:/C:/Users/Cajaingros/Documents/GitHub/Rental/src/java/ModeloDaoImpl/RolDaoImpl.java</file>
         </group>
     </open-files>
 </project-private>

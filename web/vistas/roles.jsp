@@ -8,6 +8,32 @@
         <title>JSP Page</title>
     </head>
     <body>
+        <div  class="container-fluid">
         <h1>Roles</h1>
+        
+        <table  class="table" >
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>NOMBRE</th>
+                    <th>ACCIONES</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    
+                </tr>
+                
+            </tbody>
+            
+            
+            
+            
+        </table>
+        
+        </div>
     </body>
 </html>
