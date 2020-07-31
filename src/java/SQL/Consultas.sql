@@ -168,3 +168,5 @@ CONSTRAINT pk_lista_productos PRIMARY KEY(id),
 CONSTRAINT fk_reserva_id FOREIGN KEY(reserva_id) REFERENCES reservas(id),
 CONSTRAINT fk_producto_id FOREIGN KEY(producto_id) REFERENCES productos(id)
 )ENGINE=InnoDb;
+
+ "select rol. "+ "from roles "	+ "inner join rol_persona "+ "on rol.id=rol_persona.id_rol "+ "where id_persona=?");
