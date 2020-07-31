@@ -83,7 +83,7 @@ public class RolDaoImpl {
 		ResultSet rs=null;
 		try {
 			stmt=FactoryConexion.getInstancia().getConn().prepareStatement(
-					"select * from rol where descripcion=?"
+					"select * from rol where nombre=?"
 					);
 			stmt.setString(1, rolToSearch.getNombre());
 			rs=stmt.executeQuery();
@@ -107,7 +107,7 @@ public class RolDaoImpl {
 		return r;
 	}
 	
-	public void setRoles(Persona per) {
+	public void setRoles(Usuario usu) {
 		PreparedStatement stmt=null;
 		ResultSet rs=null;
 		try {
@@ -118,14 +118,14 @@ public class RolDaoImpl {
 					+ "on rol.id=rol_persona.id_rol "
 					+ "where id_persona=?"
 					);
-			stmt.setInt(1, per.getId());
+			stmt.setInt(1, usu.getId());
 			rs= stmt.executeQuery();
 			if(rs!=null) {
 				while(rs.next()) {
 					Rol r=new Rol();
 					r.setId(rs.getInt("id"));
-					r.setDescripcion(rs.getString("descripcion"));
-					per.addRol(r);;
+					r.setNombre(rs.getString("nombre"));
+					usu.addRol(r);;
 				}
 			}
 			
