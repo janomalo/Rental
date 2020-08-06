@@ -125,7 +125,7 @@ public class RolDaoImpl {
 					Rol r=new Rol();
 					r.setId(rs.getInt("id"));
 					r.setNombre(rs.getString("nombre"));
-					usu.addRol(r);;
+					usu.addRol(r);
 				}
 			}
 			
