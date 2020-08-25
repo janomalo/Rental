@@ -47,7 +47,7 @@ public class RolDaoImpl {
 		return roles;
 	}
 	
-	public Rol getById(Rol rolToSearch) {
+	public Rol getById(int idrol) {
 		Rol r=null;
 		PreparedStatement stmt=null;
 		ResultSet rs=null;
@@ -55,7 +55,7 @@ public class RolDaoImpl {
 			stmt=FactoryConexion.getInstancia().getConn().prepareStatement(
 					"select * from roles where id=?"
 					);
-			stmt.setInt(1, rolToSearch.getId());
+			stmt.setInt(1, idrol);
 			rs=stmt.executeQuery();
 			if(rs!=null && rs.next()) {
 				r=new Rol();
@@ -107,7 +107,7 @@ public class RolDaoImpl {
 		return r;
 	}
 	
-	public void setRoles(Usuario usu) {
+	public void setRoles(Usuario usu) { // ver si usar, setea rol al usuario pero 
 		PreparedStatement stmt=null;
 		ResultSet rs=null;
 		try {

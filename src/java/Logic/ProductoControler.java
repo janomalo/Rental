@@ -7,8 +7,8 @@ package Logic;
 
 /**
  *
- * @author Cajaingros
+ * @author Alejandro
  */
-public class RoleControler {
+public class ProductoControler {
     
 }

@@ -23,7 +23,7 @@
       <% session.invalidate(); %>
       <div  class="container mb-4 col-4">
     <form class="form-signin" action="Signin" method="post">
-      <img class="mb-4" src="style/bootstrap-solid.html" alt="" width="72" height="72">
+      
       <h1 class="h3 mb-3 font-weight-normal">Por favor Inicie sesión</h1>
       <label for="inputUser" class="sr-only">Usuario</label>
       <input id="inputUser" name="user" class="form-control" placeholder="User" required="" autofocus="" type="text">

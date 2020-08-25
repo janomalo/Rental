@@ -3,9 +3,8 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Controlador;
+package Servlet;
 
-import ModeloDaoImpl.ProductoDaoImpl;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -18,10 +17,9 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Alejandro
  */
-@WebServlet(name = "ControladorImg", urlPatterns = {"/ControladorImg"})
-public class ControladorImg extends HttpServlet {
+@WebServlet(name = "ControladorVista", urlPatterns = {"/ControladorVista"})
+public class ControladorVista extends HttpServlet {
 
-    ProductoDaoImpl pdao= new ProductoDaoImpl();
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -39,10 +37,10 @@ public class ControladorImg extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet ControladorImg</title>");            
+            out.println("<title>Servlet ControladorVista</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet ControladorImg at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet ControladorVista at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -60,11 +58,31 @@ public class ControladorImg extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-     
-        int id=Integer.parseInt(request.getParameter("id"));
-        pdao.listarImg(id, response);
+       
+        String action = request.getParameter("accion");
+        if (action.equalsIgnoreCase("signin")) {
+            String vista="login";
+            request.setAttribute("vista", vista);                       
+            //acceso = signin;
+        } else if(action.equalsIgnoreCase("temporada")){
+        String vista="temporada";
+            request.setAttribute("vista", vista);                       
+            
+        } else if(action.equalsIgnoreCase("listarusuarios")){
+        String vista="listarusuarios";
+            request.setAttribute("vista", vista);                       
+            
+        } else if(action.equalsIgnoreCase("addusuario")){
+        String vista="addusuario";
+            request.setAttribute("vista", vista);                       
+            
+        }else if(action.equalsIgnoreCase("roles")){
+        String vista="roles";
+            request.setAttribute("vista", vista);                       
+            
+        }
         
-        
+        request.getRequestDispatcher("index.jsp").forward(request, response);
     }
 
     /**

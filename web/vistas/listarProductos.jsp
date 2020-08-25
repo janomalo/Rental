@@ -46,7 +46,7 @@
                     </tr>
                 </thead>
                 <%
-                   ControladorProducto contro= new ControladorProducto();
+                   ControladorProducto contro= new ControladorProducto(); //modfiica a logic y dao
                    
                     
                     List<Producto> list= contro.listar();

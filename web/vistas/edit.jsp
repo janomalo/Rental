@@ -27,7 +27,7 @@
         
         %>
          <h1>Editar Usuario</h1>
-         <div class="container col-8">
+         <div class="container col-lg-8">
              <form action="Controlador"  class="form-text">
                 <input  type="hidden"  name="txtid"  value="<%=u.getId() %>">
                 DNI <input type="text"   class="form-control" name="txtdni" value="<%=u.getDni() %>"><br>
@@ -40,11 +40,19 @@
                 CONTRASEÑA <input type="password" class="form-control" name="txtpassword" value="<%=u.getPassword() %>"><br>
                 <input type="radio"  name="txthabilitado" value="1" required="">Habilitar
                 <input type="radio" name="txthabilitado" value="0" required="">Deshabiltiar<br>
-               
+               <%-- <div class="form-group">
+                    <label class="col-lg-8 control-label">Estado</label>
+                    <div class="col-lg-auto">
+                        <select  class="form-control" name="habilitado">
+                            <option  value="1">Habilitar</option>
+                            <option  value="0">Deshabilitar</option>
+                        </select>
+                    </div>
+            </div> --%>
                
                 <%-- Fecha <input type="date" name="fecha"> --%>
-                <input  class="btn btn-success" type="submit" value="Actualizar" name="accion">
-                <a class="btn btn-info" href="index.jsp"> Volver</a>
+                <input  class=" btn btn-success" type="submit" value="Actualizar" name="accion">
+                <a class="btn btn-danger" href="index.jsp"> Volver</a>
             </form>
           </div>
         

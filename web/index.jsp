@@ -63,6 +63,10 @@
                                 %><%@include file="vistas/roles.jsp"%><%
                                     
                     break;
+                    case "editrol":
+                                %><%@include file="vistas/editRol.jsp"%><%
+                                    
+                    break;
                     default:
                                  %><%@include file="vistas/home.jsp"%><%
                                 break;
@@ -70,7 +74,7 @@
 
                 }%>
         </div> 
-        <div id="footer">
+        <div id="footer"  class="position-relative">
             <%@include file="vistas/pie.jsp" %>
         </div>
 
