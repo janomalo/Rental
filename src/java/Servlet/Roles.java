@@ -77,9 +77,8 @@ public class Roles extends HttpServlet {
         } else if (action.equalsIgnoreCase("editar")) {
             int idrol= Integer.parseInt(request.getParameter("id"));                    
            Rol r = rolctrl.getById(idrol);
-           request.setAttribute("rol", r);
-           
-            String vista="editrol";
+          // session.setAttribute("rol", r);
+          String vista="editrol";
             
             request.setAttribute("vista", vista);
 // captura id de fila seleccionada cuando se hace click en editar.

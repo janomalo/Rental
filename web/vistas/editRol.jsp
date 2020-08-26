@@ -12,7 +12,7 @@
     <body>
         <h1>Editar Rol</h1>
          <%
-           
+           //Rol rol=(Rol)request.getParameter("rol");
                 //recuperar datos del ro y mostrar
         
         %>

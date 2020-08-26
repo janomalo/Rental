@@ -28,6 +28,7 @@
                    List<Rol> listroles = rolcon.getAll(); //llama metodo getall y trae lisa de roles
                    Iterator<Rol> iterol = listroles.iterator();
                     
+                   //recuperar rol obtenido y pasar por while
                    Rol rol= null;
                     while(iterol.hasNext()){
                         rol=iterol.next();
