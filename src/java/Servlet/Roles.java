@@ -14,6 +14,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -77,12 +78,34 @@ public class Roles extends HttpServlet {
         } else if (action.equalsIgnoreCase("editar")) {
             int idrol= Integer.parseInt(request.getParameter("id"));                    
            Rol r = rolctrl.getById(idrol);
-          // session.setAttribute("rol", r);
+           HttpSession session = request.getSession();
+           session.setAttribute("rol", r);
+         
           String vista="editrol";
             
             request.setAttribute("vista", vista);
 // captura id de fila seleccionada cuando se hace click en editar.
            // acceso = edit;
+        }else if(action.equalsIgnoreCase("Actualizar")){
+            RolControler rolctrl = new RolControler();
+           Integer id = Integer.parseInt(request.getParameter("txtidrol"));
+           String nombre = request.getParameter("txtnamerol");
+           
+           Rol r= new Rol();
+           r.setId(id);
+           r.setNombre(nombre);
+           
+           if(rolctrl.update(r)== true){
+            String vista="listarusuarios";
+            request.setAttribute("vista", vista);
+            }else{
+            String vista="erroredit";
+            request.setAttribute("vista", vista);
+            
+            }
+            
+        
+        
         }
         
         

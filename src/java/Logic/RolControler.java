@@ -30,6 +30,11 @@ public class RolControler {
     
         return dao.getById(id);
     }
+
+    public boolean update(Rol r) {
+       //return dao.update(r);
+       
+    }
     
     
     

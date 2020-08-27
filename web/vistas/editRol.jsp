@@ -10,18 +10,21 @@
         <title>Editar Rol</title>
     </head>
     <body>
+        <div class="container col-10">
         <h1>Editar Rol</h1>
          <%
-           //Rol rol=(Rol)request.getParameter("rol");
-                //recuperar datos del ro y mostrar
+           
+           Rol r= (Rol)session.getAttribute("rol");
         
         %>
-        <form>
-                    <input  type="hidden"  name="txtid"  value="<%=rol.getId() %>">
-                DNI <input type="text"   class="form-control" name="txtdni" value="<%=u.getDni() %>"><br>
+        <form action="Roles"  class="form-text">
+                <input  type="hidden"  name="txtidrol"  value="<%= r.getId() %>">
+                Descripción <input type="text"   class="form-control" name="txtnamerol" value="<%=r.getNombre() %>"><br>
                 <input  class=" btn btn-success" type="submit" value="Actualizar" name="accion">
                 <a class="btn btn-danger" href="index.jsp"> Volver</a>
                 
         </form>
+                
+                </div>
     </body>
 </html>
