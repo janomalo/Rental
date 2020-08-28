@@ -96,9 +96,11 @@ public class Roles extends HttpServlet {
            r.setNombre(nombre);
            
            if(rolctrl.update(r)== true){
-            String vista="listarusuarios";
+               
+            String vista="roles";
             request.setAttribute("vista", vista);
-            }else{
+                       
+           }else{
             String vista="erroredit";
             request.setAttribute("vista", vista);
             

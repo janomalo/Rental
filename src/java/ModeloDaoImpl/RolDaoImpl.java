@@ -174,25 +174,36 @@ public class RolDaoImpl {
 
 	}
 	
-	public void update(Rol rol) {
+	public boolean update(Rol rol) {
 		PreparedStatement stmt= null;
-		try {
+                int resultado;
+                boolean boleano= false;
+                try {
 			stmt=FactoryConexion.getInstancia().getConn().
 					prepareStatement(
 							"update roles set nombre=? where id=?");
 			stmt.setString(1, rol.getNombre());
 			stmt.setInt(2, rol.getId());
-			stmt.executeUpdate();
+			resultado=stmt.executeUpdate(); //devuelve cantidad int de filas updateadas 
+                        if(resultado>0){
+                        boleano=true;
+                        }else{
+                        boleano=false;
+                        }
 		} catch (SQLException e) {
             e.printStackTrace();
 		} finally {
             try {
                 if(stmt!=null)stmt.close();
                 FactoryConexion.getInstancia().releaseConn();
+                
             } catch (SQLException e) {
             	e.printStackTrace();
+              
             }
 		}
+                
+             return boleano; 
 	}
 	
 	public void remove(Rol rol) {

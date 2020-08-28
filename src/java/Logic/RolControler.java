@@ -32,7 +32,8 @@ public class RolControler {
     }
 
     public boolean update(Rol r) {
-       //return dao.update(r);
+       
+        return dao.update(r);
        
     }
     
