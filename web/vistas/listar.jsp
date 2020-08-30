@@ -35,9 +35,8 @@
                     </tr>
                 </thead>
                 <%
-                   
-                   UsuarioControler usucon= new UsuarioControler(); //llamar a la capa logica y que vaya pasando los datos
-                   List<Usuario> list=usucon.getAll(); //llama metodo getall y trae lisa de usuario
+                    //llama metodo getall y trae lisa de usuario
+                   List<Usuario> list= (List<Usuario>)session.getAttribute("listausuarios");
                    Iterator<Usuario> iter=list.iterator();
                     
                    Usuario usu= null;
@@ -63,7 +62,7 @@
                        <%-- <td> <%= usu.getFecha_registro()%> </td> --%>
                        <td>
                            <a class="btn btn-dark "  href="Controlador?accion=editar&id=<%= usu.getId()%>" >Editar </a>
-                           <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModalCenter">Eliminar  </button>
+                           <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModalCenter" >Eliminar  </button>
                            <%-- <a  class="btn btn-danger" href="Controlador?accion=delete&id=<%= usu.getId()%>">Er</a> --%>
                                  <!-- Button trigger modal -->
 

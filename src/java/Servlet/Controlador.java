@@ -14,6 +14,7 @@ import java.io.PrintWriter;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 import javax.servlet.RequestDispatcher;
 
 import javax.servlet.ServletException;
@@ -33,10 +34,10 @@ public class Controlador extends HttpServlet {
     String edit = "/vistas/edit.jsp";
     String index = "index.jsp";
     Usuario usu = new Usuario();
-    UsuarioDaoImpl dao = new UsuarioDaoImpl();
+  
     int r;
     int view;
-
+    UsuarioControler usrctrl ;
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -46,28 +47,22 @@ public class Controlador extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+    
+    
+    
+    
+    
+    
+
+    public Controlador() {
+        // creo controlador de persona de LOGIC
+        this.usrctrl= new UsuarioControler(); 
+    }
+
+    protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        /*String accion=request.getParameter("accion");
-        if(accion.equals("Ingresar")){
-                String usuario=request.getParameter("user");
-                String pass=request.getParameter("password");
-                usu.setUsuario(usuario);
-                usu.setPassword(pass);
-                r=dao.validar(usu);
-                if(r==1){
-                    HttpSession session = request.getSession(true);	    
-                    session.setAttribute("user",usuario); 
-                       
-                    request.getRequestDispatcher("Principal.jsp").forward(request, response);
-                }else{
-                request.getRequestDispatcher("index.jsp").forward(request, response);
-                }
-        } else{
-         
-                request.getRequestDispatcher("index.jsp").forward(request, response);
-        }*/
+        
+        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -85,19 +80,31 @@ public class Controlador extends HttpServlet {
 
         //String acceso = "";
         String action = request.getParameter("accion");
-        if (action.equalsIgnoreCase("Agregar")) {
+        if (action.equalsIgnoreCase("listarusuarios")) {
+             List<Usuario> list=usrctrl.getAll(); 
+            HttpSession session = request.getSession();
+           session.setAttribute("listausuarios", list);
+            String vista="listarusuarios";
+            request.setAttribute("vista", vista);
             
         } else if (action.equalsIgnoreCase("editar")) {
-           request.setAttribute("idusu", request.getParameter("id"));
+           int id;
+            id = Integer.parseInt(request.getParameter("id"));
+            Usuario u= usrctrl.list(id);
+             HttpSession session = request.getSession();
+           session.setAttribute("usuedit", u);
+            
+            
+            
+            
             String vista="editarusuario";
             request.setAttribute("vista", vista);
+            
+            
 // captura id de fila seleccionada cuando se hace click en editar.
            // acceso = edit;
         } else if (action.equalsIgnoreCase("Actualizar")) {
             System.out.println("pasa por aca");
-            
-            UsuarioControler usrctrl = new UsuarioControler();
-
             Integer id = Integer.parseInt(request.getParameter("txtid"));
             String dni = request.getParameter("txtdni");
             String nombres = request.getParameter("txtnombres");
@@ -133,11 +140,10 @@ public class Controlador extends HttpServlet {
             }
 
         } else if (action.equalsIgnoreCase("delete")) {
-            UsuarioControler usuctrl = new UsuarioControler();// creo controlador de persona de LOGIC
-            String id = request.getParameter("id");
-            int id1 = Integer.parseInt(id);
+            
+            int id1 = Integer.parseInt(request.getParameter("id"));
             usu.setId(id1);
-            usuctrl.delete(usu);
+            usrctrl.delete(usu);
             String vista="listarusuarios";
             request.setAttribute("vista", vista);
            // acceso = listar;
@@ -168,9 +174,9 @@ public class Controlador extends HttpServlet {
             throws ServletException, IOException {
         //response.setContentType("text/html;charset=UTF-8");
 
-        String accion = request.getParameter("accion");
-        if (accion.equalsIgnoreCase("Agregar")){
-              UsuarioControler usuctrl = new UsuarioControler();// creo controlador de persona de LOGIC
+        String action = request.getParameter("accion");
+        if (action.equalsIgnoreCase("Agregar")){
+              // creo controlador de persona de LOGIC
             String dni = request.getParameter("dni");
             String nombres = request.getParameter("nombres");
             String apellidos = request.getParameter("apellidos");
@@ -194,14 +200,50 @@ public class Controlador extends HttpServlet {
             usu.setHabilitado(hab);
 
            
-            usuctrl.save(usu);// debe ir a logic y cruzar capas grabar usuario,
+            usrctrl.save(usu);// debe ir a logic y cruzar capas grabar usuario,
             //acceso = listar;
             String vista="listarusuarios";
                 request.setAttribute("vista", vista);
+                          
+                
+        }else if (action.equalsIgnoreCase("Actualizar")) {
+            System.out.println("pasa por aca");
+            Integer id = Integer.parseInt(request.getParameter("txtid"));
+            String dni = request.getParameter("txtdni");
+            String nombres = request.getParameter("txtnombres");
+            String apellidos = request.getParameter("txtapellidos");
+            String telefono = request.getParameter("txttelefono");
+            String email = request.getParameter("txtemail");          
+            String direccion = request.getParameter("txtdireccion");
+            String usuario = request.getParameter("txtusuario");
+
+            String h = request.getParameter("txthabilitado");
+            int hab = Integer.parseInt(h);
+
+            usu.setId(id);
+            usu.setDni(dni);
+            usu.setNombres(nombres);
+            usu.setApellidos(apellidos);
+            usu.setTelefono(telefono);
+            usu.setEmail(email);            
+            usu.setDireccion(direccion);
+            usu.setUsuario(usuario);
+            usu.setHabilitado(hab);
+
+            boolean valor= usrctrl.edit(usu);
+            if( valor == true){
+            String vista="listarusuarios";
+            request.setAttribute("vista", vista);
+            }else{
+            String vista="erroredit";
+            request.setAttribute("vista", vista);
             
-                
-                
-                }
+            }
+
+        }
+        
+        
+        
 request.getRequestDispatcher("index.jsp").forward(request, response);
     }
 

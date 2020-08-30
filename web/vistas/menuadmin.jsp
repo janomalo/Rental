@@ -58,7 +58,7 @@
                             </button>
                             <div class="dropdown-menu " >
                                 <a class="dropdown-item" href="ControladorVista?accion=addusuario" >Nuevo Usuario</a>
-                                <a class="dropdown-item" href="ControladorVista?accion=listarusuarios" >Lista Usuarios</a>
+                                <a class="dropdown-item" href="Controlador?accion=listarusuarios" >Lista Usuarios</a>
                                 <a class="dropdown-item" href="ControladorVista?accion=roles" >Roles</a>
 
 

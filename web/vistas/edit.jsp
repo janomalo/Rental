@@ -19,16 +19,13 @@
         
         
         <%
-            UsuarioControler usrctrl= new UsuarioControler();
-            int id=Integer.parseInt((String)request.getAttribute("idusu"));
-            Usuario u= new Usuario();
-            u= usrctrl.list(id);
+           Usuario u= (Usuario)session.getAttribute("usuedit");
                          
         
         %>
          <h1>Editar Usuario</h1>
          <div class="container col-lg-8">
-             <form action="Controlador"  class="form-text">
+             <form action="Controlador"  class="form-text" method="POST">
                 <input  type="hidden"  name="txtid"  value="<%=u.getId() %>">
                 DNI <input type="text"   class="form-control" name="txtdni" value="<%=u.getDni() %>"><br>
                 NOMBRES <input type="text" class="form-control" name="txtnombres" value="<%=u.getNombres() %>"><br>
@@ -37,7 +34,7 @@
                 EMAIL <input type="text" class="form-control" name="txtemail" value="<%=u.getEmail()%>"><br>
                 DIRECCIÓN <input type="text" class="form-control" name="txtdireccion"  value="<%=u.getDireccion() %>"> <br>
                 USUARIO <input type="text" class="form-control" name="txtusuario"  value="<%=u.getUsuario()%>"> <br>
-                CONTRASEÑA <input type="password" class="form-control" name="txtpassword" value="<%=u.getPassword() %>"><br>
+               
                 <input type="radio"  name="txthabilitado" value="1" required="">Habilitar
                 <input type="radio" name="txthabilitado" value="0" required="">Deshabiltiar<br>
                <%-- <div class="form-group">
