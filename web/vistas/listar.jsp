@@ -36,7 +36,7 @@
                 </thead>
                 <%
                     //llama metodo getall y trae lisa de usuario
-                   List<Usuario> list= (List<Usuario>)session.getAttribute("listausuarios");
+                   List<Usuario> list= (List<Usuario>)session.getAttribute("listausu");
                    Iterator<Usuario> iter=list.iterator();
                     
                    Usuario usu= null;
@@ -62,12 +62,12 @@
                        <%-- <td> <%= usu.getFecha_registro()%> </td> --%>
                        <td>
                            <a class="btn btn-dark "  href="Controlador?accion=editar&id=<%= usu.getId()%>" >Editar </a>
-                           <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModalCenter" >Eliminar  </button>
-                           <%-- <a  class="btn btn-danger" href="Controlador?accion=delete&id=<%= usu.getId()%>">Er</a> --%>
+                          
+                          <a  class="btn btn-danger" href="Controlador?accion=delete&id=<%= usu.getId()%>">Eliminar</a> 
                                  <!-- Button trigger modal -->
 
 
-    <!-- Modal -->
+    <!-- Modal 
 <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
@@ -86,7 +86,7 @@
       </div>
     </div>
   </div>
-</div>
+</div>-->
                        </td>
                         
                         

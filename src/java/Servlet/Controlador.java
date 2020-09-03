@@ -83,7 +83,7 @@ public class Controlador extends HttpServlet {
         if (action.equalsIgnoreCase("listarusuarios")) {
              List<Usuario> list=usrctrl.getAll(); 
             HttpSession session = request.getSession();
-           session.setAttribute("listausuarios", list);
+           session.setAttribute("listausu", list);
             String vista="listarusuarios";
             request.setAttribute("vista", vista);
             
@@ -139,23 +139,7 @@ public class Controlador extends HttpServlet {
             
             }
 
-        } else if (action.equalsIgnoreCase("delete")) {
-            
-            int id1 = Integer.parseInt(request.getParameter("id"));
-            usu.setId(id1);
-            usrctrl.delete(usu);
-            String vista="listarusuarios";
-            request.setAttribute("vista", vista);
-           // acceso = listar;
-
-        } /*else if (action.equalsIgnoreCase("signin")) {
-            String vista="login";
-            request.setAttribute("vista", vista);
-            
-            
-            //acceso = signin;
-
-        }*/
+        } 
         request.getRequestDispatcher("index.jsp").forward(request, response);
        // vista.forward(request, response);
 
@@ -240,7 +224,16 @@ public class Controlador extends HttpServlet {
             
             }
 
-        }
+        } else if (action.equalsIgnoreCase("delete")) {
+            
+            int id1 = Integer.parseInt(request.getParameter("id"));
+            usu.setId(id1);
+            usrctrl.delete(usu);
+            String vista="listarusuarios";
+            request.setAttribute("vista", vista);;
+           // acceso = listar;
+
+        } 
         
         
         
