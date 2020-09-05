@@ -36,7 +36,7 @@
                 </thead>
                 <%
                     //llama metodo getall y trae lisa de usuario
-                   List<Usuario> list= (List<Usuario>)session.getAttribute("listausu");
+                   List<Usuario> list= (List<Usuario>)request.getAttribute("listausu");
                    Iterator<Usuario> iter=list.iterator();
                     
                    Usuario usu= null;

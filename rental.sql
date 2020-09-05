@@ -161,7 +161,7 @@ CREATE TABLE `usuarios` (
   UNIQUE KEY `uq_email` (`email`),
   KEY `fk_usuarios_rol` (`rol_id`),
   CONSTRAINT `fk_usuarios_rol` FOREIGN KEY (`rol_id`) REFERENCES `roles` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=latin1;
 
 /*Data for the table `usuarios` */
 
@@ -171,7 +171,10 @@ insert  into `usuarios`(`id`,`dni`,`rol_id`,`nombres`,`apellidos`,`telefono`,`em
 (6,'31555000',2,'Jorge','ref','154131351','jorge@gmail.com','1234','0000-00-00 00:00:00','su casa','Alejandro',0),
 (20,'0192834',2,'JorgeL','Reffi','1029384','jor@gmail.com','null','2020-01-29 21:22:01','primerodemayo','jorgell',1),
 (22,'27607461',2,'rube','mama','1591919','rubemama@gmail.com','123456','2020-06-24 22:17:29','rosario 1234','rube',1),
-(23,'987654321',2,'maria','ariam','1591919','mariam@gmail.com','12346','2020-06-24 23:38:18','rosario 1234','mariam',1);
+(23,'987654321',2,'maria','ariam','1591919','mariam@gmail.com','12346','2020-06-24 23:38:18','rosario 1234','mariam',1),
+(24,'14268660',2,'Juan ','Molina','159159159','juamolina@hotmail.com','189189','2020-09-05 17:25:19','Primero de mayo 1120','jmolina',1),
+(25,'148148159',2,'Alejandro','Martinez','0341-153355889','amartinez@hotmail.com','123456','2020-09-05 17:28:50','Mendoza 1444','amartinez',1),
+(28,'12555666',2,'Marcelo','Bueno','34115789456','marcelob@gmail.com','1234','2020-09-05 18:06:17','San juan 1555','mbueno',0);
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;

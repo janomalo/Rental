@@ -19,54 +19,7 @@ public class UsuarioDaoImpl {
     public static Usuario login(Usuario user) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-
-    // Instancias la clase que hemos creado anteriormente
-    //  Conexion SQL = new Conexion();
-// Llamas al método que tiene la clase y te devuelve una conexión
-    //Connection conn = SQL.conectar();
-// Usuario u=new Usuario();
-  /*  public Usuario getByCredentials(Usuario usu) {
-		//DataRol dr=new DataRol();
-		Usuario u=null;
-		PreparedStatement stmt=null;
-		ResultSet rs=null;
-		try {
-			stmt=FactoryConexion.getInstancia().getConn().prepareStatement(
-					"select id,nombre,apellido,tipo_doc,nro_doc,email,tel,habilitado from persona where email=? and password=?"
-					);
-			stmt.setString(1, usu.getUsuario());
-			stmt.setString(2, usu.getPassword());
-			rs=stmt.executeQuery();
-			if(rs!=null && rs.next()) {
-				u=new Usuario();
-				u.setDocumento(new Documento());
-				u.setId(rs.getInt("id"));
-				u.setNombre(rs.getString("nombre"));
-				u.setApellido(rs.getString("apellido"));
-				u.getDocumento().setTipo(rs.getString("tipo_doc"));
-				u.getDocumento().setNro(rs.getString("nro_doc"));
-				u.setEmail(rs.getString("email"));
-				u.setTel(rs.getString("tel"));
-				u.setHabilitado(rs.getBoolean("habilitado"));
-				//
-				dr.setRoles(p);
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}finally {
-			try {
-				if(rs!=null) {rs.close();}
-				if(stmt!=null) {stmt.close();}
-				FactoryConexion.getInstancia().releaseConn();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-		}
-		
-		return p;
-	}
-*/
-   
+       
     public void save(Usuario usu) {
         //boolean save=false;
         PreparedStatement stmt = null;

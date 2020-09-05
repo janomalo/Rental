@@ -82,8 +82,8 @@ public class Controlador extends HttpServlet {
         String action = request.getParameter("accion");
         if (action.equalsIgnoreCase("listarusuarios")) {
              List<Usuario> list=usrctrl.getAll(); 
-            HttpSession session = request.getSession();
-           session.setAttribute("listausu", list);
+          
+           request.setAttribute("listausu", list);
             String vista="listarusuarios";
             request.setAttribute("vista", vista);
             
@@ -93,8 +93,7 @@ public class Controlador extends HttpServlet {
             Usuario u= usrctrl.list(id);
              HttpSession session = request.getSession();
            session.setAttribute("usuedit", u);
-            
-            
+                    
             
             
             String vista="editarusuario";
@@ -139,20 +138,25 @@ public class Controlador extends HttpServlet {
             
             }
 
+        } else if (action.equalsIgnoreCase("delete")) {
+            
+            int id1 = Integer.parseInt(request.getParameter("id"));
+            usu.setId(id1);
+            usrctrl.delete(usu);
+            List<Usuario> list=usrctrl.getAll(); 
+          
+           request.setAttribute("listausu", list);
+            String vista="listarusuarios";
+            request.setAttribute("vista", vista);
+           // acceso = listar;
+
         } 
         request.getRequestDispatcher("index.jsp").forward(request, response);
        // vista.forward(request, response);
 
     }
 
-    /**
-     * Handles the HTTP <code>POST</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
+    
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -185,9 +189,11 @@ public class Controlador extends HttpServlet {
 
            
             usrctrl.save(usu);// debe ir a logic y cruzar capas grabar usuario,
-            //acceso = listar;
+           List<Usuario> list=usrctrl.getAll(); 
+          
+           request.setAttribute("listausu", list);
             String vista="listarusuarios";
-                request.setAttribute("vista", vista);
+            request.setAttribute("vista", vista);
                           
                 
         }else if (action.equalsIgnoreCase("Actualizar")) {
@@ -224,20 +230,13 @@ public class Controlador extends HttpServlet {
             
             }
 
-        } else if (action.equalsIgnoreCase("delete")) {
-            
-            int id1 = Integer.parseInt(request.getParameter("id"));
-            usu.setId(id1);
-            usrctrl.delete(usu);
-            String vista="listarusuarios";
-            request.setAttribute("vista", vista);;
-           // acceso = listar;
-
         } 
         
         
         
-request.getRequestDispatcher("index.jsp").forward(request, response);
+            request.getRequestDispatcher("index.jsp").forward(request, response);
+
+
     }
 
     /**
