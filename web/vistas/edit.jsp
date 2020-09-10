@@ -49,7 +49,7 @@
                
                 <%-- Fecha <input type="date" name="fecha"> --%>
                 <input  class=" btn btn-success" type="submit" value="Actualizar" name="accion">
-                <a class="btn btn-danger" href="index.jsp"> Volver</a>
+                <a class="btn btn-danger" href="Controlador?accion=listarusuarios"> Volver</a>
             </form>
           </div>
         

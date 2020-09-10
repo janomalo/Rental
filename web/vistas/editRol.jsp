@@ -17,7 +17,7 @@
            Rol r= (Rol)session.getAttribute("rol");
         
         %>
-        <form action="Roles"  class="form-text">
+        <form action="Roles"  class="form-text"  method="POST">
                 <input  type="hidden"  name="txtidrol"  value="<%= r.getId() %>">
                 Descripción <input type="text"   class="form-control" name="txtnamerol" value="<%=r.getNombre() %>"><br>
                 <input  class=" btn btn-success" type="submit" value="Actualizar" name="accion">

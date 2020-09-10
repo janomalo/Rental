@@ -13,12 +13,13 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/C:/Users/Alejandro/Documents/GitHub/Rental/src/java/Servlet/Controlador.java</file>
+            <file>file:/C:/Users/Alejandro/Documents/GitHub/Rental/web/vistas/roles.jsp</file>
+            <file>file:/C:/Users/Alejandro/Documents/GitHub/Rental/src/java/Logic/RolControler.java</file>
             <file>file:/C:/Users/Alejandro/Documents/GitHub/Rental/src/java/ModeloDaoImpl/RolDaoImpl.java</file>
             <file>file:/C:/Users/Alejandro/Documents/GitHub/Rental/web/index.jsp</file>
             <file>file:/C:/Users/Alejandro/Documents/GitHub/Rental/src/java/Servlet/Roles.java</file>
-            <file>file:/C:/Users/Alejandro/Documents/GitHub/Rental/src/java/ModeloDaoImpl/UsuarioDaoImpl.java</file>
-            <file>file:/C:/Users/Alejandro/Documents/GitHub/Rental/web/vistas/listar.jsp</file>
-            <file>file:/C:/Users/Alejandro/Documents/GitHub/Rental/src/java/Logic/UsuarioControler.java</file>
+            <file>file:/C:/Users/Alejandro/Documents/GitHub/Rental/web/vistas/editRol.jsp</file>
+            <file>file:/C:/Users/Alejandro/Documents/GitHub/Rental/web/vistas/menuadmin.jsp</file>
             <file>file:/C:/Users/Alejandro/Documents/GitHub/Rental/src/java/Servlet/ControladorVista.java</file>
             <file>file:/C:/Users/Alejandro/Documents/GitHub/Rental/web/vistas/edit.jsp</file>
         </group>

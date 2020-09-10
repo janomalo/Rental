@@ -36,6 +36,10 @@ public class RolControler {
         return dao.update(r);
        
     }
+
+    public void delete(Rol r) {
+        dao.remove(r);
+    }
     
     
     

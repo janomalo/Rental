@@ -29,10 +29,7 @@ import javax.servlet.http.HttpSession;
  */
 public class Controlador extends HttpServlet {
 
-    String listar = "/vistas/listar.jsp";
-    String add = "/vistas/add.jsp";
-    String edit = "/vistas/edit.jsp";
-    String index = "index.jsp";
+    
     Usuario usu = new Usuario();
   
     int r;
@@ -222,6 +219,9 @@ public class Controlador extends HttpServlet {
 
             boolean valor= usrctrl.edit(usu);
             if( valor == true){
+           List<Usuario> list=usrctrl.getAll(); 
+          
+           request.setAttribute("listausu", list);
             String vista="listarusuarios";
             request.setAttribute("vista", vista);
             }else{

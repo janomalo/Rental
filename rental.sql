@@ -111,13 +111,15 @@ CREATE TABLE `roles` (
   `id` int(255) NOT NULL AUTO_INCREMENT,
   `nombre` varchar(100) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 
 /*Data for the table `roles` */
 
 insert  into `roles`(`id`,`nombre`) values 
 (1,'Administrador'),
-(2,'Usuario');
+(2,'Usuario'),
+(3,'PUBLIC'),
+(5,'DESCONOCIDO');
 
 /*Table structure for table `temporadas` */
 
@@ -173,7 +175,7 @@ insert  into `usuarios`(`id`,`dni`,`rol_id`,`nombres`,`apellidos`,`telefono`,`em
 (22,'27607461',2,'rube','mama','1591919','rubemama@gmail.com','123456','2020-06-24 22:17:29','rosario 1234','rube',1),
 (23,'987654321',2,'maria','ariam','1591919','mariam@gmail.com','12346','2020-06-24 23:38:18','rosario 1234','mariam',1),
 (24,'14268660',2,'Juan ','Molina','159159159','juamolina@hotmail.com','189189','2020-09-05 17:25:19','Primero de mayo 1120','jmolina',1),
-(25,'148148159',2,'Alejandro','Martinez','0341-153355889','amartinez@hotmail.com','123456','2020-09-05 17:28:50','Mendoza 1444','amartinez',1),
+(25,'148148159',2,'Alejandro','Martinez','0341-153355889','amartinez@hotmail.com','123456','2020-09-05 17:28:50','Mendoza 14444','amartinez',0),
 (28,'12555666',2,'Marcelo','Bueno','34115789456','marcelob@gmail.com','1234','2020-09-05 18:06:17','San juan 1555','mbueno',0);
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;

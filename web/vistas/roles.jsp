@@ -24,8 +24,8 @@
                 </tr>
             </thead>
                 <%
-                RolControler rolcon= new RolControler(); //llamar a la capa logica y que vaya pasando los datos
-                   List<Rol> listroles = rolcon.getAll(); //llama metodo getall y trae lisa de roles
+                
+                   List<Rol> listroles = (List<Rol>)request.getAttribute("listroles"); //llama metodo getall y trae lisa de roles
                    Iterator<Rol> iterol = listroles.iterator();
                     
                    //recuperar rol obtenido y pasar por while
@@ -42,7 +42,7 @@
                     <td> <%=rol.getNombre()%></td> 
                     <td>
                         <a class="btn btn-dark" href="Roles?accion=editar&id=<%= rol.getId()%>" >Editar</a>
-                        <a class="btn btn-danger">Eliminar</a>
+                        <a class="btn btn-danger" href="Roles?accion=delete&id=<%= rol.getId()%>">Eliminar</a>
                         
                     </td>
                     

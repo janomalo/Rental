@@ -9,6 +9,7 @@ import Logic.RolControler;
 import Modelo.Rol;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -32,14 +33,12 @@ public class Roles extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-      private RolControler rolctrl;
-    
-    
-    
-    
+    private RolControler rolctrl;
+    Rol r = new Rol();
+
     public Roles() {
-        
-      rolctrl= new RolControler();
+
+        rolctrl = new RolControler();
     }
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -49,7 +48,7 @@ public class Roles extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet Roles</title>");            
+            out.println("<title>Servlet Roles</title>");
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Servlet Roles at " + request.getContextPath() + "</h1>");
@@ -70,36 +69,52 @@ public class Roles extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
-          //String acceso = "";
+
         String action = request.getParameter("accion");
-        if (action.equalsIgnoreCase("Agregar")) {
-            
+        if (action.equalsIgnoreCase("listarroles")) {
+            List<Rol> list = rolctrl.getAll();
+
+            request.setAttribute("listroles", list);
+            String vista = "roles";
+            request.setAttribute("vista", vista);
+
         } else if (action.equalsIgnoreCase("editar")) {
-            int idrol= Integer.parseInt(request.getParameter("id"));                    
-           Rol r = rolctrl.getById(idrol);
-           HttpSession session = request.getSession();
-           session.setAttribute("rol", r);
-         
-          String vista="editrol";
-            
+            int idrol = Integer.parseInt(request.getParameter("id"));
+            r = rolctrl.getById(idrol);
+            HttpSession session = request.getSession();
+            session.setAttribute("rol", r);
+
+            String vista = "editrol";
+
             request.setAttribute("vista", vista);
 // captura id de fila seleccionada cuando se hace click en editar.
-           // acceso = edit;
-        }else if(action.equalsIgnoreCase("Actualizar")){
-            RolControler rolctrl = new RolControler();
+            // acceso = edit;
+        } else if (action.equalsIgnoreCase("delete")) {
+
+            int idrol = Integer.parseInt(request.getParameter("id"));
+            r.setId(idrol);
+            rolctrl.delete(r);
+            List<Rol> list = rolctrl.getAll();
+
+            request.setAttribute("listroles", list);
+            String vista = "roles";
+            request.setAttribute("vista", vista);
+            // acceso = listar;
+
+        }/*else if(action.equalsIgnoreCase("Actualizar")){
            Integer id = Integer.parseInt(request.getParameter("txtidrol"));
            String nombre = request.getParameter("txtnamerol");
-           
-           Rol r= new Rol();
+                     
            r.setId(id);
            r.setNombre(nombre);
            
            if(rolctrl.update(r)== true){
                
+             List<Rol> list=rolctrl.getAll(); 
+          
+           request.setAttribute("listroles", list);
             String vista="roles";
-            request.setAttribute("vista", vista);
-                       
+            request.setAttribute("vista", vista);        
            }else{
             String vista="erroredit";
             request.setAttribute("vista", vista);
@@ -108,14 +123,9 @@ public class Roles extends HttpServlet {
             
         
         
-        }
-        
-        
-        
-        
-        
-           request.getRequestDispatcher("index.jsp").forward(request, response);
-        
+        }     */
+        request.getRequestDispatcher("index.jsp").forward(request, response);
+
     }
 
     /**
@@ -129,7 +139,33 @@ public class Roles extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+
+        String action = request.getParameter("accion");
+        if (action.equalsIgnoreCase("Actualizar")) {
+            Integer id = Integer.parseInt(request.getParameter("txtidrol"));
+            String nombre = request.getParameter("txtnamerol");
+
+            r.setId(id);
+            r.setNombre(nombre);
+
+            if (rolctrl.update(r) == true) {
+
+                List<Rol> list = rolctrl.getAll();
+
+                request.setAttribute("listroles", list);
+                String vista = "roles";
+                request.setAttribute("vista", vista);
+
+            } else {
+                String vista = "erroredit";
+                request.setAttribute("vista", vista);
+
+            }
+
+        }
+
+        request.getRequestDispatcher("index.jsp").forward(request, response);
+
     }
 
     /**
