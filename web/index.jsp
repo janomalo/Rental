@@ -67,6 +67,10 @@
                                 %><%@include file="vistas/editRol.jsp"%><%
                                     
                     break;
+                    case "listarproductos":
+                                %><%@include file="vistas/listarProductos.jsp"%><%
+                                    
+                    break;
                     case "addproducto":
                                 %><%@include file="vistas/addProducto.jsp"%><%
                                     

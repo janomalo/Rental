@@ -5,10 +5,29 @@
  */
 package Logic;
 
+import Modelo.Producto;
+import ModeloDaoImpl.ProductoDaoImpl;
+import java.util.List;
+
 /**
  *
  * @author Alejandro
  */
 public class ProductoControler {
+    ProductoDaoImpl dao;
+
+    public ProductoControler() {
+        dao= new ProductoDaoImpl();
+    }
+
+    public void save(Producto pro) {
+        
+        dao.save(pro);
+    }
+    public List<Producto> getAll() {
+        return (List<Producto>) dao.listar();
+        
+    }
+    
     
 }

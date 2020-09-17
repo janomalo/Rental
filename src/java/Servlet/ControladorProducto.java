@@ -5,6 +5,7 @@
  */
 package Servlet;
 
+import Logic.ProductoControler;
 import Modelo.Producto;
 import ModeloDaoImpl.ProductoDaoImpl;
 import java.io.IOException;
@@ -34,7 +35,15 @@ public class ControladorProducto extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-     Producto pro= new Producto();
+     Producto pro;
+     
+     ProductoControler proctrl;
+     
+    public ControladorProducto() {
+        this.proctrl= new ProductoControler();
+        
+    }
+     
     
     
     
@@ -66,7 +75,11 @@ public class ControladorProducto extends HttpServlet {
         String action=request.getParameter("accion");
         
          if(action.equalsIgnoreCase("listar")){
-            //acceso=listar;
+            List<Producto> listproductos=proctrl.getAll();
+            request.setAttribute("listaproductos", listproductos);
+            String vista="listarproductos";
+            request.setAttribute("vista", vista);
+            
         } else if (action.equalsIgnoreCase("add")) {
          String vista="addproducto";
             request.setAttribute("vista", vista);  
@@ -86,8 +99,8 @@ public class ControladorProducto extends HttpServlet {
            pro.setPrecio(precio);
            pro.setEstado(estado);
            
-          // dao.save(pro);
-          // acceso=listar;
+           proctrl.save(pro);
+          // listar
         }
         else if (action.equalsIgnoreCase("editar")) {
           // int idusu=Integer.parseInt(request.getParameter("id"));

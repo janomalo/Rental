@@ -5,7 +5,7 @@
 --%>
 
 
-<%@page import="Controlador.ControladorProducto"%>
+
 <%@page import="java.util.Iterator"%>
 <%@page import="java.util.List"%>
 <%@page import="Modelo.Producto"%>
@@ -46,14 +46,13 @@
                     </tr>
                 </thead>
                 <%
-                   ControladorProducto contro= new ControladorProducto(); //modfiica a logic y dao
                    
-                    
-                    List<Producto> list= contro.listar();
-                    Iterator<Producto> iter=list.iterator();
+                   
+                     List<Producto> listpro= (List<Producto>)request.getAttribute("listaproductos");
+                    Iterator<Producto> iterp=listpro.iterator();
                     Producto pro=null;
-                    while(iter.hasNext()){
-                        pro=iter.next();
+                    while(iterp.hasNext()){
+                        pro=iterp.next();
                    
                 %>
                 <tbody>
