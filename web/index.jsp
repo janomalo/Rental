@@ -67,6 +67,10 @@
                                 %><%@include file="vistas/editRol.jsp"%><%
                                     
                     break;
+                    case "addproducto":
+                                %><%@include file="vistas/addProducto.jsp"%><%
+                                    
+                    break;
                     default:
                                  %><%@include file="vistas/home.jsp"%><%
                                 break;

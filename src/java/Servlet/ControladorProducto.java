@@ -34,14 +34,8 @@ public class ControladorProducto extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-      String listar="/vistas/listarProductos.jsp";
-      String add="/vistas/addProducto.jsp";
-        String edit="/vistas/editProducto.jsp";
-        String reserva="/vistas/Reserva.jsp";
-          Producto pro= new Producto();
-    //UsuarioDaoImpl dao=new UsuarioDaoImpl();
-     ProductoDaoImpl dao=new ProductoDaoImpl();
-     List<Producto> productos= new ArrayList<>();
+     Producto pro= new Producto();
+    
     
     
     
@@ -72,9 +66,10 @@ public class ControladorProducto extends HttpServlet {
         String action=request.getParameter("accion");
         
          if(action.equalsIgnoreCase("listar")){
-            acceso=listar;
+            //acceso=listar;
         } else if (action.equalsIgnoreCase("add")) {
-          acceso=add;
+         String vista="addproducto";
+            request.setAttribute("vista", vista);  
             
         } else if (action.equalsIgnoreCase("Agregar")) {
            Integer categoria= Integer.parseInt(request.getParameter("categoria"));
@@ -91,14 +86,14 @@ public class ControladorProducto extends HttpServlet {
            pro.setPrecio(precio);
            pro.setEstado(estado);
            
-           dao.save(pro);
-           acceso=listar;
+          // dao.save(pro);
+          // acceso=listar;
         }
         else if (action.equalsIgnoreCase("editar")) {
           // int idusu=Integer.parseInt(request.getParameter("id"));
           request.setAttribute("idpro",request.getParameter("id"));          
 // captura id de fila seleccionada cuando se hace click en editar.
-            acceso=edit;
+           // acceso=edit;
         }
         else if (action.equalsIgnoreCase("Actualizar")) {
             System.out.println("pasa por aca ACTUALIZAR");
@@ -120,16 +115,16 @@ public class ControladorProducto extends HttpServlet {
             pro.setPrecio(precio);
             pro.setEstado(hab);                     
             
-            dao.edit(pro);
-            acceso=listar;
+          //  dao.edit(pro);
+            //acceso=listar;
                        
         }
         else if(action.equalsIgnoreCase("delete")){
              String id= request.getParameter("id");
              int id1= Integer.parseInt(id);
              pro.setId(id1);
-             dao.delete(pro);
-             acceso=listar;
+             //dao.delete(pro);
+             //acceso=listar;
             
         }
          
@@ -163,8 +158,5 @@ public class ControladorProducto extends HttpServlet {
         return "Short description";
     }// </editor-fold>
     
-    public List<Producto> getall(){
-        return dao.listar();
-    }
-
+   
 }
