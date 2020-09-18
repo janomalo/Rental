@@ -29,5 +29,14 @@ public class ProductoControler {
         
     }
     
+    public Producto list(int id){
+    
+        return dao.list(id);
+    }
+    
+    public Boolean update(Producto p){
+        return dao.edit(p);
+    }
+    
     
 }
