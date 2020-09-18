@@ -41,6 +41,7 @@ public class ControladorProducto extends HttpServlet {
      
     public ControladorProducto() {
         this.proctrl= new ProductoControler();
+        pro= new Producto();
         
     }
      
@@ -71,7 +72,7 @@ public class ControladorProducto extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
        
-        String acceso="";
+     
         String action=request.getParameter("accion");
         
          if(action.equalsIgnoreCase("listar")){
@@ -84,25 +85,7 @@ public class ControladorProducto extends HttpServlet {
          String vista="addproducto";
             request.setAttribute("vista", vista);  
             
-        } else if (action.equalsIgnoreCase("Agregar")) {
-           Integer categoria= Integer.parseInt(request.getParameter("categoria"));
-           String nombre=request.getParameter("nombre");
-           String descripcion= request.getParameter("descripcion");
-           Integer stock=Integer.parseInt(request.getParameter("stock"));
-           Float precio=Float.parseFloat(request.getParameter("precio"));
-           Integer estado=Integer.parseInt(request.getParameter("estado"));
-           
-           pro.setCategoria_id(categoria);
-           pro.setNombre(nombre);
-           pro.setDescripcion(descripcion);
-           pro.setStock(stock);
-           pro.setPrecio(precio);
-           pro.setEstado(estado);
-           
-           proctrl.save(pro);
-          // listar
-        }
-        else if (action.equalsIgnoreCase("editar")) {
+        } else if (action.equalsIgnoreCase("editar")) {
           // int idusu=Integer.parseInt(request.getParameter("id"));
           request.setAttribute("idpro",request.getParameter("id"));          
 // captura id de fila seleccionada cuando se hace click en editar.
@@ -141,8 +124,7 @@ public class ControladorProducto extends HttpServlet {
             
         }
          
-        RequestDispatcher vista=request.getRequestDispatcher(acceso);
-        vista.forward(request, response);
+       request.getRequestDispatcher("index.jsp").forward(request, response);
         
         
     }
@@ -158,7 +140,34 @@ public class ControladorProducto extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        
+        String action=request.getParameter("accion");
+        if (action.equalsIgnoreCase("Agregar")) {
+           Integer categoria= Integer.parseInt(request.getParameter("categoria"));
+           String nombre=request.getParameter("nombre");
+           String descripcion= request.getParameter("descripcion");
+           Integer stock=Integer.parseInt(request.getParameter("stock"));
+           Float precio=Float.parseFloat(request.getParameter("precio"));
+           Integer estado=Integer.parseInt(request.getParameter("estado"));
+           
+           pro.setCategoria_id(categoria);
+           pro.setNombre(nombre);
+           pro.setDescripcion(descripcion);
+           pro.setStock(stock);
+           pro.setPrecio(precio);
+           pro.setEstado(estado);
+           
+           proctrl.save(pro);
+           List<Producto> listproductos=proctrl.getAll();
+           request.setAttribute("listaproductos", listproductos);
+           String vista="listarproductos";
+            request.setAttribute("vista", vista);
+          // listar
+        }
+        
+        request.getRequestDispatcher("index.jsp").forward(request, response);
+        
+        
     }
 
     /**

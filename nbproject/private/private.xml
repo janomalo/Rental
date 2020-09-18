@@ -14,10 +14,15 @@
         <group>
             <file>file:/C:/Users/Alejandro/Documents/GitHub/Rental/src/java/Servlet/ControladorProducto.java</file>
             <file>file:/C:/Users/Alejandro/Documents/GitHub/Rental/src/java/Servlet/Controlador.java</file>
+            <file>file:/C:/Users/Alejandro/Documents/GitHub/Rental/web/vistas/listarProductos.jsp</file>
             <file>file:/C:/Users/Alejandro/Documents/GitHub/Rental/web/vistas/addProducto.jsp</file>
             <file>file:/C:/Users/Alejandro/Documents/GitHub/Rental/web/vistas/addUsuario.jsp</file>
+            <file>file:/C:/Users/Alejandro/Documents/GitHub/Rental/src/java/Logic/ProductoControler.java</file>
+            <file>file:/C:/Users/Alejandro/Documents/GitHub/Rental/src/java/ModeloDaoImpl/ProductoDaoImpl.java</file>
             <file>file:/C:/Users/Alejandro/Documents/GitHub/Rental/web/index.jsp</file>
+            <file>file:/C:/Users/Alejandro/Documents/GitHub/Rental/web/vistas/listar.jsp</file>
             <file>file:/C:/Users/Alejandro/Documents/GitHub/Rental/web/vistas/menuadmin.jsp</file>
+            <file>file:/C:/Users/Alejandro/Documents/GitHub/Rental/src/java/Logic/UsuarioControler.java</file>
             <file>file:/C:/Users/Alejandro/Documents/GitHub/Rental/src/java/Servlet/ControladorVista.java</file>
         </group>
     </open-files>
