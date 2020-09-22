@@ -8,10 +8,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Menu</title>
         
-          <% /*	Usuario usuario= (Usuario)session.getAttribute("usuario");
-    	ArrayList<Usuario> lp=(ArrayList<Usuario>)request.getAttribute("listaPersonas");
-         String rol = String.valueOf(usuario.getRol()); */
-    %>
+         
     </head>
     <body>
         <%if (session.getAttribute("usuario") == null) {%>

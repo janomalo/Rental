@@ -83,40 +83,17 @@ public class ControladorProducto extends HttpServlet {
             String vista = "editproducto";
             request.setAttribute("vista", vista);
 
-        } else if (action.equalsIgnoreCase("Actualizar")) {
-            System.out.println("pasa por aca ACTUALIZAR");
-
-            Integer id = Integer.parseInt(request.getParameter("txtid"));
-            Integer categoria = Integer.parseInt(request.getParameter("txtcategoriaid"));
-            String nombre = request.getParameter("txtnombre");
-            String descripcion = request.getParameter("txtdescripcion");
-            Integer stock = Integer.parseInt(request.getParameter("txtstock"));
-            Float precio = Float.parseFloat(request.getParameter("txtprecio"));
-            String h = request.getParameter("txthabilitado");
-            int hab = Integer.parseInt(h);
-
-            pro.setId(id);
-            pro.setCategoria_id(categoria);
-            pro.setNombre(nombre);
-            pro.setDescripcion(descripcion);
-            pro.setStock(stock);
-            pro.setPrecio(precio);
-            pro.setEstado(hab);
-
-            if (proctrl.update(pro) == true) {
-                String vista = "listarproductos";
-                request.setAttribute("vista", vista);
-            } else {
-                String vista = "erroredit";
-                request.setAttribute("vista", vista);
-
-            }
         } else if (action.equalsIgnoreCase("delete")) {
             String id = request.getParameter("id");
             int id1 = Integer.parseInt(id);
             pro.setId(id1);
-            //dao.delete(pro);
-            //acceso=listar;
+            proctrl.delete(pro);
+            List<Producto> listproductos = proctrl.getAll();
+            request.setAttribute("listaproductos", listproductos);
+            String vista = "listarproductos";
+            request.setAttribute("vista", vista);
+            
+            
 
         }
 
@@ -158,6 +135,36 @@ public class ControladorProducto extends HttpServlet {
             String vista = "listarproductos";
             request.setAttribute("vista", vista);
             // listar
+        } else if (action.equalsIgnoreCase("Actualizar")) {
+            System.out.println("pasa por aca ACTUALIZAR");
+
+            Integer id = Integer.parseInt(request.getParameter("txtidprodu"));
+            Integer categoria = Integer.parseInt(request.getParameter("txtcategoriaid"));
+            String nombre = request.getParameter("txtnombreprodu");
+            String descripcion = request.getParameter("txtdescripcion");
+            Integer stock = Integer.parseInt(request.getParameter("txtstock"));
+            Float precio = Float.parseFloat(request.getParameter("txtprecio"));
+            String h = request.getParameter("txthabilitado");
+            int hab = Integer.parseInt(h);
+
+            pro.setId(id);
+            pro.setCategoria_id(categoria);
+            pro.setNombre(nombre);
+            pro.setDescripcion(descripcion);
+            pro.setStock(stock);
+            pro.setPrecio(precio);
+            pro.setEstado(hab);
+
+            if (proctrl.update(pro) == true) {
+                List<Producto> listproductos = proctrl.getAll();
+                request.setAttribute("listaproductos", listproductos);
+                String vista = "listarproductos";
+                request.setAttribute("vista", vista);
+            } else {
+                String vista = "erroredit";
+                request.setAttribute("vista", vista);
+
+            }
         }
 
         request.getRequestDispatcher("index.jsp").forward(request, response);

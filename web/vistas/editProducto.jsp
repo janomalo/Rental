@@ -25,7 +25,7 @@
         <div class="container col-lg-4">
 
             <form action="ControladorProducto" class="form-horizontal" style="margin:0 auto"  method="POST">
-                <input  type="hidden"  name="txtid"  value="<%=p.getId()%>">
+                <input  type="hidden"  name="txtidprodu"  value="<%=p.getId()%>">
                 <div class="form-group">
                     <label class="col-lg-8 control-label">Categoria</label>
                     <div class=" col-auto">
@@ -35,7 +35,7 @@
                 <div class="form-group">
                     <label class="col-lg-8 control-label">Nombre</label>
                     <div class=" col-auto">
-                        <input type="text" class="form-control" name="txtnombre" value="<%=p.getNombre()%>" />
+                        <input type="text" class="form-control" name="txtnombreprodu" value="<%=p.getNombre()%>" />
                     </div>
                 </div>
                 <div class="form-group">

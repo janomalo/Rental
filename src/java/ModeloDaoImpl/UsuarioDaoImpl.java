@@ -19,7 +19,7 @@ public class UsuarioDaoImpl {
     public static Usuario login(Usuario user) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-       
+
     public void save(Usuario usu) {
         //boolean save=false;
         PreparedStatement stmt = null;
@@ -68,7 +68,6 @@ public class UsuarioDaoImpl {
 
     }
 
-   
     public List<Usuario> listar() {
 
         Statement stmt = null;
@@ -121,12 +120,12 @@ public class UsuarioDaoImpl {
 
     }
 
- 
     public boolean edit(Usuario u) {
         //Al listar pass y volver a guardarla 
         PreparedStatement stmt = null;
         //String sSQL=String.format("UPDATE usuarios SET dni='"+u.getDni()+"',nombres='"+u.getNombres()+"',apellidos='"+u.getApellidos()+"',telefono='"+u.getTelefono()+"',email='"+u.getEmail()+"',password=SHA1('"+u.getPassword()+"'),direccion='"+u.getDireccion()+"',usuario='"+u.getUsuario()+"',habilitado='"+u.getHabilitado()+"' WHERE id="+u.getId());
-
+        int resultado;
+        boolean boleano = false;
         try {
             stmt = FactoryConexion.getInstancia().getConn().prepareStatement("UPDATE usuarios SET dni=?,nombres=?,apellidos=?,telefono=?,email=?,direccion=?,usuario=?,habilitado=? WHERE id=?");
             stmt.setString(1, u.getDni());
@@ -138,7 +137,10 @@ public class UsuarioDaoImpl {
             stmt.setString(7, u.getUsuario());
             stmt.setInt(8, u.getHabilitado());
             stmt.setInt(9, u.getId());
-            stmt.executeUpdate();
+            resultado=stmt.executeUpdate();
+            if(resultado>0){
+                boleano=true;
+            }
             //PreparedStatement ps= conn.prepareStatement(sSQL);
             //ps.executeUpdate();
         } catch (SQLException e) {
@@ -154,9 +156,8 @@ public class UsuarioDaoImpl {
             e.printStackTrace();
         }
 
-        return false;
+        return boleano;
     }
-
 
     public void delete(Usuario u) {
         PreparedStatement stmt = null;
@@ -180,7 +181,6 @@ public class UsuarioDaoImpl {
 
     }
 
-   
     public Usuario list(int id) { // seria como getbyusu
         Statement stmt = null;
         ResultSet rs = null;
@@ -218,21 +218,20 @@ public class UsuarioDaoImpl {
 
             e.printStackTrace();
         }
-        if(u!=null){
+        if (u != null) {
             return u;
-        }else{
-            u=null;
-         return u;
+        } else {
+            u = null;
+            return u;
         }
-       
 
     }
 
     public Usuario validar(Usuario u) {
         PreparedStatement stmt = null;
         ResultSet rs = null;
-        Usuario usu= new Usuario();
-      
+        Usuario usu = new Usuario();
+
         try {
 
             stmt = FactoryConexion.getInstancia().getConn().prepareStatement("SELECT * FROM usuarios WHERE usuario=? and password=?");
@@ -248,29 +247,26 @@ public class UsuarioDaoImpl {
                     usu.setApellidos(rs.getString("apellidos"));
                     usu.setEmail(rs.getString("email"));
                     usu.setHabilitado(rs.getInt("habilitado"));
-                   
 
                 }
             }
 
         } catch (SQLException e) {
             e.printStackTrace();
+        } finally {
+            try {
+                if (rs != null) {
+                    rs.close();
+                }
+                if (stmt != null) {
+                    stmt.close();
+                }
+                FactoryConexion.getInstancia().releaseConn();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
-       finally {
-			try {
-				if(rs!=null) {rs.close();}
-				if(stmt!=null) {stmt.close();}
-				FactoryConexion.getInstancia().releaseConn();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-		} 
         return usu;
     }
 
 }
-
-
-
-
-

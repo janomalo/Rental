@@ -37,6 +37,10 @@ public class ProductoControler {
     public Boolean update(Producto p){
         return dao.edit(p);
     }
+
+    public void delete(Producto pro) {
+        dao.delete(pro);
+    }
     
     
 }

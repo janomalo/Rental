@@ -83,8 +83,7 @@
 
             </table> 
 
-            <%-- <a class="btn btn-success" href="index.jsp"> Volver</a> --%>
-
+            
         </div>
     </body>
 </html>

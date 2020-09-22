@@ -139,14 +139,14 @@ public class ProductoDaoImpl implements IProductoDao {
             stmt = FactoryConexion.getInstancia().getConn().createStatement();
             rs = stmt.executeQuery(sSql);
             if (rs.next()) {
-                inputStream=rs.getBinaryStream("foto");
+                inputStream = rs.getBinaryStream("foto");
             }
-            bufferedInputStream= new BufferedInputStream(inputStream);
+            bufferedInputStream = new BufferedInputStream(inputStream);
             bufferedOutputStream = new BufferedOutputStream(outputStream);
-            int i=0;
-            while((i=bufferedInputStream.read())!=-1){
-                    bufferedOutputStream.write(i);
-            
+            int i = 0;
+            while ((i = bufferedInputStream.read()) != -1) {
+                bufferedOutputStream.write(i);
+
             }
         } catch (Exception e) {
 
@@ -198,7 +198,8 @@ public class ProductoDaoImpl implements IProductoDao {
         //Al listar pass y volver a guardarla 
         PreparedStatement stmt = null;
         //String sSQL=String.format("UPDATE usuarios SET dni='"+u.getDni()+"',nombres='"+u.getNombres()+"',apellidos='"+u.getApellidos()+"',telefono='"+u.getTelefono()+"',email='"+u.getEmail()+"',password=SHA1('"+u.getPassword()+"'),direccion='"+u.getDireccion()+"',usuario='"+u.getUsuario()+"',habilitado='"+u.getHabilitado()+"' WHERE id="+u.getId());
-
+        int resultado;
+        boolean boleano = false;
         try {
             stmt = FactoryConexion.getInstancia().getConn().prepareStatement("UPDATE productos SET categoria_id=?,nombre=?,descripcion=?,stock=?,precio=?,estado=? WHERE id=?");
             stmt.setInt(1, p.getCategoria_id());
@@ -208,9 +209,11 @@ public class ProductoDaoImpl implements IProductoDao {
             stmt.setFloat(5, p.getPrecio());
             stmt.setInt(6, p.getEstado());
             stmt.setInt(7, p.getId());
-            stmt.executeUpdate();
-            //PreparedStatement ps= conn.prepareStatement(sSQL);
-            //ps.executeUpdate();
+            resultado=stmt.executeUpdate();
+            if(resultado>0){
+                boleano=true;
+            }
+            
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -224,7 +227,7 @@ public class ProductoDaoImpl implements IProductoDao {
             e.printStackTrace();
         }
 
-        return false;
+        return boleano;
 
     }
 
