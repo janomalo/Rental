@@ -47,7 +47,7 @@
                             <div class="dropdown-menu " >
                                 <a class="dropdown-item" href="ControladorProducto?accion=add" >Nuevo Producto</a>
                                 <a class="dropdown-item" href="ControladorProducto?accion=listar" >Lista Productos</a>
-                                <a class="dropdown-item" href="vistas/Categorias.jsp" >Categorias</a>
+                                <a class="dropdown-item" href="Categorias?accion=listar" >Categorias</a>
                             </div>
                         </div>
                     </li>
