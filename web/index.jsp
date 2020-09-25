@@ -79,6 +79,10 @@
                                 %><%@include file="vistas/editProducto.jsp"%><%
                                     
                     break;
+                    case "listarcategorias":
+                                %><%@include file="vistas/categorias.jsp"%><%
+                                    
+                    break;
                     default:
                                  %><%@include file="vistas/home.jsp"%><%
                                 break;

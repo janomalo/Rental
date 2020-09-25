@@ -32,12 +32,12 @@ public class Categorias extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    Categoria ca;
+    Categoria cat;
     CategoriaControler catcntrl;
 
     public Categorias() {
 
-        this.ca = new Categoria();
+        this.cat = new Categoria();
         this.catcntrl = new CategoriaControler();
     }
 
@@ -78,6 +78,30 @@ public class Categorias extends HttpServlet {
             String vista = "listarcategorias";
             request.setAttribute("vista", vista);
 
+        }else if (action.equalsIgnoreCase("add")) {
+            String vista = "addproducto";
+            request.setAttribute("vista", vista);
+
+        } else if (action.equalsIgnoreCase("editar")) {
+            int idcategoria = Integer.parseInt(request.getParameter("id"));
+            request.setAttribute("idcat", request.getParameter("id"));
+            cat = catcntrl.getById(idcategoria);
+            request.setAttribute("categoria", cat);
+            String vista = "editcategoria";
+            request.setAttribute("vista", vista);
+
+        } else if (action.equalsIgnoreCase("delete")) {
+            String id = request.getParameter("id");
+            int id1 = Integer.parseInt(id);
+            cat.setId(id1);
+            catcntrl.delete(cat);
+            List<Categoria> listproductos = catcntrl.getAll();
+            request.setAttribute("listaproductos", listproductos);
+            String vista = "listarproductos";
+            request.setAttribute("vista", vista);
+            
+            
+
         }
 
         request.getRequestDispatcher("index.jsp").forward(request, response);
@@ -95,7 +119,62 @@ public class Categorias extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        String action = request.getParameter("accion");
+        if (action.equalsIgnoreCase("Agregar")) { //funciona
+            Integer categoria = Integer.parseInt(request.getParameter("categoria"));
+            String nombre = request.getParameter("nombre");
+            String descripcion = request.getParameter("descripcion");
+            Integer stock = Integer.parseInt(request.getParameter("stock"));
+            Float precio = Float.parseFloat(request.getParameter("precio"));
+            Integer estado = Integer.parseInt(request.getParameter("estado"));
+
+            pro.setCategoria_id(categoria);
+            pro.setNombre(nombre);
+            pro.setDescripcion(descripcion);
+            pro.setStock(stock);
+            pro.setPrecio(precio);
+            pro.setEstado(estado);
+
+            proctrl.save(pro);
+            List<Producto> listproductos = proctrl.getAll();
+            request.setAttribute("listaproductos", listproductos);
+            String vista = "listarproductos";
+            request.setAttribute("vista", vista);
+            // listar
+        } else if (action.equalsIgnoreCase("Actualizar")) {
+            Integer id = Integer.parseInt(request.getParameter("txtidprodu"));
+            Integer categoria = Integer.parseInt(request.getParameter("txtcategoriaid"));
+            String nombre = request.getParameter("txtnombreprodu");
+            String descripcion = request.getParameter("txtdescripcion");
+            Integer stock = Integer.parseInt(request.getParameter("txtstock"));
+            Float precio = Float.parseFloat(request.getParameter("txtprecio"));
+            String h = request.getParameter("txthabilitado");
+            int hab = Integer.parseInt(h);
+
+            pro.setId(id);
+            pro.setCategoria_id(categoria);
+            pro.setNombre(nombre);
+            pro.setDescripcion(descripcion);
+            pro.setStock(stock);
+            pro.setPrecio(precio);
+            pro.setEstado(hab);
+
+            if (proctrl.update(pro) == true) {
+                List<Producto> listproductos = proctrl.getAll();
+                request.setAttribute("listaproductos", listproductos);
+                String vista = "listarproductos";
+                request.setAttribute("vista", vista);
+            } else {
+                String vista = "erroredit";
+                request.setAttribute("vista", vista);
+
+            }
+        }
+
+        request.getRequestDispatcher("index.jsp").forward(request, response);
+
+    }
+
     }
 
     /**

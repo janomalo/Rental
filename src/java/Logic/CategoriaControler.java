@@ -27,5 +27,10 @@ public class CategoriaControler {
         
         return dao.getAll();
     }
+
+    public Categoria getById(int idcategoria) {
+       
+        return dao.getById(idcategoria);
+    }
     
 }

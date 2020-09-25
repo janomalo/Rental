@@ -7,6 +7,7 @@ package ModeloDaoImpl;
 
 import Config.FactoryConexion;
 import Modelo.Categoria;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -54,20 +55,21 @@ public class CategoriaDaoImpl {
 		return categorias;
 	}
 	
-	public Rol getById(int idrol) {
-		Rol r=null;
+	public Categoria getById(int id) {
+		Categoria c=null;
 		PreparedStatement stmt=null;
 		ResultSet rs=null;
 		try {
 			stmt=FactoryConexion.getInstancia().getConn().prepareStatement(
 					"select * from roles where id=?"
 					);
-			stmt.setInt(1, idrol);
+			stmt.setInt(1, id);
 			rs=stmt.executeQuery();
 			if(rs!=null && rs.next()) {
-				r=new Rol();
-				r.setId(rs.getInt("id"));
-				r.setNombre(rs.getString("nombre"));
+				c=new Categoria();
+				c.setId(rs.getInt("id"));
+				c.setNombre(rs.getString("nombre"));
+                                c.setEstado(rs.getInt("estado"));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -81,7 +83,7 @@ public class CategoriaDaoImpl {
 			}
 		}
 		
-		return r;
+		return c;
 	}
 	
 	public Rol getByDesc(Rol rolToSearch) {
