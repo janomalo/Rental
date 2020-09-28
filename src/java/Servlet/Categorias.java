@@ -117,7 +117,9 @@ public class Categorias extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        
         String action = request.getParameter("accion");
+        
         if (action.equalsIgnoreCase("Agregar")) { //funciona
             Integer categoria = Integer.parseInt(request.getParameter("categoria"));
             String nombre = request.getParameter("nombre");

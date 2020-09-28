@@ -192,7 +192,7 @@ public class CategoriaDaoImpl {
 					prepareStatement(
 							"update categorias set nombre=?,estado=? where id=?");
 			stmt.setString(1, c.getNombre());
-                        stmt.setInt(1, c.getId());
+                        stmt.setInt(2, c.getEstado());
 			stmt.setInt(3, c.getId());
 			resultado=stmt.executeUpdate(); //devuelve cantidad int de filas updateadas 
                         if(resultado>0){
@@ -216,13 +216,13 @@ public class CategoriaDaoImpl {
              return boleano; 
 	}
 	
-	public void remove(Rol rol) {
+	public void remove(Categoria c) {
 		PreparedStatement stmt= null;
 		try {
 			stmt=FactoryConexion.getInstancia().getConn().
 					prepareStatement(
-							"delete from roles where id=?");
-			stmt.setInt(1, rol.getId());
+							"delete from categorias where id=?");
+			stmt.setInt(1, c.getId());
 			stmt.executeUpdate();
 		} catch (SQLException e) {
             e.printStackTrace();

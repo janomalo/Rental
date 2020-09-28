@@ -38,7 +38,7 @@ public class CategoriaControler {
     }
 
     public void delete(Categoria cat) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        dao.remove(cat);
     }
 
     public void save(Categoria cat) {
