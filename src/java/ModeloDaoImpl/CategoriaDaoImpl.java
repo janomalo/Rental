@@ -61,7 +61,7 @@ public class CategoriaDaoImpl {
 		ResultSet rs=null;
 		try {
 			stmt=FactoryConexion.getInstancia().getConn().prepareStatement(
-					"select * from roles where id=?"
+					"select * from categorias where id=?"
 					);
 			stmt.setInt(1, id);
 			rs=stmt.executeQuery();
@@ -183,16 +183,17 @@ public class CategoriaDaoImpl {
 
 	}
 	
-	public boolean update(Rol rol) {
+	public boolean update(Categoria c) {
 		PreparedStatement stmt= null;
                 int resultado;
                 boolean boleano= false;
                 try {
 			stmt=FactoryConexion.getInstancia().getConn().
 					prepareStatement(
-							"update roles set nombre=? where id=?");
-			stmt.setString(1, rol.getNombre());
-			stmt.setInt(2, rol.getId());
+							"update categorias set nombre=?,estado=? where id=?");
+			stmt.setString(1, c.getNombre());
+                        stmt.setInt(1, c.getId());
+			stmt.setInt(3, c.getId());
 			resultado=stmt.executeUpdate(); //devuelve cantidad int de filas updateadas 
                         if(resultado>0){
                         boleano=true;

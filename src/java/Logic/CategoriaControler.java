@@ -32,5 +32,17 @@ public class CategoriaControler {
        
         return dao.getById(idcategoria);
     }
+
+    public boolean update(Categoria cat) {
+       return dao.update(cat);
+    }
+
+    public void delete(Categoria cat) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public void save(Categoria cat) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
 }

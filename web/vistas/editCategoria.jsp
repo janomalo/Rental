@@ -16,20 +16,20 @@
         
         
         <%
-           Categoria c= (Categoria)session.getAttribute("categoria");
+           Categoria c= (Categoria) request.getAttribute("categoria");
                          
         
         %>
          <h1>Editar Usuario</h1>
          <div class="container col-lg-8">
-             <form action="Controlador"  class="form-text" method="POST">
+             <form action="Categorias"  class="form-text" method="POST">
                 <input  type="hidden"  name="txtid"  value="<%=c.getId() %>">
                 NOMBRES <input type="text"   class="form-control" name="txtnombre" value="<%=c.getNombre() %>"><br>
                 ESTADO <input type="text" class="form-control" name="txtestado" value="<%=c.getEstado() %>"><br>
                            
                              
                 <%-- Fecha <input type="date" name="fecha"> --%>
-                <input  class=" btn btn-success" type="submit" value="Actualizar" name="accion">
+                <input  class=" btn btn-success" type="submit" value="update" name="accion">
                 <a class="btn btn-danger" href="Categorias?accion=listar"> Volver</a>
             </form>
           </div>

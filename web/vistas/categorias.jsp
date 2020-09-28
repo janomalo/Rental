@@ -44,7 +44,7 @@
                         <td> <%= cat.getEstado() %></td>
 
                         <td>
-                            <a class="btn btn-dark "  href="Categorias?accion=editar&id=<%= cat.getId()%>" >Editar </a>
+                            <a class="btn btn-dark "  href="Categorias?accion=edit&id=<%= cat.getId()%>" >Editar </a>
 
                             <a  class="btn btn-danger" href="Categorias?accion=delete&id=<%= cat.getId()%>">Eliminar</a> 
                             <!-- Button trigger modal -->

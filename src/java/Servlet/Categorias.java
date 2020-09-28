@@ -69,7 +69,7 @@ public class Categorias extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+
         String action = request.getParameter("accion");
 
         if (action.equalsIgnoreCase("listar")) {
@@ -78,11 +78,11 @@ public class Categorias extends HttpServlet {
             String vista = "listarcategorias";
             request.setAttribute("vista", vista);
 
-        }else if (action.equalsIgnoreCase("add")) {
+        } else if (action.equalsIgnoreCase("add")) {
             String vista = "addproducto";
             request.setAttribute("vista", vista);
 
-        } else if (action.equalsIgnoreCase("editar")) {
+        } else if (action.equalsIgnoreCase("edit")) {
             int idcategoria = Integer.parseInt(request.getParameter("id"));
             request.setAttribute("idcat", request.getParameter("id"));
             cat = catcntrl.getById(idcategoria);
@@ -95,12 +95,10 @@ public class Categorias extends HttpServlet {
             int id1 = Integer.parseInt(id);
             cat.setId(id1);
             catcntrl.delete(cat);
-            List<Categoria> listproductos = catcntrl.getAll();
-            request.setAttribute("listaproductos", listproductos);
-            String vista = "listarproductos";
+            List<Categoria> listcategorias = catcntrl.getAll();
+            request.setAttribute("listacategorias", listcategorias);
+            String vista = "listarcategorias";
             request.setAttribute("vista", vista);
-            
-            
 
         }
 
@@ -128,41 +126,33 @@ public class Categorias extends HttpServlet {
             Float precio = Float.parseFloat(request.getParameter("precio"));
             Integer estado = Integer.parseInt(request.getParameter("estado"));
 
-            pro.setCategoria_id(categoria);
-            pro.setNombre(nombre);
-            pro.setDescripcion(descripcion);
-            pro.setStock(stock);
-            pro.setPrecio(precio);
-            pro.setEstado(estado);
+            /*cat.setCategoria_id(categoria);
+            cat.setNombre(nombre);
+            cat.setDescripcion(descripcion);
+            cat.setStock(stock);
+            cat.setPrecio(precio);
+            cat.setEstado(estado);*/
 
-            proctrl.save(pro);
-            List<Producto> listproductos = proctrl.getAll();
+            catcntrl.save(cat);
+            List<Categoria> listproductos = catcntrl.getAll();
             request.setAttribute("listaproductos", listproductos);
             String vista = "listarproductos";
             request.setAttribute("vista", vista);
             // listar
-        } else if (action.equalsIgnoreCase("Actualizar")) {
-            Integer id = Integer.parseInt(request.getParameter("txtidprodu"));
-            Integer categoria = Integer.parseInt(request.getParameter("txtcategoriaid"));
-            String nombre = request.getParameter("txtnombreprodu");
-            String descripcion = request.getParameter("txtdescripcion");
-            Integer stock = Integer.parseInt(request.getParameter("txtstock"));
-            Float precio = Float.parseFloat(request.getParameter("txtprecio"));
-            String h = request.getParameter("txthabilitado");
+        } else if (action.equalsIgnoreCase("update")) {
+            Integer id = Integer.parseInt(request.getParameter("txtid"));
+            String nombre = request.getParameter("txtnombre");
+            String h = request.getParameter("txtestado");
             int hab = Integer.parseInt(h);
 
-            pro.setId(id);
-            pro.setCategoria_id(categoria);
-            pro.setNombre(nombre);
-            pro.setDescripcion(descripcion);
-            pro.setStock(stock);
-            pro.setPrecio(precio);
-            pro.setEstado(hab);
+            cat.setId(id);
+            cat.setNombre(nombre);
+            cat.setEstado(hab);
 
-            if (proctrl.update(pro) == true) {
-                List<Producto> listproductos = proctrl.getAll();
-                request.setAttribute("listaproductos", listproductos);
-                String vista = "listarproductos";
+            if (catcntrl.update(cat) == true) {
+                List<Categoria> listcategorias = catcntrl.getAll();
+                request.setAttribute("listacategorias", listcategorias);
+                String vista = "listarcategorias";
                 request.setAttribute("vista", vista);
             } else {
                 String vista = "erroredit";
@@ -175,15 +165,15 @@ public class Categorias extends HttpServlet {
 
     }
 
-    }
+}
 
-    /**
-     * Returns a short description of the servlet.
-     *
-     * @return a String containing servlet description
-     */
-    @Override
-    public String getServletInfo() {
+/**
+ * Returns a short description of the servlet.
+ *
+ * @return a String containing servlet description
+ */
+@Override
+        public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
 
