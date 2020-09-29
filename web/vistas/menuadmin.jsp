@@ -32,7 +32,7 @@
                             <div class="dropdown-menu " >
                                 <a class="dropdown-item" href="ControladorReserva?accion=reserva">Nueva Reserva</a>
                                 <a class="dropdown-item" href="ControladorReserva?accion=listar" >Lista Reservas</a>
-                                <a class="dropdown-item" href="vistas/listarTemporadas.jsp" >Temporadas</a>
+                                <a class="dropdown-item" href="Temporadas?accion=listar" >Temporadas</a>
                             </div>
                         </div>
 

@@ -79,7 +79,7 @@ public class Categorias extends HttpServlet {
             request.setAttribute("vista", vista);
 
         } else if (action.equalsIgnoreCase("add")) {
-            String vista = "addproducto";
+            String vista = "addcategoria";
             request.setAttribute("vista", vista);
 
         } else if (action.equalsIgnoreCase("edit")) {
@@ -117,24 +117,14 @@ public class Categorias extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+
         String action = request.getParameter("accion");
-        
+
         if (action.equalsIgnoreCase("Agregar")) { //funciona
-            Integer categoria = Integer.parseInt(request.getParameter("categoria"));
             String nombre = request.getParameter("nombre");
-            String descripcion = request.getParameter("descripcion");
-            Integer stock = Integer.parseInt(request.getParameter("stock"));
-            Float precio = Float.parseFloat(request.getParameter("precio"));
             Integer estado = Integer.parseInt(request.getParameter("estado"));
-
-            /*cat.setCategoria_id(categoria);
             cat.setNombre(nombre);
-            cat.setDescripcion(descripcion);
-            cat.setStock(stock);
-            cat.setPrecio(precio);
-            cat.setEstado(estado);*/
-
+            cat.setEstado(estado);
             catcntrl.save(cat);
             List<Categoria> listproductos = catcntrl.getAll();
             request.setAttribute("listaproductos", listproductos);
@@ -166,17 +156,5 @@ public class Categorias extends HttpServlet {
         request.getRequestDispatcher("index.jsp").forward(request, response);
 
     }
-
-}
-
-/**
- * Returns a short description of the servlet.
- *
- * @return a String containing servlet description
- */
-@Override
-        public String getServletInfo() {
-        return "Short description";
-    }// </editor-fold>
 
 }

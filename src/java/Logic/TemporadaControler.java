@@ -5,10 +5,46 @@
  */
 package Logic;
 
+import Modelo.Categoria;
+import Modelo.Temporada;
+import ModeloDaoImpl.TemporadaDaoImpl;
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  *
  * @author Alejandro
  */
 public class TemporadaControler {
+    
+    TemporadaDaoImpl dao;
+    public TemporadaControler() {
+        
+        dao= new TemporadaDaoImpl();
+        
+    }
+
+    
+    
+    
+    
+    public ArrayList<Temporada> getAll() {
+        return dao.getAll();
+    }
+
+    public Temporada getById(int idcategoria) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public void delete(Temporada tem) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public boolean update(Temporada tem) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    
+    
+    
     
 }

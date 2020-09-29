@@ -5,10 +5,62 @@
  */
 package ModeloDaoImpl;
 
+import Config.FactoryConexion;
+import Modelo.Categoria;
+import Modelo.Temporada;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+
 /**
  *
  * @author Alejandro
  */
 public class TemporadaDaoImpl {
+    
+    public ArrayList<Temporada> getAll() {
+        Statement stmt = null;
+        ResultSet rs = null;
+        ArrayList<Temporada> temporadas = new ArrayList<>();
+
+        try {
+            stmt = FactoryConexion.getInstancia().getConn().createStatement();
+            rs = stmt.executeQuery("select * from temporadas");
+            if (rs != null) {
+                while (rs.next()) {
+                    Temporada t = new Temporada();
+                    t.setId(rs.getInt("id"));
+                    t.setDescripcion(rs.getString("descripcion"));
+                    t.setFecha_desde(rs.getString("fecha_desde"));
+                    t.setFecha_hasta(rs.getString("fecha_hasta"));
+                    t.setPrecio(rs.getFloat("precio"));
+                    temporadas.add(t);
+                }
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+
+        } finally {
+            try {
+                if (rs != null) {
+                    rs.close();
+                }
+                if (stmt != null) {
+                    stmt.close();
+                }
+                FactoryConexion.getInstancia().releaseConn();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+
+        return temporadas;
+    }
+    
+    
+    
+    
     
 }

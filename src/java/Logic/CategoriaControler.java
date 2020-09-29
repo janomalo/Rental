@@ -42,7 +42,7 @@ public class CategoriaControler {
     }
 
     public void save(Categoria cat) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        dao.add(cat);
     }
     
 }
