@@ -8,6 +8,8 @@
         <title>Editar Temporada</title>
     </head>
     <body>
-        <h1>Editar Temporada</h1>
+        
+
+
     </body>
 </html>

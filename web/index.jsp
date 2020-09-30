@@ -45,6 +45,9 @@
                     case "listartemporadas":
                                 %><%@include file="vistas/listarTemporadas.jsp"%><%
                     break;
+                    case "edittemporada":
+                                %><%@include file="vistas/editTemporada.jsp"%><%
+                    break;
                     case "error":
                                 %><%@include file="vistas/errorlogin.jsp"%><%
                     break;

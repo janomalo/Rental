@@ -33,7 +33,7 @@ public class TemporadaControler {
     }
 
     public Temporada getById(int idcategoria) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+       return dao.getById(idcategoria);
     }
 
     public void delete(Temporada tem) {
