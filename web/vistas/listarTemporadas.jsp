@@ -12,7 +12,7 @@
     </head>
     <body>
         <div  class="container-fluid col-8">
-            <h1>Categorias</h1> 
+            <h1>Temporadas</h1> 
             <table class="table">
 
                 <thead>
