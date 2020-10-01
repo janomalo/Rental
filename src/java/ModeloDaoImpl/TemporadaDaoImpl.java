@@ -76,6 +76,7 @@ public class TemporadaDaoImpl {
                 t.setDescripcion(rs.getString("descripcion"));
                 t.setFecha_desde(rs.getString("fecha_desde"));
                 t.setFecha_hasta(rs.getString("fecha_hasta"));
+                 t.setPrecio(rs.getFloat("precio"));
                 //fecha desde c.setEstado(rs.getInt("estado"));
                 // fecha hastac.setEstado(rs.getInt("estado"));
                 /// precio c.setEstado(rs.getInt("estado"));
