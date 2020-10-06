@@ -37,7 +37,7 @@ public class TemporadaControler {
     }
 
     public void delete(Temporada tem) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        dao.remove(tem);
     }
 
     public boolean update(Temporada tem) {

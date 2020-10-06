@@ -70,16 +70,17 @@ public class Temporadas extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        
         String action = request.getParameter("accion");
 
         if (action.equalsIgnoreCase("listar")) {
-            List<Temporada> listcategorias = temctrl.getAll();
-            request.setAttribute("listatemporadas", listcategorias);
+            List<Temporada> listtemporadas = temctrl.getAll();
+            request.setAttribute("listatemporadas", listtemporadas);
             String vista = "listartemporadas";
             request.setAttribute("vista", vista);
 
         } else if (action.equalsIgnoreCase("add")) {
-            String vista = "addcategoria";
+            String vista = "addtemporada";
             request.setAttribute("vista", vista);
 
         } else if (action.equalsIgnoreCase("edit")) {
@@ -95,9 +96,9 @@ public class Temporadas extends HttpServlet {
             int id1 = Integer.parseInt(id);
             tem.setId(id1);
             temctrl.delete(tem);
-            List<Temporada> listcategorias = temctrl.getAll();
-            request.setAttribute("listacategorias", listcategorias);
-            String vista = "listarcategorias";
+            List<Temporada> listtemporadas = temctrl.getAll();
+            request.setAttribute("listatemporadas", listtemporadas);
+            String vista = "listartemporadas";
             request.setAttribute("vista", vista);
 
         }
@@ -132,9 +133,17 @@ public class Temporadas extends HttpServlet {
             // listar
         } else if (action.equalsIgnoreCase("update")) {
             Integer id = Integer.parseInt(request.getParameter("txtid"));
-            String nombre = request.getParameter("txtnombre");
-            String h = request.getParameter("txtestado");
-            int hab = Integer.parseInt(h);
+            String descripcion = request.getParameter("txtdescripcion");
+            String fecha_desde = request.getParameter("txtfdesde");
+            String fecha_hasta = request.getParameter("txtfhasta");
+            float precio = Integer.parseInt(request.getParameter("txtprecio"));
+            
+            tem.setId(id);
+            tem.setDescripcion(descripcion);
+            tem.setFecha_desde(fecha_desde);
+            tem.setFecha_hasta(fecha_hasta);
+            tem.setPrecio(precio);
+            
 
            /* tem.setId(id);
             tem.setNombre(nombre);

@@ -101,5 +101,67 @@ public class TemporadaDaoImpl {
         return t;
 
     }
+public boolean update(Categoria c) {
+        PreparedStatement stmt = null;
+        int resultado;
+        boolean boleano = false;
+        try {
+            stmt = FactoryConexion.getInstancia().getConn().
+                    prepareStatement(
+                            "update categorias set nombre=?,estado=? where id=?");
+            stmt.setString(1, c.getNombre());
+            stmt.setInt(2, c.getEstado());
+            stmt.setInt(3, c.getId());
+            resultado = stmt.executeUpdate(); //devuelve cantidad int de filas updateadas 
+            if (resultado > 0) {
+                boleano = true;
+            } else {
+                boleano = false;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (stmt != null) {
+                    stmt.close();
+                }
+                FactoryConexion.getInstancia().releaseConn();
 
+            } catch (SQLException e) {
+                e.printStackTrace();
+
+            }
+        }
+
+        return boleano;
+    }
+
+    public void remove(Temporada t) {
+        PreparedStatement stmt = null;
+        try {
+            stmt = FactoryConexion.getInstancia().getConn().
+                    prepareStatement(
+                            "delete from temporadas where id=?");
+            stmt.setInt(1, t.getId());
+            stmt.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (stmt != null) {
+                    stmt.close();
+                }
+                FactoryConexion.getInstancia().releaseConn();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+    
+    
+    
+    
+    
+    
+    
 }
