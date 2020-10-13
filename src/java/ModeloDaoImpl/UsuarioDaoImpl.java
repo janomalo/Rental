@@ -3,7 +3,7 @@ package ModeloDaoImpl;
 //import Config.Conexion;
 import Config.FactoryConexion;
 
-import Interfaces.IUsuarioDao;
+
 import Modelo.Usuario;
 import java.sql.ResultSet;
 import java.sql.PreparedStatement;

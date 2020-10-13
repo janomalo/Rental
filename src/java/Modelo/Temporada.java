@@ -5,6 +5,9 @@
  */
 package Modelo;
 
+import java.sql.Timestamp;
+import java.util.Date;
+
 /**
  *
  * @author Alejandro
@@ -12,14 +15,14 @@ package Modelo;
 public class Temporada {
     int id;
     String descripcion;
-    String fecha_desde;
+    Timestamp fecha_desde;
     String fecha_hasta;
     float precio;
 
     public Temporada() {
     }
 
-    public Temporada(int id, String descripcion, String fecha_desde, String fecha_hasta, float precio) {
+    public Temporada(int id, String descripcion, Timestamp fecha_desde, String fecha_hasta, float precio) {
         this.id = id;
         this.descripcion = descripcion;
         this.fecha_desde = fecha_desde;
@@ -43,11 +46,11 @@ public class Temporada {
         this.descripcion = descripcion;
     }
 
-    public String getFecha_desde() {
+    public Date getFecha_desde() {
         return fecha_desde;
     }
 
-    public void setFecha_desde(String fecha_desde) {
+    public void setFecha_desde(Timestamp fecha_desde) {
         this.fecha_desde = fecha_desde;
     }
 

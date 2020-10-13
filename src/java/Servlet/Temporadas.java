@@ -9,7 +9,13 @@ import Logic.TemporadaControler;
 import Modelo.Temporada;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Timestamp;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -134,14 +140,17 @@ public class Temporadas extends HttpServlet {
         } else if (action.equalsIgnoreCase("update")) {
             Integer id = Integer.parseInt(request.getParameter("txtid"));
             String descripcion = request.getParameter("txtdescripcion");
-            String fecha_desde = request.getParameter("txtfdesde");
+          
+            String fechad = request.getParameter("txtfdesde");
+            Timestamp fecha_desde = Timestamp.valueOf(fechad);
+            
             String fecha_hasta = request.getParameter("txtfhasta");
-            float precio = Integer.parseInt(request.getParameter("txtprecio"));
+            float precio = Float.parseFloat(request.getParameter("txtprecio"));
             
             tem.setId(id);
             tem.setDescripcion(descripcion);
             tem.setFecha_desde(fecha_desde);
-            tem.setFecha_hasta(fecha_hasta);
+            //tem.setFecha_hasta(fecha_hasta);
             tem.setPrecio(precio);
             
 
@@ -150,10 +159,10 @@ public class Temporadas extends HttpServlet {
             tem.setEstado(hab);*/
 
             if (temctrl.update(tem) == true) {
-                List<Temporada> listcategorias = temctrl.getAll();
-                request.setAttribute("listacategorias", listcategorias);
-                String vista = "listarcategorias";
-                request.setAttribute("vista", vista);
+                 List<Temporada> listtemporadas = temctrl.getAll();
+            request.setAttribute("listatemporadas", listtemporadas);
+            String vista = "listartemporadas";
+            request.setAttribute("vista", vista);
             } else {
                 String vista = "erroredit";
                 request.setAttribute("vista", vista);

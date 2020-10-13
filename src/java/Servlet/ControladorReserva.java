@@ -86,7 +86,10 @@ public class ControladorReserva extends HttpServlet {
          String acceso="";
         String action= request.getParameter("accion");
         if(action.equalsIgnoreCase("listar")){
-            acceso=listar;
+         /*  List<Reserva> listreservas = temctrl.getAll();
+            request.setAttribute("listareservas", listreservas);
+            String vista = "listarreservas";
+            request.setAttribute("vista", vista);*/
         } else if (action.equalsIgnoreCase("add")) {
             acceso=add;
             

@@ -2,7 +2,7 @@
 <%@page import="Logic.UsuarioControler"%>
 <%@page import="java.util.Iterator"%>
 <%@page import="Modelo.Usuario"%>
-<%@page import="Interfaces.IUsuarioDao"%>
+
 <%@page import="ModeloDaoImpl.UsuarioDaoImpl" %>
 <%@page import="java.util.List"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>

@@ -8,6 +8,7 @@ package ModeloDaoImpl;
 import Config.FactoryConexion;
 import Modelo.Categoria;
 import Modelo.Temporada;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -33,7 +34,7 @@ public class TemporadaDaoImpl {
                     Temporada t = new Temporada();
                     t.setId(rs.getInt("id"));
                     t.setDescripcion(rs.getString("descripcion"));
-                    t.setFecha_desde(rs.getString("fecha_desde"));
+                    t.setFecha_desde(rs.getTimestamp("fecha_desde"));
                     t.setFecha_hasta(rs.getString("fecha_hasta"));
                     t.setPrecio(rs.getFloat("precio"));
                     temporadas.add(t);
@@ -74,7 +75,7 @@ public class TemporadaDaoImpl {
                 t = new Temporada();
                 t.setId(rs.getInt("id"));
                 t.setDescripcion(rs.getString("descripcion"));
-                t.setFecha_desde(rs.getString("fecha_desde"));
+                t.setFecha_desde(rs.getTimestamp("fecha_desde"));
                 t.setFecha_hasta(rs.getString("fecha_hasta"));
                  t.setPrecio(rs.getFloat("precio"));
                 //fecha desde c.setEstado(rs.getInt("estado"));
@@ -101,17 +102,20 @@ public class TemporadaDaoImpl {
         return t;
 
     }
-public boolean update(Categoria c) {
+public boolean update(Temporada t) {
         PreparedStatement stmt = null;
         int resultado;
         boolean boleano = false;
         try {
             stmt = FactoryConexion.getInstancia().getConn().
                     prepareStatement(
-                            "update categorias set nombre=?,estado=? where id=?");
-            stmt.setString(1, c.getNombre());
-            stmt.setInt(2, c.getEstado());
-            stmt.setInt(3, c.getId());
+                            "update temporadas set descripcion=?,fecha_desde=?,fecha_hasta=?,precio=? where id=?");
+            stmt.setString(1, t.getDescripcion());
+            stmt.setDate(2, (new java.sql.Date(t.getFecha_desde().getTime())));
+            stmt.setString(3,t.getFecha_hasta());
+            stmt.setFloat(4, t.getPrecio());
+            stmt.setInt(5, t.getId());
+           
             resultado = stmt.executeUpdate(); //devuelve cantidad int de filas updateadas 
             if (resultado > 0) {
                 boleano = true;

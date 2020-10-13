@@ -5,7 +5,7 @@
  */
 package ModeloDaoImpl;
 
-import Interfaces.IReservaDao;
+
 import Modelo.Reserva;
 import java.util.List;
 
@@ -13,29 +13,28 @@ import java.util.List;
  *
  * @author Alejandro
  */
-public class ReservaDaoImpl implements IReservaDao{
+public class ReservaDaoImpl {
 
-    @Override
+   
     public void save(Reserva reserva) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    @Override
     public List<Reserva> listar() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    @Override
+ 
     public Reserva list(int id) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    @Override
+   
     public boolean edit(Reserva reserva) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    @Override
+
     public void delete(Reserva reserva) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }

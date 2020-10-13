@@ -7,7 +7,7 @@ package ModeloDaoImpl;
 
 import Config.Conexion;
 import Config.FactoryConexion;
-import Interfaces.IProductoDao;
+
 import Modelo.Producto;
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
@@ -26,13 +26,13 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Alejandro
  */
-public class ProductoDaoImpl implements IProductoDao {
+public class ProductoDaoImpl  {
 
     // Instancias la clase que hemos creado anteriormente
 // Llamas al método que tiene la clase y te devuelve una conexión
     private Producto p = new Producto();
 
-    @Override
+    
     public void save(Producto p) {
         PreparedStatement stmt = null;
         ResultSet keyResultSet = null;
@@ -75,7 +75,7 @@ public class ProductoDaoImpl implements IProductoDao {
 
     }
 
-    @Override
+   
     public List<Producto> listar() {
         Statement stmt = null;
         ResultSet rs = null;
@@ -154,7 +154,7 @@ public class ProductoDaoImpl implements IProductoDao {
 
     }
 
-    @Override
+   
     public Producto list(int id) {
         Statement stmt = null;
         ResultSet rs = null;
@@ -193,7 +193,7 @@ public class ProductoDaoImpl implements IProductoDao {
 
     }
 
-    @Override
+    
     public boolean edit(Producto p) {
         //Al listar pass y volver a guardarla 
         PreparedStatement stmt = null;
@@ -231,7 +231,7 @@ public class ProductoDaoImpl implements IProductoDao {
 
     }
 
-    @Override
+   
     public void delete(Producto p) {
         PreparedStatement stmt = null;
 

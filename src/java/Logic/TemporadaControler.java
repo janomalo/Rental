@@ -41,7 +41,7 @@ public class TemporadaControler {
     }
 
     public boolean update(Temporada tem) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    return dao.update(tem);        
     }
     
     
