@@ -33,7 +33,7 @@ insert  into `categorias`(`id`,`nombre`,`estado`) values
 (1,'Ski',1),
 (2,'Snowboard',1),
 (3,'General',1),
-(4,'Otross',1),
+(4,'Otros',1),
 (5,'Desconocido',1);
 
 /*Table structure for table `lista_productos` */
@@ -137,7 +137,7 @@ CREATE TABLE `temporadas` (
   `fecha_hasta` date NOT NULL,
   `precio` float NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 
 /*Data for the table `temporadas` */
 
@@ -145,7 +145,7 @@ insert  into `temporadas`(`id`,`descripcion`,`fecha_desde`,`fecha_hasta`,`precio
 (1,'Baja','2020-06-29','2020-07-12',1.1),
 (2,'Alta','2020-07-13','2020-07-26',1.6),
 (3,'Media','2020-07-27','2020-08-30',1.3),
-(4,'Baja','2020-08-31','2020-09-27',1.1);
+(4,'Baja','2020-08-27','2020-09-27',1.1);
 
 /*Table structure for table `usuarios` */
 
