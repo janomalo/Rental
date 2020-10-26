@@ -38,14 +38,13 @@ public class Temporadas extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    
     Temporada tem;
     TemporadaControler temctrl;
-    
+
     public Temporadas() {
-        this.tem=new Temporada();
-        temctrl=new TemporadaControler();
-        
+        this.tem = new Temporada();
+        temctrl = new TemporadaControler();
+
     }
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -55,7 +54,7 @@ public class Temporadas extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet Temporadas</title>");            
+            out.println("<title>Servlet Temporadas</title>");
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Servlet Temporadas at " + request.getContextPath() + "</h1>");
@@ -76,7 +75,7 @@ public class Temporadas extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+
         String action = request.getParameter("accion");
 
         if (action.equalsIgnoreCase("listar")) {
@@ -110,7 +109,7 @@ public class Temporadas extends HttpServlet {
         }
 
         request.getRequestDispatcher("index.jsp").forward(request, response);
-       
+
     }
 
     /**
@@ -129,7 +128,7 @@ public class Temporadas extends HttpServlet {
         if (action.equalsIgnoreCase("Agregar")) { //funciona
             String nombre = request.getParameter("nombre");
             Integer estado = Integer.parseInt(request.getParameter("estado"));
-           /* tem.setNombre(nombre);
+            /* tem.setNombre(nombre);
             tem.setEstado(estado);
             temctrl.save(tem);*/
             List<Temporada> listemporadas = temctrl.getAll();
@@ -140,29 +139,34 @@ public class Temporadas extends HttpServlet {
         } else if (action.equalsIgnoreCase("update")) {
             Integer id = Integer.parseInt(request.getParameter("txtid"));
             String descripcion = request.getParameter("txtdescripcion");
-          
+
+            //forma si tomo valueof de string
             String fechad = request.getParameter("txtfdesde");
             Timestamp fecha_desde = Timestamp.valueOf(fechad);
+
+            //intentanod cambiar formato antes de pasar a timestamp
+            String fecha_h = request.getParameter("txtfhasta");
+            Timestamp fecha_hasta = Timestamp.valueOf(fecha_h);
             
-            String fecha_hasta = request.getParameter("txtfhasta");
+           
             float precio = Float.parseFloat(request.getParameter("txtprecio"));
-            
+           
+          
             tem.setId(id);
             tem.setDescripcion(descripcion);
             tem.setFecha_desde(fecha_desde);
-            //tem.setFecha_hasta(fecha_hasta);
+            tem.setFecha_hasta(fecha_hasta);
             tem.setPrecio(precio);
-            
 
-           /* tem.setId(id);
+
+            /* tem.setId(id);
             tem.setNombre(nombre);
             tem.setEstado(hab);*/
-
             if (temctrl.update(tem) == true) {
-                 List<Temporada> listtemporadas = temctrl.getAll();
-            request.setAttribute("listatemporadas", listtemporadas);
-            String vista = "listartemporadas";
-            request.setAttribute("vista", vista);
+                List<Temporada> listtemporadas = temctrl.getAll();
+                request.setAttribute("listatemporadas", listtemporadas);
+                String vista = "listartemporadas";
+                request.setAttribute("vista", vista);
             } else {
                 String vista = "erroredit";
                 request.setAttribute("vista", vista);

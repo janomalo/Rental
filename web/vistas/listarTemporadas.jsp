@@ -1,5 +1,6 @@
 
 
+<%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.util.Iterator"%>
 <%@page import="Modelo.Temporada"%>
 <%@page import="java.util.List"%>
@@ -29,7 +30,8 @@
                     //llama metodo getall y trae lisa de usuario
                     List<Temporada> listtempo = (List<Temporada>) request.getAttribute("listatemporadas");
                     Iterator<Temporada> itertem = listtempo.iterator();
-
+                    SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
+                 
                     Temporada tem = null;
                     while (itertem.hasNext()) {
                         tem = itertem.next();
@@ -40,10 +42,10 @@
 
                     <tr class="text-center">
                         <td> <%= tem.getId()%></td>
-                        <td> <%= tem.getDescripcion() %></td>
-                        <td> <%= tem.getFecha_desde() %></td>
-                        <td> <%= tem.getFecha_hasta() %></td>
-                        <td> <%= tem.getPrecio() %></td>
+                        <td> <%= tem.getDescripcion()%></td>
+                        <td> <%= formato.format(tem.getFecha_desde())%></td>
+                        <td> <%= formato.format(tem.getFecha_hasta())%></td>
+                        <td> <%= tem.getPrecio()%></td>
 
                         <td>
                             <a class="btn btn-dark "  href="Temporadas?accion=edit&id=<%= tem.getId()%>" >Editar </a>

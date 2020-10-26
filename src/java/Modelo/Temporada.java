@@ -16,13 +16,13 @@ public class Temporada {
     int id;
     String descripcion;
     Timestamp fecha_desde;
-    String fecha_hasta;
+    Timestamp fecha_hasta;
     float precio;
 
     public Temporada() {
     }
 
-    public Temporada(int id, String descripcion, Timestamp fecha_desde, String fecha_hasta, float precio) {
+    public Temporada(int id, String descripcion, Timestamp fecha_desde, Timestamp fecha_hasta, float precio) {
         this.id = id;
         this.descripcion = descripcion;
         this.fecha_desde = fecha_desde;
@@ -46,7 +46,7 @@ public class Temporada {
         this.descripcion = descripcion;
     }
 
-    public Date getFecha_desde() {
+    public Timestamp getFecha_desde() {
         return fecha_desde;
     }
 
@@ -54,11 +54,11 @@ public class Temporada {
         this.fecha_desde = fecha_desde;
     }
 
-    public String getFecha_hasta() {
+    public Timestamp getFecha_hasta() {
         return fecha_hasta;
     }
 
-    public void setFecha_hasta(String fecha_hasta) {
+    public void setFecha_hasta(Timestamp fecha_hasta) {
         this.fecha_hasta = fecha_hasta;
     }
 

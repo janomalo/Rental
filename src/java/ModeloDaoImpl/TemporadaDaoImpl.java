@@ -35,7 +35,7 @@ public class TemporadaDaoImpl {
                     t.setId(rs.getInt("id"));
                     t.setDescripcion(rs.getString("descripcion"));
                     t.setFecha_desde(rs.getTimestamp("fecha_desde"));
-                    t.setFecha_hasta(rs.getString("fecha_hasta"));
+                    t.setFecha_hasta(rs.getTimestamp("fecha_hasta"));
                     t.setPrecio(rs.getFloat("precio"));
                     temporadas.add(t);
                 }
@@ -76,7 +76,7 @@ public class TemporadaDaoImpl {
                 t.setId(rs.getInt("id"));
                 t.setDescripcion(rs.getString("descripcion"));
                 t.setFecha_desde(rs.getTimestamp("fecha_desde"));
-                t.setFecha_hasta(rs.getString("fecha_hasta"));
+                t.setFecha_hasta(rs.getTimestamp("fecha_hasta"));
                  t.setPrecio(rs.getFloat("precio"));
                 //fecha desde c.setEstado(rs.getInt("estado"));
                 // fecha hastac.setEstado(rs.getInt("estado"));
@@ -112,7 +112,7 @@ public boolean update(Temporada t) {
                             "update temporadas set descripcion=?,fecha_desde=?,fecha_hasta=?,precio=? where id=?");
             stmt.setString(1, t.getDescripcion());
             stmt.setDate(2, (new java.sql.Date(t.getFecha_desde().getTime())));
-            stmt.setString(3,t.getFecha_hasta());
+            stmt.setDate(3,(new java.sql.Date(t.getFecha_hasta().getTime())));
             stmt.setFloat(4, t.getPrecio());
             stmt.setInt(5, t.getId());
            
