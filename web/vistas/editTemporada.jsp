@@ -11,10 +11,10 @@
  <script type="text/javascript">
   $(function () {
     $('#datetime').datepicker({
-      dateFormat: "yy-mm-dd 00:00:00"
+      dateFormat: "yy-mm-dd 00:00:00.0"
     });
     $('#datetime1').datepicker({
-      dateFormat: "yy-mm-dd 00:00:00"
+      dateFormat: "yy-mm-dd 00:00:00.0"
     })
   });
   
