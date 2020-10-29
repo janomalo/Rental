@@ -126,11 +126,21 @@ public class Temporadas extends HttpServlet {
         String action = request.getParameter("accion");
 
         if (action.equalsIgnoreCase("Agregar")) { //funciona
-            String nombre = request.getParameter("nombre");
-            Integer estado = Integer.parseInt(request.getParameter("estado"));
-            /* tem.setNombre(nombre);
-            tem.setEstado(estado);
-            temctrl.save(tem);*/
+            String descripcion = request.getParameter("txtdescripcion");
+            //forma si tomo valueof de string
+            String fechad = request.getParameter("txtfdesde");
+            Timestamp fecha_desde = Timestamp.valueOf(fechad);
+            //tomando la fecha hasta
+            String fecha_h = request.getParameter("txtfhasta");
+            Timestamp fecha_hasta = Timestamp.valueOf(fecha_h);
+
+            float precio = Float.parseFloat(request.getParameter("txtprecio"));
+
+            tem.setDescripcion(descripcion);
+            tem.setFecha_desde(fecha_desde);
+            tem.setFecha_hasta(fecha_hasta);
+            tem.setPrecio(precio);
+            temctrl.add(tem);
             List<Temporada> listemporadas = temctrl.getAll();
             request.setAttribute("listatemporadas", listemporadas);
             String vista = "listartemporadas";
@@ -147,11 +157,9 @@ public class Temporadas extends HttpServlet {
             //intentanod cambiar formato antes de pasar a timestamp
             String fecha_h = request.getParameter("txtfhasta");
             Timestamp fecha_hasta = Timestamp.valueOf(fecha_h);
-            
-           
+
             float precio = Float.parseFloat(request.getParameter("txtprecio"));
-           
-          
+
             tem.setId(id);
             tem.setDescripcion(descripcion);
             tem.setFecha_desde(fecha_desde);

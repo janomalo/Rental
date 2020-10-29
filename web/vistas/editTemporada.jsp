@@ -25,7 +25,7 @@
         <%
             Temporada t = (Temporada) request.getAttribute("temporada");
            
-            SimpleDateFormat formato1= new SimpleDateFormat("yyyy-MM-dd");
+            //SimpleDateFormat formato1= new SimpleDateFormat("yyyy-MM-dd");
            // String fechad= formato1.format(t.getFecha_desde());
          
 

@@ -43,6 +43,10 @@ public class TemporadaControler {
     public boolean update(Temporada tem) {
     return dao.update(tem);        
     }
+
+    public void add(Temporada tem) {
+        dao.add(tem);
+    }
     
     
     
