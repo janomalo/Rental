@@ -78,7 +78,7 @@
                         <td> <input type="text" class="form-control" name="txtdescripcion" form="my_form" placeholder="Descripción" /></td>
                         <td> <input type="text" class="form-control" name="txtfdesde" form="my_form" placeholder="yyyy/mm/dd" id="datetime"/></td>
                         <td> <input type="text"  class="form-control" name="txtfhasta" form="my_form" placeholder="yyyy/mm/dd" id="datetime1" /></td>
-                        <td> <input type="text" class="form-control" name="txtprecio" form="my_form" placeholder="Precio" /></td>
+                        <td> <input type="text" class="form-control" name="txtprecio" form="my_form" placeholder="Precio"  required/></td>
                         <td> 
                             <input  class=" btn btn-success" type="submit" value="Agregar" name="accion" form="my_form">
                         </td>

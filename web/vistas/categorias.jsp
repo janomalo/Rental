@@ -14,6 +14,7 @@
     <body>
         <div  class="container-fluid col-8">
             <h1>Categorias</h1> 
+            <form action="Temporadas" method="POST" id="my_formcategoria" class="form-text"></form>
             <table class="table">
 
                 <thead>
@@ -60,6 +61,16 @@
                         }
 
                     %>
+                    <tr class="text-center">
+
+                        <td> ID</td>
+                        <td> <input type="text" class="form-control" name="txtnombre" form="my_formcategoria" placeholder="Nombre" required/></td>
+                        <td> <input type="text" class="form-control" name="txtestado" form="my_formcategoria" placeholder="Estado" required /></td>
+                        
+                        <td> 
+                            <input  class=" btn btn-success" type="submit" value="Agregar" name="accion" form="my_formcategoria">
+                        </td>
+                    </tr>
                 </tbody>
 
 
