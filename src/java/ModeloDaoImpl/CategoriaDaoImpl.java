@@ -135,9 +135,8 @@ public class CategoriaDaoImpl {
         try {
             stmt = FactoryConexion.getInstancia().getConn().
                     prepareStatement(
-                            "insert into roles(nombre) values(?)",
-                            PreparedStatement.RETURN_GENERATED_KEYS
-                    );
+                            "insert into categorias(id,nombre,estado) VALUES(NULL,?,?)",
+                            PreparedStatement.RETURN_GENERATED_KEYS );
             stmt.setString(1, c.getNombre());
             stmt.setInt(2, c.getEstado());
             stmt.executeUpdate();

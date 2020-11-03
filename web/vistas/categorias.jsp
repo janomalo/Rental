@@ -14,7 +14,7 @@
     <body>
         <div  class="container-fluid col-8">
             <h1>Categorias</h1> 
-            <form action="Temporadas" method="POST" id="my_formcategoria" class="form-text"></form>
+            <form action="Categorias" method="POST" id="my_formcategoria" class="form-text"></form>
             <table class="table">
 
                 <thead>

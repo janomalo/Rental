@@ -78,11 +78,11 @@ public class Categorias extends HttpServlet {
             String vista = "listarcategorias";
             request.setAttribute("vista", vista);
 
-        } else if (action.equalsIgnoreCase("add")) {
+        } /*else if (action.equalsIgnoreCase("add")) {
             String vista = "addcategoria";
             request.setAttribute("vista", vista);
 
-        } else if (action.equalsIgnoreCase("edit")) {
+        }*/ else if (action.equalsIgnoreCase("edit")) {
             int idcategoria = Integer.parseInt(request.getParameter("id"));
             request.setAttribute("idcat", request.getParameter("id"));
             cat = catcntrl.getById(idcategoria);
@@ -121,14 +121,14 @@ public class Categorias extends HttpServlet {
         String action = request.getParameter("accion");
 
         if (action.equalsIgnoreCase("Agregar")) { //funciona
-            String nombre = request.getParameter("nombre");
-            Integer estado = Integer.parseInt(request.getParameter("estado"));
+            String nombre = request.getParameter("txtnombre");
+            Integer estado = Integer.parseInt(request.getParameter("txtestado"));
             cat.setNombre(nombre);
             cat.setEstado(estado);
             catcntrl.save(cat);
-            List<Categoria> listproductos = catcntrl.getAll();
-            request.setAttribute("listaproductos", listproductos);
-            String vista = "listarproductos";
+            List<Categoria> listcategorias = catcntrl.getAll();
+            request.setAttribute("listacategorias", listcategorias);
+            String vista = "listarcategorias";
             request.setAttribute("vista", vista);
             // listar
         } else if (action.equalsIgnoreCase("update")) {
