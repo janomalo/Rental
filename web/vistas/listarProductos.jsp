@@ -62,8 +62,12 @@
                         <td> <%= pro.getDescripcion()%> </td>
                         <td> <%= pro.getStock()%> </td>
                         <td> <%= pro.getPrecio()%> </td>
-                        <td> <%= pro.getEstado()%> </td>
-
+                                                
+                        <% if (pro.getEstado() == 0) {%>
+                        <td>NO DISPONIBLE </td>
+                        <% } else {%>
+                        <td>DISPONIBLE </td>
+                        <% }%>
                         <%-- <td> <%= usu.getFecha_registro()%> </td> --%>
                         <td>
                             <a class="btn btn-dark"  href="ControladorProducto?accion=editar&id=<%= pro.getId()%>">Editar</a>

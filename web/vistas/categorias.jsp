@@ -42,8 +42,12 @@
                     <tr class="text-center">
                         <td> <%= cat.getId()%></td>
                         <td> <%= cat.getNombre() %></td>
-                        <td> <%= cat.getEstado() %></td>
-
+                                               
+                        <% if (cat.getEstado() == 0) {%>
+                        <td>NO DISPONIBLE </td>
+                        <% } else {%>
+                        <td>DISPONIBLE </td>
+                        <% }%>
                         <td>
                             <a class="btn btn-dark "  href="Categorias?accion=edit&id=<%= cat.getId()%>" >Editar </a>
 

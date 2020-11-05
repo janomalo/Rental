@@ -11,13 +11,13 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>GESTIÓN DE USUARIOS</title>
-        
+
     </head>
     <body>
         <div  class="container-fluid">
             <h1>GESTIÓN DE USUARIOS </h1> 
             <table class="table">
-                
+
                 <thead>
                     <tr class="text-center">
                         <th>ID</th>
@@ -29,83 +29,86 @@
                         <th>EMAIL</th>
                         <th>USER</th>
                         <th>HABILITADO</th>
-                        <%--<th>FECHA REGISTRO</th> --%>
+                            <%--<th>FECHA REGISTRO</th> --%>
                         <th>ACCIONES</th>
-                                                  
+
                     </tr>
                 </thead>
                 <%
                     //llama metodo getall y trae lisa de usuario
-                   List<Usuario> list= (List<Usuario>)request.getAttribute("listausu");
-                   Iterator<Usuario> iter=list.iterator();
-                    
-                   Usuario usu= null;
-                    while(iter.hasNext()){
-                        usu=iter.next();
-                    
-                                    
+                    List<Usuario> list = (List<Usuario>) request.getAttribute("listausu");
+                    Iterator<Usuario> iter = list.iterator();
+
+                    Usuario usu = null;
+                    while (iter.hasNext()) {
+                        usu = iter.next();
+
+
                 %>
                 <tbody>
-                    
+
                     <tr class="text-center">
-                        <td> <%= usu.getId() %></td>
-                      <td> <%= usu.getDni() %></td>
-                       <td> <%= usu.getNombres()%></td>
-                       <td> <%= usu.getApellidos()%></td>
-                       <td>  <%= usu.getTelefono()%></td>
-                       <td> <%= usu.getDireccion()%></td>
-                       <td> <%= usu.getEmail() %> </td>
-                       <td> <%= usu.getUsuario()%> </td>
-                       <td> <%= usu.getHabilitado() %> </td>
-                       
-                       
-                       <%-- <td> <%= usu.getFecha_registro()%> </td> --%>
-                       <td>
-                           <a class="btn btn-dark "  href="Controlador?accion=editar&id=<%= usu.getId()%>" >Editar </a>
-                          
-                          <a  class="btn btn-danger" href="Controlador?accion=delete&id=<%= usu.getId()%>">Eliminar</a> 
-                                 <!-- Button trigger modal -->
+                        <td> <%= usu.getId()%></td>
+                        <td> <%= usu.getDni()%></td>
+                        <td> <%= usu.getNombres()%></td>
+                        <td> <%= usu.getApellidos()%></td>
+                        <td>  <%= usu.getTelefono()%></td>
+                        <td> <%= usu.getDireccion()%></td>
+                        <td> <%= usu.getEmail()%> </td>
+                        <td> <%= usu.getUsuario()%> </td>
+
+                        <% if (usu.getHabilitado() == 0) {%>
+                        <td>NO </td>
+                        <% } else {%>
+                        <td>SI </td>
+                        <% }%>
+                        <%-- <td> <%= usu.getFecha_registro()%> </td> --%>
+                        <td>
+                            <a class="btn btn-dark "  href="Controlador?accion=editar&id=<%= usu.getId()%>" >Editar </a>
+
+                            <a  class="btn btn-danger" href="Controlador?accion=delete&id=<%= usu.getId()%>">Eliminar</a> 
+                            <!-- Button trigger modal -->
 
 
-    <!-- Modal 
-<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLongTitle">Eliminar Usuario</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        ¡¡Esta a punto de eliminar un Usuario!!!
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-        <a class="btn btn-danger" href="Controlador?accion=delete&id=<%= usu.getId()%>">Eliminar</a>
-      </div>
-    </div>
-  </div>
-</div>-->
-                       </td>
-                        
-                        
-                        
+                            <!-- Modal 
+                        <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                          <div class="modal-dialog modal-dialog-centered" role="document">
+                            <div class="modal-content">
+                              <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLongTitle">Eliminar Usuario</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                  <span aria-hidden="true">&times;</span>
+                                </button>
+                              </div>
+                              <div class="modal-body">
+                                ¡¡Esta a punto de eliminar un Usuario!!!
+                              </div>
+                              <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                                <a class="btn btn-danger" href="Controlador?accion=delete&id=<%= usu.getId()%>">Eliminar</a>
+                              </div>
+                            </div>
+                          </div>
+                        </div>-->
+                        </td>
+
+
+
                     </tr>
                     <%
-                    }
-                    
+                        }
+
                     %>
                 </tbody>
-                
-                               
-                
+
+
+
             </table> 
-          
-              
-              <%-- <a class="btn btn-success" href="index.jsp"> Volver</a> --%>
+
+
+            <%-- <a class="btn btn-success" href="index.jsp"> Volver</a> --%>
         </div>
-                
-                
+
+
     </body>
 </html>

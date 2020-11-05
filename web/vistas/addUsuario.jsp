@@ -74,8 +74,8 @@
                     <label class="col-lg-8 control-label">Estado</label>
                     <div class="col-lg-auto">
                         <select  class="form-control" name="habilitado">
-                            <option  value="1">Habilitar</option>
-                            <option  value="0">Deshabilitar</option>
+                            <option  value="1">Habilitado</option>
+                            <option  value="0">Deshabilitado</option>
                         </select>
                     </div>
             </div>
