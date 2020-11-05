@@ -56,10 +56,19 @@
                         <input type="text" class="form-control" name="txtprecio" value="<%=p.getPrecio()%>" />
                     </div>
                 </div>
-
+ <%-- RADIO option 
                 <input type="radio" name="txthabilitado" value="1" required="">Habilitar(1)
                 <input type="radio" name="txthabilitado" value="0"  required="">Deshabiltiar(0)<br>
-
+--%>
+                 <div class="form-group">
+                    <label class="col-lg-8 control-label">Estado</label>
+                    <div class="col-lg-auto">
+                        <select  class="form-control" name="txthabilitado" required="">
+                            <option  value="1">Habilitar</option>
+                            <option  value="0">Deshabilitar</option>
+                        </select>
+                    </div>
+                </div>
                 <%-- Fecha <input type="date" name="fecha"> --%>
 
 
@@ -67,7 +76,7 @@
                     <div class=" col-auto">
                         <%-- <input type="submit" class="btn btn-success left" name="accion" value="Actualizar" > --%>
                         <input type="submit" value="Actualizar" name="accion" class="btn btn-success left">
-                        <a class="btn btn-success" href="listarProductos.jsp"> Volver</a>
+                        <a class="btn btn-success" href="ControladorProducto?accion=listar"> Volver</a>
                     </div>
                 </div>
 
