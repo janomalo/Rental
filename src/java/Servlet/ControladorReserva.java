@@ -5,6 +5,7 @@
  */
 package Servlet;
 
+import Logic.ProductoControler;
 import Modelo.ListaProducto;
 import Modelo.Producto;
 import Modelo.Reserva;
@@ -86,20 +87,15 @@ public class ControladorReserva extends HttpServlet {
          String acceso="";
         String action= request.getParameter("accion");
         if(action.equalsIgnoreCase("listar")){
-         /*  List<Reserva> listreservas = temctrl.getAll();
-            request.setAttribute("listareservas", listreservas);
-            String vista = "listarreservas";
-            request.setAttribute("vista", vista);*/
+         
         } else if (action.equalsIgnoreCase("add")) {
-            acceso=add;
+            //acceso=add;
             
         } else if (action.equalsIgnoreCase("AgregarReserva")) {
-            
+            /*
            Integer idp=Integer.parseInt(request.getParameter("id"));
-            
             p=pdao.list(idp); 
             ListaProducto listpro= new ListaProducto();
-            
             listpro.setItem(item);
             listpro.setProducto_id(p.getId());
             listpro.setNombre(p.getNombre());
@@ -110,44 +106,28 @@ public class ControladorReserva extends HttpServlet {
             listaproducto.add(listpro);
             request.setAttribute("contador",listaproducto.size());
             request.getRequestDispatcher("ControladorReserva?accion=reserva").forward(request, response);
+        */
         }
         else if (action.equalsIgnoreCase("editar")) {
-            // int idusu=Integer.parseInt(request.getParameter("id"));
-          request.setAttribute("idres",request.getParameter("id"));          
-// captura id de fila seleccionada cuando se hace click en editar.
-            acceso=edit;
+            
         }
         else if (action.equalsIgnoreCase("Actualizar")) {
-             System.out.println("pasa por aca");
-            
-          
-            
-            //dao.edit(usu);
-            //acceso=listar;
+           
                        
         }
         else if(action.equalsIgnoreCase("delete")){
-            /*String id= request.getParameter("id");
-             int id1= Integer.parseInt(id);
-             usu.setId(id1);
-             dao.delete(usu);*/
-             acceso=listar;
-           
+                      
             
         }
         else if(action.equalsIgnoreCase("reserva")){
-            
-            
-        productos= pdao.listar();
-       request.setAttribute("productos",productos);
-       acceso=reserva;
-                
+         ProductoControler ctrlproducto= new ProductoControler(); 
+         List<Producto> listproductos = ctrlproducto.getAll();
+         request.setAttribute("productos", listproductos);
+         String vista=reserva;
+          request.setAttribute("vista", vista);       
         }
                        
-        
-       RequestDispatcher vista=request.getRequestDispatcher(acceso);
-        vista.forward(request, response);
-        
+   request.getRequestDispatcher("index.jsp").forward(request, response);
         
         
     }
@@ -163,7 +143,12 @@ public class ControladorReserva extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+      
+        
+        
+        
+        request.getRequestDispatcher("index.jsp").forward(request, response);
+       
     }
 
     /**
