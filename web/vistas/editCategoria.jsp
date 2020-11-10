@@ -13,26 +13,34 @@
         <title>Editar Categoria</title>
     </head>
     <body>
-        
-        
+
+
         <%
-           Categoria c= (Categoria) request.getAttribute("categoria");
-                         
-        
+            Categoria c = (Categoria) request.getAttribute("categoria");
+
+
         %>
-         <h1>Editar Usuario</h1>
-         <div class="container col-lg-8">
-             <form action="Categorias"  class="form-text" method="POST">
-                <input  type="hidden"  name="txtid"  value="<%=c.getId() %>">
-                NOMBRES <input type="text"   class="form-control" name="txtnombre" value="<%=c.getNombre() %>"><br>
-                ESTADO <input type="text" class="form-control" name="txtestado" value="<%=c.getEstado() %>"><br>
-                           
-                             
+        <h1>Editar Usuario</h1>
+        <div class="container col-lg-8">
+            <form action="Categorias"  class="form-text" method="POST">
+                <input  type="hidden"  name="txtid"  value="<%=c.getId()%>">
+                NOMBRES <input type="text"   class="form-control" name="txtnombre" value="<%=c.getNombre()%>"><br>
+                <%-- ESTADO <input type="text" class="form-control" name="txtestado" value="<%=c.getEstado()%>"><br> --%>
+                <div class="form-group">
+                    <label class="col-lg-8 control-label">Estado</label>
+                    <div class="col-lg-auto">
+                        <select  class="form-control" name="txtestado">
+                            <option  value="1">Habilitado</option>
+                            <option  value="0">Deshabilitado</option>
+                        </select>
+                    </div>
+                </div>        
+
                 <%-- Fecha <input type="date" name="fecha"> --%>
                 <input  class=" btn btn-success" type="submit" value="update" name="accion">
                 <a class="btn btn-danger" href="Categorias?accion=listar"> Volver</a>
             </form>
-          </div>
-        
+        </div>
+
     </body>
 </html>

@@ -5,7 +5,9 @@
  */
 package Servlet;
 
+import Logic.CategoriaControler;
 import Logic.ProductoControler;
+import Modelo.Categoria;
 import Modelo.Producto;
 import ModeloDaoImpl.ProductoDaoImpl;
 import java.io.IOException;
@@ -72,6 +74,9 @@ public class ControladorProducto extends HttpServlet {
             request.setAttribute("vista", vista);
 
         } else if (action.equalsIgnoreCase("add")) {
+            CategoriaControler catcntrl= new CategoriaControler();
+            List<Categoria> listcategorias = catcntrl.getAll();
+            request.setAttribute("listacategorias", listcategorias);
             String vista = "addproducto";
             request.setAttribute("vista", vista);
 
