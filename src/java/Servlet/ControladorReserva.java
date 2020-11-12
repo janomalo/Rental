@@ -29,10 +29,10 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(name = "ControladorReserva", urlPatterns = {"/ControladorReserva"})
 public class ControladorReserva extends HttpServlet {
     
-     String listar="/vistas/listar.jsp";
+     /*String listar="/vistas/listar.jsp";
       String add="/vistas/addReserva.jsp";
         String edit="/vistas/editReserva.jsp";
-        String reserva="/vistas/Reserva.jsp";
+  
           Reserva res= new Reserva();
     //UsuarioDaoImpl dao=new UsuarioDaoImpl();
      ReservaDaoImpl dao=new ReservaDaoImpl();
@@ -40,7 +40,7 @@ public class ControladorReserva extends HttpServlet {
      List<Producto> productos= new ArrayList<>();
      Producto p=new Producto();
      List<ListaProducto> listaproducto=new ArrayList<>();
-     
+     */
     int item;
     double totalPagar=0.0;
     int cantidad=1;
@@ -84,15 +84,21 @@ public class ControladorReserva extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-         String acceso="";
+       
         String action= request.getParameter("accion");
-        if(action.equalsIgnoreCase("listar")){
-         
+        if(action.equalsIgnoreCase("nueva")){
+         ProductoControler ctrlproducto= new ProductoControler(); 
+         List<Producto> listproductos = ctrlproducto.getAll();
+         request.setAttribute("productos", listproductos);
+         String vista="reserva";
+          request.setAttribute("vista", vista);
         } else if (action.equalsIgnoreCase("add")) {
             //acceso=add;
             
         } else if (action.equalsIgnoreCase("AgregarReserva")) {
-            /*
+            /* Quitar comentario y reformular
+            
+            
            Integer idp=Integer.parseInt(request.getParameter("id"));
             p=pdao.list(idp); 
             ListaProducto listpro= new ListaProducto();
@@ -107,25 +113,14 @@ public class ControladorReserva extends HttpServlet {
             request.setAttribute("contador",listaproducto.size());
             request.getRequestDispatcher("ControladorReserva?accion=reserva").forward(request, response);
         */
-        }
-        else if (action.equalsIgnoreCase("editar")) {
-            
-        }
-        else if (action.equalsIgnoreCase("Actualizar")) {
-           
-                       
-        }
-        else if(action.equalsIgnoreCase("delete")){
-                      
-            
-        }
-        else if(action.equalsIgnoreCase("reserva")){
+        }        
+        /*else if(action.equalsIgnoreCase("reserva")){
          ProductoControler ctrlproducto= new ProductoControler(); 
          List<Producto> listproductos = ctrlproducto.getAll();
          request.setAttribute("productos", listproductos);
          String vista=reserva;
           request.setAttribute("vista", vista);       
-        }
+        }*/
                        
    request.getRequestDispatcher("index.jsp").forward(request, response);
         
@@ -143,7 +138,10 @@ public class ControladorReserva extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-      
+         String action= request.getParameter("accion");
+      if(action.equalsIgnoreCase("")){
+              
+        }
         
         
         

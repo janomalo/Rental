@@ -58,7 +58,7 @@ public class ControladorVista extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-       /*
+       
         String action = request.getParameter("accion");
         if (action.equalsIgnoreCase("signin")) {
             String vista="login";
@@ -83,7 +83,7 @@ public class ControladorVista extends HttpServlet {
         }
         
         request.getRequestDispatcher("index.jsp").forward(request, response);
-   */
+   
     
     }
 
