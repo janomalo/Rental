@@ -44,6 +44,15 @@ public class ControladorReserva extends HttpServlet {
     int item;
     double totalPagar=0.0;
     int cantidad=1;
+    ProductoControler ctrlproducto;
+    Producto preserva;
+    ListaProducto listpro;
+    
+    public ControladorReserva() {
+        this.ctrlproducto = new ProductoControler();
+        preserva = new Producto();
+      this.listpro= new ListaProducto();
+    }
     
 
     /**
@@ -87,7 +96,7 @@ public class ControladorReserva extends HttpServlet {
        
         String action= request.getParameter("accion");
         if(action.equalsIgnoreCase("nueva")){
-         ProductoControler ctrlproducto= new ProductoControler(); 
+         
          List<Producto> listproductos = ctrlproducto.getAll();
          request.setAttribute("productos", listproductos);
          String vista="reserva";
@@ -96,8 +105,12 @@ public class ControladorReserva extends HttpServlet {
             //acceso=add;
             
         } else if (action.equalsIgnoreCase("AgregarReserva")) {
-            /* Quitar comentario y reformular
             
+            Integer idp=Integer.parseInt(request.getParameter("id"));
+            preserva= ctrlproducto.list(idp);
+            
+            
+            /* Quitar comentario y reformular
             
            Integer idp=Integer.parseInt(request.getParameter("id"));
             p=pdao.list(idp); 
