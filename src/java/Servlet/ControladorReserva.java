@@ -45,13 +45,13 @@ public class ControladorReserva extends HttpServlet {
     double totalPagar=0.0;
     int cantidad=1;
     ProductoControler ctrlproducto;
-    Producto preserva;
-    ListaProducto listpro;
+    Producto pr;
+    List<ListaProducto> listaproductos = new ArrayList<>();
     
     public ControladorReserva() {
         this.ctrlproducto = new ProductoControler();
-        preserva = new Producto();
-      this.listpro= new ListaProducto();
+        pr = new Producto();
+     
     }
     
 
@@ -107,33 +107,29 @@ public class ControladorReserva extends HttpServlet {
         } else if (action.equalsIgnoreCase("AgregarReserva")) {
             
             Integer idp=Integer.parseInt(request.getParameter("id"));
-            preserva= ctrlproducto.list(idp);
-            
-            
-            /* Quitar comentario y reformular
-            
-           Integer idp=Integer.parseInt(request.getParameter("id"));
-            p=pdao.list(idp); 
-            ListaProducto listpro= new ListaProducto();
+            pr= ctrlproducto.list(idp);
+            item= item+1;
+            ListaProducto listpro= new ListaProducto(); //creo objeto listproducto que se va a almacenar en una ArrayList<ListarProducto>
             listpro.setItem(item);
-            listpro.setProducto_id(p.getId());
-            listpro.setNombre(p.getNombre());
-            listpro.setDescripcion(p.getDescripcion());
+            listpro.setProducto_id(pr.getId());
+            listpro.setNombre(pr.getNombre());
+            listpro.setDescripcion(pr.getDescripcion());
             listpro.setCantidad(cantidad);
-            listpro.setSubtotal(cantidad*p.getPrecio()); //subtotal double precio float cambiar.
+            listpro.setSubtotal(cantidad*pr.getPrecio());
             
-            listaproducto.add(listpro);
-            request.setAttribute("contador",listaproducto.size());
+            listaproductos.add(listpro);
+            request.setAttribute("contador",listaproductos.size());
+                                 
             request.getRequestDispatcher("ControladorReserva?accion=reserva").forward(request, response);
-        */
-        }        
-        /*else if(action.equalsIgnoreCase("reserva")){
+        
+        }else if(action.equalsIgnoreCase("reserva")){
          ProductoControler ctrlproducto= new ProductoControler(); 
          List<Producto> listproductos = ctrlproducto.getAll();
          request.setAttribute("productos", listproductos);
-         String vista=reserva;
-          request.setAttribute("vista", vista);       
-        }*/
+         String vista="reserva";
+          request.setAttribute("vista", vista); 
+              
+        }
                        
    request.getRequestDispatcher("index.jsp").forward(request, response);
         
