@@ -37,7 +37,7 @@
                         <div class="card-footer text-center">
                             <label>${p.getDescripcion()}</label><br>
                             <a  href="ControladorReserva?accion=AgregarReserva&id=${p.getId()}" class="btn btn-outline-info">Agregar a Reserva </a>
-                            <a  href="#" class="btn btn-danger">Reservar</a>
+                            <a  href="ControladorReserva?accion=Reservar&id=${p.getId()}" class="btn btn-danger">Reservar</a>
                         </div>
                     </div>
                 </div>

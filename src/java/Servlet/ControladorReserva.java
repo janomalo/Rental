@@ -101,8 +101,30 @@ public class ControladorReserva extends HttpServlet {
          request.setAttribute("productos", listproductos);
          String vista="reserva";
           request.setAttribute("vista", vista);
-        } else if (action.equalsIgnoreCase("add")) {
-            //acceso=add;
+        } else if (action.equalsIgnoreCase("Reservar")) {
+       Integer idp=Integer.parseInt(request.getParameter("id"));
+            pr= ctrlproducto.list(idp);
+            item= item+1;
+            ListaProducto listpro= new ListaProducto(); //creo objeto listproducto que se va a almacenar en una ArrayList<ListarProducto>
+            listpro.setItem(item);
+            listpro.setProducto_id(pr.getId());
+            listpro.setNombre(pr.getNombre());
+            listpro.setDescripcion(pr.getDescripcion());
+            listpro.setPrecio(pr.getPrecio());
+            listpro.setCantidad(cantidad);
+            listpro.setSubtotal(cantidad*pr.getPrecio());
+            
+            listaproductos.add(listpro);
+             request.setAttribute("contador",listaproductos.size());
+             request.setAttribute("carrito", listaproductos);
+            for(int i=0;i<listaproductos.size();i++){
+            totalPagar=totalPagar+listaproductos.get(i).getSubtotal();
+            
+            }
+            request.setAttribute("totalPagar", totalPagar);
+            String vista="carrito";
+          request.setAttribute("vista", vista); 
+          
             
         } else if (action.equalsIgnoreCase("AgregarReserva")) {
             
