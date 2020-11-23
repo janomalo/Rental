@@ -66,7 +66,7 @@
                         </div>
                     </li>
                     <li class="nav-item">
-                        <a  class="nav-link" href="#"><i class="fas fa-cart-plus"> (<label style="color: orange ">${contador}</label>)</i> </a>
+                        <a  class="nav-link" href="ControladorReserva?accion=carrito"><i class="fas fa-cart-plus"> Reserva(<label style="color: orange ">${contador}</label>)</i> </a>
 
                     </li>
 

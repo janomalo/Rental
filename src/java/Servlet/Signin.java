@@ -72,6 +72,9 @@ public class Signin extends HttpServlet {
             session.removeAttribute("nombreusuario"); 
             session.removeAttribute("listaUsuarios"); 
             request.removeAttribute("usuario");
+            request.removeAttribute("contador");
+            request.removeAttribute(action);
+            //
             session.invalidate();
             //response.sendRedirect("index.jsp");
             request.getRequestDispatcher("index.jsp").forward(request, response);

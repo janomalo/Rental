@@ -55,6 +55,9 @@
                     case "reserva":
             %><%@include file="vistas/reserva.jsp"%><%
                     break;
+                     case "carrito":
+            %><%@include file="vistas/carrito.jsp"%><%
+                    break;
                     case "listartemporadas":
             %><%@include file="vistas/listarTemporadas.jsp"%><%                    break;
                 case "edittemporada":

@@ -114,11 +114,12 @@ public class ControladorReserva extends HttpServlet {
             listpro.setProducto_id(pr.getId());
             listpro.setNombre(pr.getNombre());
             listpro.setDescripcion(pr.getDescripcion());
+            listpro.setPrecio(pr.getPrecio());
             listpro.setCantidad(cantidad);
             listpro.setSubtotal(cantidad*pr.getPrecio());
             
             listaproductos.add(listpro);
-            request.setAttribute("contador",listaproductos.size());
+             request.setAttribute("contador",listaproductos.size());
                                  
             request.getRequestDispatcher("ControladorReserva?accion=reserva").forward(request, response);
         
@@ -129,6 +130,17 @@ public class ControladorReserva extends HttpServlet {
          String vista="reserva";
           request.setAttribute("vista", vista); 
               
+        }else if(action.equalsIgnoreCase("carrito")){
+            totalPagar=0.0;
+            request.setAttribute("carrito", listaproductos);
+            for(int i=0;i<listaproductos.size();i++){
+            totalPagar=totalPagar+listaproductos.get(i).getSubtotal();
+            
+            }
+            request.setAttribute("totalPagar", totalPagar);
+            String vista="carrito";
+          request.setAttribute("vista", vista); 
+        
         }
                        
    request.getRequestDispatcher("index.jsp").forward(request, response);
