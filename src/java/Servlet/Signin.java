@@ -76,6 +76,8 @@ public class Signin extends HttpServlet {
             request.removeAttribute(action);
             //
             session.invalidate();
+            String vista="";
+            request.setAttribute("vista", vista);
             //response.sendRedirect("index.jsp");
             request.getRequestDispatcher("index.jsp").forward(request, response);
         

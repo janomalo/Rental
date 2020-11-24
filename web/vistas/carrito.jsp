@@ -42,8 +42,9 @@
                                     <td>${car.getCantidad()}</td>
                                     <td>${car.getSubtotal()}</td>
                                     <td>
-                                        <a href="#">eliminar</a>
-                                        <a href="#">editar</a>
+                                        <input type="hidden" id="idp"  value="${car.getProducto_id()}">
+                                        <a href="#" id="btnDelete">eliminar</a>
+                                       
                                     </td>
                                     <td></td>
                                 </tr>
@@ -74,5 +75,7 @@
                 </div>
             </div>
         </div> 
+         <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>  
+         <script src="../js/funciones.js" type="text/javascript"></script>
     </body>
 </html>
