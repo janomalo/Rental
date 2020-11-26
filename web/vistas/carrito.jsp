@@ -25,7 +25,7 @@
                                     <th>PRECIO</th>
                                     <th>CANTIDAD</th>
                                     <th>SUBTOTAL</th>
-                                    <th>ACCIÓN</th>
+                                    <th >ACCIÓN</th>
                                     
                                 </tr>
                             </thead>
@@ -39,9 +39,12 @@
                                     
                                     </td>
                                     <td>${car.getPrecio()}</td>
-                                    <td>${car.getCantidad()}</td>
-                                    <td>${car.getSubtotal()}</td>
                                     <td>
+                                     
+                                        <input type="number" id="Cantidad"  value="${car.getCantidad()}" class="form-control text-center" min="1"   >
+                                    </td>
+                                    <td>${car.getSubtotal()}</td>
+                                    <td> 
                                         <input type="hidden" id="idp"  value="${car.getProducto_id()}">
                                         <a href="#" id="btnDelete">eliminar</a>
                                        
