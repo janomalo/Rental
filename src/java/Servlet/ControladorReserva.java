@@ -28,8 +28,8 @@ import javax.servlet.http.HttpServletResponse;
  */
 @WebServlet(name = "ControladorReserva", urlPatterns = {"/ControladorReserva"})
 public class ControladorReserva extends HttpServlet {
-    
-     /*String listar="/vistas/listar.jsp";
+
+    /*String listar="/vistas/listar.jsp";
       String add="/vistas/addReserva.jsp";
         String edit="/vistas/editReserva.jsp";
   
@@ -42,20 +42,19 @@ public class ControladorReserva extends HttpServlet {
      List<ListaProducto> listaproducto=new ArrayList<>();
      */
     int item;
-    double totalPagar=0.0;
+    double totalPagar = 0.0;
     //int cantidad=1; // ver si no interfiere en el proceso declararla aca
     ProductoControler ctrlproducto;
     Producto pr;
     List<ListaProducto> listaproductos = new ArrayList<>();
-   // ListaProducto listpro;
-    
+    // ListaProducto listpro;
+
     public ControladorReserva() {
         this.ctrlproducto = new ProductoControler();
         pr = new Producto();
         //listpro=new ListaProducto();
-     
+
     }
-    
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -74,7 +73,7 @@ public class ControladorReserva extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet ControladorReserva</title>");            
+            out.println("<title>Servlet ControladorReserva</title>");
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Servlet ControladorReserva at " + request.getContextPath() + "</h1>");
@@ -95,113 +94,114 @@ public class ControladorReserva extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-       
-        String action= request.getParameter("accion");
-        if(action.equalsIgnoreCase("nueva")){
-         
-         List<Producto> listproductos = ctrlproducto.getAll();
-         request.setAttribute("productos", listproductos);
-         String vista="reserva";
-          request.setAttribute("vista", vista);
+
+        String action = request.getParameter("accion");
+        if (action.equalsIgnoreCase("nueva")) {
+
+            List<Producto> listproductos = ctrlproducto.getAll();
+            request.setAttribute("productos", listproductos);
+            String vista = "reserva";
+            request.setAttribute("vista", vista);
         } else if (action.equalsIgnoreCase("Reservar")) {
-       Integer idp=Integer.parseInt(request.getParameter("id"));
-            int cantidad=1;
-            pr= ctrlproducto.list(idp);
-            item= item+1;
-            ListaProducto listpro= new ListaProducto(); //creo objeto listproducto que se va a almacenar en una ArrayList<ListarProducto>
+            Integer idp = Integer.parseInt(request.getParameter("id"));
+            int cantidad = 1;
+            pr = ctrlproducto.list(idp);
+            item = item + 1;
+            ListaProducto listpro = new ListaProducto(); //creo objeto listproducto que se va a almacenar en una ArrayList<ListarProducto>
             listpro.setItem(item);
             listpro.setProducto_id(pr.getId());
             listpro.setNombre(pr.getNombre());
             listpro.setDescripcion(pr.getDescripcion());
             listpro.setPrecio(pr.getPrecio());
             listpro.setCantidad(cantidad);
-            listpro.setSubtotal(cantidad*pr.getPrecio());
-            
+            listpro.setSubtotal(cantidad * pr.getPrecio());
+
             listaproductos.add(listpro);
-             request.setAttribute("contador",listaproductos.size());
-             request.setAttribute("carrito", listaproductos);
-            for(int i=0;i<listaproductos.size();i++){
-            totalPagar=totalPagar+listaproductos.get(i).getSubtotal();
-            
+            request.setAttribute("contador", listaproductos.size());
+            request.setAttribute("carrito", listaproductos);
+            for (int i = 0; i < listaproductos.size(); i++) {
+                totalPagar = totalPagar + listaproductos.get(i).getSubtotal();
+
             }
             request.setAttribute("totalPagar", totalPagar);
-            String vista="carrito";
-          request.setAttribute("vista", vista); 
-          
-            
+            String vista = "carrito";
+            request.setAttribute("vista", vista);
+
         } else if (action.equalsIgnoreCase("AgregarReserva")) {
-            int pos=0;
-            int cantidad=1;
-            Integer idp=Integer.parseInt(request.getParameter("id"));
-            pr= ctrlproducto.list(idp);
-            if (listaproductos.size()>0) {
+            int pos = 0;
+            int cantidad = 1;
+            Integer idp = Integer.parseInt(request.getParameter("id"));
+            pr = ctrlproducto.list(idp);
+            if (listaproductos.size() > 0) {
                 for (int i = 0; i < listaproductos.size(); i++) {
-                    if (idp==listaproductos.get(i).getProducto_id()) {
-                        pos=i;
+                    if (idp == listaproductos.get(i).getProducto_id()) {
+                        pos = i;
                     }
                 }
-                    if(idp==listaproductos.get(pos).getProducto_id()){
-                        cantidad=listaproductos.get(pos).getCantidad()+cantidad;
-                        double subtotal=listaproductos.get(pos).getPrecio()*cantidad;
-                        listaproductos.get(pos).setCantidad(cantidad);
-                        listaproductos.get(pos).setSubtotal(subtotal);
-                    }else{
-                      item= item+1;
-             //creo objeto listproducto que se va a almacenar en una ArrayList<ListarProducto>
-             ListaProducto listpro=new ListaProducto();
-            listpro.setItem(item);
-            listpro.setProducto_id(pr.getId());
-            listpro.setNombre(pr.getNombre());
-            listpro.setDescripcion(pr.getDescripcion());
-            listpro.setPrecio(pr.getPrecio());
-            listpro.setCantidad(cantidad);
-            listpro.setSubtotal(cantidad*pr.getPrecio());
-            listaproductos.add(listpro);
-                
+                if (idp == listaproductos.get(pos).getProducto_id()) {
+                    cantidad = listaproductos.get(pos).getCantidad() + cantidad;
+                    double subtotal = listaproductos.get(pos).getPrecio() * cantidad;
+                    listaproductos.get(pos).setCantidad(cantidad);
+                    listaproductos.get(pos).setSubtotal(subtotal);
+                } else {
+                    item = item + 1;
+                    //creo objeto listproducto que se va a almacenar en una ArrayList<ListarProducto>
+                    ListaProducto listpro = new ListaProducto();
+                    listpro.setItem(item);
+                    listpro.setProducto_id(pr.getId());
+                    listpro.setNombre(pr.getNombre());
+                    listpro.setDescripcion(pr.getDescripcion());
+                    listpro.setPrecio(pr.getPrecio());
+                    listpro.setCantidad(cantidad);
+                    listpro.setSubtotal(cantidad * pr.getPrecio());
+                    listaproductos.add(listpro);
+
                 }
-                
+
             } else {
-                 item= item+1;
-             //creo objeto listproducto que se va a almacenar en una ArrayList<ListarProducto>
-             ListaProducto listpro=new ListaProducto();
-            listpro.setItem(item);
-            listpro.setProducto_id(pr.getId());
-            listpro.setNombre(pr.getNombre());
-            listpro.setDescripcion(pr.getDescripcion());
-            listpro.setPrecio(pr.getPrecio());
-            listpro.setCantidad(cantidad);
-            listpro.setSubtotal(cantidad*pr.getPrecio());
-            listaproductos.add(listpro);
-            }           
-            
-            
-             request.setAttribute("contador",listaproductos.size());
-                                 
-            request.getRequestDispatcher("ControladorReserva?accion=reserva").forward(request, response);
-        
-        }else if(action.equalsIgnoreCase("reserva")){
-         ProductoControler ctrlproducto= new ProductoControler(); 
-         List<Producto> listproductos = ctrlproducto.getAll();
-         request.setAttribute("productos", listproductos);
-         String vista="reserva";
-          request.setAttribute("vista", vista); 
-              
-        }else if(action.equalsIgnoreCase("carrito")){
-            totalPagar=0.0;
+                item = item + 1;
+                //creo objeto listproducto que se va a almacenar en una ArrayList<ListarProducto>
+                ListaProducto listpro = new ListaProducto();
+                listpro.setItem(item);
+                listpro.setProducto_id(pr.getId());
+                listpro.setNombre(pr.getNombre());
+                listpro.setDescripcion(pr.getDescripcion());
+                listpro.setPrecio(pr.getPrecio());
+                listpro.setCantidad(cantidad);
+                listpro.setSubtotal(cantidad * pr.getPrecio());
+                listaproductos.add(listpro);
+            }
+
+            request.setAttribute("contador", listaproductos.size());
+            ProductoControler ctrlproducto = new ProductoControler();
+            List<Producto> listproductos = ctrlproducto.getAll();
+            request.setAttribute("productos", listproductos);
+            String vista = "reserva";
+            request.setAttribute("vista", vista);
+            // request.getRequestDispatcher("ControladorReserva?accion=reserva").forward(request, response);
+
+        } else if (action.equalsIgnoreCase("reserva")) {
+            ProductoControler ctrlproducto = new ProductoControler();
+            List<Producto> listproductos = ctrlproducto.getAll();
+            request.setAttribute("productos", listproductos);
+            String vista = "reserva";
+            request.setAttribute("vista", vista);
+
+        } else if (action.equalsIgnoreCase("carrito")) {
+            totalPagar = 0.0;
             request.setAttribute("carrito", listaproductos);
-            for(int i=0;i<listaproductos.size();i++){
-            totalPagar=totalPagar+listaproductos.get(i).getSubtotal();
-            
+            for (int i = 0; i < listaproductos.size(); i++) {
+                totalPagar = totalPagar + listaproductos.get(i).getSubtotal();
+
             }
             request.setAttribute("totalPagar", totalPagar);
-            String vista="carrito";
-          request.setAttribute("vista", vista); 
-        
+            String vista = "carrito";
+            request.setAttribute("vista", vista);
+
         }
-                       
-   request.getRequestDispatcher("index.jsp").forward(request, response);
-        
-        
+
+        request.getRequestDispatcher("index.jsp").forward(request, response);
+
     }
 
     /**
@@ -215,23 +215,33 @@ public class ControladorReserva extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-         String action= request.getParameter("accion");
-      if(action.equalsIgnoreCase("Delete")){
-              int idproducto=Integer.parseInt(request.getParameter("idp"));
-          for (int i = 0; i < listaproductos.size(); i++) {
-              if (listaproductos.get(i).getProducto_id()==idproducto) {
-                  listaproductos.remove(i);
-              }
-              
-          }
-            String vista="carrito";
-          request.setAttribute("vista", vista); 
+        String action = request.getParameter("accion");
+        if (action.equalsIgnoreCase("Delete")) {
+            int idproducto = Integer.parseInt(request.getParameter("idp"));
+            for (int i = 0; i < listaproductos.size(); i++) {
+                if (listaproductos.get(i).getProducto_id() == idproducto) {
+                    listaproductos.remove(i);
+                }
+
+            }
+            String vista = "carrito";
+            request.setAttribute("vista", vista);
+        } else if (action.equalsIgnoreCase("ActualizarCantidad")) {
+
+            int idproducto = Integer.parseInt(request.getParameter("idp"));
+            int cant = Integer.parseInt(request.getParameter("Cantidad"));
+            for (int i = 0; i < listaproductos.size(); i++) {
+                if (listaproductos.get(i).getProducto_id() == idproducto) {
+                    listaproductos.get(i).setCantidad(cant);
+                    double st = listaproductos.get(i).getPrecio() * cant;
+                    listaproductos.get(i).setSubtotal(st);
+                }
+            }
+
         }
-        
-        
-        
+
         request.getRequestDispatcher("index.jsp").forward(request, response);
-       
+
     }
 
     /**
