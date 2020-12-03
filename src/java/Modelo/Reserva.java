@@ -5,6 +5,8 @@
  */
 package Modelo;
 
+import java.sql.Timestamp;
+
 /**
  *
  * @author Alejandro
@@ -14,14 +16,14 @@ public class Reserva {
     int temporada_id;
     int usuario_id;
     float precio;
-    String fecha_desde;
+    Timestamp fecha_desde;
     int cantidad_dias;
-    String fecha_reserva;
+    Timestamp fecha_reserva;
 
     public Reserva() {
     }
 
-    public Reserva(int id, int temporada_id, int usuario_id, float precio, String fecha_desde, int cantidad_dias, String fecha_reserva) {
+    public Reserva(int id, int temporada_id, int usuario_id, float precio, Timestamp fecha_desde, int cantidad_dias, Timestamp fecha_reserva) {
         this.id = id;
         this.temporada_id = temporada_id;
         this.usuario_id = usuario_id;
@@ -30,6 +32,8 @@ public class Reserva {
         this.cantidad_dias = cantidad_dias;
         this.fecha_reserva = fecha_reserva;
     }
+
+    
 
     public int getId() {
         return id;
@@ -63,11 +67,11 @@ public class Reserva {
         this.precio = precio;
     }
 
-    public String getFecha_desde() {
+    public Timestamp getFecha_desde() {
         return fecha_desde;
     }
 
-    public void setFecha_desde(String fecha_desde) {
+    public void setFecha_desde(Timestamp fecha_desde) {
         this.fecha_desde = fecha_desde;
     }
 
@@ -79,11 +83,11 @@ public class Reserva {
         this.cantidad_dias = cantidad_dias;
     }
 
-    public String getFecha_reserva() {
+    public Timestamp getFecha_reserva() {
         return fecha_reserva;
     }
 
-    public void setFecha_reserva(String fecha_reserva) {
+    public void setFecha_reserva(Timestamp fecha_reserva) {
         this.fecha_reserva = fecha_reserva;
     }
 

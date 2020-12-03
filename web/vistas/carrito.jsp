@@ -30,6 +30,15 @@
 
 
             });</script>  --%>
+
+        <script type="text/javascript">
+            $(function () {
+                $('#datetime').datepicker({
+                    dateFormat: "yy-mm-dd 00:00:00.0"
+                });
+            });
+
+        </script>
     </head>
     <body>
         <div class="container mt-4" >
@@ -84,6 +93,10 @@
                             <h3>Generar Reserva</h3>
                         </div>
                         <div class="card-body">
+                            <label>Fecha Inicio Reserva</label>
+                            <input type="text" class="form-control" name="txtfdesde" form="my_form" placeholder="yyyy/mm/dd" id="datetime"/>
+                            <label>Cantidad de días</label>
+                            <input type="number"  name="cantidaddias" class=" form-control" min="1"  >
                             <label> Subtotal:</label>
                             <input type="text"  value="$.${totalPagar}0" readonly="" class="form-control">
                             <label>Total Pagar :</label>
