@@ -41,6 +41,7 @@
         </script>
     </head>
     <body>
+        <form action="ControladorReserva" method="POST" id="form_reserva" class="form-text"></form>
         <div class="container mt-4" >
             <div class="row">
                 <div class="col-md-8">
@@ -94,9 +95,9 @@
                         </div>
                         <div class="card-body">
                             <label>Fecha Inicio Reserva</label>
-                            <input type="text" class="form-control" name="txtfdesde" form="my_form" placeholder="yyyy/mm/dd" id="datetime"/>
+                            <input type="text" class="form-control" name="txtfdesde" form="form_reserva" placeholder="yyyy/mm/dd" id="datetime"/>
                             <label>Cantidad de días</label>
-                            <input type="number"  name="cantidaddias" class=" form-control" min="1"  >
+                            <input type="number"  name="cantidaddias" form="form_reserva" class=" form-control" min="1"  >
                             <label> Subtotal:</label>
                             <input type="text"  value="$.${totalPagar}0" readonly="" class="form-control">
                             <label>Total Pagar :</label>

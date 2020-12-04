@@ -238,6 +238,10 @@ public class ControladorReserva extends HttpServlet {
                 }
             }
 
+        } else if (action.equalsIgnoreCase("GenerarReserva")) {
+
+            
+            
         }
 
         request.getRequestDispatcher("index.jsp").forward(request, response);
