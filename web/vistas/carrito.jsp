@@ -106,7 +106,7 @@
                         </div>
                         <div class="card-footer">
                             <a class="btn btn-info btn-block">Realizar Pago</a>
-                            <a class="btn btn-danger btn-block"> Generar Reserva </a>
+                            <input class="btn btn-danger btn-block" value="Generar" form="form_reserva" type="submit" name="accion" > 
                         </div>
                     </div>
                 </div>

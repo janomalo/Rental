@@ -6,6 +6,8 @@
 package Servlet;
 
 import Logic.ProductoControler;
+import Logic.ReservaControler;
+import Logic.TemporadaControler;
 import Modelo.ListaProducto;
 import Modelo.Producto;
 import Modelo.Reserva;
@@ -13,14 +15,18 @@ import ModeloDaoImpl.ProductoDaoImpl;
 import ModeloDaoImpl.ReservaDaoImpl;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Date;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import org.omg.CORBA.Current;
 
 /**
  *
@@ -47,11 +53,13 @@ public class ControladorReserva extends HttpServlet {
     ProductoControler ctrlproducto;
     Producto pr;
     List<ListaProducto> listaproductos = new ArrayList<>();
+    ReservaControler rctrl;
     // ListaProducto listpro;
 
     public ControladorReserva() {
         this.ctrlproducto = new ProductoControler();
         pr = new Producto();
+        this.rctrl= new ReservaControler();
         //listpro=new ListaProducto();
 
     }
@@ -238,8 +246,42 @@ public class ControladorReserva extends HttpServlet {
                 }
             }
 
-        } else if (action.equalsIgnoreCase("GenerarReserva")) {
-
+        } else if (action.equalsIgnoreCase("Generar")) {
+            
+            TemporadaControler tctrl= new TemporadaControler();
+            String fdesde= request.getParameter("txtfdesde");
+            Timestamp fecha_desde = Timestamp.valueOf(fdesde);
+            int idtemporada=tctrl.getIDByFecha(fecha_desde);
+            Reserva r= new Reserva();
+            //temporada id desde fecha seleccionada
+            r.setTemporada_id(idtemporada);
+            //obtener id cliente para reserva, dato ingresado por admin
+            r.setUsuario_id(3);
+            //precio total reserva
+            r.setPrecio(totalPagar);
+            //fecha reserva comienzo
+            r.setFecha_desde(fecha_desde);
+            //fecha que se hizo la reserva
+            Date date= new Date();
+            long time= date.getTime();
+            
+            r.setFecha_reserva(new Timestamp(time));//ver que traiga fecha actual
+            //cantidad de dias reserva
+            r.setCantidad_dias(Integer.parseInt(request.getParameter("cantidaddias")));
+            //lista productos detalle
+            r.setDetalle(listaproductos);
+            
+            int valor=rctrl.add(r);
+            if (valor !=0) {
+                List<Producto> listproductos = ctrlproducto.getAll();
+            request.setAttribute("productos", listproductos);
+            String vista = "reserva";
+            request.setAttribute("vista", vista);
+            }else{
+            String vista = "error";
+            request.setAttribute("vista", vista);
+            }
+            //que hacer despues generar reserva. Mostrar lista reserva? o 
             
             
         }

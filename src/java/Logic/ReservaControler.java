@@ -5,10 +5,23 @@
  */
 package Logic;
 
+import Modelo.Reserva;
+import ModeloDaoImpl.ReservaDaoImpl;
+
 /**
  *
  * @author Alejandro
  */
 public class ReservaControler {
-    
+
+    ReservaDaoImpl dao;
+
+    public ReservaControler() {
+        this.dao = new ReservaDaoImpl();
+    }
+
+    public int add(Reserva r) {
+        return dao.add(r);
+    }
+
 }

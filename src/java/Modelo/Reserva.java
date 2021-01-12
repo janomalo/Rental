@@ -6,6 +6,7 @@
 package Modelo;
 
 import java.sql.Timestamp;
+import java.util.List;
 
 /**
  *
@@ -15,23 +16,43 @@ public class Reserva {
     int id;
     int temporada_id;
     int usuario_id;
-    float precio;
+    double precio;
     Timestamp fecha_desde;
     int cantidad_dias;
     Timestamp fecha_reserva;
-
+    List<ListaProducto> detalle;
+    
     public Reserva() {
     }
 
-    public Reserva(int id, int temporada_id, int usuario_id, float precio, Timestamp fecha_desde, int cantidad_dias, Timestamp fecha_reserva) {
-        this.id = id;
+    public Reserva(int temporada_id, int usuario_id, double precio, Timestamp fecha_desde, int cantidad_dias, Timestamp fecha_reserva, List<ListaProducto> detalle) {
         this.temporada_id = temporada_id;
         this.usuario_id = usuario_id;
         this.precio = precio;
         this.fecha_desde = fecha_desde;
         this.cantidad_dias = cantidad_dias;
         this.fecha_reserva = fecha_reserva;
+        this.detalle = detalle;
     }
+
+    public List<ListaProducto> getDetalle() {
+        return detalle;
+    }
+
+    public void setDetalle(List<ListaProducto> detalle) {
+        this.detalle = detalle;
+    }
+
+     
+
+    public double getPrecio() {
+        return precio;
+    }
+
+    public void setPrecio(double precio) {
+        this.precio = precio;
+    }
+
 
     
 
@@ -59,14 +80,8 @@ public class Reserva {
         this.usuario_id = usuario_id;
     }
 
-    public float getPrecio() {
-        return precio;
-    }
-
-    public void setPrecio(float precio) {
-        this.precio = precio;
-    }
-
+   
+    
     public Timestamp getFecha_desde() {
         return fecha_desde;
     }

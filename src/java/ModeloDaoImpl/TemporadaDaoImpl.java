@@ -13,6 +13,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 
 /**
@@ -102,6 +103,48 @@ public class TemporadaDaoImpl {
         return t;
 
     }
+    
+    public int getIDByFecha(Timestamp fecha1) {
+       int idtemporada=0;
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+               
+        
+        try {
+            stmt = FactoryConexion.getInstancia().getConn().prepareStatement(
+                    "SELECT t.id  FROM temporadas AS t WHERE (? BETWEEN t.fecha_desde AND t.fecha_hasta)"
+            );
+            
+            stmt.setDate(1,new java.sql.Date(fecha1.getTime()));
+            rs = stmt.executeQuery();
+            if (rs != null && rs.next()) {
+               idtemporada= rs.getInt("id");
+                //fecha desde c.setEstado(rs.getInt("estado"));
+                // fecha hastac.setEstado(rs.getInt("estado"));
+                /// precio c.setEstado(rs.getInt("estado"));
+
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (rs != null) {
+                    rs.close();
+                }
+                if (stmt != null) {
+                    stmt.close();
+                }
+                FactoryConexion.getInstancia().releaseConn();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+
+        return idtemporada;
+
+    }
+    
+    
 
     public boolean update(Temporada t) {
         PreparedStatement stmt = null;

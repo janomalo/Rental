@@ -170,3 +170,6 @@ CONSTRAINT fk_producto_id FOREIGN KEY(producto_id) REFERENCES productos(id)
 )ENGINE=InnoDb;
 
  select rol. from roles inner join rol_persona on rol.id=rol_persona.id_rol where id_persona=?;
+
+BUSCAR ID temporada entre Rango fechas
+SELECT id  FROM temporadas AS t WHERE '2020-07-14' BETWEEN t.fecha_desde AND t.fecha_hasta;

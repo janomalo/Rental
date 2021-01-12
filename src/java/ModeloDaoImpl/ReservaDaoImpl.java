@@ -5,7 +5,6 @@
  */
 package ModeloDaoImpl;
 
-
 import Config.FactoryConexion;
 import Modelo.ListaProducto;
 
@@ -23,7 +22,7 @@ import java.util.List;
  */
 public class ReservaDaoImpl {
 
-   /*
+    /*
      public ArrayList<Categoria> getAll() {
         Statement stmt = null;
         ResultSet rs = null;
@@ -61,7 +60,7 @@ public class ReservaDaoImpl {
 
         return categorias;
     }*/
-/*
+ /*
     public Categoria getById(int id) {
         Categoria c = null;
         PreparedStatement stmt = null;
@@ -97,7 +96,7 @@ public class ReservaDaoImpl {
         return c;
     }*/
 
-   /* public Rol getByDesc(Rol rolToSearch) {
+ /* public Rol getByDesc(Rol rolToSearch) {
         Rol r = null;
         PreparedStatement stmt = null;
         ResultSet rs = null;
@@ -130,24 +129,40 @@ public class ReservaDaoImpl {
 
         return r;
     }*/
-
-    /*
-
-    public int add(Reserva r,List<ListaProducto> l) {
+    public int add(Reserva r) {
+        int resultado = 0;
         PreparedStatement stmt = null;
         ResultSet keyResultSet = null;
         try {
-            stmt = FactoryConexion.getInstancia().getConn().
-                    prepareStatement(
-                            "insert into re(id,nombre,estado) VALUES(NULL,?,?)",
-                            PreparedStatement.RETURN_GENERATED_KEYS );
-            stmt.setString(1, c.getNombre());
-            stmt.setInt(2, c.getEstado());
-            stmt.executeUpdate();
+            stmt = FactoryConexion.getInstancia().getConn().prepareStatement(
+                    "insert into reservas(id,temporada_id,usuario_id,precio,fecha_reserva,cantidad_dias,fecha_desde) VALUES(NULL,?,?,?,?,?,?)",
+                    PreparedStatement.RETURN_GENERATED_KEYS);
+            
+            stmt.setInt(1, r.getTemporada_id());
+            stmt.setInt(2, r.getUsuario_id());
+            stmt.setDouble(3,r.getPrecio());
+            stmt.setDate(4, (new java.sql.Date(r.getFecha_reserva().getTime())));
+            stmt.setInt(5, r.getCantidad_dias());
+            stmt.setDate(6, (new java.sql.Date(r.getFecha_desde().getTime())));
+            resultado=stmt.executeUpdate();
 
             keyResultSet = stmt.getGeneratedKeys();
             if (keyResultSet != null && keyResultSet.next()) {
-                c.setId(keyResultSet.getInt(1));
+                //usar keyresult para guardar reserva id autogenerado
+                // c.setId(keyResultSet.getInt(1));
+                
+                for (ListaProducto detalle : r.getDetalle()) {
+                    stmt = FactoryConexion.getInstancia().getConn().prepareStatement(
+                    "insert into lista_productos(id,reserva_id,producto_id,cantidad,subtotal) VALUES(NULL,?,?,?,?)");
+                    stmt.setInt(1, keyResultSet.getInt(1));
+                    stmt.setInt(2, detalle.getProducto_id());
+                    stmt.setInt(3,detalle.getCantidad());
+                    stmt.setDouble(4,detalle.getSubtotal());
+                    resultado=stmt.executeUpdate();
+                    
+                }
+                
+                
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -164,9 +179,9 @@ public class ReservaDaoImpl {
                 e.printStackTrace();
             }
         }
-
-    }*/
-/*
+        return resultado;
+    }
+    /*
     public boolean update(Categoria c) {
         PreparedStatement stmt = null;
         int resultado;
@@ -225,6 +240,6 @@ public class ReservaDaoImpl {
     }
 
 }
-*/
-    
+     */
+
 }

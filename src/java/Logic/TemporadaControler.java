@@ -8,6 +8,7 @@ package Logic;
 import Modelo.Categoria;
 import Modelo.Temporada;
 import ModeloDaoImpl.TemporadaDaoImpl;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -48,7 +49,9 @@ public class TemporadaControler {
         dao.add(tem);
     }
     
-    
+    public int getIDByFecha(Timestamp fecha){
+    return dao.getIDByFecha(fecha);
+    }
     
     
 }
