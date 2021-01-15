@@ -8,6 +8,7 @@ package Servlet;
 import Logic.ProductoControler;
 import Logic.ReservaControler;
 import Logic.TemporadaControler;
+import Logic.UsuarioControler;
 import Modelo.ListaProducto;
 import Modelo.Producto;
 import Modelo.Reserva;
@@ -59,7 +60,7 @@ public class ControladorReserva extends HttpServlet {
     public ControladorReserva() {
         this.ctrlproducto = new ProductoControler();
         pr = new Producto();
-        this.rctrl= new ReservaControler();
+        this.rctrl = new ReservaControler();
         //listpro=new ListaProducto();
 
     }
@@ -247,43 +248,54 @@ public class ControladorReserva extends HttpServlet {
             }
 
         } else if (action.equalsIgnoreCase("Generar")) {
-            
-            TemporadaControler tctrl= new TemporadaControler();
-            String fdesde= request.getParameter("txtfdesde");
+
+            TemporadaControler tctrl = new TemporadaControler();
+            UsuarioControler uctrl = new UsuarioControler();
+            String fdesde = request.getParameter("txtfdesde");
+            int dniusu = Integer.parseInt(request.getParameter("dniusuario")); // todos ingresar su dni para reservar y validar usuario.
+            int idusu = uctrl.getidbyDni(dniusu);
             Timestamp fecha_desde = Timestamp.valueOf(fdesde);
-            int idtemporada=tctrl.getIDByFecha(fecha_desde);
-            Reserva r= new Reserva();
-            //temporada id desde fecha seleccionada
-            r.setTemporada_id(idtemporada);
-            //obtener id cliente para reserva, dato ingresado por admin
-            r.setUsuario_id(3);
-            //precio total reserva
-            r.setPrecio(totalPagar);
-            //fecha reserva comienzo
-            r.setFecha_desde(fecha_desde);
-            //fecha que se hizo la reserva
-            Date date= new Date();
-            long time= date.getTime();
-            
-            r.setFecha_reserva(new Timestamp(time));//ver que traiga fecha actual
-            //cantidad de dias reserva
-            r.setCantidad_dias(Integer.parseInt(request.getParameter("cantidaddias")));
-            //lista productos detalle
-            r.setDetalle(listaproductos);
-            
-            int valor=rctrl.add(r);
-            if (valor !=0) {
-                List<Producto> listproductos = ctrlproducto.getAll();
-            request.setAttribute("productos", listproductos);
-            String vista = "reserva";
-            request.setAttribute("vista", vista);
+            int idtemporada = tctrl.getIDByFecha(fecha_desde); 
+           // valido que el usuario exista y la temporada coincida
+           
+            if (idusu != 0 & idtemporada != 0) {
+                Reserva r = new Reserva();
+                //temporada id desde fecha seleccionada
+                r.setTemporada_id(idtemporada);
+                //obtener id cliente para reserva, dato ingresado por admin
+                r.setUsuario_id(idusu);
+                //precio total reserva
+                r.setPrecio(totalPagar);
+                //fecha reserva comienzo
+                r.setFecha_desde(fecha_desde);
+                //fecha que se hizo la reserva
+                Date date = new Date();
+                long time = date.getTime();
+
+                r.setFecha_reserva(new Timestamp(time));//ver que traiga fecha actual
+                //cantidad de dias reserva
+                r.setCantidad_dias(Integer.parseInt(request.getParameter("cantidaddias")));
+                //lista productos detalle
+                r.setDetalle(listaproductos);
+
+                int valor = rctrl.add(r);
+                if (valor != 0) {
+                    List<Producto> listproductos = ctrlproducto.getAll();
+                    request.setAttribute("productos", listproductos);
+                    String vista = "reserva";
+                    request.setAttribute("vista", vista);
+                } else {
+                    String vista = "error";
+                    request.setAttribute("vista", vista);
+                }
             }else{
-            String vista = "error";
-            request.setAttribute("vista", vista);
+                String vista = "error";
+                request.setAttribute("vista", vista);
+            
             }
-            //que hacer despues generar reserva. Mostrar lista reserva? o 
-            
-            
+
+            //que hacer despues generar reserva? o
+            // DEBE MOSTRAR DETALLE EN USUARIO , y LISTA EN ADMIN, Indicar que debe ser aprobada la reserva.
         }
 
         request.getRequestDispatcher("index.jsp").forward(request, response);

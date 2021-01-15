@@ -45,6 +45,10 @@ public class UsuarioControler {
     return dao.list(id);
     
     }
+
+    public int getidbyDni(int dni) {
+        return dao.getidbyDni(dni);
+    }
             
 
 

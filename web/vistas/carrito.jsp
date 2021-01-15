@@ -94,10 +94,13 @@
                             <h3>Generar Reserva</h3>
                         </div>
                         <div class="card-body">
+                            <%-- Ingresar Idusu cuando lo hace admin y en usuario tome var session solo--%>
+                            <label>DNI usuario</label>
+                            <input type="number" class="form-control" name="dniusuario" form="form_reserva" required="" >
                             <label>Fecha Inicio Reserva</label>
-                            <input type="text" class="form-control" name="txtfdesde" form="form_reserva" placeholder="yyyy/mm/dd" id="datetime"/>
+                            <input type="text" class="form-control" name="txtfdesde" form="form_reserva" placeholder="yyyy/mm/dd" id="datetime"  required="">
                             <label>Cantidad de días</label>
-                            <input type="number"  name="cantidaddias" form="form_reserva" class=" form-control" min="1"  >
+                            <input type="number"  name="cantidaddias" form="form_reserva" class=" form-control" min="1" required="" >
                             <label> Subtotal:</label>
                             <input type="text"  value="$.${totalPagar}0" readonly="" class="form-control">
                             <label>Total Pagar :</label>

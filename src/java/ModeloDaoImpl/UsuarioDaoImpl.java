@@ -269,4 +269,36 @@ public class UsuarioDaoImpl {
         return usu;
     }
 
+    public int getidbyDni(int dni) {
+        int id=0;      
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        try {
+            stmt = FactoryConexion.getInstancia().getConn().prepareStatement(
+                    "select id from usuarios where dni=?"
+            );
+            stmt.setInt(1, dni);
+            rs = stmt.executeQuery();
+            if (rs != null && rs.next()) {
+                id = rs.getInt("id");               
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (rs != null) {
+                    rs.close();
+                }
+                if (stmt != null) {
+                    stmt.close();
+                }
+                FactoryConexion.getInstancia().releaseConn();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+       
+        return id;
+    }
+
 }
