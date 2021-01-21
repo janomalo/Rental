@@ -127,7 +127,10 @@ public class Signin extends HttpServlet {
                 request.getRequestDispatcher("index.jsp").forward(request, response);
             }else{
                 String vista="error";
-                     request.getRequestDispatcher("vistas/errorlogin.jsp").forward(request, response);
+                String mensaje="Usuario o contraseña incorrecto";
+                request.setAttribute("mensaje", mensaje);
+                request.setAttribute("vista", vista);
+                     request.getRequestDispatcher("index.jsp").forward(request, response);
             }
                 
         //} else if(accion.equalsIgnoreCase("Salir")){

@@ -111,7 +111,13 @@ public class ControladorReserva extends HttpServlet {
             request.setAttribute("productos", listproductos);
             String vista = "reserva";
             request.setAttribute("vista", vista);
-        } else if (action.equalsIgnoreCase("Reservar")) {
+        }else if (action.equalsIgnoreCase("listar")) {
+            //traer todas las reservas
+            List<Reserva> listareservas= rctrl.getAll();
+            request.setAttribute("reservas", listareservas);
+            String vista = "listarReservas";
+            request.setAttribute("vista", vista);
+        }else if (action.equalsIgnoreCase("Reservar")) {
             Integer idp = Integer.parseInt(request.getParameter("id"));
             int cantidad = 1;
             pr = ctrlproducto.list(idp);
@@ -272,7 +278,7 @@ public class ControladorReserva extends HttpServlet {
                 Date date = new Date();
                 long time = date.getTime();
 
-                r.setFecha_reserva(new Timestamp(time));//ver que traiga fecha actual
+                r.setFecha_reserva(new Timestamp(time));//guarda fecha y hora del momento en que se reserva
                 //cantidad de dias reserva
                 r.setCantidad_dias(Integer.parseInt(request.getParameter("cantidaddias")));
                 //lista productos detalle
@@ -290,6 +296,8 @@ public class ControladorReserva extends HttpServlet {
                 }
             }else{
                 String vista = "error";
+                String mensaje="DNI incorrecto o Fecha fuera de Temporada";
+                request.setAttribute("mensaje", mensaje);
                 request.setAttribute("vista", vista);
             
             }

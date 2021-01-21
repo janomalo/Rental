@@ -129,6 +129,51 @@ public class ReservaDaoImpl {
 
         return r;
     }*/
+    public ArrayList<Reserva> getAll() {
+       Statement stmt = null;
+        ResultSet rs = null;
+        ArrayList<Reserva> reservas = new ArrayList<>();
+
+        try {
+            stmt = FactoryConexion.getInstancia().getConn().createStatement();
+            rs = stmt.executeQuery("select * from reservas");
+            if (rs != null) {
+                while (rs.next()) {
+                    Reserva r = new Reserva();
+                    r.setId(rs.getInt("id"));
+                    r.setTemporada_id(rs.getInt("temporada_id"));
+                    r.setUsuario_id(rs.getInt("usuario_id"));
+                    r.setPrecio(rs.getDouble("precio"));
+                   r.setFecha_reserva(rs.getTimestamp("fecha_reserva"));
+                   r.setFecha_desde(rs.getTimestamp("fecha_desde"));
+                   r.setCantidad_dias(rs.getInt("cantidad_dias"));
+                   r.setEstado(rs.getString("estado"));
+                    reservas.add(r);
+                }
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+
+        } finally {
+            try {
+                if (rs != null) {
+                    rs.close();
+                }
+                if (stmt != null) {
+                    stmt.close();
+                }
+                FactoryConexion.getInstancia().releaseConn();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+
+        return reservas;
+    }
+    
+    
+    
     public int add(Reserva r) {
         int resultado = 0;
         PreparedStatement stmt = null;
@@ -241,5 +286,7 @@ public class ReservaDaoImpl {
 
 }
      */
+
+    
 
 }

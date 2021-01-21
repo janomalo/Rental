@@ -96,7 +96,7 @@
                         <div class="card-body">
                             <%-- Ingresar Idusu cuando lo hace admin y en usuario tome var session solo--%>
                             <label>DNI usuario</label>
-                            <input type="number" class="form-control" name="dniusuario" form="form_reserva" required="" >
+                            <input type="text" class="form-control" name="dniusuario" form="form_reserva" required="" pattern="[0-9]{8}" >
                             <label>Fecha Inicio Reserva</label>
                             <input type="text" class="form-control" name="txtfdesde" form="form_reserva" placeholder="yyyy/mm/dd" id="datetime"  required="">
                             <label>Cantidad de días</label>

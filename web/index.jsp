@@ -63,7 +63,7 @@
                 case "edittemporada":
             %><%@include file="vistas/editTemporada.jsp"%><%                    break;
                 case "error":
-            %><%@include file="vistas/errorlogin.jsp"%><%
+            %><%@include file="vistas/error.jsp"%><%
                     break;
                 case "listarusuarios":
             %><%@include file="vistas/listar.jsp"%><%                    break;
@@ -86,6 +86,9 @@
             %><%@include file="vistas/categorias.jsp"%><%                    break;
                 case "editcategoria":
             %><%@include file="vistas/editCategoria.jsp"%><%                    break;
+            case "listarReservas":
+            %><%@include file="vistas/listarReservas.jsp"%><%
+                    break;
            
             default:
             %><%@include file="vistas/home.jsp"%><%

@@ -21,11 +21,13 @@ public class Reserva {
     int cantidad_dias;
     Timestamp fecha_reserva;
     List<ListaProducto> detalle;
+    String estado;
     
     public Reserva() {
     }
 
-    public Reserva(int temporada_id, int usuario_id, double precio, Timestamp fecha_desde, int cantidad_dias, Timestamp fecha_reserva, List<ListaProducto> detalle) {
+    public Reserva(int id, int temporada_id, int usuario_id, double precio, Timestamp fecha_desde, int cantidad_dias, Timestamp fecha_reserva, List<ListaProducto> detalle, String estado) {
+        this.id = id;
         this.temporada_id = temporada_id;
         this.usuario_id = usuario_id;
         this.precio = precio;
@@ -33,7 +35,18 @@ public class Reserva {
         this.cantidad_dias = cantidad_dias;
         this.fecha_reserva = fecha_reserva;
         this.detalle = detalle;
+        this.estado = estado;
     }
+
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
+    }
+
+    
 
     public List<ListaProducto> getDetalle() {
         return detalle;

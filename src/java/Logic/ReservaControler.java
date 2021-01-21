@@ -7,6 +7,7 @@ package Logic;
 
 import Modelo.Reserva;
 import ModeloDaoImpl.ReservaDaoImpl;
+import java.util.List;
 
 /**
  *
@@ -22,6 +23,10 @@ public class ReservaControler {
 
     public int add(Reserva r) {
         return dao.add(r);
+    }
+
+    public List<Reserva> getAll() {
+        return dao.getAll();
     }
 
 }
