@@ -68,15 +68,19 @@ public class Signin extends HttpServlet {
         String action = request.getParameter("accion");
         if (action.equalsIgnoreCase("signout")) {
             HttpSession session = request.getSession();
-         
-            session.removeAttribute("nombreusuario"); 
+        // request.getSession().invalidate();
+           /* session.removeAttribute("nombreusuario"); 
             session.removeAttribute("listaUsuarios"); 
             request.removeAttribute("usuario");
             request.removeAttribute("contador");
-            request.removeAttribute(action);
+             request.removeAttribute("carrito");
+              request.removeAttribute("listaproductos");
+              request.removeAttribute("productos");         
+             request.removeAttribute("totalPagar");
+            request.removeAttribute(action);*/
             //
             session.invalidate();
-            String vista="";
+            String vista=" ";
             request.setAttribute("vista", vista);
             //response.sendRedirect("index.jsp");
             request.getRequestDispatcher("index.jsp").forward(request, response);
@@ -120,6 +124,7 @@ public class Signin extends HttpServlet {
             if(usu1.getId()!=0){
                request.getSession().setAttribute("usuario", usu1);
                HttpSession session=request.getSession();  
+               session.setAttribute("idusuario", usu1.getId());
                session.setAttribute("nombreusuario",usu1.getUsuario());  
                request.setAttribute("listaUsuarios",usuctrl.getAll()); //obtengo todos los usuarios
                 String vista="home";

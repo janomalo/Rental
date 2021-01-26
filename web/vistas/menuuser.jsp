@@ -30,7 +30,8 @@
                                 Reservas
                             </button>
                             <div class="dropdown-menu " >
-                                <a class="dropdown-item" href="ControladorVista?accion=signin" >Nueva Reserva</a>
+                                <a class="dropdown-item" href="ControladorReserva?accion=nueva" >Nueva Reserva</a>
+                                <a class="dropdown-item" href="ControladorReserva?accion=reservausuario" >Mis Reservas</a>
                                 <a class="dropdown-item" href="ControladorVista?accion=temporada" >Temporadas</a>
                             </div>
                         </div>
@@ -50,6 +51,11 @@
                     <%-- <li class="nav-item">
                         <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
                     </li> --%>
+                    
+                     <li class="nav-item">
+                        <a  class="nav-link" href="ControladorReserva?accion=carrito"><i class="fas fa-cart-plus"> Reserva(<label style="color: orange ">${contador}</label>)</i> </a>
+
+                    </li>
                 </ul>
                 <div class="dropdown">
                     <button style="border: none" class="btn btn-outline-light dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

@@ -29,4 +29,8 @@ public class ReservaControler {
         return dao.getAll();
     }
 
+    public List<Reserva> getAllbyID(int idusuarioreserva) {
+       return dao.getAllbyID(idusuarioreserva);
+    }
+
 }

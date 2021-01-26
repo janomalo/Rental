@@ -84,11 +84,16 @@
             %><%@include file="vistas/editProducto.jsp"%><%                    break;
                 case "listarcategorias":
             %><%@include file="vistas/categorias.jsp"%><%                    break;
-                case "editcategoria":
-            %><%@include file="vistas/editCategoria.jsp"%><%                    break;
+                
+            case "editcategoria":
+            %><%@include file="vistas/editCategoria.jsp"%><%     
+                break;
             case "listarReservas":
             %><%@include file="vistas/listarReservas.jsp"%><%
                     break;
+            case "listarReservasUsuario":
+            %><%@include file="vistas/listarReservasUsuario.jsp"%><%     
+                break;
            
             default:
             %><%@include file="vistas/home.jsp"%><%

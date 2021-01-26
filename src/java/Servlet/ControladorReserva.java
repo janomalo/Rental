@@ -12,6 +12,7 @@ import Logic.UsuarioControler;
 import Modelo.ListaProducto;
 import Modelo.Producto;
 import Modelo.Reserva;
+import Modelo.Usuario;
 import ModeloDaoImpl.ProductoDaoImpl;
 import ModeloDaoImpl.ReservaDaoImpl;
 import java.io.IOException;
@@ -117,7 +118,16 @@ public class ControladorReserva extends HttpServlet {
             request.setAttribute("reservas", listareservas);
             String vista = "listarReservas";
             request.setAttribute("vista", vista);
-        }else if (action.equalsIgnoreCase("Reservar")) {
+        }//reservausuario lista reservas del usuario
+        else if (action.equalsIgnoreCase("reservausuario")) {
+            //traer todas las reservas del usuario
+            int idusuarioreserva= (int) request.getSession().getAttribute("idusuario");
+            List<Reserva> listareservas= rctrl.getAllbyID(idusuarioreserva);
+            request.setAttribute("reservas", listareservas);
+            String vista = "listarReservasUsuario";
+            request.setAttribute("vista", vista);
+        }
+        else if (action.equalsIgnoreCase("Reservar")) {
             Integer idp = Integer.parseInt(request.getParameter("id"));
             int cantidad = 1;
             pr = ctrlproducto.list(idp);
