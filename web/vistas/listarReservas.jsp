@@ -67,10 +67,10 @@
                         <% }%> --%>
                         <%-- <td> <%= usu.getFecha_registro()%> </td> --%>
                         <td>
-                            <a class="btn btn-success"  href="" > Aprobar </a> 
+                            <a class="btn btn-success"  href="ControladorReserva?accion=RevisarReserva&id=<%= res.getId() %>" > Revisar </a> 
 
-                            <a  class="btn btn-dark" href="">Editar</a> 
-                              <a  class="btn btn-danger" href="">Elminiar</a> 
+                            <a  class="btn btn-dark" href="ControladorReserva?accion=EditarReserva&id=<%= res.getId() %>">Editar</a> 
+                              <a  class="btn btn-danger" href="ControladorReserva?accion=EliminarReserva&id=<%= res.getId() %>">Elminiar</a> 
                             <!-- Button trigger modal -->
 
 

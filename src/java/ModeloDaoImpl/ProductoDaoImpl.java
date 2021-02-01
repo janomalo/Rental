@@ -75,6 +75,53 @@ public class ProductoDaoImpl  {
 
     }
 
+   public List<Producto> listarDisponibles() {
+        Statement stmt = null;
+        ResultSet rs = null;
+// Query que usarás para hacer lo que necesites
+        String sSQL = "SELECT * FROM productos where estado=1";
+        List<Producto> listaProductos = new ArrayList<>();
+
+        try {
+            stmt = FactoryConexion.getInstancia().getConn().createStatement();
+            rs = stmt.executeQuery(sSQL);
+            if (rs != null) {
+                while (rs.next()) {
+                    Producto pro = new Producto();
+                    //setear datos productos a objeto pro y agregara lista
+                    pro.setId(rs.getInt("id"));
+                    pro.setCategoria_id(rs.getInt("categoria_id"));
+                    pro.setNombre(rs.getString("nombre"));
+                    pro.setDescripcion(rs.getString("descripcion"));
+                    pro.setStock(rs.getInt("stock"));
+                    pro.setPrecio(rs.getFloat("precio"));
+                    pro.setEstado(rs.getInt("estado"));
+                    pro.setFoto(rs.getBinaryStream("foto"));
+
+                    //u.setFecha_registro(rs.getDate("fecha_registro"));
+                    listaProductos.add(pro);
+                }
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        try {
+            if (rs != null) {
+                rs.close();
+            }
+            if (stmt != null) {
+                stmt.close();
+            }
+            FactoryConexion.getInstancia().releaseConn();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return listaProductos;
+
+    }
    
     public List<Producto> listar() {
         Statement stmt = null;

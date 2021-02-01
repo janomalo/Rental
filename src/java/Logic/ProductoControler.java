@@ -28,6 +28,10 @@ public class ProductoControler {
         return (List<Producto>) dao.listar();
         
     }
+    public List<Producto> getAllDisponibles() {
+        return (List<Producto>) dao.listarDisponibles();
+        
+    }
     
     public Producto list(int id){
     

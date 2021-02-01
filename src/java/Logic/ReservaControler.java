@@ -33,4 +33,9 @@ public class ReservaControler {
        return dao.getAllbyID(idusuarioreserva);
     }
 
+    public Reserva chequearReserva(int idreserva) {
+        return dao.chequearReserva(idreserva);
+    }
+
+    
 }

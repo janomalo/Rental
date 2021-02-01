@@ -247,6 +247,7 @@ public class UsuarioDaoImpl {
                     usu.setApellidos(rs.getString("apellidos"));
                     usu.setEmail(rs.getString("email"));
                     usu.setHabilitado(rs.getInt("habilitado"));
+                    
 
                 }
             }

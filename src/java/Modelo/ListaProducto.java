@@ -18,11 +18,12 @@ public class ListaProducto {
     double precio;
     String nombre;
     String descripcion;
+    String detalle_reserva;
     
     public ListaProducto() {
     }
 
-    public ListaProducto(int item, int reserva_id, int producto_id, int cantidad, double subtotal, double precio, String nombre, String descripcion) {
+    public ListaProducto(int item, int reserva_id, int producto_id, int cantidad, double subtotal, double precio, String nombre, String descripcion, String detalle_reserva) {
         this.item = item;
         this.reserva_id = reserva_id;
         this.producto_id = producto_id;
@@ -31,7 +32,18 @@ public class ListaProducto {
         this.precio = precio;
         this.nombre = nombre;
         this.descripcion = descripcion;
+        this.detalle_reserva = detalle_reserva;
     }
+
+    public String getDetalle_reserva() {
+        return detalle_reserva;
+    }
+
+    public void setDetalle_reserva(String detalle_reserva) {
+        this.detalle_reserva = detalle_reserva;
+    }
+
+   
 
     public double getPrecio() {
         return precio;

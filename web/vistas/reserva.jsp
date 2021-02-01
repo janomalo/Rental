@@ -25,6 +25,8 @@
         </div>
             <div class="row">
                 <c:forEach var="p" items="${productos}">
+                  
+                    
                     <div class="col-sm-4">
                     <div  class="card">
                         <div  class="card-header text-center">
@@ -41,7 +43,7 @@
                         </div>
                     </div>
                 </div>
-                    
+                            
                 </c:forEach>
                 
             </div>

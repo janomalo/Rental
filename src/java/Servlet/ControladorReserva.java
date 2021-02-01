@@ -108,7 +108,7 @@ public class ControladorReserva extends HttpServlet {
         String action = request.getParameter("accion");
         if (action.equalsIgnoreCase("nueva")) {
 
-            List<Producto> listproductos = ctrlproducto.getAll();
+            List<Producto> listproductos = ctrlproducto.getAllDisponibles();
             request.setAttribute("productos", listproductos);
             String vista = "reserva";
             request.setAttribute("vista", vista);
@@ -221,6 +221,19 @@ public class ControladorReserva extends HttpServlet {
             }
             request.setAttribute("totalPagar", totalPagar);
             String vista = "carrito";
+            request.setAttribute("vista", vista);
+
+        }else if (action.equalsIgnoreCase("RevisarReserva")) {
+            //tomo id reserva y chequeo que la cantidad pedida pueda descontarse de el stock de todos los productos.
+            //obterner reserva y detalle metodo chequar reservar.
+            int idreserva ;
+            idreserva = Integer.parseInt(request.getParameter("id"));
+            Reserva resChecked= rctrl.chequearReserva(idreserva);
+            
+            
+            
+           
+            String vista = "revisar";
             request.setAttribute("vista", vista);
 
         }

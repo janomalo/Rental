@@ -121,7 +121,7 @@ public class Signin extends HttpServlet {
             usu.setPassword(pass);
             Usuario usu1=ctrl.validate(usu); // 
             
-            if(usu1.getId()!=0){
+            if(usu1.getId()!=0 & usu1.getHabilitado()!=0){
                request.getSession().setAttribute("usuario", usu1);
                HttpSession session=request.getSession();  
                session.setAttribute("idusuario", usu1.getId());
@@ -132,7 +132,7 @@ public class Signin extends HttpServlet {
                 request.getRequestDispatcher("index.jsp").forward(request, response);
             }else{
                 String vista="error";
-                String mensaje="Usuario o contraseña incorrecto";
+                String mensaje="Usuario no habilitado o contraseña incorrecta";
                 request.setAttribute("mensaje", mensaje);
                 request.setAttribute("vista", vista);
                      request.getRequestDispatcher("index.jsp").forward(request, response);
