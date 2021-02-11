@@ -16,7 +16,7 @@
         <title>Mis Reservas</title>
     </head>
     <body>
-        <div  class="container-fluid">
+         <div  class="container-fluid">
             <h1>Mis Reservas </h1> 
             <table class="table">
 
@@ -37,13 +37,13 @@
                 </thead>
                 <% //Usar JSP individual o mostrar todo en una pagina listar reservas?
                     //llama metodo getall y trae lisa de usuario
-                    List<Reserva> listreservausu = (List<Reserva>) request.getAttribute("reservas");
-                    Iterator<Reserva> iterReservausu = listreservausu.iterator();
+                    List<Reserva> listreservausuario = (List<Reserva>) request.getAttribute("reservas");
+                    Iterator<Reserva> iterReservausuario = listreservausuario.iterator();
                     SimpleDateFormat formato1usu = new SimpleDateFormat("yyyy-MM-dd");
 
                     Reserva reservausu = null;
-                    while (iterReservausu.hasNext()) {
-                        reservausu = iterReservausu.next();
+                    while (iterReservausuario.hasNext()) {
+                        reservausu = iterReservausuario.next();
 
 
                 %>
@@ -66,7 +66,7 @@
                         <td>SI </td>
                         <% }%> --%>
                         <%-- <td> <%= usu.getFecha_registro()%> </td> --%>
-                        <td>
+                         <td>
                             <a  class="btn btn-outline-info" href="">Detalles</a> 
                             <a  class="btn btn-danger" href="">Cancelar</a> 
                             <!-- Button trigger modal -->
@@ -86,7 +86,7 @@
             </table> 
 
 
-            <%-- <a class="btn btn-success" href="index.jsp"> Volver</a> --%>
-        </div>
+           <a class="btn btn-success" href="index.jsp"> Volver</a> 
+             </div>   
     </body>
 </html>

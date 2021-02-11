@@ -46,19 +46,21 @@
             %><%@include file="vistas/home.jsp"%><%
             } else {
                 switch (vista) {
+
                     case "home":
             %><%@include file="vistas/admin.jsp"%><%
                     break;
                 case "login":
             %><%@include file="vistas/login.jsp"%><%
                     break;
-                    case "reserva":
+                case "reserva":
             %><%@include file="vistas/reserva.jsp"%><%
                     break;
-                     case "carrito":
+
+                case "carrito":
             %><%@include file="vistas/carrito.jsp"%><%
                     break;
-                    case "listartemporadas":
+                case "listartemporadas":
             %><%@include file="vistas/listarTemporadas.jsp"%><%                    break;
                 case "edittemporada":
             %><%@include file="vistas/editTemporada.jsp"%><%                    break;
@@ -84,23 +86,30 @@
             %><%@include file="vistas/editProducto.jsp"%><%                    break;
                 case "listarcategorias":
             %><%@include file="vistas/categorias.jsp"%><%                    break;
-                
-            case "editcategoria":
-            %><%@include file="vistas/editCategoria.jsp"%><%     
-                break;
-            case "listarReservas":
-            %><%@include file="vistas/listarReservas.jsp"%><%
-                    break;
-            case "listarReservasUsuario":
-            %><%@include file="vistas/listarReservasUsuario.jsp"%><%     
-                break;
-           
-            default:
-            %><%@include file="vistas/home.jsp"%><%
-                            break;
-                    }
 
-                }%>
+                case "editcategoria":
+            %><%@include file="vistas/editCategoria.jsp"%><%                    break;
+                case "listarReservas":
+            %><%@include file="vistas/listarReservas.jsp"%><%          
+                
+                break;
+                
+                case "listarReservasUsuario":
+                    if (request.getAttribute("reservas") != null) {
+            %><%@include file="vistas/listarReservasUsuario.jsp"%><% }
+
+                break;
+
+               case "revisar":
+                    if (request.getAttribute("resChecked") != null) {
+            %><%@include file="vistas/RevisarReserva.jsp"%><% }
+
+                break;
+
+                default:
+            %><%@include file="vistas/home.jsp"%><%
+                       
+                }}%>  <%-- cierro switch y else no olvida--%>
         </div> 
         <div id="footer"  class="position-relative">
             <%@include file="vistas/pie.jsp" %>

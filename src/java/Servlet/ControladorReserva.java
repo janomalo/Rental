@@ -229,11 +229,8 @@ public class ControladorReserva extends HttpServlet {
             int idreserva ;
             idreserva = Integer.parseInt(request.getParameter("id"));
             Reserva resChecked= rctrl.chequearReserva(idreserva);
-            
-            
-            
-           
-            String vista = "revisar";
+            request.setAttribute("resChecked", resChecked);          
+           String vista = "revisar";
             request.setAttribute("vista", vista);
 
         }

@@ -202,11 +202,39 @@ public class ReservaDaoImpl {
 
                     }
 
-                    r.setDetalle(listaproductos);
-                    for (ListaProducto detalle : r.getDetalle()) {
+                    for (ListaProducto l : listaproductos) {
+                        /*try {
+                            
+                        } catch (Exception e) {
+                        }*/
+
                         stmt = FactoryConexion.getInstancia().getConn().createStatement();
-                        rs = stmt.executeQuery("select * from productos where id=" + detalle.getProducto_id());
-                           //obtener la cantidad y comprarla con el stock, setear estado de detalle     
+                        rs = stmt.executeQuery("select * from productos where id=" + l.getProducto_id());
+
+                        if (rs.next()) {
+                            int haystock = rs.getInt("stock") - l.getCantidad();
+                            int estado = rs.getInt("estado");
+                            if (haystock > 0) {
+                                l.setPrecio(rs.getDouble("precio"));
+                                l.setNombre(rs.getString("nombre"));
+                                l.setDescripcion(rs.getString("descripcion"));
+                                if (rs.getInt("estado") != 0) {
+                                    l.setDetalle_reserva("Producto Disponible");
+                                } else {
+                                    l.setDetalle_reserva("Producto No Disponible");
+                                }
+
+                            } else {
+                                l.setPrecio(rs.getDouble("precio"));
+                                l.setNombre(rs.getString("nombre"));
+                                l.setDescripcion(rs.getString("descripcion"));
+                                l.setDetalle_reserva("No hay Stock Disponible");
+
+                            }
+
+                        }
+                        r.setDetalle(listaproductos);
+
                     }
 
                 }
