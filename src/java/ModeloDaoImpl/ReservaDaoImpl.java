@@ -168,7 +168,7 @@ public class ReservaDaoImpl {
         Reserva r = new Reserva();
         Statement stmt = null;
         ResultSet rs = null;
-        ListaProducto listpro = new ListaProducto();
+        
         List<ListaProducto> listaproductos = new ArrayList<>();
 
         try {
@@ -187,12 +187,14 @@ public class ReservaDaoImpl {
                     r.setEstado(rs.getString("estado"));
 
                 }
+            }
                 stmt = FactoryConexion.getInstancia().getConn().createStatement();
                 rs = stmt.executeQuery("select * from lista_productos where reserva_id=" + idreserva);
 
                 // pbtener lista productos con el id de a reserva.
                 if (rs != null) {
                     while (rs.next()) {
+                        ListaProducto listpro = new ListaProducto();
                         listpro.setItem(rs.getInt("id"));
                         listpro.setReserva_id(rs.getInt("reserva_id"));
                         listpro.setProducto_id(rs.getInt("producto_id"));
@@ -201,6 +203,8 @@ public class ReservaDaoImpl {
                         listaproductos.add(listpro);
 
                     }
+                }
+                
 
                     for (ListaProducto l : listaproductos) {
                         /*try {
@@ -237,9 +241,9 @@ public class ReservaDaoImpl {
 
                     }
 
-                }
+                
 
-            }
+            
 
         } catch (SQLException e) {
             e.printStackTrace();
