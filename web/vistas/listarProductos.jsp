@@ -24,12 +24,11 @@
         <div class="container-fluid">
             <h1>GESTIÓN DE PRODUCTOS</h1>
 
-            <a href="ControladorProducto?accion=add">Agregar Nuevo</a> 
-            <input type="text" value="Buscar"/>
-            <a > Buscar</a>
-            <table class="table">
+          
+            
+            <table class="table table-striped ">
 
-                <thead>
+                <thead class="thead">
                     <tr>
                         <th>ID</th>
                         <th>CATEGORIA</th> 
@@ -56,9 +55,9 @@
                     <tr>
 
                         <%--<td> <%= usu.getId() %></td> --%>
-                        <td><%= pro.getId()%> </td>
-                        <td><%= pro.getCategoria_id()%> </td>
-                        <td> <%= pro.getNombre()%> </td>
+                        <td ><%= pro.getId()%> </td>
+                        <td ><%= pro.getCategoria_id()%> </td>
+                        <td > <%= pro.getNombre()%> </td>
                         <td> <%= pro.getDescripcion()%> </td>
                         <td> <%= pro.getStock()%> </td>
                         <td> <%= pro.getPrecio()%> </td>

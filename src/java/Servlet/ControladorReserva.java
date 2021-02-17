@@ -325,6 +325,12 @@ public class ControladorReserva extends HttpServlet {
             //que hacer despues generar reserva? o
             // DEBE MOSTRAR DETALLE EN USUARIO , y LISTA EN ADMIN, Indicar que debe ser aprobada la reserva.
         }
+        else if(action.equalsIgnoreCase("Aprobar")) {
+            //aprobar reserva , descontar stock y avisar al usuario cambiando estado reserva /correo con detalle
+            
+        
+        
+        }
 
         request.getRequestDispatcher("index.jsp").forward(request, response);
 

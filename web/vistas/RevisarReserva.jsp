@@ -17,6 +17,8 @@
         <title>Revisar Reserva</title>
     </head>
     <body>
+       
+        <form method="POST" action="ControladorReserva" id="my_formRevisar" class="form-text"></form>
 
 
         <%
@@ -27,8 +29,8 @@
 
 
         %>
-        <div>
-            <div>
+        <div class="container-fluid">
+            <div class="tab-content">
                 <h3> Datos Reserva </h3>
 
                 <table class="table">
@@ -60,8 +62,10 @@
                             <td> <%= rusu.getCantidad_dias()%></td>
                             <td> <%= rusu.getEstado()%></td>
                             <td>
-                                <a>Aprobar</a>
-                                <a>Cancelar</a>
+                               
+                                <input  class="btn btn-success" value="Aprobar" type="submit"  name="accion" form="my_formRevisar">
+                               <input  class="btn btn-danger" value="Cancelar" type="submit"  name="accion" form="my_formRevisar">
+                             
 
                             </td>       
 
@@ -73,9 +77,9 @@
 
             </div>
 
-            <div>
+            <div >
                 <h3> Detalle Reserva</h3>
-                <table class="table">
+                <table class="table table-striped">
                     <thead>
                     <th>ITEM</th>
                     <th>PRODUCTO</th>
@@ -85,39 +89,45 @@
                     <th>NOMBRE</th>
                     <th>DESCRIPCION</th>
                     <th>DETALLE</th>
-                    <th>COMENTARIOS</th>
+
 
                     </thead>
                     <%
-                       Iterator<ListaProducto> iterListaProductos = listprodureserva.iterator();
-                   
+                        Iterator<ListaProducto> iterListaProductos = listprodureserva.iterator();
 
-                    ListaProducto lista = null;
-                    while (iterListaProductos.hasNext()) {
-                        lista = iterListaProductos.next();
+                        ListaProducto lista = null;
+                        while (iterListaProductos.hasNext()) {
+                            lista = iterListaProductos.next();
                     %>
 
                     <tbody>
                         <tr>
-                            <td><%=lista.getItem() %></td>
-                            <td><%=lista.getProducto_id() %></td>
-                            <td><%=lista.getCantidad() %></td>
-                            <td><%= lista.getPrecio() %></td>
-                            <td><%=lista.getSubtotal() %></td>
-                            <td><%= lista.getNombre() %></td>
-                            <td><%= lista.getDescripcion() %></td>
-                            <td><%= lista.getDetalle_reserva() %></td>
-                                                                              
+                            <td><%=lista.getItem()%></td>
+                            <td><%=lista.getProducto_id()%></td>
+                            <td><%=lista.getCantidad()%></td>
+                            <td><%= lista.getPrecio()%></td>
+                            <td><%=lista.getSubtotal()%></td>
+                            <td><%= lista.getNombre()%></td>
+                            <td><%= lista.getDescripcion()%></td>
+                            <td><%= lista.getDetalle_reserva()%></td>
+
+
                         </tr>
-                              <% }%>               
-                     
+                        <% }%>               
+
 
 
 
                     </tbody>
-                   
+
                 </table>
 
+                <div  >
+                    <h4>Aclaraciones</h4>
+                    <input type="text" class="form-control "   placeholder=""  style="height:100px;text-align:center" form="my_formRevisar">
+
+
+                </div>                              
 
 
             </div>

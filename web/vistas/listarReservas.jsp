@@ -20,7 +20,7 @@
        
         <div  class="container-fluid">
             <h1>RESERVAS </h1> 
-            <table class="table">
+            <table class="table table-striped">
 
                 <thead>
                     <tr class="text-center">
