@@ -169,7 +169,6 @@ public class ReservaDaoImpl {
         Reserva r = new Reserva();
         Statement stmt = null;
         ResultSet rs = null;
-         
 
         List<ListaProducto> listaproductos = new ArrayList<>();
 
@@ -190,7 +189,7 @@ public class ReservaDaoImpl {
 
                 }
             }
-            
+
             stmt = FactoryConexion.getInstancia().getConn().createStatement();
             rs = stmt.executeQuery("select * from lista_productos where reserva_id=" + idreserva);
 
@@ -273,6 +272,7 @@ public class ReservaDaoImpl {
         boolean boleano = false;
         List<ListaProducto> detalle = raprobada.getDetalle();
         try {
+            //actualiza detalle de productos agregados a la reserva
             for (ListaProducto l : detalle) {
 
                 stmt = FactoryConexion.getInstancia().getConn().createStatement();
@@ -296,7 +296,7 @@ public class ReservaDaoImpl {
                         } else {
                             //guardar detalle en tabla lista productos de no aprobado
                             l.setDetalle_reserva("Producto No Disponible");
-                             pstmt = FactoryConexion.getInstancia().getConn().
+                            pstmt = FactoryConexion.getInstancia().getConn().
                                     prepareStatement(
                                             "update lista_productos set detalle=? where id=?");
                             pstmt.setString(1, l.getDetalle_reserva());
@@ -307,21 +307,40 @@ public class ReservaDaoImpl {
                     } else {
                         l.setDetalle_reserva("No hay Stock Disponible");
                         //guardar detalle en tabla lista productos de no aprobado                        
-                             pstmt = FactoryConexion.getInstancia().getConn().
-                                    prepareStatement(
-                                            "update lista_productos set detalle=? where id=?");
-                            pstmt.setString(1, l.getDetalle_reserva());
-                            pstmt.setInt(2, l.getItem());
-                            pstmt.executeUpdate();
+                        pstmt = FactoryConexion.getInstancia().getConn().
+                                prepareStatement(
+                                        "update lista_productos set detalle=? where id=?");
+                        pstmt.setString(1, l.getDetalle_reserva());
+                        pstmt.setInt(2, l.getItem());
+                        pstmt.executeUpdate();
 
                     }
 
                 }
 
             }
-
+             
+            //si todos los productos hay stock y con estado disponible ,actualiza stock y cambia estado Reserva pendiente -> Aprobada
             if (con == detalle.size()) {
-                raprobada.setEstado("Aprobada");                
+
+                //actualizar stock 
+                for (ListaProducto l : detalle) {
+                    stmt = FactoryConexion.getInstancia().getConn().createStatement();
+                    rs = stmt.executeQuery("select * from productos where id=" + l.getProducto_id());
+                    if (rs.next()) {
+                        int stock = rs.getInt("stock") - l.getCantidad();
+
+                        pstmt = FactoryConexion.getInstancia().getConn().
+                                prepareStatement( "update productos set stock=? where id=?");
+                        pstmt.setInt(1, stock);
+                        pstmt.setInt(2, l.getProducto_id());
+                        pstmt.executeUpdate();
+
+                    }
+
+                }
+
+                raprobada.setEstado("Aprobada");
                 pstmt = FactoryConexion.getInstancia().getConn().
                         prepareStatement(
                                 "update reservas set estado=?,detalle=? where id=?");
@@ -329,18 +348,10 @@ public class ReservaDaoImpl {
                 pstmt.setString(2, raprobada.getEstadodetalle());
                 pstmt.setInt(3, raprobada.getId());
                 resultado = pstmt.executeUpdate();//devuelve cantidad int de filas updateadas 
-                
-                //actualizar stock AHORA O ANTES??
-                /*for(ListaProducto l : detalle){
-                 pstmt = FactoryConexion.getInstancia().getConn().
-                        prepareStatement(
-                                "update productos set stock=? where id=?");
-                
-                }*/
-                
+
             } else {
-               raprobada.setEstado("No Aprobada"); 
-               
+                raprobada.setEstado("No Aprobada");
+
                 pstmt = FactoryConexion.getInstancia().getConn().
                         prepareStatement(
                                 "update reservas set estado=?,detalle=? where id=?");
@@ -356,6 +367,9 @@ public class ReservaDaoImpl {
             try {
                 if (stmt != null) {
                     stmt.close();
+                }
+                if(pstmt != null){
+                pstmt.close();
                 }
                 FactoryConexion.getInstancia().releaseConn();
 
