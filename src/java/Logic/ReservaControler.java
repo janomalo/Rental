@@ -37,5 +37,9 @@ public class ReservaControler {
         return dao.chequearReserva(idreserva);
     }
 
+    public void aprobarReserva(Reserva raprobada) {
+        dao.aprobarReserva(raprobada);
+    }
+
     
 }

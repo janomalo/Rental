@@ -9,6 +9,7 @@ import Config.FactoryConexion;
 import Modelo.ListaProducto;
 
 import Modelo.Reserva;
+import com.sun.xml.internal.bind.api.impl.NameConverter;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -168,7 +169,8 @@ public class ReservaDaoImpl {
         Reserva r = new Reserva();
         Statement stmt = null;
         ResultSet rs = null;
-        
+         
+
         List<ListaProducto> listaproductos = new ArrayList<>();
 
         try {
@@ -188,62 +190,58 @@ public class ReservaDaoImpl {
 
                 }
             }
-                stmt = FactoryConexion.getInstancia().getConn().createStatement();
-                rs = stmt.executeQuery("select * from lista_productos where reserva_id=" + idreserva);
+            
+            stmt = FactoryConexion.getInstancia().getConn().createStatement();
+            rs = stmt.executeQuery("select * from lista_productos where reserva_id=" + idreserva);
 
-                // pbtener lista productos con el id de a reserva.
-                if (rs != null) {
-                    while (rs.next()) {
-                        ListaProducto listpro = new ListaProducto();
-                        listpro.setItem(rs.getInt("id"));
-                        listpro.setReserva_id(rs.getInt("reserva_id"));
-                        listpro.setProducto_id(rs.getInt("producto_id"));
-                        listpro.setCantidad(rs.getInt("cantidad"));
-                        listpro.setSubtotal(rs.getDouble("subtotal"));
-                        listaproductos.add(listpro);
+            // pbtener lista productos con el id de a reserva.
+            if (rs != null) {
+                while (rs.next()) {
+                    ListaProducto listpro = new ListaProducto();
+                    listpro.setItem(rs.getInt("id"));
+                    listpro.setReserva_id(rs.getInt("reserva_id"));
+                    listpro.setProducto_id(rs.getInt("producto_id"));
+                    listpro.setCantidad(rs.getInt("cantidad"));
+                    listpro.setSubtotal(rs.getDouble("subtotal"));
+                    listaproductos.add(listpro);
 
-                    }
                 }
-                
+            }
 
-                    for (ListaProducto l : listaproductos) {
-                        /*try {
+            for (ListaProducto l : listaproductos) {
+                /*try {
                             
                         } catch (Exception e) {
                         }*/
 
-                        stmt = FactoryConexion.getInstancia().getConn().createStatement();
-                        rs = stmt.executeQuery("select * from productos where id=" + l.getProducto_id());
+                stmt = FactoryConexion.getInstancia().getConn().createStatement();
+                rs = stmt.executeQuery("select * from productos where id=" + l.getProducto_id());
 
-                        if (rs.next()) {
-                            int haystock = rs.getInt("stock") - l.getCantidad();
-                            int estado = rs.getInt("estado");
-                            if (haystock > 0) {
-                                l.setPrecio(rs.getDouble("precio"));
-                                l.setNombre(rs.getString("nombre"));
-                                l.setDescripcion(rs.getString("descripcion"));
-                                if (rs.getInt("estado") != 0) {
-                                    l.setDetalle_reserva("Producto Disponible");
-                                } else {
-                                    l.setDetalle_reserva("Producto No Disponible");
-                                }
-
-                            } else {
-                                l.setPrecio(rs.getDouble("precio"));
-                                l.setNombre(rs.getString("nombre"));
-                                l.setDescripcion(rs.getString("descripcion"));
-                                l.setDetalle_reserva("No hay Stock Disponible");
-
-                            }
-
+                if (rs.next()) {
+                    int haystock = rs.getInt("stock") - l.getCantidad();
+                    int estado = rs.getInt("estado");
+                    if (haystock > 0) {
+                        l.setPrecio(rs.getDouble("precio"));
+                        l.setNombre(rs.getString("nombre"));
+                        l.setDescripcion(rs.getString("descripcion"));
+                        if (rs.getInt("estado") != 0) {
+                            l.setDetalle_reserva("Producto Disponible");
+                        } else {
+                            l.setDetalle_reserva("Producto No Disponible");
                         }
-                        r.setDetalle(listaproductos);
+
+                    } else {
+                        l.setPrecio(rs.getDouble("precio"));
+                        l.setNombre(rs.getString("nombre"));
+                        l.setDescripcion(rs.getString("descripcion"));
+                        l.setDetalle_reserva("No hay Stock Disponible");
 
                     }
 
-                
+                }
+                r.setDetalle(listaproductos);
 
-            
+            }
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -263,6 +261,110 @@ public class ReservaDaoImpl {
         }
 
         return r;
+    }
+
+    public void aprobarReserva(Reserva raprobada) {
+        //aprobar reserva , descontar stock y avisar al usuario cambiando estado reserva /correo con detalle
+        PreparedStatement pstmt = null;
+        Statement stmt = null;
+        ResultSet rs = null;
+        int resultado = 0;
+        int con = 0;
+        boolean boleano = false;
+        List<ListaProducto> detalle = raprobada.getDetalle();
+        try {
+            for (ListaProducto l : detalle) {
+
+                stmt = FactoryConexion.getInstancia().getConn().createStatement();
+                rs = stmt.executeQuery("select * from productos where id=" + l.getProducto_id());
+
+                if (rs.next()) {
+                    int haystock = rs.getInt("stock") - l.getCantidad();
+                    int estado = rs.getInt("estado");
+                    if (haystock > 0) {
+                        if (estado != 0) {
+                            l.setDetalle_reserva("Producto Disponible");
+                            con = con + 1;
+                            //guardar detalle en tabla lista productos 
+                            pstmt = FactoryConexion.getInstancia().getConn().
+                                    prepareStatement(
+                                            "update lista_productos set detalle=? where id=?");
+                            pstmt.setString(1, l.getDetalle_reserva());
+                            pstmt.setInt(2, l.getItem());
+                            pstmt.executeUpdate();
+
+                        } else {
+                            //guardar detalle en tabla lista productos de no aprobado
+                            l.setDetalle_reserva("Producto No Disponible");
+                             pstmt = FactoryConexion.getInstancia().getConn().
+                                    prepareStatement(
+                                            "update lista_productos set detalle=? where id=?");
+                            pstmt.setString(1, l.getDetalle_reserva());
+                            pstmt.setInt(2, l.getItem());
+                            pstmt.executeUpdate();
+                        }
+
+                    } else {
+                        l.setDetalle_reserva("No hay Stock Disponible");
+                        //guardar detalle en tabla lista productos de no aprobado                        
+                             pstmt = FactoryConexion.getInstancia().getConn().
+                                    prepareStatement(
+                                            "update lista_productos set detalle=? where id=?");
+                            pstmt.setString(1, l.getDetalle_reserva());
+                            pstmt.setInt(2, l.getItem());
+                            pstmt.executeUpdate();
+
+                    }
+
+                }
+
+            }
+
+            if (con == detalle.size()) {
+                raprobada.setEstado("Aprobada");                
+                pstmt = FactoryConexion.getInstancia().getConn().
+                        prepareStatement(
+                                "update reservas set estado=?,detalle=? where id=?");
+                pstmt.setString(1, raprobada.getEstado());
+                pstmt.setString(2, raprobada.getEstadodetalle());
+                pstmt.setInt(3, raprobada.getId());
+                resultado = pstmt.executeUpdate();//devuelve cantidad int de filas updateadas 
+                
+                //actualizar stock AHORA O ANTES??
+                /*for(ListaProducto l : detalle){
+                 pstmt = FactoryConexion.getInstancia().getConn().
+                        prepareStatement(
+                                "update productos set stock=? where id=?");
+                
+                }*/
+                
+            } else {
+               raprobada.setEstado("No Aprobada"); 
+               
+                pstmt = FactoryConexion.getInstancia().getConn().
+                        prepareStatement(
+                                "update reservas set estado=?,detalle=? where id=?");
+                pstmt.setString(1, raprobada.getEstado());
+                pstmt.setString(2, raprobada.getEstadodetalle());
+                pstmt.setInt(3, raprobada.getId());
+
+                resultado = pstmt.executeUpdate();
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (stmt != null) {
+                    stmt.close();
+                }
+                FactoryConexion.getInstancia().releaseConn();
+
+            } catch (SQLException e) {
+                e.printStackTrace();
+
+            }
+        }
+
     }
 
 }

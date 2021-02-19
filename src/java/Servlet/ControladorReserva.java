@@ -56,6 +56,7 @@ public class ControladorReserva extends HttpServlet {
     Producto pr;
     List<ListaProducto> listaproductos = new ArrayList<>();
     ReservaControler rctrl;
+     Reserva resChecked= new Reserva();
     // ListaProducto listpro;
 
     public ControladorReserva() {
@@ -228,7 +229,7 @@ public class ControladorReserva extends HttpServlet {
             //obterner reserva y detalle metodo chequar reservar.
             int idreserva ;
             idreserva = Integer.parseInt(request.getParameter("id"));
-            Reserva resChecked= rctrl.chequearReserva(idreserva);
+             resChecked= rctrl.chequearReserva(idreserva);
             request.setAttribute("resChecked", resChecked);          
            String vista = "revisar";
             request.setAttribute("vista", vista);
@@ -325,8 +326,11 @@ public class ControladorReserva extends HttpServlet {
             //que hacer despues generar reserva? o
             // DEBE MOSTRAR DETALLE EN USUARIO , y LISTA EN ADMIN, Indicar que debe ser aprobada la reserva.
         }
-        else if(action.equalsIgnoreCase("Aprobar")) {
+        else if(action.equalsIgnoreCase("Guardar")) {
             //aprobar reserva , descontar stock y avisar al usuario cambiando estado reserva /correo con detalle
+           Reserva rfinalizada = resChecked;
+           rfinalizada.setEstadodetalle(request.getParameter("comentarios"));
+           rctrl.aprobarReserva(rfinalizada);
             
         
         

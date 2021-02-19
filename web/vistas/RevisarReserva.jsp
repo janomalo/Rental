@@ -63,7 +63,7 @@
                             <td> <%= rusu.getEstado()%></td>
                             <td>
                                
-                                <input  class="btn btn-success" value="Aprobar" type="submit"  name="accion" form="my_formRevisar">
+                                <input  class="btn btn-success" value="Guardar" type="submit"  name="accion" form="my_formRevisar">
                                <input  class="btn btn-danger" value="Cancelar" type="submit"  name="accion" form="my_formRevisar">
                              
 
@@ -93,6 +93,7 @@
 
                     </thead>
                     <%
+                       
                         Iterator<ListaProducto> iterListaProductos = listprodureserva.iterator();
 
                         ListaProducto lista = null;
@@ -113,18 +114,18 @@
 
 
                         </tr>
-                        <% }%>               
+                                     
 
 
 
 
                     </tbody>
-
+                    <% } %>
                 </table>
 
                 <div  >
                     <h4>Aclaraciones</h4>
-                    <input type="text" class="form-control "   placeholder=""  style="height:100px;text-align:center" form="my_formRevisar">
+                    <input type="text" class="form-control "  name="comentarios" placeholder=""  style="height:100px;text-align:center" form="my_formRevisar">
 
 
                 </div>                              
