@@ -381,4 +381,48 @@ public class ReservaDaoImpl {
 
     }
 
+    public void cancelarReserva(Reserva rfinalizada) {
+       
+         //cancelar reserva, cambiar estado de reserva 
+        PreparedStatement pstmt = null;
+        Statement stmt = null;
+        ResultSet rs = null;
+        int resultado = 0;
+     
+        boolean boleano = false;
+        //List<ListaProducto> detalle = rfinalizada.getDetalle();
+        try {
+                                         
+                rfinalizada.setEstado("Cancelada");
+               pstmt = FactoryConexion.getInstancia().getConn().
+                        prepareStatement(
+                                "update reservas set estado=?,detalle=? where id=?");
+                pstmt.setString(1, rfinalizada.getEstado());
+                pstmt.setString(2, rfinalizada.getEstadodetalle());
+                pstmt.setInt(3, rfinalizada.getId());
+
+                resultado = pstmt.executeUpdate();
+            
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (stmt != null) {
+                    stmt.close();
+                }
+                if(pstmt != null){
+                pstmt.close();
+                }
+                FactoryConexion.getInstancia().releaseConn();
+
+            } catch (SQLException e) {
+                e.printStackTrace();
+
+            }
+        }
+        
+        
+        
+    }
+
 }

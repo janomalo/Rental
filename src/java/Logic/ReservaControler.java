@@ -41,5 +41,9 @@ public class ReservaControler {
         dao.aprobarReserva(raprobada);
     }
 
+    public void cancelarReserva(Reserva rfinalizada) {
+       dao.cancelarReserva(rfinalizada);
+    }
+
     
 }

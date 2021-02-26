@@ -326,14 +326,27 @@ public class ControladorReserva extends HttpServlet {
             //que hacer despues generar reserva? o
             // DEBE MOSTRAR DETALLE EN USUARIO , y LISTA EN ADMIN, Indicar que debe ser aprobada la reserva.
         }
-        else if(action.equalsIgnoreCase("Guardar")) {
+        else if(action.equalsIgnoreCase("Validar")) {
             //aprobar reserva , descontar stock y avisar al usuario cambiando estado reserva /correo con detalle
            Reserva rfinalizada = resChecked;
            rfinalizada.setEstadodetalle(request.getParameter("comentarios"));
            rctrl.aprobarReserva(rfinalizada);
-            
+             List<Reserva> listareservas= rctrl.getAll();
+            request.setAttribute("reservas", listareservas);
+            String vista = "listarReservas";
+            request.setAttribute("vista", vista);
         
         
+        }else if (action.equalsIgnoreCase("Cancelar")) {
+             //aprobar reserva , descontar stock y avisar al usuario cambiando estado reserva /correo con detalle
+           Reserva rfinalizada = resChecked;
+           rfinalizada.setEstadodetalle(request.getParameter("comentarios"));
+           rctrl.cancelarReserva(rfinalizada);
+           List<Reserva> listareservas= rctrl.getAll();
+            request.setAttribute("reservas", listareservas);
+            String vista = "listarReservas";
+            request.setAttribute("vista", vista);
+
         }
 
         request.getRequestDispatcher("index.jsp").forward(request, response);
