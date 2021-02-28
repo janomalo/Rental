@@ -56,13 +56,15 @@ public class ControladorReserva extends HttpServlet {
     Producto pr;
     List<ListaProducto> listaproductos = new ArrayList<>();
     ReservaControler rctrl;
-     Reserva resChecked= new Reserva();
-    // ListaProducto listpro;
+    Reserva resChecked = new Reserva();
+    UsuarioControler uctrl;
 
+    // ListaProducto listpro;
     public ControladorReserva() {
         this.ctrlproducto = new ProductoControler();
         pr = new Producto();
         this.rctrl = new ReservaControler();
+        this.uctrl = new UsuarioControler();
         //listpro=new ListaProducto();
 
     }
@@ -113,22 +115,21 @@ public class ControladorReserva extends HttpServlet {
             request.setAttribute("productos", listproductos);
             String vista = "reserva";
             request.setAttribute("vista", vista);
-        }else if (action.equalsIgnoreCase("listar")) {
+        } else if (action.equalsIgnoreCase("listar")) {
             //traer todas las reservas
-            List<Reserva> listareservas= rctrl.getAll();
+            List<Reserva> listareservas = rctrl.getAll();
             request.setAttribute("reservas", listareservas);
             String vista = "listarReservas";
             request.setAttribute("vista", vista);
         }//reservausuario lista reservas del usuario
         else if (action.equalsIgnoreCase("reservausuario")) {
             //traer todas las reservas del usuario
-            int idusuarioreserva= (int) request.getSession().getAttribute("idusuario");
-            List<Reserva> listareservas= rctrl.getAllbyID(idusuarioreserva);
+            int idusuarioreserva = (int) request.getSession().getAttribute("idusuario");
+            List<Reserva> listareservas = rctrl.getAllbyID(idusuarioreserva);
             request.setAttribute("reservas", listareservas);
             String vista = "listarReservasUsuario";
             request.setAttribute("vista", vista);
-        }
-        else if (action.equalsIgnoreCase("Reservar")) {
+        } else if (action.equalsIgnoreCase("Reservar")) {
             Integer idp = Integer.parseInt(request.getParameter("id"));
             int cantidad = 1;
             pr = ctrlproducto.list(idp);
@@ -224,14 +225,24 @@ public class ControladorReserva extends HttpServlet {
             String vista = "carrito";
             request.setAttribute("vista", vista);
 
-        }else if (action.equalsIgnoreCase("RevisarReserva")) {
+        } else if (action.equalsIgnoreCase("RevisarReserva")) {
             //tomo id reserva y chequeo que la cantidad pedida pueda descontarse de el stock de todos los productos.
             //obterner reserva y detalle metodo chequar reservar.
-            int idreserva ;
+            int idreserva;
             idreserva = Integer.parseInt(request.getParameter("id"));
-             resChecked= rctrl.chequearReserva(idreserva);
-            request.setAttribute("resChecked", resChecked);          
-           String vista = "revisar";
+            resChecked = rctrl.chequearReserva(idreserva);
+            request.setAttribute("resChecked", resChecked);
+            String vista = "revisar";
+            request.setAttribute("vista", vista);
+
+        } else if (action.equalsIgnoreCase("RevisarReservaUsuario")) {
+            //tomo id reserva y chequeo que la cantidad pedida pueda descontarse de el stock de todos los productos.
+            //obterner reserva y detalle metodo chequar reservar.
+            int idreserva;
+            idreserva = Integer.parseInt(request.getParameter("id"));
+            resChecked = rctrl.chequearReserva(idreserva);
+            request.setAttribute("resChecked", resChecked);
+            String vista = "DetalleRUsuario";
             request.setAttribute("vista", vista);
 
         }
@@ -282,9 +293,9 @@ public class ControladorReserva extends HttpServlet {
             int dniusu = Integer.parseInt(request.getParameter("dniusuario")); // todos ingresar su dni para reservar y validar usuario.
             int idusu = uctrl.getidbyDni(dniusu);
             Timestamp fecha_desde = Timestamp.valueOf(fdesde);
-            int idtemporada = tctrl.getIDByFecha(fecha_desde); 
-           // valido que el usuario exista y la temporada coincida
-           
+            int idtemporada = tctrl.getIDByFecha(fecha_desde);
+            // valido que el usuario exista y la temporada coincida
+
             if (idusu != 0 & idtemporada != 0) {
                 Reserva r = new Reserva();
                 //temporada id desde fecha seleccionada
@@ -315,38 +326,46 @@ public class ControladorReserva extends HttpServlet {
                     String vista = "error";
                     request.setAttribute("vista", vista);
                 }
-            }else{
+            } else {
                 String vista = "error";
-                String mensaje="DNI incorrecto o Fecha fuera de Temporada";
+                String mensaje = "DNI incorrecto o Fecha fuera de Temporada";
                 request.setAttribute("mensaje", mensaje);
                 request.setAttribute("vista", vista);
-            
+
             }
 
             //que hacer despues generar reserva? o
             // DEBE MOSTRAR DETALLE EN USUARIO , y LISTA EN ADMIN, Indicar que debe ser aprobada la reserva.
-        }
-        else if(action.equalsIgnoreCase("Validar")) {
+        } else if (action.equalsIgnoreCase("Validar")) {
             //aprobar reserva , descontar stock y avisar al usuario cambiando estado reserva /correo con detalle
-           Reserva rfinalizada = resChecked;
-           rfinalizada.setEstadodetalle(request.getParameter("comentarios"));
-           rctrl.aprobarReserva(rfinalizada);
-             List<Reserva> listareservas= rctrl.getAll();
-            request.setAttribute("reservas", listareservas);
-            String vista = "listarReservas";
-            request.setAttribute("vista", vista);
-        
-        
-        }else if (action.equalsIgnoreCase("Cancelar")) {
-             //aprobar reserva , descontar stock y avisar al usuario cambiando estado reserva /correo con detalle
-           Reserva rfinalizada = resChecked;
-           rfinalizada.setEstadodetalle(request.getParameter("comentarios"));
-           rctrl.cancelarReserva(rfinalizada);
-           List<Reserva> listareservas= rctrl.getAll();
+            Reserva rfinalizada = resChecked;
+            rfinalizada.setEstadodetalle(request.getParameter("comentarios"));
+            rctrl.aprobarReserva(rfinalizada);
+            List<Reserva> listareservas = rctrl.getAll();
             request.setAttribute("reservas", listareservas);
             String vista = "listarReservas";
             request.setAttribute("vista", vista);
 
+        } else if (action.equalsIgnoreCase("Cancelar")) {
+            //aprobar reserva , descontar stock y avisar al usuario cambiando estado reserva /correo con detalle
+              int rol= (int) request.getSession().getAttribute("rol");            
+            //obtengo rol usuario y diferencio funcionamiento de admin con usuario con un if
+           
+            Reserva rfinalizada = resChecked;
+            rfinalizada.setEstadodetalle(request.getParameter("comentarios"));
+            rctrl.cancelarReserva(rfinalizada);
+            if (rol == 1) {
+                List<Reserva> listareservas = rctrl.getAll();
+                request.setAttribute("reservas", listareservas);
+                String vista = "listarReservas";
+                request.setAttribute("vista", vista);
+            } else if (rol == 2) {
+                List<Reserva> listareservas = rctrl.getAllbyID(rfinalizada.getUsuario_id());
+                request.setAttribute("reservas", listareservas);
+                String vista = "listarReservasUsuario";
+                request.setAttribute("vista", vista);
+
+            }
         }
 
         request.getRequestDispatcher("index.jsp").forward(request, response);

@@ -49,6 +49,10 @@ public class UsuarioControler {
     public int getidbyDni(int dni) {
         return dao.getidbyDni(dni);
     }
+
+    public int getRolbyId(int idusuario) {
+       return dao.getRolbyId(idusuario);
+    }
             
 
 

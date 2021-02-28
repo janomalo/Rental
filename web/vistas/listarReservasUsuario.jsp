@@ -67,9 +67,13 @@
                         <% }%> --%>
                         <%-- <td> <%= usu.getFecha_registro()%> </td> --%>
                          <td>
-                            <a  class="btn btn-outline-info" href="">Detalles</a> 
-                            <a  class="btn btn-danger" href="">Cancelar</a> 
-                            <!-- Button trigger modal -->
+                            <a  class="btn btn-outline-info" href="ControladorReserva?accion=RevisarReservaUsuario&id=<%= reservausu.getId() %>">Detalles</a> 
+                            
+                           <!-- //boton cancelar con sweetalert
+                            <input type="hidden" id="idr"  value="${reservausu.getId()}">
+                                     
+                            <a  class="btn btn-danger" href="#" id="btnCancelar">Cancelar</a> 
+                             -->
 
 
 
@@ -88,5 +92,7 @@
 
            <a class="btn btn-success" href="index.jsp"> Volver</a> 
              </div>   
+                <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>  
+        <script src="../js/funciones.js" type="text/javascript"></script>
     </body>
 </html>

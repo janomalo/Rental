@@ -125,6 +125,7 @@ public class Signin extends HttpServlet {
                request.getSession().setAttribute("usuario", usu1);
                HttpSession session=request.getSession();  
                session.setAttribute("idusuario", usu1.getId());
+               session.setAttribute("rol", usu1.getRol());
                session.setAttribute("nombreusuario",usu1.getUsuario());  
                request.setAttribute("listaUsuarios",usuctrl.getAll()); //obtengo todos los usuarios
                 String vista="home";

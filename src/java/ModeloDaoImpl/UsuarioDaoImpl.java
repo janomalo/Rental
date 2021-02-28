@@ -302,4 +302,36 @@ public class UsuarioDaoImpl {
         return id;
     }
 
+    public int getRolbyId(int idusuario) {
+         int rol=0;      
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        try {
+            stmt = FactoryConexion.getInstancia().getConn().prepareStatement(
+                    "select rol_id from usuarios where id=?"
+            );
+            stmt.setInt(1, idusuario);
+            rs = stmt.executeQuery();
+            if (rs != null && rs.next()) {
+                rol = rs.getInt("rol_id");               
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (rs != null) {
+                    rs.close();
+                }
+                if (stmt != null) {
+                    stmt.close();
+                }
+                FactoryConexion.getInstancia().releaseConn();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+       
+        return rol;
+    }
+
 }

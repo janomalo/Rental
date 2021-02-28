@@ -54,4 +54,45 @@ $(document).ready(function () {
         
         
     });
+    
+     $("tr #btnCancelar").click(function () {
+        var idr = $(this).parent().find("#idr").val();
+        swal({
+            title: "estas seguro?",
+            text: "Una vez Cancelada,no podrás recuperarla!",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+        })
+                .then((willDelete) => {
+                    if (willDelete) {
+                        cancelar(idr);
+                        swal("Se ha cancelado la reserva", {
+                            icon: "success",
+                        }).then((willDelete)=>{
+                            if(willDelete){
+                            parent.location.href="ControladorReserva?accion=carrito";
+                            }
+                            
+                        });
+                    } else {
+                        swal("Reserva no cancelada");
+                    }
+                }); 
+        
+    });
+
+    function cancelar(idp) {
+        var url = "ControladorReserva?accion=Delete";
+        $.ajax({
+            type: 'POST',
+            url: url,
+            data: "idp=" + idp,
+            success: function (data, textStatus, jqXHR) {
+                
+            }
+        })
+    }
+    
+    
 });

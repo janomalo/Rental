@@ -39,7 +39,7 @@
 
         <div id="body">
 
-            <%                //terminar de ver la redireccion
+            <%           int bandera=0;     //terminar de ver la redireccion
                 String vista = (String) request.getAttribute("vista");
 
                 if (vista == null) {
@@ -97,6 +97,12 @@
                 case "listarReservasUsuario":
                     if (request.getAttribute("reservas") != null) {
             %><%@include file="vistas/listarReservasUsuario.jsp"%><% }
+
+                break;
+            case "DetalleRUsuario":
+                    if (request.getAttribute("resChecked") != null) {
+                       
+            %><%@include file="vistas/detalleReservaUsuario.jsp"%><% }
 
                 break;
 
