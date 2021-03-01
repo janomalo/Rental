@@ -107,10 +107,10 @@ public class ControladorReserva extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
+        
         String action = request.getParameter("accion");
         if (action.equalsIgnoreCase("nueva")) {
-
+            
             List<Producto> listproductos = ctrlproducto.getAllDisponibles();
             request.setAttribute("productos", listproductos);
             String vista = "reserva";
@@ -142,18 +142,18 @@ public class ControladorReserva extends HttpServlet {
             listpro.setPrecio(pr.getPrecio());
             listpro.setCantidad(cantidad);
             listpro.setSubtotal(cantidad * pr.getPrecio());
-
+            
             listaproductos.add(listpro);
             request.setAttribute("contador", listaproductos.size());
             request.setAttribute("carrito", listaproductos);
             for (int i = 0; i < listaproductos.size(); i++) {
                 totalPagar = totalPagar + listaproductos.get(i).getSubtotal();
-
+                
             }
             request.setAttribute("totalPagar", totalPagar);
             String vista = "carrito";
             request.setAttribute("vista", vista);
-
+            
         } else if (action.equalsIgnoreCase("AgregarReserva")) {
             int pos = 0;
             int cantidad = 1;
@@ -182,9 +182,9 @@ public class ControladorReserva extends HttpServlet {
                     listpro.setCantidad(cantidad);
                     listpro.setSubtotal(cantidad * pr.getPrecio());
                     listaproductos.add(listpro);
-
+                    
                 }
-
+                
             } else {
                 item = item + 1;
                 //creo objeto listproducto que se va a almacenar en una ArrayList<ListarProducto>
@@ -198,7 +198,7 @@ public class ControladorReserva extends HttpServlet {
                 listpro.setSubtotal(cantidad * pr.getPrecio());
                 listaproductos.add(listpro);
             }
-
+            
             request.setAttribute("contador", listaproductos.size());
             ProductoControler ctrlproducto = new ProductoControler();
             List<Producto> listproductos = ctrlproducto.getAll();
@@ -213,18 +213,18 @@ public class ControladorReserva extends HttpServlet {
             request.setAttribute("productos", listproductos);
             String vista = "reserva";
             request.setAttribute("vista", vista);
-
+            
         } else if (action.equalsIgnoreCase("carrito")) {
             totalPagar = 0.0;
             request.setAttribute("carrito", listaproductos);
             for (int i = 0; i < listaproductos.size(); i++) {
                 totalPagar = totalPagar + listaproductos.get(i).getSubtotal();
-
+                
             }
             request.setAttribute("totalPagar", totalPagar);
             String vista = "carrito";
             request.setAttribute("vista", vista);
-
+            
         } else if (action.equalsIgnoreCase("RevisarReserva")) {
             //tomo id reserva y chequeo que la cantidad pedida pueda descontarse de el stock de todos los productos.
             //obterner reserva y detalle metodo chequar reservar.
@@ -234,7 +234,7 @@ public class ControladorReserva extends HttpServlet {
             request.setAttribute("resChecked", resChecked);
             String vista = "revisar";
             request.setAttribute("vista", vista);
-
+            
         } else if (action.equalsIgnoreCase("RevisarReservaUsuario")) {
             //tomo id reserva y chequeo que la cantidad pedida pueda descontarse de el stock de todos los productos.
             //obterner reserva y detalle metodo chequar reservar.
@@ -244,11 +244,20 @@ public class ControladorReserva extends HttpServlet {
             request.setAttribute("resChecked", resChecked);
             String vista = "DetalleRUsuario";
             request.setAttribute("vista", vista);
-
+            
+        }else if (action.equalsIgnoreCase("EditarReserva")) {
+            String idresedit = request.getParameter("id");
+            List<Reserva> listareservas;
+            listareservas = rctrl.getAll();
+            Reserva reditar = listareservas.get(Integer.parseInt(idresedit));
+            request.setAttribute("reditar", reditar);
+            String vista = "editarReserva";
+            request.setAttribute("vista", vista);
+            
         }
-
+        
         request.getRequestDispatcher("index.jsp").forward(request, response);
-
+        
     }
 
     /**
@@ -269,12 +278,12 @@ public class ControladorReserva extends HttpServlet {
                 if (listaproductos.get(i).getProducto_id() == idproducto) {
                     listaproductos.remove(i);
                 }
-
+                
             }
             String vista = "carrito";
             request.setAttribute("vista", vista);
         } else if (action.equalsIgnoreCase("ActualizarCantidad")) {
-
+            
             int idproducto = Integer.parseInt(request.getParameter("idp"));
             int cant = Integer.parseInt(request.getParameter("Cantidad"));
             for (int i = 0; i < listaproductos.size(); i++) {
@@ -284,9 +293,9 @@ public class ControladorReserva extends HttpServlet {
                     listaproductos.get(i).setSubtotal(st);
                 }
             }
-
+            
         } else if (action.equalsIgnoreCase("Generar")) {
-
+            
             TemporadaControler tctrl = new TemporadaControler();
             UsuarioControler uctrl = new UsuarioControler();
             String fdesde = request.getParameter("txtfdesde");
@@ -309,13 +318,13 @@ public class ControladorReserva extends HttpServlet {
                 //fecha que se hizo la reserva
                 Date date = new Date();
                 long time = date.getTime();
-
+                
                 r.setFecha_reserva(new Timestamp(time));//guarda fecha y hora del momento en que se reserva
                 //cantidad de dias reserva
                 r.setCantidad_dias(Integer.parseInt(request.getParameter("cantidaddias")));
                 //lista productos detalle
                 r.setDetalle(listaproductos);
-
+                
                 int valor = rctrl.add(r);
                 if (valor != 0) {
                     List<Producto> listproductos = ctrlproducto.getAll();
@@ -331,7 +340,7 @@ public class ControladorReserva extends HttpServlet {
                 String mensaje = "DNI incorrecto o Fecha fuera de Temporada";
                 request.setAttribute("mensaje", mensaje);
                 request.setAttribute("vista", vista);
-
+                
             }
 
             //que hacer despues generar reserva? o
@@ -345,12 +354,12 @@ public class ControladorReserva extends HttpServlet {
             request.setAttribute("reservas", listareservas);
             String vista = "listarReservas";
             request.setAttribute("vista", vista);
-
+            
         } else if (action.equalsIgnoreCase("Cancelar")) {
             //aprobar reserva , descontar stock y avisar al usuario cambiando estado reserva /correo con detalle
-              int rol= (int) request.getSession().getAttribute("rol");            
+            int rol = (int) request.getSession().getAttribute("rol");
             //obtengo rol usuario y diferencio funcionamiento de admin con usuario con un if
-           
+            
             Reserva rfinalizada = resChecked;
             rfinalizada.setEstadodetalle(request.getParameter("comentarios"));
             rctrl.cancelarReserva(rfinalizada);
@@ -364,12 +373,12 @@ public class ControladorReserva extends HttpServlet {
                 request.setAttribute("reservas", listareservas);
                 String vista = "listarReservasUsuario";
                 request.setAttribute("vista", vista);
-
+                
             }
-        }
-
+        } 
+        
         request.getRequestDispatcher("index.jsp").forward(request, response);
-
+        
     }
 
     /**

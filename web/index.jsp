@@ -105,6 +105,12 @@
             %><%@include file="vistas/detalleReservaUsuario.jsp"%><% }
 
                 break;
+            case "editarReserva":
+                    if (request.getAttribute("reditar") != null) {
+                       
+            %><%@include file="vistas/editReserva.jsp"%><% }
+
+                break;
 
                case "revisar":
                     if (request.getAttribute("resChecked") != null) {
