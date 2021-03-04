@@ -8,6 +8,10 @@
         <servlet-name>Controlador</servlet-name>
         <url-pattern>/Controlador</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Controlador</servlet-name>
+        <url-pattern>/ControladorVista</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>
             900

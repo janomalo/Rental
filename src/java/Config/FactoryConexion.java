@@ -9,10 +9,10 @@ import java.sql.SQLException;
 public class FactoryConexion {
     
 	private String driver="com.mysql.jdbc.Driver";
-	private String host="localhost";
+	private String host="https://node64513-rentaljava.jelastic.saveincloud.net  ";
 	private String port="3306";
 	private String user="root";
-	private String password="";
+	private String password="7LFBKhPQyp";
 	private String db="rental";
 	
 	private static FactoryConexion instancia;
