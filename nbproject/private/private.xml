@@ -12,18 +12,14 @@
     </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Alejandro/Documents/GitHub/Rental/web/vistas/RevisarReserva.jsp</file>
             <file>file:/C:/Users/Alejandro/Documents/GitHub/Rental/src/java/ModeloDaoImpl/ReservaDaoImpl.java</file>
-            <file>file:/C:/Users/Alejandro/Documents/GitHub/Rental/web/vistas/listarProductos.jsp</file>
-            <file>file:/C:/Users/Alejandro/Documents/GitHub/Rental/src/java/ModeloDaoImpl/CategoriaDaoImpl.java</file>
-            <file>file:/C:/Users/Alejandro/Documents/GitHub/Rental/src/java/Servlet/ControladorReserva.java</file>
+            <file>file:/C:/Users/Alejandro/Documents/GitHub/Rental/src/java/Config/Conexion.java</file>
+            <file>file:/C:/Users/Alejandro/Documents/GitHub/Rental/web/vistas/editReserva.jsp</file>
             <file>file:/C:/Users/Alejandro/Documents/GitHub/Rental/web/index.jsp</file>
-            <file>file:/C:/Users/Alejandro/Documents/GitHub/Rental/web/vistas/reserva.jsp</file>
             <file>file:/C:/Users/Alejandro/Documents/GitHub/Rental/src/java/Modelo/Reserva.java</file>
-            <file>file:/C:/Users/Alejandro/Documents/GitHub/Rental/web/vistas/carrito.jsp</file>
+            <file>file:/C:/Users/Alejandro/Documents/GitHub/Rental/src/java/Config/FactoryConexion.java</file>
             <file>file:/C:/Users/Alejandro/Documents/GitHub/Rental/web/vistas/listarReservas.jsp</file>
-            <file>file:/C:/Users/Alejandro/Documents/GitHub/Rental/web/vistas/listarTemporadas.jsp</file>
-            <file>file:/C:/Users/Alejandro/Documents/GitHub/Rental/src/java/Logic/ReservaControler.java</file>
+            <file>file:/C:/Users/Alejandro/Documents/GitHub/Rental/web/vistas/editTemporada.jsp</file>
         </group>
     </open-files>
 </project-private>
